@@ -1,0 +1,671 @@
+07 Dec 2019 12:24:46 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+07 Dec 2019 12:24:48 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+07 Dec 2019 12:54:38 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+07 Dec 2019 12:54:39 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+07 Dec 2019 12:55:49 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+07 Dec 2019 12:55:50 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+07 Dec 2019 12:59:57 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+07 Dec 2019 12:59:57 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+07 Dec 2019 14:23:10 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+07 Dec 2019 14:23:13 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+07 Dec 2019 15:34:03 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+07 Dec 2019 15:34:04 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+07 Dec 2019 17:10:58 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+07 Dec 2019 17:10:59 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+09 Dec 2019 09:58:30 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+09 Dec 2019 09:58:31 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+10 Dec 2019 10:15:36 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+10 Dec 2019 10:15:38 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+10 Dec 2019 12:09:05 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+10 Dec 2019 12:09:06 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+10 Dec 2019 12:22:18 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+E:\Manjari\Skeleton demo test\grails-app\controllers\skeleton\AddressController.groovy: 800: unexpected token: } @ line 800, column 2.
+   	}
+    ^
+
+1 error
+>
+10 Dec 2019 17:19:19 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+10 Dec 2019 17:19:20 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+10 Dec 2019 17:20:16 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+10 Dec 2019 17:20:17 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+10 Dec 2019 17:22:10 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+10 Dec 2019 17:22:11 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+11 Dec 2019 09:39:24 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+11 Dec 2019 09:39:26 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+11 Dec 2019 12:13:42 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 12:27:17 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 12:27:18 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 12:30:25 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 12:30:26 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 12:31:37 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:4: error: ';' expected
+  def version = "1.0"
+                     ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:6: error: ';' expected
+  def grailsVersion = "2.3 > *"
+                               ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:8: error: illegal start of expression
+  def pluginExcludes = [ ]
+                       ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:8: error: illegal start of type
+  def pluginExcludes = [ ]
+                         ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:10: error: ';' expected
+  def title = "Nexmo Plugin" // Headline display name of the plugin
+     ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:10: error: <identifier> expected
+  def title = "Nexmo Plugin" // Headline display name of the plugin
+           ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:10: error: ';' expected
+  def title = "Nexmo Plugin" // Headline display name of the plugin
+                            ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:11: error: ';' expected
+  def author = "Casey Scarborough"
+                                  ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:12: error: ';' expected
+  def authorEmail = "caseyscarborough@gmail.com"
+                                                ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:13: error: empty character literal
+  def description = '''\
+                    ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:13: error: empty character literal
+  def description = '''\
+                     ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:13: error: illegal escape character
+  def description = '''\
+                        ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:13: error: unclosed character literal
+  def description = '''\
+                      ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:14: error: ';' expected
+The Nexmo Plugin gives Grails applications SMS (Text Messaging) and Voice functionality. It allows an application to receive
+         ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:14: error: ';' expected
+The Nexmo Plugin gives Grails applications SMS (Text Messaging) and Voice functionality. It allows an application to receive
+                      ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:14: error: ';' expected
+The Nexmo Plugin gives Grails applications SMS (Text Messaging) and Voice functionality. It allows an application to receive
+                                          ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:14: error: invalid method declaration; return type required
+The Nexmo Plugin gives Grails applications SMS (Text Messaging) and Voice functionality. It allows an application to receive
+                                           ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:14: error: ';' expected
+The Nexmo Plugin gives Grails applications SMS (Text Messaging) and Voice functionality. It allows an application to receive
+                                                               ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:15: error: unclosed character literal
+and send text messages, as well as sending automated voice calls using Nexmo's API.
+                                                                            ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:16: error: empty character literal
+'''
+^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:16: error: empty character literal
+'''
+ ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:16: error: illegal line end in character literal
+'''
+  ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:29: error: ';' expected
+    mergeConfig(application)
+                            ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:33: error: invalid method declaration; return type required
+  protected mergeConfig(application) {
+            ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:33: error: <identifier> expected
+  protected mergeConfig(application) {
+                                   ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:34: error: ';' expected
+    application.config.merge(loadConfig(application))
+                                                     ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:38: error: invalid method declaration; return type required
+  protected loadConfig(application) {
+            ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:38: error: <identifier> expected
+  protected loadConfig(application) {
+                                  ^
+E:\Manjari\Skeleton demo test\src\groovy\NexmoGrailsPlugin.java:39: error: ';' expected
+    new ConfigSlurper(Environment.current.name).parse(application.classLoader.loadClass("NexmoConfig"))
+                                                                                                       ^
+30 errors
+
+
+1 error
+>
+11 Dec 2019 12:31:47 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 12:32:07 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 12:36:42 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 12:36:42 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 12:44:37 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 12:44:37 ERROR [org.codehaus.groovy.grails.plugins.AbstractGrailsPluginManager] - <Plugin [services:2.4.4] could not reload changes to file [E:\Manjari\Skeleton demo test\grails-app\services\skeleton\NexmoService.groovy]: Dynamic method is<Artefact>Class(artefactClass) requires a single Class parameter>
+java.lang.IllegalArgumentException: Dynamic method is<Artefact>Class(artefactClass) requires a single Class parameter
+	at CacheGrailsPlugin$_closure4.doCall(CacheGrailsPlugin.groovy:183)
+11 Dec 2019 12:44:37 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 12:45:37 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 12:53:19 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 13:03:41 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 13:03:41 ERROR [org.codehaus.groovy.grails.plugins.AbstractGrailsPluginManager] - <Plugin [services:2.4.4] could not reload changes to file [E:\Manjari\Skeleton demo test\grails-app\services\skeleton\NexmoService.groovy]: Dynamic method is<Artefact>Class(artefactClass) requires a single Class parameter>
+java.lang.IllegalArgumentException: Dynamic method is<Artefact>Class(artefactClass) requires a single Class parameter
+	at CacheGrailsPlugin$_closure4.doCall(CacheGrailsPlugin.groovy:183)
+11 Dec 2019 13:03:41 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 13:03:47 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 13:03:47 ERROR [org.codehaus.groovy.grails.plugins.AbstractGrailsPluginManager] - <Plugin [services:2.4.4] could not reload changes to file [E:\Manjari\Skeleton demo test\grails-app\services\skeleton\NexmoService.groovy]: Dynamic method is<Artefact>Class(artefactClass) requires a single Class parameter>
+java.lang.IllegalArgumentException: Dynamic method is<Artefact>Class(artefactClass) requires a single Class parameter
+	at CacheGrailsPlugin$_closure4.doCall(CacheGrailsPlugin.groovy:183)
+11 Dec 2019 13:03:48 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 13:03:53 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 13:03:53 ERROR [org.codehaus.groovy.grails.plugins.AbstractGrailsPluginManager] - <Plugin [services:2.4.4] could not reload changes to file [E:\Manjari\Skeleton demo test\grails-app\services\skeleton\NexmoService.groovy]: Dynamic method is<Artefact>Class(artefactClass) requires a single Class parameter>
+java.lang.IllegalArgumentException: Dynamic method is<Artefact>Class(artefactClass) requires a single Class parameter
+	at CacheGrailsPlugin$_closure4.doCall(CacheGrailsPlugin.groovy:183)
+11 Dec 2019 13:03:54 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 13:07:25 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 13:10:37 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 13:12:36 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 13:13:26 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 13:17:29 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 13:17:36 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 13:17:46 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 13:19:50 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 13:19:51 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 13:23:24 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 13:23:37 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 13:23:38 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 14:14:52 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 14:14:53 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 14:15:56 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 14:15:57 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 14:16:07 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 14:17:44 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 14:17:45 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 14:21:55 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 14:22:03 ERROR [org.codehaus.groovy.grails.plugins.AbstractGrailsPluginManager] - <Plugin [controllers:2.4.4] could not reload changes to file [E:\Manjari\Skeleton demo test\grails-app\controllers\skeleton\NexmoController.groovy]: Dynamic method is<Artefact>Class(artefactClass) requires a single Class parameter>
+java.lang.IllegalArgumentException: Dynamic method is<Artefact>Class(artefactClass) requires a single Class parameter
+	at ScaffoldingGrailsPlugin$_closure3.doCall(ScaffoldingGrailsPlugin.groovy:103)
+11 Dec 2019 14:22:03 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 14:22:09 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 14:22:09 ERROR [org.codehaus.groovy.grails.plugins.AbstractGrailsPluginManager] - <Plugin [controllers:2.4.4] could not reload changes to file [E:\Manjari\Skeleton demo test\grails-app\controllers\skeleton\NexmoController.groovy]: Dynamic method is<Artefact>Class(artefactClass) requires a single Class parameter>
+java.lang.IllegalArgumentException: Dynamic method is<Artefact>Class(artefactClass) requires a single Class parameter
+	at ScaffoldingGrailsPlugin$_closure3.doCall(ScaffoldingGrailsPlugin.groovy:103)
+11 Dec 2019 14:22:10 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 14:22:15 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 14:22:15 ERROR [org.codehaus.groovy.grails.plugins.AbstractGrailsPluginManager] - <Plugin [controllers:2.4.4] could not reload changes to file [E:\Manjari\Skeleton demo test\grails-app\controllers\skeleton\NexmoController.groovy]: Dynamic method is<Artefact>Class(artefactClass) requires a single Class parameter>
+java.lang.IllegalArgumentException: Dynamic method is<Artefact>Class(artefactClass) requires a single Class parameter
+	at ScaffoldingGrailsPlugin$_closure3.doCall(ScaffoldingGrailsPlugin.groovy:103)
+11 Dec 2019 14:22:16 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 14:23:54 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 14:24:03 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 14:24:03 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 14:24:36 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 16:18:59 ERROR [org.codehaus.groovy.grails.project.compiler.GrailsProjectWatcher] - <Compilation Error: startup failed:
+Compile error during compilation with javac.
+E:\Manjari\Skeleton demo test\grails-app\conf\NexmoConfig.java:4: error: class, interface, or enum expected
+nexmo {
+^
+1 error
+
+
+1 error
+>
+11 Dec 2019 16:22:39 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+11 Dec 2019 16:22:41 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+12 Dec 2019 11:00:38 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+12 Dec 2019 11:00:40 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+12 Dec 2019 15:53:45 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+12 Dec 2019 15:53:47 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+12 Dec 2019 18:01:39 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+12 Dec 2019 18:01:40 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+13 Dec 2019 09:52:00 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+13 Dec 2019 09:52:01 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+13 Dec 2019 11:16:39 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+13 Dec 2019 11:16:40 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+13 Dec 2019 15:37:27 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+13 Dec 2019 15:37:28 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+14 Dec 2019 09:43:09 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+14 Dec 2019 09:43:10 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+16 Dec 2019 09:29:40 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+16 Dec 2019 09:29:41 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+16 Dec 2019 15:19:24 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+16 Dec 2019 15:19:27 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+16 Dec 2019 17:49:31 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+16 Dec 2019 17:49:32 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+17 Dec 2019 09:24:44 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+17 Dec 2019 09:24:45 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+17 Dec 2019 10:32:59 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+17 Dec 2019 10:33:01 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+17 Dec 2019 10:39:58 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
+17 Dec 2019 10:39:58 WARN [grails.plugin.webxml.WebxmlGrailsPlugin] - <Did not find application config file: WebXmlConfig>
