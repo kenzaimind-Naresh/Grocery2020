@@ -47,6 +47,13 @@ class OrderStatusController {
 	def orderstatuslist(){
 		
 		log.info("OrderController orderstatuslist Action")
+		
+		def username= session.user
+		if(username ==null || username=="" ){
+		 redirect(uri: "/orderStatus/orderstatuslist")
+		 return
+		}
+		
 		def responseData = new HashMap<>();
 		def mode=params.mode
 		log.info(mode)
@@ -57,11 +64,7 @@ class OrderStatusController {
 		
 		def user= Merchant.findByEmail(session.user)
 		log.info(user)
-		def username= session.user
-		if(username ==null || username=="" ){
-		 redirect(uri: "/orderStatus/orderstatuslist")
-		 return
-		}
+		
 		
 		def merchantId = user.id
 		def of=0;

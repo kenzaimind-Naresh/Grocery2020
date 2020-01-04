@@ -233,6 +233,12 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	
 	def list(){
 		log.info("GroceryController list Action")
+		
+		def username= session.user
+		if(username ==null || username=="" ){
+		 redirect(uri: "/grocery/list")
+		 return
+		}
 		def responseData = new HashMap<>();
 		def mode=params.mode
 		log.info(mode)
@@ -243,11 +249,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		
 		def user= Merchant.findByEmail(session.user)
 		log.info(user)
-		def username= session.user
-		if(username ==null || username=="" ){
-		 redirect(uri: "/grocery/list")
-		 return
-		}
+		
 		
 		def merchantId = user.id
 		def of=0;
@@ -272,6 +274,12 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	
 	def offsetlist(){
 		log.info("groceryController offsetlist Action")
+		
+		def username= session.user
+		if(username ==null || username=="" ){
+		 redirect(uri: "/grocery/offsetlist")
+		 return
+		}
 		def responseData = new HashMap<>();
 		def mode=params.mode
 		log.info(mode)
@@ -282,11 +290,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info(user)
 		def merchantId = user.id
 		log.info(merchantId)
-		def username= session.user
-		if(username ==null || username=="" ){
-		 redirect(uri: "/grocery/offsetlist")
-		 return
-		}
+		
 		
 		def of=params.offset;
 		def data=Grocery.findAllByMerchantId(merchantId,[sort:"id",order:"desc",max: 5, offset: of])
@@ -305,6 +309,12 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
     def edit() {
 		
 	    log.info("GroceryController edit Action")
+		
+		def username= session.user
+		if(username ==null || username=="" ){
+		 redirect(uri: "/grocery/edit")
+		 return
+		}
 		def responseData = new HashMap<>();
 		def mode=params.mode
 		log.info(mode)
@@ -315,11 +325,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		
 		def user= Merchant.findByEmail(session.user)
 		log.info(user)
-		def username= session.user
-		if(username ==null || username=="" ){
-		 redirect(uri: "/grocery/edit")
-		 return
-		}
+	
 		
 		def merchantId = user.id
 		def of=0;
@@ -363,6 +369,12 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	@Transactional
 	def saveupdate() {
 		log.info("grocery Controller saveupdate action")
+		
+		def username= session.user
+		if(username ==null || username=="" ){
+		 redirect(uri: "/merchant/login")
+		 return
+		}
 		def responseData = new HashMap<>()
 		def result,url
 		url="/grocery/edit.gsp"
@@ -386,11 +398,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		def modifiedBy=params.modifiedBy
 		log.info(modifiedBy);
 		def user= Merchant.findByEmail(session.user)
-		def username= session.user
-		if(username ==null || username=="" ){
-		 redirect(uri: "/merchant/login")
-		 return
-		}
+		
 		
 		def res=GroceryService.update(categoryName,groceryName,cost,weight,quantity,offer,createDate,total,user.firstName)
 		log.info("result from service "+res)

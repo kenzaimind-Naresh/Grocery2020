@@ -81,17 +81,19 @@ class MerchantController {
 
 	def offsetlist(){
 		log.info("Merchant crontroller merchantdata")
-		def shopName=params.shopName
-		def responseData = new HashMap<>()
-		def pat1=grocery.getAll()
-		def dissheet=merchantdata.findAllBygroceryId(params.groceryId)
-		def user= User.findByshopName(session.user)
 		
 		def username= session.user
 		if(username ==null || username=="" ){
 		 redirect(uri: "/merchant/merchantdata")
 		 return
 		}
+		
+		def shopName=params.shopName
+		def responseData = new HashMap<>()
+		def pat1=grocery.getAll()
+		def dissheet=merchantdata.findAllBygroceryId(params.groceryId)
+		def user= User.findByshopName(session.user)
+		
 		
 		def mode="web"
 		def of=params.offset;
@@ -285,16 +287,17 @@ class MerchantController {
 				}
 		
 	def changepass={
-		def responseData = new HashMap<>()
-		//def username= User.findByUsername(session.user)
-		
-		def user= Merchant.findByEmail(session.user)
-		log.info(user)
 		def userName= session.user
 		if(userName ==null || userName=="" ){
 		 redirect(uri: "/merchant/login")
 		 return
 		}
+		
+		def responseData = new HashMap<>()
+		//def username= User.findByUsername(session.user)
+		
+		def user= Merchant.findByEmail(session.user)
+		log.info(user)
 		
 		responseData.put(getMessages('default.message.label'),"Password Changed Successfully")
 		responseData.put("uname",user)
@@ -336,6 +339,13 @@ class MerchantController {
 		
 	def passwordSave2(){
 		log.info("Merchant controller passwordSave2 action")
+		
+		def username= session.user
+		log.info(username)
+		if(username ==null || username=="" ){
+			redirect(uri: "/merchant/login")
+			return
+		   }
 		def responseData = new HashMap<>()
 		def mode=params.mode
 		
@@ -350,12 +360,7 @@ class MerchantController {
 		
 		
 		if(mode=="web"){
-		def username= session.user
-		log.info(username)
-		if(username ==null || username=="" ){
-			redirect(uri: "/merchant/login")
-			return
-		   }
+	
 		if((username !=null || username!="") && (password ==null || password=="") && (newPwd ==null || newPwd=="") && (confirmPwd ==null || confirmPwd=="")){
 			redirect(uri: "/merchant/ldashboard")
 			return false
@@ -562,17 +567,19 @@ class MerchantController {
 			}
 		
 	def ldashboard ={
+		
+		def username= session.user
+		if(username ==null || username=="" ){
+		 redirect(uri: "/merchant/ldashboard")
+		 return
+		}
+		
 		def responseData = new HashMap<>()
 		def mode=params.mode
 		log.info(mode)
 		
 		def user= Merchant.findByEmail(session.user)
 		log.info(user)
-		def username= session.user
-		if(username ==null || username=="" ){
-		 redirect(uri: "/merchant/ldashboard")
-		 return
-		}
 		
 		
 		def merchantId = user.id

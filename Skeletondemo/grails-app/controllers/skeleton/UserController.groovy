@@ -17,6 +17,12 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 
 
 def userdashboard() {
+	log.info("UserController userdashboard Action")
+	def username= session.user
+	if(username ==null || username=="" ){
+	 redirecturi: ("/user/userlogin1")
+	 return
+	}
 	
 	
 	def responseData = new HashMap<>()
@@ -25,11 +31,7 @@ def userdashboard() {
 	
 	def user= User.findByUserName(session.user)
 	log.info(user)
-	def username= session.user
-	if(username ==null || username=="" ){
-	 redirecturi: ("/user/userlogin1")
-	 return
-	}
+	
 	
 	params.max = Math.min(params.max ? params.int('max') : 8, 100)
 	respond Grocery.list(params), model:[groceryInstanceCount: Grocery.count()]
@@ -84,14 +86,16 @@ def userdashboard() {
 }
 
 def userlist(){
-	log.info("userController userlist Action")
-	def responseData = new HashMap<>();
-	def admin= Admin.findByAdminname(session.admin)
+	
+	log.info("UserController userlist Action")
 	def adminname= session.admin
 	if(adminname ==null || adminname=="" ){
 	 redirect(uri: "/admin/login1")
 	 return
 	}
+	def responseData = new HashMap<>();
+	def admin= Admin.findByAdminname(session.admin)
+	
 	
 	def mode="web"
 	def of=0;
@@ -181,6 +185,12 @@ def emp=Grocery.findAllByGroceryName(groceryName)
 def purched(){
 	
 	log.info("User Controller purched action ********")
+	def username= session.user
+	if(username ==null || username=="" ){
+	 redirect(uri: "/address/userlogin")
+	 return
+	}
+	
 	def responseData = new HashMap<>()
 	def mode=params.mode
 	log.info(mode)
@@ -188,11 +198,6 @@ def purched(){
 	
 	def user= User.findByUserName(session.user)
 	log.info(user)
-	def username= session.user
-	if(username ==null || username=="" ){
-	 redirect(uri: "/address/userlogin")
-	 return
-	}
 	
 	def userNameId = user.id
 	def of=0;
@@ -273,7 +278,15 @@ def userdashboard1(){
 
 def updateuser(){
 	
+	log info("UserController updateuser Action")
 	
+	def userName= session.user
+	if(userName ==null || userName=="" ){
+	// redirect(uri: "/user/userlogin1")
+	 return
+	}
+	
+
 
 	//	def user=User.findByUserName(params.id)
 		//[user:user]
@@ -283,13 +296,7 @@ def updateuser(){
 	def responseData = new HashMap<>();
 	def user= User.findByUserName(session.user)
 	
-	def userName= session.user
-	if(userName ==null || userName=="" ){
-	// redirect(uri: "/user/userlogin1")
-	 return
-	}
 	
-
 	responseData.put("user", user)
 	[result:responseData]
 
@@ -299,6 +306,11 @@ def updateuser(){
 	{
 	
 		log.info("UserController myorders Action")
+		def username= session.user
+		if(username ==null || username=="" ){
+		 redirect(uri: "/user/myorders")
+		 return
+		}
 		def responseData = new HashMap<>();
 		def mode=params.mode
 		log.info(mode)
@@ -309,11 +321,7 @@ def updateuser(){
 		
 		def user= User.findByUserName(session.user)
 		log.info(user)
-		def username= session.user
-		if(username ==null || username=="" ){
-		 redirect(uri: "/user/myorders")
-		 return
-		}
+		
 		
 		def usercartId = user.id
 		def of=0;
@@ -337,16 +345,20 @@ def updateuser(){
 
 
 def changepass={
-	def responseData = new HashMap<>()
-	//def username= User.findByUsername(session.user)
 	
-	def user= User.findByUserName(session.user)
-	log.info(user)
+	
+	log.info("UserController changepass Action")
 	def userName= session.user
 	if(userName ==null || userName=="" ){
 	 redirect(uri: "/user/userlogin1")
 	 return
 	}
+	def responseData = new HashMap<>()
+	//def username= User.findByUsername(session.user)
+	
+	def user= User.findByUserName(session.user)
+	log.info(user)
+	
 	
 	responseData.put(getMessages('default.message.label'),"Password Changed Successfully")
 	responseData.put("uname",user)
@@ -357,7 +369,7 @@ def changepass={
 /* To update the data of Doctor */
 @Transactional
 def saveupdate() {
-	log.info("user Controller saveupdate action")
+	log.info("User Controller saveupdate action")
 	def responseData = new HashMap<>()
 	def result,url
 	def mode=params.mode
@@ -540,16 +552,17 @@ def createappointment(){
 }
 
 def passwordSave2={
-	def responseData = new HashMap<>()
-	//def username= User.findByUsername(session.user)
-	
-	def user= User.findByUserName(session.user)
-	log.info(user)
 	def userName= session.user
 	if(userName ==null || userName=="" ){
 	 redirect(uri: "/user/userlogin1")
 	 return
 	}
+	def responseData = new HashMap<>()
+	//def username= User.findByUsername(session.user)
+	
+	def user= User.findByUserName(session.user)
+	log.info(user)
+	
 	
 	responseData.put(getMessages('default.message.label'),"Password Changed Successfully")
 	responseData.put("uname",user)
@@ -606,7 +619,7 @@ def createuser() {
 /* To save the data of user*/
 @Transactional
 def saveuser() {
-	log.info("user Controller saveuser action")
+	log.info("User Controller saveuser action")
 	def responseData = new HashMap<>()
 	def result,url
 	

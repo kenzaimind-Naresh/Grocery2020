@@ -190,8 +190,9 @@ form.example::after {
 								
 								<li><g:link controller="user" action="updateuser" class="active"  style="color:	#DAA520;"><i class="fa fa-user"></i> Profile</g:link></li>
 								<li><g:link controller="user" action="changepass" class="active" style="color:	#DAA520;"><i class="fa fa-key"></i> ChangePassword</g:link></li>
-								<li><a href="/Skeleton/merchant/logout" style="color:	#DAA520;"><i class="fa fa-sign-out fa-fw"  class="clear-cart"></i> Logout</a>
-
+<<<<<<< .mine								<li><a href="/Skeleton/user/logout" style="color:#DAA520;"><i class="fa fa-sign-out fa-fw" class="clear-cart"></i> Logout</a>
+=======								<li><a href="/Skeleton/merchant/logout" style="color:	#DAA520;"><i class="fa fa-sign-out fa-fw"  class="clear-cart"></i> Logout</a>
+>>>>>>> .theirs
 								</ul>
 							</li>													
 						</ul>

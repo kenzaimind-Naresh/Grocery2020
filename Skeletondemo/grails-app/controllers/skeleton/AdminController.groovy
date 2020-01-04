@@ -9,8 +9,6 @@ class AdminController {
 	def adminDashboard() {
 		log.info("adminController adminDashboard Action")
 		
-		def responseData = new HashMap<>()
-		def admin= Admin.findByAdminname(session.admin)
 		
 		def adminname= session.admin
 		if(adminname ==null || adminname=="" ){
@@ -18,6 +16,9 @@ class AdminController {
 		 return
 		}
 
+		def responseData = new HashMap<>()
+		def admin= Admin.findByAdminname(session.admin)
+	
 		def mode="web"
 		def of=0;
 		def merchantdata=Merchant.list(sort:"id",order:"desc",max: 5, offset: of)
