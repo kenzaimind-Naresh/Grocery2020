@@ -98,7 +98,6 @@ $(function() {
 </script>
 
 <script>
-
 history.pushState({ page: 1 }, "Title 1", "#no-back");
 window.onhashchange = function (event) {
   window.location.hash = "no-back";
@@ -139,27 +138,6 @@ form.example::after {
 }
 </style>
 
-<style>
-.footer {
-   position: fixed;
-   left: 0;
-   bottom: 0;
-   width: 100%;
-   background-color:black;
-   color: white;
-   text-align: center;
-}
-
-a {
-  color: white;
-}
-a:hover {
-  color: white;
-}
-
-
-</style>
-
 </head>
 <body>
 
@@ -169,7 +147,7 @@ a:hover {
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="/Skeleton/merchant/dashboard"><img src="/Skeleton/website/img/logo12.jpg" alt=""></a>
+					<a class="navbar-brand logo_h" href="/Skeleton/merchant/location"><img src="/Skeleton/website/img/logo12.jpg" alt=""></a>
 					 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
@@ -181,14 +159,30 @@ a:hover {
 			
 					<div class="collapse navbar-collapse offset" >
 	
+						
 						<ul class="nav navbar-nav menu_nav ml-auto" style="padding-top:30px">
+  					
+		
+  							
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;					
-
-  							<li class="nav-item"><a class="nav-link" href="/Skeleton/merchant/dashboard" >Home</a></li>
+  								<li class="nav-item"><a class="nav-link" href="/Skeleton/merchant/location" >Home</a></li>
+							
+														
+							
+							
 							<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-							<li class="nav-item"><a class="fa fa-shopping-cart" style="font-size:18px; padding-top:10px; padding-bottom:20px" data-toggle="modal" data-target="#cart">(<span class="total-count"></span>)</a></li>
+							
+						<li class="nav-item"><a class="fa fa-shopping-cart" style="font-size:18px; padding-top:10px; padding-bottom:20px" data-toggle="modal" data-target="#cart">(<span class="total-count"></span>)</a>
+						</li>
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="userName-md"></span>${result.uname.userName}<i class="fa fa-user" style="font-size:20px;"></i></a>
 								
@@ -196,18 +190,22 @@ a:hover {
 								
 								<li><g:link controller="user" action="updateuser" class="active"  style="color:	#DAA520;"><i class="fa fa-user"></i> Profile</g:link></li>
 								<li><g:link controller="user" action="changepass" class="active" style="color:	#DAA520;"><i class="fa fa-key"></i> ChangePassword</g:link></li>
-								<li><a href="/Skeleton/merchant/logout" style="color:#DAA520;"><i class="fa fa-sign-out fa-fw" class="clear-cart"></i> Logout</a>
+								<li><a href="/Skeleton/merchant/logout" style="color:	#DAA520;"><i class="fa fa-sign-out fa-fw"  class="clear-cart"></i> Logout</a>
 
 								</ul>
 							</li>													
 						</ul>
-					
+						
 					</div>
 				</div>
-			
+				
+				
 			</nav>
 		</div>
 		
+		
+	
+		 
 		 
 	</header>
 	<!-- End Header Area -->
@@ -273,6 +271,9 @@ a:hover {
 					</div>
 						
 	<!-- end product Area -->
+	
+	
+	
 
 	<style>
 	.modal {
@@ -301,8 +302,10 @@ a:hover {
       <div class="modal-body">
         <table class="show-cart table">
           
+          
         </table>
         <div>Total price: &#x20b9;<span class="total-cart"></span></div>
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -310,65 +313,90 @@ a:hover {
       </div>
     </div>
   </div>
-</div>
- 
-<br><br>
+</div> 
 
- <div class="container">
-    <h4>Product List</h4> 
-	<div style=" padding-left:150px; padding-right:350px;font-family: Calibri">
-      <table class="table table-hover table-condensed table-striped">
-      	<thead>
-      		<tr>
-      			<th>Produt Name</th>
-      			<th>Price</th>
-      			<th>Quantity</th>
-      			<th>Total Amount</th>
-      			<th>Status</th>
-      		</tr>
-      	</thead>
-     	<tbody>
-      		<tr>
-       			<td><span class="g-name1"></span></td>
-      			<td><span class="g-price1"></span></td>
-      			<td><span class="g-tcount1"></span></td>
-      			<td><span class="g-tamount1"></span></td>
-      			<td><span class="g-status1"></span></td>
-      		</tr>
-      	</tbody>
+
+ <div class="container signin">
+       <div class="row">
+            <div class="col-xs-9 col-sm-6 col-md-4">
+                <h4 style="font-family: Calibri">Product List <b style="font-size:12px; color:black;"></h4>
+            </div>
+            
+        </div> <br>
+  <div class="row">
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+ <div class="table-responsive">
+      <table class="table table-striped table-bordered table-hover">
+      <thead>
+      <tr>
+      <th style="color:black;font-family: Calibri">Produt Name</th>
+      <th style="color:black;font-family: Calibri">Price</th>
+      <th style="color:black;font-family: Calibri">Quantity</th>
+      <th style="color:black;font-family: Calibri">T.AMT</th>
+      
+      </tr>
+      </thead>
+     <tbody>
+      <tr>
+       <td><span class="g-name1"></span></td>
+      <td><span class="g-price1"></span></td>
+      <td><span class="g-tcount1"></span></td>
+      <td><span class="g-tamount1"></span></td>
+      
+     
+      </tr>
+      </tbody>
       </table>
-    </div>
-</div>
+      </div>
+       
+       
+       </div>
+       </div>
+       </div>
+       </div>
+
+
+
+       
+
               
 <g:form  role="form" controller="cart" Id="myform" name="myform" action="save" >
-<div class="row">
-	<div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 signin-pdtop">
-    	<div class="form-group">
-        	<input type="hidden" name="gname" id="gname"/>
-			<input type="hidden" name="gprice" id="gprice"/>
- 			<input type="hidden" name="tcount" id="tcount"/>
- 			<input type="hidden" name="tamount" id="tamount"/>
- 			<input type="hidden" name="status" id="status" value="Placed"/>
- 		</div>
-	</div>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 signin-pdtop">
+             <div class="form-group">
+             
+
+ <input type="hidden" name="gname" id="gname"/>
+<input type="hidden" name="gprice" id="gprice"/>
+ <input type="hidden" name="tcount" id="tcount"/>
+ <input type="hidden" name="tamount" id="tamount"/>
+   
+
+</div>
 </div>
 
+</div>
 <input type="hidden" id="usercartId" name="usercartId" value="${result.uname.id}"/>
-<%--<input type="hidden" id="merchantId" name="merchantId" value="${result.uname.id}"/>--%>
+
 <input type="hidden" id="modifiedBy" name="modifiedBy" value="self"/>
 <input type="hidden" id="mode" name="mode" value="web"/>
 <input type="hidden" id="myaction" name="myaction" value="save"/>
 
+
 <div class="form-group">
-	<div class="col-sm-6 text-center">
-		<input type="submit" id="save" value="Order Now" class="primary-btn" />
-	</div>
+<div class="col-sm-6 text-center">
+<input type="submit" ID="btnsave" value="Order now" class="btn btn-primary" />
+
 </div>
+
+</div>
+
 </g:form>
     	
-   
-<script type="text/javascript">
-  
+        	
+  <script type="text/javascript">
   // ************************************************
 // Shopping Cart API
 // ************************************************
@@ -380,12 +408,10 @@ var shoppingCart = (function() {
   cart = [];
   
   // Constructor
-  function Item(name, price, count,status) {
+  function Item(name, price, count) {
     this.name = name;
-    alert(name);
     this.price = price;
     this.count = count;
-    this.status = status;
   }
   
   // Save cart
@@ -408,7 +434,7 @@ var shoppingCart = (function() {
   var obj = {};
   
   // Add to cart
-  obj.addItemToCart = function(name, price, count,status) {
+  obj.addItemToCart = function(name, price, count) {
     for(var item in cart) {
       if(cart[item].name === name) {
         cart[item].count ++;
@@ -416,7 +442,7 @@ var shoppingCart = (function() {
         return;
       }
     }
-    var item = new Item(name, price, count, status);
+    var item = new Item(name, price, count);
     cart.push(item);
     saveCart();
   }
@@ -488,6 +514,7 @@ var shoppingCart = (function() {
 		gprice += cart[item].price;
 			} 
 		return gprice
+
 	  }
   
   // Total cart
@@ -513,7 +540,8 @@ var shoppingCart = (function() {
       cartCopy.push(itemCopy)
     }
     return cartCopy;
-      }
+  }
+
   
   
   // cart : Array
@@ -554,11 +582,10 @@ $('.clear-cart').click(function() {
 
 function displayCart() {
   var cartArray = shoppingCart.listCart();
-  //alert(cartArray);
   var output = "";
   for(var i in cartArray) {
-    output += "<tr>" 
-      + "<td>" + cartArray[i].name + "</td><br>" 
+    output += "<tr>"
+      + "<td>" + cartArray[i].name + "</td>" 
       + "<td>(" + cartArray[i].price + ")</td>"
       + "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name=" + cartArray[i].name + ">-</button>"
       + "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>"
@@ -578,7 +605,6 @@ function displayCart() {
   $('.g-price1').html(shoppingCart.gprice());
   $('.g-tcount1').html(shoppingCart.totalCount());
   $('.g-tamount1').html(shoppingCart.totalCart());
-  $('.g-status1').html(shoppingCart.status());
   
 
   $("#gname").val(shoppingCart.gname());
@@ -586,7 +612,6 @@ function displayCart() {
   $("#tcount").val(shoppingCart.totalCount());
   
   $("#gprice").val(shoppingCart.gprice());
-  $("#status").val(shoppingCart.status());
   
 }
 
@@ -624,57 +649,31 @@ displayCart();
 
   </script>
   
-   <script type="text/javascript">
-
-    function myFunction() {
-        
-    	   alert("onselect");
-    	    var cartlist=$('#cart').val();
-    		//alert(cartlist);
-    		//document.getElementById("gname").value =cartlist;
-    	    var x=$('#gname_cartlist');    
-
-    		var v=$(x).find('option[value="' +cartlist+ '"]');
-    	    
-    	    var d=v.attr('id');
-    	    
-    	    var split=d.split("");
-    	   // alert(split[0]);
-    	   // alert(split[1]);
-    	   // alert(split[2]);
-    	    document.getElementById("gname").value =split[0];
-    	    document.getElementById("gprice").value =split[1];
-    	    document.getElementById("tcount").value =split[2];
-    	    document.getElementById("tamount").value =split[3];	
-    	    document.getElementById("status").value =split[3];	
-    		     
-    	}
 
 
-    	function getdata() {
-    		var merchantName= document.getElementById("usercart_id").value
-    	//alert(merchantName);
-    		var path = "/Skeleton/Merchant/getdata";
-    		$.ajax({
-    			url : path,
-    			type : "get",
-    			data :{
-    				merchantName : merchantName
-    			},
-    			success : function(result) {
-    				//alert(result)
-    			    document.getElementById("gname").value =result.split("#")[0];
-    			    document.getElementById("gprice").value =result.split("#")[1];
-    			    document.getElementById("tcount").value =result.split("#")[2];
-    			    document.getElementById("tamount").value =result.split("#")[3];	
-    			    document.getElementById("status").value =result.split("#")[3];	
-    			},
-    			error : function() {
-    			}
-    		})
-    	}
-    
-    </script>	
+
+
+ <style>
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color:black;
+   color: white;
+   text-align: center;
+}
+
+a {
+  color: white;
+}
+a:hover {
+  color: white;
+}
+
+
+</style>
+
 
 <div class="footer">
 <div align="center">
@@ -682,6 +681,12 @@ displayCart();
 <p>
 </div>
 </div>
+ 
+			
 
 </body>
-</html>             	
+</html>
+
+		
+    
+          	

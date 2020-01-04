@@ -27,26 +27,21 @@ class CartController {
 
     @Transactional
     def save(Cart cartInstance) {
-        if (cartInstance == null) {
-            notFound()
-            return
-        }
 
-        if (cartInstance.hasErrors()) {
-            respond cartInstance.errors, view:'create'
-            return
-        }
 		//cartInstance.gname=""
 		//cartInstance.gprice=""
 		//cartInstance.tcount=""
 		//cartInstance.tamount=""
 		
-		log.info(cartInstance.gname)
-		log.info(cartInstance.gprice)
-		log.info(cartInstance.tcount)
-		log.info(cartInstance.tamount)
+		log.info(params.gname)
+		log.info(params.gprice)
+		log.info(params.tcount)
+		log.info(params.tamount)
 		
-        cartInstance.save flush:true
+        //cartInstance.save flush:true
+		
+		def result=CartService.save(cartInstance.gname,cartInstance.gprice,cartInstance.tcount,cartInstance.tamount,cartInstance.usercartId)
+		log.info("response from service"+result)
 		redirect(uri: "/address/create")
 		//flash.message = "Create Grocery Successfully"
 	

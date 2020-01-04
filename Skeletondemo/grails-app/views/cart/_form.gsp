@@ -47,12 +47,12 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: cartInstance, field: 'status', 'error')} required">
-	<label for="status">
-		<g:message code="cart.status.label" default="Status" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:textField name="status" required="" value="${cartInstance?.status}"/>
+<%--<div class="fieldcontain ${hasErrors(bean: cartInstance, field: 'status', 'error')} required">--%>
+<%--	<label for="status">--%>
+<%--		<g:message code="cart.status.label" default="Status" />--%>
+<%--		<span class="required-indicator">*</span>--%>
+<%--	</label>--%>
+<%--	<g:textField name="status" required="" value="${cartInstance?.status}"/>--%>
 	
 <%--<input type="hidden" id="merchantId" name="merchantId"  value="${result.uname.id}"/>--%>
 <input type="hidden" id="status" name="status"  value="Placed"/>

@@ -45,7 +45,8 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info("Address Controller checkout action ********")
 		def responseData = new HashMap<>()
 		def mode=params.mode
-		log.info(mode)
+		
+		log.info("********* "+session.shoppingCart)
 		
 		def user= User.findByUserName(session.user)
 		log.info(user)
@@ -638,38 +639,6 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		
 		def userNameId = params.userNameId
 		log.info(userNameId)
-		/*
-		def ugroceryNameId = params.ugroceryNameId
-		log.info(ugroceryNameId)
-	
-		def ugroceryName = params.ugroceryName
-		log.info(ugroceryName)
-		
-		def uquantity = params.uquantity
-		log.info(uquantity)
-		
-		def ucost = params.ucost
-		log.info(ucost)
-		
-		def uweight = params.uweight
-		log.info(uweight)
-		
-		def uoffer = params.uoffer
-		log.info(uoffer)
-		
-		def utotal = params.utotal
-		log.info(utotal)
-	
-		def uimage = params.uimage
-		log.info(uimage)
-	
-		def uname = params.uname
-		log.info(uname)
-		
-		def utype = params.utype
-		log.info(utype)
-		
-		*/
 	
 		if( ! (isValid(fullName)&&  isValid(mobileNumber) && isValid(pincode)&& isValid(houseNumber)&& isValid(area)&& isValid(landmark)&& isValid(city)&& isValid(state)&& isValid(deliverhere) && isValid(userNameId) && isValid(myaction) && isValid(mode))){
 			responseData.put(getMessages('default.status.label'),getMessages('default.error.message'))

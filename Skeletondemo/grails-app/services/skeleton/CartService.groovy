@@ -37,6 +37,58 @@ class CartService {
 			}
 		}
 		
+		def save(gname,gprice,tcount,tamount,usercartId){
+			log.info("CartService save-params ")
+			def resultData=new HashMap<>()
+			String []args=["Cart"]
+			try{
+				def check
+				if(!check){
+					def cartInstance=getInstance()
+					if(cartInstance){
+						cartInstance.gname=gname
+						log.info(gname)
+						cartInstance.gprice=gprice
+						log.info(gprice)
+						cartInstance.tcount=tcount
+						log.info(tcount)
+						cartInstance.tamount=tamount
+						log.info(usercartId+"CARD Id")
+						cartInstance.usercartId=usercartId
+						cartInstance.status="Placed"
+						cartInstance.modifiedBy="Self"
+
+						def sts= save(cartInstance)
+						log.info(sts)
+						log.info(cartInstance.save(failOnError: true))
+						
+/*						def f=Cart.get(sts.id)
+						f.id=f.id
+						def st=save(f)*/
+					
+						if(sts){
+							resultData.put("status","success")
+							resultData.put("message","inserted successfully")
+							resultData.put("cartInstance",cartInstance)
+						
+	
+						}
+						
+						else{
+							resultData.put("status","error")
+							resultData.put("message","Already Existed")
+						}
+				
+					}
+					}
+				return resultData
+			}
+			catch(Exception e) {
+				log.info("CartService save Exception::"+e)
+			}
+		}
+		
+		
 		def getMessage(String code) {
 			return getMessage(code,null)
 		}
