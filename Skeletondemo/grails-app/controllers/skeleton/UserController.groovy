@@ -533,11 +533,19 @@ def authenticate1 = {
 	
 	session.user=user
 	// flash.message = "Hello ${admin.fullName}:"
-	redirect(action:"userdashboard1")
+	redirect(action:"userdashboard")
 	}
 	else{
-	flash.message = "sorry, ${params.userName}. Enter Valid UserName/Password"
-	redirect(action:"userlogin1")
+	//flash.message = "sorry, ${params.userName}. Enter Valid UserName/Password"
+	//redirect(action:"userlogin1")
+	
+	render text: """<script type="text/javascript">
+                    alert("Enter Valid UserName/Password");
+                    window.location.href = "/Skeleton/user/userlogin1";
+
+
+					</script>""",
+		contentType: 'js'
 	}
 	}
 	

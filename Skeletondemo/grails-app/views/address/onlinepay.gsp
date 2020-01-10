@@ -122,27 +122,18 @@ window.onhashchange = function (event) {
 </h3>
 </section><br>
 
-
-
-
-
 <div class="row">
 
 <tbody>
 <g:each in="${merchantInstanceList}" status="i" var="merchantInstance">
 <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-<td>
-<img  src="${createLink(controller:'Merchant', action:'showQrcode', id:"${merchantInstance.id}")}" style="padding-left:550px"  />
-
-
-</td>
+	<td>
+		<img  src="${createLink(controller:'Merchant', action:'showQrcode', id:"${merchantInstance.id}")}" style="padding-left:550px"  />
+	</td>
 </tr>
 </g:each>
 </tbody>
-
-
 </div>
-
-
-</body></html>
+</body>
+</html>
 

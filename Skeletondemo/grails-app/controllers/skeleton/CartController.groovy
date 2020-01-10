@@ -24,6 +24,20 @@ class CartController {
         respond new Cart(params)
 		
     }
+	
+
+//	def getdata() {
+//		log.info("doctor Controller getdata action")
+//		def responseData = new HashMap<>()
+//		def result,url
+//		def gname=params.gname
+//		def split=gname.split("#")
+//		def groceryInstance=Cart.findByGnameAndGprice(split[0],split[1])
+//		log.info(groceryInstance)
+//		def res=groceryInstance.gname+"<br>"+groceryInstance.gprice+"<br>"+groceryInstance.tcount
+//		render res
+//	}
+
 
     @Transactional
     def save(Cart cartInstance) {
@@ -37,6 +51,13 @@ class CartController {
 		log.info(params.gprice)
 		log.info(params.tcount)
 		log.info(params.tamount)
+		log.info("*********************************************************")
+		def grocname=params.gname.split("#")[0];
+		def merchant=Grocery.findByGroceryName(grocname).merchantId;
+		log.info(grocname);
+		
+		 //def gobject=Grocery.findByGroceryName()
+		 //def merchantId= gobject.merchantId
 		
         //cartInstance.save flush:true
 		
@@ -45,17 +66,6 @@ class CartController {
 		redirect(uri: "/address/create")
 		//flash.message = "Create Grocery Successfully"
 	
-		
-		
-  /*      request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'cart.label', default: 'Cart'), cartInstance.id])
-                redirect cartInstance
-            }
-            '*' { respond cartInstance, [status: CREATED] }
-        }
-		
-	*/	
 		
     }
 

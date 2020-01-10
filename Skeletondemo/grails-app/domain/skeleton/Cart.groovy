@@ -1,6 +1,8 @@
 package skeleton
 
 class Cart {
+	
+		int cartId
 		String gname
 		String gprice
 		String tcount
@@ -14,6 +16,7 @@ class Cart {
 	 
     static constraints = {
 		
+		cartId(nullable:false)
 		gname(maxsize:50, nullable:false)
 		gprice(maxsize:50, nullable:false)
 		tcount(maxsize:50, nullable:false)

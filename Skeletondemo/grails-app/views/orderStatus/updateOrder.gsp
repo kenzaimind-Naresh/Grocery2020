@@ -157,14 +157,14 @@ window.onhashchange = function (event) {
 	<!-- End Header Area -->
 	
 	<!-- Start Banner Area -->
-    <section class="banner-area organic-breadcrumb">
+    <section class="banner-area organic-breadcrumb" style="padding-top: 20px">
         <div class="container">
-            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end" style="padding: 82px 127px 88px 0;">
                 <div class="col-first">
-                    <h1>Order Status</h1>
+                    <h1>Order Update</h1>
                     <nav class="d-flex align-items-center">
-                        <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-                        <a href="single-product.html">Order Status</a>
+                        <a href="/Skeleton/merchant/ldashboard">Home<span class="lnr lnr-arrow-right"></span></a>
+                        <a href="/Skeleton/orderStatus/updateOrder">Order Update</a>
                     </nav>
                 </div>
             </div>
@@ -173,8 +173,9 @@ window.onhashchange = function (event) {
     <!-- End Banner Area -->
     
 <br><br>    
-
-<h3>Task is Successfully completed</h3>
+<div class="center">
+<h3>Status of the Order is Updated Successfully</h3><br>
 <g:link controller="orderStatus" action="orderstatuslist" class="active"><input type="button" class="primary-btn" value="Back to OrderStatus"></g:link>
+</div>
 </body>
 </html>

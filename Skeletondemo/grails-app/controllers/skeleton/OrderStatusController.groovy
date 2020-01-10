@@ -5,7 +5,7 @@ package skeleton
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
-@Transactional(readOnly = true)
+@Transactional
 class OrderStatusController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -47,13 +47,6 @@ class OrderStatusController {
 	def orderstatuslist(){
 		
 		log.info("OrderController orderstatuslist Action")
-		
-		def username= session.user
-		if(username ==null || username=="" ){
-		 redirect(uri: "/orderStatus/orderstatuslist")
-		 return
-		}
-		
 		def responseData = new HashMap<>();
 		def mode=params.mode
 		log.info(mode)
@@ -62,13 +55,17 @@ class OrderStatusController {
 		def groceryName = params.groceryName
 		log.info(groceryName)
 		
-		def user= Merchant.findByEmail(session.user)
-		log.info(user)
+		def merchant = Merchant.findByEmail(session.user)
+		log.info(merchant)
+		def username= session.user
+		if(username ==null || username=="" ){
+		 redirect(uri: "/orderStatus/orderstatuslist")
+		 return
+		}
 		
-		
-		def merchantId = user.id
+		def merchantId = merchant.id
 		def of=0;
-		def data=OrderStatus.findAllByMerchantId(merchantId,[sort:"id",order:"desc",max: 5, offset: of])
+		def data=OrderStatus.findAllByMerchantId(merchantId,[sort:"id",order:"desc",max: 10, offset: of])
 		log.info(data)
 		def totalcount=OrderStatus.findAllByMerchantId(merchantId).size()
 		log.info(totalcount)
@@ -79,7 +76,7 @@ class OrderStatusController {
 		responseData.put("listId", "list")
 		responseData.put("totalcount",totalcount)
 		responseData.put("data", data)
-		responseData.put("uname", user)
+		responseData.put("uname", merchant)
 		responseData.put("offset", of)
 		log.info(responseData)
 		[result:responseData]
@@ -90,23 +87,6 @@ class OrderStatusController {
 		def acceptance=OrderStatus.get(params.id)
 		[result:acceptance]
 		
-		/*def responseData = new HashMap<>()
-		
-	 def user= User.findByUserName(session.user)
-	 log.info(user)
-	 def username= session.user
-	 if(username ==null || username=="" ){
-	 // redirect(uri: "/grocery/show")
-	  return
-	 }
-	 
-	 responseData.put("listId", "show")
-	 responseData.put("uname",user)
-	 
-	 log.info("************")
-	 log.info(responseData)
-
-	 [result:responseData]*/
 	}
 	
 	def updateOrder(){

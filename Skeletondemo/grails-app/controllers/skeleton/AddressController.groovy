@@ -46,7 +46,8 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		def responseData = new HashMap<>()
 		def mode=params.mode
 		
-		log.info("********* "+session.shoppingCart)
+		//def shoppingCart = session.shoppingCart		
+		//log.info("********* "+shoppingCart)
 		
 		def user= User.findByUserName(session.user)
 		log.info(user)
@@ -516,9 +517,9 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info(data1)
 		
 		def usercartId = user.id
-		def data2=Cart.findByUsercartId(usercartId,[sort:"id",max: 5])
+		def data2=Cart.findByCartId(usercartId,[sort:"id",max: 5])
 	
-		def totalcount2=Cart.findAllByUsercartId(usercartId).size()
+		def totalcount2=Cart.findAllByCartId(usercartId).size()
 					
 		responseData.put("totalcount",totalcount)
 		responseData.put("data", data)
@@ -567,7 +568,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		responseData.put("listId", "dashboard")
 		responseData.put("uname",user)
 		responseData.put("user1",user1)
-		responseData.put(getMessages('default.message.label'),"Your Order Conformed Successfully")
+		responseData.put(getMessages('default.message.label'),"Your Order Confirmed Successfully")
 		
 		log.info("************")
 		log.info(responseData)

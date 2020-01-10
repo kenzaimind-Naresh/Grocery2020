@@ -95,6 +95,25 @@ $(function() {
     });
   });
 
+
+<%--function getdata() {--%>
+<%--	 var doctorId = document.getElementById("usercartId").value--%>
+<%--	 var path = "/Skeleton/Address/getdata";--%>
+<%--	 $.ajax({--%>
+<%--	  url : path,--%>
+<%--	  type : "get",--%>
+<%--	  data :{--%>
+<%--		  usercartId:usercartId--%>
+<%--	  },--%>
+<%--	  success : function(res) {--%>
+<%--		  alert(res.split("#")[1])--%>
+<%--	  },--%>
+<%--	  error : function() {--%>
+<%--	  }--%>
+<%--	 })--%>
+<%--	}--%>
+
+
 </script>
 
 <script>
@@ -190,10 +209,9 @@ form.example::after {
 								
 								<li><g:link controller="user" action="updateuser" class="active"  style="color:	#DAA520;"><i class="fa fa-user"></i> Profile</g:link></li>
 								<li><g:link controller="user" action="changepass" class="active" style="color:	#DAA520;"><i class="fa fa-key"></i> ChangePassword</g:link></li>
-<<<<<<< .mine								<li><a href="/Skeleton/user/logout" style="color:#DAA520;"><i class="fa fa-sign-out fa-fw" class="clear-cart"></i> Logout</a>
-=======								<li><a href="/Skeleton/merchant/logout" style="color:	#DAA520;"><i class="fa fa-sign-out fa-fw"  class="clear-cart"></i> Logout</a>
->>>>>>> .theirs
-								</ul>
+								<li><g:link controller="user" action="myorders" class="active"  style="color:	#DAA520;"><i class='fa fa-cart-arrow-down'></i> My Orders </g:link></li>
+								<li><a href="/Skeleton/user/logout" style="color: #DAA520;" class="clear-cart"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+</ul>
 							</li>													
 						</ul>
 						
@@ -203,11 +221,7 @@ form.example::after {
 				
 			</nav>
 		</div>
-		
-		
-	
-		 
-		 
+	 
 	</header>
 	<!-- End Header Area -->
 	<br><br><br><br><br>		
@@ -344,22 +358,15 @@ form.example::after {
       <td><span class="g-price1"></span></td>
       <td><span class="g-tcount1"></span></td>
       <td><span class="g-tamount1"></span></td>
-      
-     
       </tr>
       </tbody>
       </table>
-      </div>
-       
-       
-       </div>
-       </div>
-       </div>
-       </div>
+     </div>
+    </div>
+   </div>
+  </div>
+</div>
 
-
-
-       
 
               
 <g:form  role="form" controller="cart" Id="myform" name="myform" action="save" >
@@ -502,17 +509,17 @@ var shoppingCart = (function() {
   obj.gname = function(){
 	 var gname = [];
  for(var item in cart){
-    gname += cart[item].name;
+    gname += cart[item].name+"#";
 	 }
- return gname
-
+    return  gname
 	  }
 
   // price 
   obj.gprice = function(){
 		var gprice = [];
 		for(var item in cart){
-		gprice += cart[item].price;
+		gprice += cart[item].price+"#";
+		//result = gprice.split("#");
 			} 
 		return gprice
 
@@ -574,12 +581,16 @@ $('.add-to-cart').click(function(event) {
 
 // Clear items
 $('.clear-cart').click(function() {
-  shoppingCart.clearCart();
+	sessionStorage.clear('shoppingCart');
   displayCart();
 });
 
 
+function clearCart() {
+	alert("clear");
+	sessionStorage.clear('shoppingCart');
 
+}
 
 function displayCart() {
   var cartArray = shoppingCart.listCart();

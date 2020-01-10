@@ -85,7 +85,7 @@ return false;
 <h3 class="panel-title">Please Sign In</h3>
 </div>
 <div class="panel-body">
-<g:form controller="user" name="myForm" id="myForm" action="authenticate2" >
+<g:form controller="user" role="form" name="myForm" id="myForm" action="authenticate1" nonvalidate="nonvalidate">
 <fieldset>
 <div class="form-group" ${hasErrors(bean: userInstance, field: 'userName', 'error')}>
 <input class="form-control" placeholder="UserName" id="userName" name="userName" onclick="myForm" value="${userInstance?.userName}"type="text" required>

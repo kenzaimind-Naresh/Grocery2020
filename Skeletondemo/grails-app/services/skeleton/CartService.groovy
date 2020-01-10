@@ -53,7 +53,7 @@ class CartService {
 						cartInstance.tcount=tcount
 						log.info(tcount)
 						cartInstance.tamount=tamount
-						log.info(usercartId+"CARD Id")
+						log.info(usercartId+"CART Id")
 						cartInstance.usercartId=usercartId
 						cartInstance.status="Placed"
 						cartInstance.modifiedBy="Self"
@@ -62,9 +62,10 @@ class CartService {
 						log.info(sts)
 						log.info(cartInstance.save(failOnError: true))
 						
-/*						def f=Cart.get(sts.id)
-						f.id=f.id
-						def st=save(f)*/
+						def f=Cart.get(sts.id)
+						f.cartId=f.id
+						def st=save(f)
+					
 					
 						if(sts){
 							resultData.put("status","success")

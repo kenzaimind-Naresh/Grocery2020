@@ -157,14 +157,14 @@ window.onhashchange = function (event) {
 	<!-- End Header Area -->
 	
 	<!-- Start Banner Area -->
-    <section class="banner-area organic-breadcrumb">
+    <section class="banner-area organic-breadcrumb" style="padding-top: 20px">
         <div class="container">
-            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end" style="padding: 82px 127px 88px 0;">
                 <div class="col-first">
                     <h1>Order Status</h1>
                     <nav class="d-flex align-items-center">
-                        <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-                        <a href="single-product.html">Order Status</a>
+                        <a href="/Skeleton/merchant/ldashboard">Home<span class="lnr lnr-arrow-right"></span></a>
+                        <a href="/Skeleton/orderStatus/orderstatuslist">Order Status</a>
                     </nav>
                 </div>
             </div>
@@ -196,24 +196,14 @@ window.onhashchange = function (event) {
         			<td style="font-size: 18px;color: black;"> ${it.totalQuantity}</td>
         			<td style="font-size: 18px;color: black;"> ${it.status}</td>
        	 			<td style="color: black;">
-						<g:link controller="orderStatus" action="acceptorder"  id="${it.id}"><button type="button"  class="primary-btn">Accept Order</button></g:link>	
+						<g:link controller="orderStatus" action="acceptorder"  id="${it.id}"><button type="button"  class="btn btn-warning">Accept Order</button></g:link>	
        	 			</td>
       			</tr>
     			</g:each>
     		</tbody>
      	</table>
      </div>
-     <div class="pag">
-         <div class="col-sm-8 text-right">
-       		<g:if test="${result.offset > 0}">
-     			<g:link type="button" style="color:white" controller="orderStatus" action="offsetlist" params="${[offset:result.offset-5,mode:'web']}" value="Previous"><button class="btn btn-primary">Previous</button></g:link>
-   	 		</g:if>
-  
-    		<g:if test="${result.offset/5 < (result.totalcount)/5-1}">
-     			<g:link type="button" style="color:white" controller="orderStatus" action="offsetlist"   params="${[offset: result.offset+5,mode:'web']}" value="Next"><button class="btn btn-primary">Next</button></g:link>
-       		</g:if>
-       </div>
-     </div>
+     
 </div> 
 </body>
 </html>

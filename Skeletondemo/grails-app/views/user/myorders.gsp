@@ -157,8 +157,8 @@
                 <div class="col-first">
                     <h1>My Orders</h1>
                     <nav class="d-flex align-items-center">
-                        <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
-                        <a href="single-product.html">My Orders</a>
+                        <a href="/Skeleton/user/userdashboard">Home<span class="lnr lnr-arrow-right"></span></a>
+                        <a href="/Skeleton/user/myorders">My Orders</a>
                     </nav>
                 </div>
             </div>
