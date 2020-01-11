@@ -83,15 +83,30 @@ class GroceryService {
 			}
 		}
 	
-		def deleteGrocery(id){
-			
-			def groceryInstance=Grocery.get(id);
-			groceryInstance.delete flush:true
-		log.info(groceryInstance)
-		if(groceryInstance) {
-			groceryInstance.id=id
+		def delete(id) {
+			log.info("GroceryService delete")
+			def resultData=new HashMap<>()
+			String []args=["Grocery"]
+			try{
+				def groceryInstance=Grocery.get(id)
+				//log.info(groceryInstance)
+				if(groceryInstance) {
+			      //log.info(groceryInstance.delete(failOnError: true))
+					groceryInstance.delete flush:true
+					resultData.put(getMessage("default.status.label"),getMessage("default.success.message"))
+					resultData.put(getMessage("default.message.label"),getMessage("default.delete.successmessage",args))
+				}
+				else{
+					resultData.put(getMessage("default.status.label"),getMessage("default.error.message"))
+					resultData.put(getMessage("default.message.label"),getMessage("default.delete.errormessage",args))
+				}
+				return resultData
+			}
+			catch(Exception e) {
+				log.info("GroceryService delete Exception::"+e)
+			}
 		}
-		}
+						
 		def getMessage(String code) {
 			return getMessage(code,null)
 		}
