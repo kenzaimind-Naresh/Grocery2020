@@ -15,6 +15,7 @@ class OrderStatus {
 
     static constraints = {
 		
+		orderId(maxsize:50, nullable:false)
 		groceryName(maxsize:50, nullable:false)
 		groceryPrice(maxsize:50, nullable:false)
 		totalQuantity(maxsize:50, nullable:false)

@@ -570,11 +570,15 @@ $('.add-to-cart').click(function(event) {
 
 // Clear items
 $('.clear-cart').click(function() {
-  shoppingCart.clearCart();
-  displayCart();
+	shoppingCart.clearCart();
+  	displayCart();
 });
 
 
+function clearCart() {
+	alert("clear");
+	sessionStorage.clear('shoppingCart');
+}
 
 
 function displayCart() {

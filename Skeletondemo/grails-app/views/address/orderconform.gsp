@@ -44,7 +44,12 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
- 
+     <script type="text/javascript">
+    $( document ).ready(function() {
+        alert("testset");
+    	sessionStorage.clear('shoppingCart');
+    });
+    </script>
  <script>
   function PrintElem(elem)
 {
@@ -166,7 +171,7 @@ th, td {
 								<li><g:link controller="merchant" action="updateprofile" class="active"  style="color:	#DAA520;"><i class="fa fa-user"></i> Profile</g:link></li>
 								<li><g:link controller="user" action="changepass" class="active" style="color:	#DAA520;"><i class="fa fa-key"></i> ChangePassword</g:link></li>
 								<li><g:link controller="user" action="myorders" class="active"  style="color:	#DAA520;"><i class='fa fa-cart-arrow-down'></i> My Orders </g:link></li>
-								<li><a href="/Skeleton/user/logout" style="color:	#DAA520;" onclick="clearCart()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+								<li><a href="/Skeleton/user/logout" style="color:	#DAA520;"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 								</ul>
 							</li>							
 						</ul>
@@ -181,16 +186,6 @@ th, td {
 <div class="center">
 	<div  style="color:black;font-size:17px; padding-left:800px">${result.message}</div>
 </div>
-
-<script type="text/javascript">
-
-function clearCart() {
-	
-	sessionStorage.clear('shoppingCart');
-
-}
-
-</script>
 
 </body>
 </html>

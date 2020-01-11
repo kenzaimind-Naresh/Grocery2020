@@ -37,37 +37,46 @@ class OrderStatusService {
 			}
 		}
 		
-		def save(orderId,status){
+		def saveOrder(groceryName,groceryPrice,totalQuantity,totalAmount,usercartId,status,merchantId,modifiedBy){
 			log.info("OrderStatusService save-params ")
 			def resultData=new HashMap<>()
 			String []args=["OrderStatus"]
-			def check=OrderStatus.findByOrderId(orderId)
-			log.info(check)
+			
 			try{
-			if(check==null){
 			
-			
-				
+					
 					def orderInstance=getInstance()
-						orderInstance.orderId=orderId
-						log.info(orderId)
+					
+						orderInstance.orderId="123"
+						orderInstance.groceryName=groceryName
+						log.info(groceryName)
+						orderInstance.groceryPrice=groceryPrice
+						log.info(groceryPrice)
+						orderInstance.totalQuantity=totalQuantity
+						log.info(totalQuantity)
+						orderInstance.totalAmount=totalAmount
+						log.info(totalAmount)
+						orderInstance.usercartId=usercartId
+						log.info(usercartId)
 						orderInstance.status=status
 						log.info(status)
+						orderInstance.merchantId=merchantId
+						log.info(merchantId)
+						
+						orderInstance.modifiedBy=modifiedBy
+						log.info(modifiedBy)
 						
 						def sts= save(orderInstance)
-						
-			}
-			else{
-						log.info("update block in service")
-							def orderInstance=check
-								orderInstance.orderId=orderId
-								log.info(orderId)
-								orderInstance.status=status
-								log.info(status)
-								
-								def sts= save(orderInstance)
-								
-					}
+						log.info(sts)
+						log.info(orderInstance.save(failOnError: true))
+					
+						def f=OrderStatus.get(sts.id)
+						log.info(f)
+						f.orderId=f.id
+						def st=save(f)
+						log.info(st)
+
+
 				
 			
 				return resultData

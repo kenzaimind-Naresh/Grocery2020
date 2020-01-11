@@ -581,7 +581,7 @@ $('.add-to-cart').click(function(event) {
 
 // Clear items
 $('.clear-cart').click(function() {
-	sessionStorage.clear('shoppingCart');
+	shoppingCart.clearCart();
   displayCart();
 });
 

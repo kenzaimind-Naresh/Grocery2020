@@ -216,7 +216,7 @@ padding: 2px 16px;
 								
 							<div class="product-details">
 							<div class="row" style="padding-left:50px">
-								                  <button type="button" class="btn default"><a href="/Skeleton/merchant/marketdata?merchantshopName=${i.shopName }" style="color: black">${i.shopName}</a></button>
+								                  <button type="button" class="btn default"><a href="/Skeleton/user/marketdata?merchantshopName=${i.shopName }" style="color: black">${i.shopName}</a></button>
 				
 								</div> 
                 

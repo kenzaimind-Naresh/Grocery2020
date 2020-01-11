@@ -12,7 +12,6 @@ class AddressService {
 	def UserService
 	def mailService
 	def AddressService
-	def appointmentService
 	
 
     def serviceMethod() {
@@ -136,7 +135,7 @@ class AddressService {
 					from "myuser030@gmail.com"
 					to mailid
 					subject "Confirmation mail of your Product"
-					html "<p>Hello Sir/Madam, You are Product Order is confirmed successfully.</p>"
+					html "<p>Hello Sir/Madam, Your Product Order is confirmed successfully.</p>"
 				}
 				}
 				catch(Exception e){
@@ -213,14 +212,6 @@ class AddressService {
 				catch(Exception e) {
 					log.info("AddressService delete Exception::"+e)
 				}
-			}
-				
-			
-			
-			
-	
-	
-	
-	
+			}	
 	
 	}
