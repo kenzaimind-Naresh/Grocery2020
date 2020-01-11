@@ -2,9 +2,12 @@ package skeleton
 
 class AdminController {
 
-	def index() { }
-
-	def login1() { }
+	def index() {
+	 log.info("adminController index Action")
+	}
+	def login1() {
+		log.info("adminController login1 Action")
+	}
 	
 	def adminDashboard() {
 		log.info("adminController adminDashboard Action")
@@ -35,7 +38,7 @@ class AdminController {
 	}
 	
 	def updateprofile(){
-		
+		log.info("adminController updateprofile Action")
 		def responseData = new HashMap<>()
 		def admin= Admin.findByAdminname(session.admin)
 		
@@ -52,6 +55,8 @@ class AdminController {
 	
 	
 	def logout = {
+		
+    log.info("adminController logout Action")
 	//flash.message = "Goodbye ${session.admin.adminname}"
 	session.invalidate();
 	//session.admin= null
@@ -59,6 +64,7 @@ class AdminController {
 	}
 	
 	def authenticate = {
+		log.info("adminController authenticate Action")
 		def admin = Admin.findByAdminnameAndPassword(params.adminname,params.password)
 		if(admin){
 

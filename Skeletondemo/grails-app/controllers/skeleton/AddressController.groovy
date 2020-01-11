@@ -148,7 +148,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	*/
 	
 	def authenticate = {
-		
+		log.info("AddressController  authenticate Action")
 	def user = User.findByUserNameAndPassword(params.userName,params.password)
 	if(user){
 	
@@ -173,6 +173,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	   }
 	
 	def deleteOrder(){
+		log.info("AddressController deleteOrder Action")
 		def result,res
 		def id = params.id
 		log.info(id)
@@ -420,7 +421,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info(user)
 		def username= session.user
 		if(username ==null || username=="" ){
-		 redirect(uri: "/address/newaddress1")
+		 redirect(uri: "/address/userlogin")
 		 return
 		}
 		
@@ -578,12 +579,14 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	}
 	
 	def onlinepay(){
+		log.info("AddressController onlinepay Action")
 		params.max = Math.min(params.max ? params.int('max') : 1, 1)
 		respond Merchant.list(params), model:[merchantInstance: Merchant]
 		
 	}
 	
 	def wastecreate(){
+		log.info("AddressController wastecreate Action")
 		def responseData = new HashMap<>()
 		def user= User.findByUserName(session.user)
 		log.info(user)
@@ -697,6 +700,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		
 		 def print(Address addressInstance) {
         respond addressInstance
+		log.info("AddressController print Action")
 		 }
 		
 	/* To check parameters are valid or not */

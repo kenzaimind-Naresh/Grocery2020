@@ -20,12 +20,14 @@ class MerchantController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
+		log.info("MerchantController index Action")
         params.max = Math.min(max ?: 10, 100)
         respond Merchant.list(params), model:[merchantInstanceCount: Merchant.count()]
     }
 
     def show(Merchant merchantInstance) {
         respond merchantInstance
+		log.info("MerchantController show Action")
     }
 	
 	
@@ -36,7 +38,7 @@ class MerchantController {
 		}
 	
 	def dashboard() {
-		
+		log.info("MerchantController dashboard Action")
 		params.max = Math.min(params.max ? params.int('max') : 8, 100)
 		respond Grocery.list(params), model:[groceryInstanceCount: Grocery.count()]
 		
@@ -46,6 +48,7 @@ class MerchantController {
 	}
 	
 	def updateprofile(){
+		log.info("MerchantController updateprofile Action")
 		def responseData = new HashMap<>()
 		def user= Merchant.findByEmail(session.user)
 		log.info(user)
@@ -84,7 +87,7 @@ class MerchantController {
 		
 		def username= session.user
 		if(username ==null || username=="" ){
-		 redirect(uri: "/merchant/merchantdata")
+		 redirect(uri: "/merchant/login")
 		 return
 		}
 		
@@ -222,6 +225,7 @@ class MerchantController {
 
 */
 		def saveupdate(Merchant merchantInstance) {
+			log.info("MerchantController saveupdate Action")
 			if (merchantInstance == null) {
 				notFound()
 				return
@@ -287,6 +291,7 @@ class MerchantController {
 				}
 		
 	def changepass={
+		log.info("MerchantController changepass Action")
 		def userName= session.user
 		if(userName ==null || userName=="" ){
 		 redirect(uri: "/merchant/login")
@@ -388,7 +393,7 @@ class MerchantController {
 	}
 	
 	def location(){
-		
+		log.info("MerchantController location Action")
 	}
 	
 	def location1(){
@@ -398,6 +403,19 @@ class MerchantController {
 		def city=params.city
 		def street=params.street
 		
+		//log.info("MerchantController Iadashboard Action")
+		def username= session.user
+		if(username ==null || username=="" ){
+		 redirect(uri: "user/userlogin1")
+		 return
+		}
+		
+		//def responseData = new HashMap<>()
+		def mode=params.mode
+		log.info(mode)
+		
+		def user3= User.findByUserName(session.user)
+		log.info(user3)
 		
 	def emp=Merchant.findAllByCity(city)
 			def msg;
@@ -432,7 +450,7 @@ class MerchantController {
 				data.put("message1", msg1)
 				data.put("emp1",emp1)
 				data.put("uname",user)
-				
+				data.put("user3",user3)
 				data.put("merchant",merchant)
 				[result:data]
 				
@@ -448,6 +466,18 @@ class MerchantController {
 		def street=params.street
 		
 			
+		def username= session.user
+		if(username ==null || username=="" ){
+		 redirect(uri: "user/userlogin1")
+		 return
+		}
+		
+		//def responseData = new HashMap<>()
+		def mode=params.mode
+		log.info(mode)
+		
+		def user3= User.findByUserName(session.user)
+		log.info(user3)
 		
 		
 	def emp=Merchant.findAllByCity(city)
@@ -484,7 +514,7 @@ class MerchantController {
 				data.put("emp",emp)
 				data.put("message1", msg1)
 				data.put("emp1",emp1)
-			
+				data.put("user3",user3)
 				data.put("merchant",merchant)
 				[result:data]
 		
@@ -493,20 +523,37 @@ class MerchantController {
 	def marketdata(){
 		
 		log.info("Merchant Controller marketdata action")
+		//log.info("MerchantController Iadashboard Action")
+		def username= session.user
+		if(username ==null || username=="" ){
+		 redirect(uri: "user/userlogin1")
+		 return
+		}
+		
+		//def responseData = new HashMap<>()
+		def mode=params.mode
+		log.info(mode)
+		
+		def user3= User.findByUserName(session.user)
+		log.info(user3)
+		
 		def responseData = new HashMap<>()
 		def result,url
 		url="/merchant/marketdata.gsp"
-		def mode=params.mode
+		//.def mode=params.mode
 		def merchantshopName = params.merchantshopName
 		log.info(merchantshopName)    
 		def data = Grocery.findAllByMerchantshopName(merchantshopName)
 		log.info(data)
+			responseData.put("user3",user3)
+				
 		responseData.put("data", data)
 		[result:responseData]
 		
 		
 	
 	}
+	
 	
 	def getdata(){
 		log.info("Merchant Controller getdata action")
@@ -529,7 +576,12 @@ class MerchantController {
 		}
 	
 	def userdashboard() {
-		
+		log.info("MerchantController userdashboard Action")
+		def username= session.user
+		if(username ==null || username=="" ){
+		 redirect(uri: "user/userlogin1")
+		 return
+		}
 		respond Grocery.list(params), model:[groceryInstanceCount: Grocery.count()]
 			
 	}
@@ -540,7 +592,7 @@ class MerchantController {
 	
 	
 	def authenticate  = {
-		
+		log.info("MerchantController authencate Action")
 			log.info("#########")
 			def user = Merchant.findByEmailAndPassword(params.email,params.password)
 			log.info(user)
@@ -567,10 +619,10 @@ class MerchantController {
 			}
 		
 	def ldashboard ={
-		
+		log.info("MerchantController Iadashboard Action")
 		def username= session.user
 		if(username ==null || username=="" ){
-		 redirect(uri: "/merchant/ldashboard")
+		 redirect(uri: "/merchant/login")
 		 return
 		}
 		
@@ -623,11 +675,13 @@ class MerchantController {
 	}
 	
     def create() {
+		log.info("MerchantController create Action")
         respond new Merchant(params)
     }
 	
     @Transactional
     def save(Merchant merchantInstance) {
+		log.info("MerchantController save Action")
         if (merchantInstance == null) {
             notFound()
             return
@@ -659,11 +713,13 @@ class MerchantController {
     }
 
     def edit(Merchant merchantInstance) {
+		log.info("MerchantController edit Action")
         respond merchantInstance
     }
 
     @Transactional
     def update(Merchant merchantInstance) {
+		log.info("MerchantController update Atction")
         if (merchantInstance == null) {
             notFound()
             return
@@ -687,7 +743,7 @@ class MerchantController {
 
     @Transactional
     def delete(Merchant merchantInstance) {
-
+		log.info("MerchantController delete Action")
         if (merchantInstance == null) {
             notFound()
             return

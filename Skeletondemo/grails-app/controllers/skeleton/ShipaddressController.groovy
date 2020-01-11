@@ -26,15 +26,19 @@ class ShipaddressController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
+		log.info("ShipaddressController index Action")
+		
         params.max = Math.min(max ?: 10, 100)
         respond Shipaddress.list(params), model:[shipaddressInstanceCount: Shipaddress.count()]
     }
 
     def show(Shipaddress shipaddressInstance) {
+		log.info("ShipaddressController show Action")
         respond shipaddressInstance
     }
 
     def create() {
+		log.info("ShipaddressController create Action")
         respond new Shipaddress(params)
 		
 		
@@ -44,6 +48,7 @@ class ShipaddressController {
 
     @Transactional
     def save(Shipaddress shipaddressInstance) {
+		log.info("ShipaddressController save Action")
         if (shipaddressInstance == null) {
             notFound()
             return
@@ -68,6 +73,7 @@ class ShipaddressController {
 	
 
     def edit(Shipaddress shipaddressInstance) {
+		log.info("ShipaddressController edit Action")
         respond shipaddressInstance
     }
 
@@ -75,6 +81,7 @@ class ShipaddressController {
 	
     @Transactional
     def update(Shipaddress shipaddressInstance) {
+		log.info("ShipaddressController update Action")
         if (shipaddressInstance == null) {
             notFound()
             return
@@ -98,7 +105,7 @@ class ShipaddressController {
 
     @Transactional
     def delete(Shipaddress shipaddressInstance) {
-
+   log.info("ShipaddressController delete Action")
         if (shipaddressInstance == null) {
             notFound()
             return

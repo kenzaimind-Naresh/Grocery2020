@@ -5,6 +5,7 @@ package skeleton
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
+
 @Transactional
 class OrderStatusController {
 
@@ -12,11 +13,13 @@ class OrderStatusController {
 
     def OrderStatusService orderStatusService;
 	def index(Integer max) {
+		log.info("OrderStatusController index Action")
         params.max = Math.min(max ?: 10, 100)
         respond OrderStatus.list(params), model:[orderStatusInstanceCount: OrderStatus.count()]
     }
 
     def show(OrderStatus orderStatusInstance) {
+	log.info("OrderStatusController show Action")
         respond orderStatusInstance
 		
 	 def responseData = new HashMap<>()
@@ -40,6 +43,7 @@ class OrderStatusController {
     }
 
     def create() {
+	log.info("OrderStatusController create Action")
         respond new OrderStatus(params)
     }
 	
@@ -47,6 +51,8 @@ class OrderStatusController {
 	def orderstatuslist(){
 		
 		log.info("OrderController orderstatuslist Action")
+		 redirect(uri: "/user/login1")
+
 		def responseData = new HashMap<>();
 		def mode=params.mode
 		log.info(mode)
@@ -55,13 +61,7 @@ class OrderStatusController {
 		def groceryName = params.groceryName
 		log.info(groceryName)
 		
-		def merchant = Merchant.findByEmail(session.user)
-		log.info(merchant)
-		def username= session.user
-		if(username ==null || username=="" ){
-		 redirect(uri: "/orderStatus/orderstatuslist")
-		 return
-		}
+
 		
 		def merchantId = merchant.id
 		def of=0;
@@ -108,6 +108,7 @@ class OrderStatusController {
 
     @Transactional
     def save(OrderStatus orderStatusInstance) {
+		log.info("OrderStatusController  save Action")
         if (orderStatusInstance == null) {
             notFound()
             return
@@ -130,11 +131,13 @@ class OrderStatusController {
     }
 
     def edit(OrderStatus orderStatusInstance) {
+		log.info("OrderStatusController edit Action")
         respond orderStatusInstance
     }
 
     @Transactional
     def update(OrderStatus orderStatusInstance) {
+		log.info("OrderStatusController update Action")
         if (orderStatusInstance == null) {
             notFound()
             return
@@ -158,7 +161,7 @@ class OrderStatusController {
 
     @Transactional
     def delete(OrderStatus orderStatusInstance) {
-
+		log.info("OrderStatusController delete Action")
         if (orderStatusInstance == null) {
             notFound()
             return

@@ -31,12 +31,14 @@ class GroceryController {
 static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: "DELETE"]
 
     def index(Integer max) {
+log.info("Grocery Controller index action")
         params.max = Math.min(max ?: 10, 100)
         respond Grocery.list(params), model:[groceryInstanceCount: Grocery.count()]
     }
 
 	
 	def pdetails() {
+	log.info("Grocery Controller pdetails action")
 		def responseData = new HashMap<>()
 		def mode=params.mode
 		log.info(mode)
@@ -45,7 +47,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info(user)
 		def username= session.user
 		if(username ==null || username=="" ){
-		 redirect(uri: "/grocery/pdetails")
+		 redirect(uri: "/grocery/login")
 		 return
 		}
 		
@@ -68,7 +70,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	
     def show(Grocery groceryInstance) {
         respond groceryInstance
-		
+		log.info("Grocery Controller show action")
 		//log.info("address Controller create action ***********")
 		
 		 def responseData = new HashMap<>()
@@ -93,6 +95,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
     }
 	
 	def showPayload(Grocery groceryInstance) {
+		log.info("Grocery Controller showPayload action")
 		response.outputStream << groceryInstance.image // write the grocery to the output stream
 		response.outputStream.flush()
 		}
@@ -105,6 +108,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	*/
 
     def create() {
+		log.info("Grocery Controller create action")
        // respond new Grocery(params)
 		
 		
@@ -118,7 +122,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		 log.info(user)
 		 def username= session.user
 		 if(username ==null || username=="" ){
-		  redirect(uri: "/merchant/ldashboard")
+		  redirect(uri: "/merchant/login")
 		  return
 		 }
 		 responseData.put("listId", "ldashboard")
@@ -132,7 +136,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
     }
 	
 	def packagecreate(){
-		
+		log.info("Grocery Controller packagecreate action")
 		def responseData = new HashMap<>()
 		 def categoryName=Category.getAll()
 		
@@ -140,7 +144,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	 log.info(user)
 	 def username= session.user
 	 if(username ==null || username=="" ){
-	  redirect(uri: "/merchant/ldashboard")
+	  redirect(uri: "/merchant/login")
 	  return
 	 }
 	
@@ -175,6 +179,14 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		
     @Transactional
     def save(Grocery groceryInstance) {
+		log.info("Grocery Controller save action")
+		
+		def username= session.user
+		if(username ==null || username=="" ){
+		 redirect(uri: "/merchant/login")
+		 return
+		}
+		
         if (groceryInstance == null) {
             notFound()
             return
@@ -184,6 +196,10 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
             respond groceryInstance.errors, view:'create'
             return
         }
+		def mInstatnce=Merchant.findByEmail(username);
+
+		log.info("gname "+mInstatnce)
+		
 
 		def uploadedFile = request.getFile('image')
 		groceryInstance.image = uploadedFile.getBytes() //converting the file to bytes
@@ -221,13 +237,14 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 //	}
 
 	def deleteGrocery(){
+		log.info("Grocery Controller deleteGrocery actiotn")
 		def result,res
 		def id = params.id
 		log.info(id)
 		def responseData = new HashMap<>();
 		result=GroceryService.delete(id)
 			def url="/grocery/deleteGrocery"
-			responseData.put(getMessages('default.message.label'),"deleted sucessfully ")
+			responseData.put(getMessages('default.message.label'),"Deleted Sucessfully ")
 		[result:responseData]
 	}
 	
@@ -277,7 +294,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		
 		def username= session.user
 		if(username ==null || username=="" ){
-		 redirect(uri: "/grocery/offsetlist")
+		 redirect(uri: "/grocery/login")
 		 return
 		}
 		def responseData = new HashMap<>();
@@ -437,11 +454,12 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 
 	def gedit(Grocery groceryInstance) {
 		respond groceryInstance
+		log.info("Grocery Controller gedit action")
 	}
 	
 	@Transactional
 	def updateGrocery() {
-		log.info("update grocery action ")
+		log.info("Grocery Controller updateGrocery action")
 		log.info(params.id);
 		def responseData = new HashMap<>()
 		Grocery groceryInstance=new Grocery();
@@ -470,6 +488,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	
     @Transactional
     def update(Grocery groceryInstance) {
+		log.info("Grocery Controller update action")
         if (groceryInstance == null) {
             notFound()
             return
@@ -498,7 +517,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 
     @Transactional
     def delete(Grocery groceryInstance) {
-
+		log.info("Grocery Controller delete action")
         if (groceryInstance == null) {
             notFound()
             return

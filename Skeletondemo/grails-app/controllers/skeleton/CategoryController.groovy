@@ -14,17 +14,19 @@ class CategoryController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
+		log.info("CategoryController index Action")
         params.max = Math.min(max ?: 5, 100)
         respond Category.list(params), model:[categoryInstanceCount: Category.count()]
     }
 
     def show(Category categoryInstance) {
         respond categoryInstance
+			log.info("CategoryController show Action")
     }
 
     def create() {
        // respond new Category(params)
-		
+		log.info("CategoryController create Action")
 		def responseData = new HashMap<>()
 		def admin= Admin.findByAdminname(session.admin)
 		
@@ -41,6 +43,7 @@ class CategoryController {
 
     @Transactional
     def save(Category categoryInstance) {
+		log.info("CategoryController save Action")
         if (categoryInstance == null) {
             notFound()
             return
@@ -63,11 +66,13 @@ class CategoryController {
     }
 
     def edit(Category categoryInstance) {
+		log.info("CategoryController edit Action")
         respond categoryInstance
     }
 
     @Transactional
     def update(Category categoryInstance) {
+		log.info("CategoryController update Action")
         if (categoryInstance == null) {
             notFound()
             return
@@ -91,7 +96,7 @@ class CategoryController {
 
     @Transactional
     def delete(Category categoryInstance) {
-
+		log.info("CategoryController delete Action")
         if (categoryInstance == null) {
             notFound()
             return

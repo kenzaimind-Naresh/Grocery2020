@@ -12,15 +12,19 @@ class CartController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
+		log.info("CartController index Action")
+		
         params.max = Math.min(max ?: 10, 100)
         respond Cart.list(params), model:[cartInstanceCount: Cart.count()]
     }
 
     def show(Cart cartInstance) {
         respond cartInstance
+		log.info("CartController show Action")
     }
 
     def create() {
+		log.info("CartController create Action")
         respond new Cart(params)
 		
     }
@@ -41,7 +45,7 @@ class CartController {
 
     @Transactional
     def save(Cart cartInstance) {
-
+		log.info("CartController save Action")
 		//cartInstance.gname=""
 		//cartInstance.gprice=""
 		//cartInstance.tcount=""
@@ -71,10 +75,12 @@ class CartController {
 
     def edit(Cart cartInstance) {
         respond cartInstance
+		log.info("CartController edit Action")
     }
 
     @Transactional
     def update(Cart cartInstance) {
+	log.info("CartController update action")
         if (cartInstance == null) {
             notFound()
             return
@@ -99,7 +105,7 @@ class CartController {
 
     @Transactional
     def delete(Cart cartInstance) {
-
+		log.info("CartController delete Action")
         if (cartInstance == null) {
             notFound()
             return
