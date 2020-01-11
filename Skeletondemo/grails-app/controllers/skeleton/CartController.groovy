@@ -8,6 +8,7 @@ import grails.transaction.Transactional
 class CartController {
 	
 	def CartService
+	def OrderStatusService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -29,19 +30,6 @@ class CartController {
 		
     }
 	
-
-//	def getdata() {
-//		log.info("doctor Controller getdata action")
-//		def responseData = new HashMap<>()
-//		def result,url
-//		def gname=params.gname
-//		def split=gname.split("#")
-//		def groceryInstance=Cart.findByGnameAndGprice(split[0],split[1])
-//		log.info(groceryInstance)
-//		def res=groceryInstance.gname+"<br>"+groceryInstance.gprice+"<br>"+groceryInstance.tcount
-//		render res
-//	}
-
 
     @Transactional
     def save(Cart cartInstance) {
@@ -67,8 +55,14 @@ class CartController {
 		
 		def result=CartService.save(cartInstance.gname,cartInstance.gprice,cartInstance.tcount,cartInstance.tamount,cartInstance.usercartId)
 		log.info("response from service"+result)
+		log.info("((((((((((((((((("+result.get("cartInstance"));
+		session.setAttribute("savedCart", result.get("cartInstance"));
 		redirect(uri: "/address/create")
 		//flash.message = "Create Grocery Successfully"
+		
+	//	def orderResult=OrderStatusService.save(cartInstance.gname,cartInstance.gprice,cartInstance.tcount,cartInstance.tamount,cartInstance.usercartId)
+		
+		
 	
 		
     }

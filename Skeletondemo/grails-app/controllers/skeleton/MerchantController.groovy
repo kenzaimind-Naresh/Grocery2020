@@ -520,41 +520,6 @@ class MerchantController {
 		
 	}
 	
-	def marketdata(){
-		
-		log.info("Merchant Controller marketdata action")
-		//log.info("MerchantController Iadashboard Action")
-		def username= session.user
-		if(username ==null || username=="" ){
-		 redirect(uri: "user/userlogin1")
-		 return
-		}
-		
-		//def responseData = new HashMap<>()
-		def mode=params.mode
-		log.info(mode)
-		
-		def user3= User.findByUserName(session.user)
-		log.info(user3)
-		
-		def responseData = new HashMap<>()
-		def result,url
-		url="/merchant/marketdata.gsp"
-		//.def mode=params.mode
-		def merchantshopName = params.merchantshopName
-		log.info(merchantshopName)    
-		def data = Grocery.findAllByMerchantshopName(merchantshopName)
-		log.info(data)
-			responseData.put("user3",user3)
-				
-		responseData.put("data", data)
-		[result:responseData]
-		
-		
-	
-	}
-	
-	
 	def getdata(){
 		log.info("Merchant Controller getdata action")
 		def cost = params.cost

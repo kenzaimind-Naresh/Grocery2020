@@ -18,10 +18,11 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 
 
 def userdashboard() {
+	
 	log.info("UserController userdashboard Action")
 	def username= session.user
 	if(username ==null || username=="" ){
-	 redirecturi: ("/user/userlogin1")
+	 redirect uri: ("/user/userlogin1")
 	 return
 	}
 	
@@ -85,6 +86,26 @@ def userdashboard() {
 */
 	
 }
+
+def marketdata(){
+	
+	log.info("Merchant Controller marketdata action")
+	def responseData = new HashMap<>()
+	def result,url
+	url="/user/marketdata.gsp"
+	def mode=params.mode
+	def merchantshopName = params.merchantshopName
+	log.info(merchantshopName)
+	session.setAttribute("merchantName", merchantshopName)
+	def data = Grocery.findAllByMerchantshopName(merchantshopName)
+	log.info(data)
+	responseData.put("data", data)
+	[result:responseData]
+	
+	
+
+}
+
 
 def userlist(){
 	
