@@ -109,7 +109,7 @@ window.onhashchange = function (event) {
 <div class="container">
 <div class="row">
 <div class="order_box">
-<p style="color:black;font-Size: 20px">${username},<br>Your grocery details are updated </p>
+<p style="color:black;font-Size: 20px"><br>Your grocery details are updated </p>
 </div>
     </div>
 </div>

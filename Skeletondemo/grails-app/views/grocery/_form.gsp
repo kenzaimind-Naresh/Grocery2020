@@ -74,7 +74,7 @@ $(function() {
 		<g:message code="category.categoryName.label" default="Category Name" />
 		<span class="required-indicator"></span>
 	</label>
-         <input type="text" name="categoryName" id="categoryName" class="search form-control" placeholder="Select Category" >
+         <input type="text" name="categoryName" required="" id="categoryName" class="search form-control" placeholder="Select Category" >
         
     </div></div>
    
@@ -139,9 +139,10 @@ $(function() {
   <option>Select</option>
   <option value="grms">Grms</option>
   <option value="kgs">Kgs</option>
+   <option value="ml">ml</option>
   <option value="liter">Liter</option>
     <option value="item">Item</option>
-  
+      
 </select>
 
 </div>
