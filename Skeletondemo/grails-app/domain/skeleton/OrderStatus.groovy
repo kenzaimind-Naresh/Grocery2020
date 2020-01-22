@@ -1,5 +1,7 @@
 package skeleton
 
+import java.util.Date;
+
 class OrderStatus {
 	
 	String orderId
@@ -9,7 +11,9 @@ class OrderStatus {
 	String totalAmount
 	String usercartId
 	String merchantId
+	String addressId
 	String status
+	Date createdDate
 
 	String modifiedBy
 
@@ -22,7 +26,9 @@ class OrderStatus {
 		totalAmount(maxsize:50, nullable:false)
 		usercartId(maxSize:50,nullable:false)
 		merchantId(maxSize:50,nullable:false)
+		addressId(maxSize:50,nullable:false)
 		status(maxsize:50,nullable:false)
+		createdDate(nullable:false)
 		
     }
 }

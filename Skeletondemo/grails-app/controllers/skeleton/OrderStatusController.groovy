@@ -51,7 +51,12 @@ class OrderStatusController {
 	def orderstatuslist(){
 		
 		log.info("OrderController orderstatuslist Action")
-		 redirect(uri: "/user/login1")
+		
+		def username= session.user
+		if(username ==null || username=="" ){
+		 redirect(uri: "/orderStatus/orderstatuslist")
+		 return
+		}
 
 		def responseData = new HashMap<>();
 		def mode=params.mode
@@ -61,9 +66,11 @@ class OrderStatusController {
 		def groceryName = params.groceryName
 		log.info(groceryName)
 		
-
+		def user= Merchant.findByEmail(session.user)
+		log.info(user)
 		
-		def merchantId = merchant.id
+
+		def merchantId = user.shopName
 		def of=0;
 		def data=OrderStatus.findAllByMerchantId(merchantId,[sort:"id",order:"desc",max: 10, offset: of])
 		log.info(data)
@@ -76,7 +83,7 @@ class OrderStatusController {
 		responseData.put("listId", "list")
 		responseData.put("totalcount",totalcount)
 		responseData.put("data", data)
-		responseData.put("uname", merchant)
+		responseData.put("uname", user)
 		responseData.put("offset", of)
 		log.info(responseData)
 		[result:responseData]

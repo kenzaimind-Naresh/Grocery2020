@@ -16,6 +16,21 @@
 	<link rel="stylesheet" href="/Skeleton/website/css/ion.rangeSlider.skinFlat.css" />
 	
 	<link rel="stylesheet" href="/Skeleton/website/css/main.css">
+	<link rel="stylesheet" href="/Skeleton/website/css/magnific-popup.css">
+<link rel="stylesheet" href="/Skeleton/website/css/main.css">
+
+
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">    
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script type='text/javascript' src="js/jquery.mycart/jquery.mycart.js"></script>
+
+	
 
 
 
@@ -26,6 +41,8 @@ window.onhashchange = function (event) {
   window.location.hash = "no-back";
 };
 </script>
+
+
 
 <style>
 
@@ -119,31 +136,33 @@ padding: 2px 16px;
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item"><a class="nav-link" href="/Skeleton/merchant/location">Home</a></li>
+							<li class="nav-item"><a class="nav-link" style="padding-top:30px; padding-bottom:30px;" href="/Skeleton/merchant/location">Home</a></li>
 							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+								<a href="#" class="nav-link dropdown-toggle" style="padding-top:30px; padding-bottom:30px;" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Shop</a>
 								
 							</li>
 													
-							<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-<%--							<li class="nav-item submenu dropdown">--%>
-<%--								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="userName-md"></span>${result.uname.userName }<i class="fa fa-user" style="font-size:20px;"></i></a>--%>
-<%--								--%>
-<%--								<ul class="dropdown-menu">--%>
-<%--								<li><g:link controller="user" action="updateuser" class="active"  style="color:	#DAA520;"><i class="fa fa-user"></i> Profile</g:link></li>--%>
-<%--								<li><g:link controller="user" action="changepass" class="active" style="color:	#DAA520;"><i class="fa fa-key"></i> ChangePassword</g:link></li>--%>
-<%--								<li><a href="/Skeleton/merchant/logout" style="color:	#DAA520;"><i class="fa fa-sign-out fa-fw"></i> Logout</a>--%>
-<%----%>
-<%--								</ul>--%>
-<%--							</li>--%>
+							<li class="nav-item"><a class="nav-link" style="padding-top:30px; padding-bottom:30px;" href="/Skeleton/user/contact2">Contact</a></li>
+<%--							<li><a href="/Skeleton/address/checkout" style="font-size:18px; padding-top:30px; padding-bottom:30px;color: black" data-target="#cart"><i class="fa fa-shopping-cart">(<span class="total-count"></span>)</i></a></li>--%>
+							<li class="fa fa-shopping-cart" style="font-size:18px; padding-top:10px; padding-bottom:20px" data-target="#cart">(<span class="total-count"></span>)</li>
+							<li class="nav-item submenu dropdown">
+								<a href="#" class="nav-link dropdown-toggle" style="padding-top:30px; padding-bottom:30px;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="userName-md"></span>${result.uname.userName }<i class="fa fa-user" style="font-size:20px;"></i></a>
+								
+								<ul class="dropdown-menu">
+								<li><g:link controller="user" action="updateuser" class="active"  style="color:	#DAA520;"><i class="fa fa-user"></i> Profile</g:link></li>
+								<li><g:link controller="user" action="changepass" class="active" style="color:	#DAA520;"><i class="fa fa-key"></i> ChangePassword</g:link></li>
+								<li><g:link controller="user" action="myorders" class="active"  style="color:	#DAA520;"><i class='fa fa-cart-arrow-down'></i> My Orders </g:link></li>
+								<li><a href="/Skeleton/merchant/logout" style="color:	#DAA520;"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+
+								</ul>
+							</li>
 								
 						</ul>
 						
@@ -156,9 +175,6 @@ padding: 2px 16px;
 	<!-- End Header Area -->
 
 	<br><br><br><br><br>		
-          
-     
-
 
 <!-- The Modal -->
 <div id="myModal"  class="overlay">
@@ -183,6 +199,44 @@ padding: 2px 16px;
   </div>
 
 </div>
+
+ <!-- Modal Start-->
+<div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+    	<div class="modal-content">
+   			<div class="modal-header">
+        		<h5 class="modal-title" id="exampleModalLabel">Cart</h5>
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          			<span aria-hidden="true">&times;</span>
+        		</button>
+     		</div>
+      		<div class="modal-body">
+        		<table class="show-cart table"></table>
+        		<div>Total price: &#x20b9;<span class="total-cart"></span></div>
+       		</div>
+           	<g:form  role="form" controller="address" Id="myform" name="myform" action="checkout" >
+			<div class="row">
+            	<div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 signin-pdtop">
+             		<div class="form-group">
+ 						<input type="hidden"  name="gname" id="gname"/>
+						<input type="hidden" name="gprice" id="gprice"/>
+ 						<input type="hidden" name="tcount" id="tcount"/>
+ 						<input type="hidden" name="tamount" id="tamount"/>
+   					</div>
+				</div>
+			</div>
+			<input type="hidden" id="modifiedBy" name="modifiedBy" value="self"/>
+			<input type="hidden" id="mode" name="mode" value="web"/>
+			<input type="hidden" id="myaction" name="myaction" value="save"/>
+			<div class="modal-footer">
+        		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<input type="submit" ID="btnsave" value="Check out" class="btn btn-primary" />
+			</div>
+			</g:form>
+  		</div>
+ 	</div>
+</div>
+<!-- Modal End -->
     
 <script>
 // Get the modal
@@ -211,6 +265,264 @@ window.onclick = function(event) {
   }
 }
 </script>
+
+<script type="text/javascript">
+  // ************************************************
+// Shopping Cart API
+// ************************************************
+
+var shoppingCart = (function() {
+  // =============================
+  // Private methods and propeties
+  // =============================
+  cart = [];
+ 
+  // Constructor
+  function Item(name, price, count) {
+    this.name = name;
+    this.price = price;
+    this.count = count;
+  }
+ 
+  // Save cart
+  function saveCart() {
+    sessionStorage.setItem('shoppingCart', JSON.stringify(cart));
+  }
+ 
+    // Load cart
+  function loadCart() {
+    cart = JSON.parse(sessionStorage.getItem('shoppingCart'));
+  }
+  if (sessionStorage.getItem("shoppingCart") != null) {
+    loadCart();
+  }
+ 
+
+  // =============================
+  // Public methods and propeties
+  // =============================
+  var obj = {};
+ 
+  // Add to cart
+  obj.addItemToCart = function(name, price, count) {
+    for(var item in cart) {
+      if(cart[item].name === name) {
+        cart[item].count ++;
+        saveCart();
+        return;
+      }
+    }
+    var item = new Item(name, price, count);
+    cart.push(item);
+    saveCart();
+  }
+
+
+  // Set count from item
+  obj.setCountForItem = function(name, count) {
+    for(var i in cart) {
+      if (cart[i].name === name) {
+        cart[i].count = count;
+        break;
+      }
+    }
+  };
+  // Remove item from cart
+  obj.removeItemFromCart = function(name) {
+      for(var item in cart) {
+        if(cart[item].name === name) {
+          cart[item].count --;
+          if(cart[item].count === 0) {
+            cart.splice(item, 1);
+          }
+          break;
+        }
+    }
+    saveCart();
+  }
+
+  // Remove all items from cart
+  obj.removeItemFromCartAll = function(name) {
+    for(var item in cart) {
+      if(cart[item].name === name) {
+        cart.splice(item, 1);
+        break;
+      }
+    }
+    saveCart();
+  }
+
+  // Clear cart
+  obj.clearCart = function() {
+    cart = [];
+    saveCart();
+  }
+
+  // Count cart
+  obj.totalCount = function() {
+    var totalCount = 0;
+    for(var item in cart) {
+      totalCount += cart[item].count;
+    }
+    return totalCount;
+  }
+
+  //gname
+  obj.gname = function(){
+var gname = [];
+ for(var item in cart){
+    gname += cart[item].name+"#";
+}
+ return gname
+
+ }
+ 
+  // price
+  obj.gprice = function(){
+var gprice = [];
+for(var item in cart){
+gprice += cart[item].price+"#";
+}
+return gprice
+
+ }
+ 
+  // Total cart
+  obj.totalCart = function() {
+    var totalCart = 0;
+    for(var item in cart) {
+      totalCart += cart[item].price * cart[item].count;
+    }
+    return Number(totalCart.toFixed(2));
+  }
+
+  // List cart
+  obj.listCart = function() {
+    var cartCopy = [];
+    for(i in cart) {
+      item = cart[i];
+      itemCopy = {};
+      for(p in item) {
+        itemCopy[p] = item[p];
+
+      }
+      itemCopy.total = Number(item.price * item.count).toFixed(2);
+      cartCopy.push(itemCopy)
+    }
+    return cartCopy;
+  }
+
+ 
+ 
+  // cart : Array
+  // Item : Object/Class
+  // addItemToCart : Function
+  // removeItemFromCart : Function
+  // removeItemFromCartAll : Function
+  // clearCart : Function
+  // countCart : Function
+  // totalCart : Function
+  // listCart : Function
+  // saveCart : Function
+  // loadCart : Function
+  return obj;
+})();
+
+
+// *****************************************
+// Triggers / Events
+// *****************************************
+// Add item
+$('.add-to-cart').click(function(event) {
+  event.preventDefault();
+  var name = $(this).data('name');
+  var price = Number($(this).data('price'));
+  shoppingCart.addItemToCart(name, price, 1);
+  displayCart();
+});
+
+//Clear items
+$('.clear-cart').click(function() {
+	shoppingCart.clearCart();
+	displayCart();
+});
+
+
+<%--function clearCart() {--%>
+<%--	alert("clear");--%>
+<%--	sessionStorage.clear('shoppingCart');--%>
+<%----%>
+<%--}--%>
+
+
+
+function displayCart() {
+  var cartArray = shoppingCart.listCart();
+  var output = "";
+  for(var i in cartArray) {
+    output += "<tr>"
+      + "<td>" + cartArray[i].name + "</td>"
+      + "<td>(" + cartArray[i].price + ")</td>"
+      + "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name=" + cartArray[i].name + ">-</button>"
+      + "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>"
+      + "<button class='plus-item btn btn-primary input-group-addon' data-name=" + cartArray[i].name + ">+</button></div></td>"
+      + "<td><button class='delete-item btn btn-danger' data-name=" + cartArray[i].name + ">X</button></td>"
+      + " = "
+      + "<td>" + cartArray[i].total + "</td>"
+      +  "</tr>";
+   
+  }
+
+ 
+ 
+  $('.show-cart').html(output);
+  $('.total-cart').html(shoppingCart.totalCart());
+  $('.total-count').html(shoppingCart.totalCount());
+
+ 
+
+  $("#gname").val(shoppingCart.gname());
+  $("#tamount").val(shoppingCart.totalCart());
+  $("#tcount").val(shoppingCart.totalCount());
+ 
+  $("#gprice").val(shoppingCart.gprice());
+ 
+}
+
+// Delete item button
+
+$('.show-cart').on("click", ".delete-item", function(event) {
+  var name = $(this).data('name')
+  shoppingCart.removeItemFromCartAll(name);
+  displayCart();
+})
+
+ 
+// -1
+$('.show-cart').on("click", ".minus-item", function(event) {
+  var name = $(this).data('name')
+  shoppingCart.removeItemFromCart(name);
+  displayCart();
+})
+// +1
+$('.show-cart').on("click", ".plus-item", function(event) {
+  var name = $(this).data('name')
+  shoppingCart.addItemToCart(name);
+  displayCart();
+})
+
+// Item count input
+$('.show-cart').on("change", ".item-count", function(event) {
+   var name = $(this).data('name');
+   var count = Number($(this).val());
+  shoppingCart.setCountForItem(name, count);
+  displayCart();
+});
+
+displayCart();
+
+ </script>
+
 
 
  <style>

@@ -123,7 +123,7 @@ i:hover {
 								</ul> 
 							</li>
 							
-							<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+							<li class="nav-item"><a class="nav-link" href="/Skeleton/merchant/contact1">Contact</a></li>
 						</ul>
 						
 					</div>

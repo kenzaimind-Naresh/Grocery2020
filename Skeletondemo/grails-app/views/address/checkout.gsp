@@ -198,7 +198,7 @@ form.example::after {
 														
 							
 							
-							<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+							<li class="nav-item"><a class="nav-link" href="/Skeleton/user/contact2">Contact</a></li>
 							
 						<li class="nav-item"><a class="fa fa-shopping-cart" style="font-size:18px; padding-top:10px; padding-bottom:20px" data-toggle="modal" data-target="#cart">(<span class="total-count"></span>)</a>
 						</li>
@@ -342,26 +342,38 @@ form.example::after {
             <div class="col-lg-6">
                 <div class="panel panel-default">
  <div class="table-responsive">
-      <table class="table table-striped table-bordered table-hover">
-      <thead>
-      <tr>
-      <th style="color:black;font-family: Calibri">Produt Name</th>
-      <th style="color:black;font-family: Calibri">Price</th>
-      <th style="color:black;font-family: Calibri">Quantity</th>
-      <th style="color:black;font-family: Calibri">T.AMT</th>
-      
-      </tr>
-      </thead>
-     <tbody>
-      <tr>
-       <td><span class="g-name1"></span></td>
-      <td><span class="g-price1"></span></td>
-      <td><span class="g-tcount1"></span></td>
-      <td><span class="g-tamount1"></span></td>
-      </tr>
-      </tbody>
-      </table>
+<table class="table table-hover table-condensed table-striped">
+      		<thead>
+      			<tr>
+      	
+      				<th>Grocery Name</th>  
+      				<th>Price</th>
+ 
+      			</tr>
+      		</thead>
+     		<tbody>
+     			<g:each in="${result.result.cartList}" expr="true">
+    			<tr>
+      				<td style="font-size: 18px;color: black;"> ${it.gname}</td>
+        			<td style="font-size: 18px;color: black;">${it.gprice}</td>
+      			</tr>
+    			</g:each>
+    			    			<tr>
+      				<td style="font-size: 18px;color: brown;"> Total Amount</td>
+        			<td style="font-size: 18px;color: brown;">${result.result.totAmt}</td>
+      			</tr>
+    		</tbody>
+     	</table>
      </div>
+
+     <div class="container">
+	<div style=" padding-left:150px; padding-right:350px;font-family: Calibri">
+		
+     </div>
+     
+</div>
+     
+     
     </div>
    </div>
   </div>

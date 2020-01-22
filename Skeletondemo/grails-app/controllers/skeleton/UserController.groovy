@@ -1,4 +1,3 @@
-
 package skeleton
 
 
@@ -36,7 +35,7 @@ def userdashboard() {
 	
 	
 	//params.max = Math.min(params.max ? params.int('max') : 8, 100)
-//	respond Grocery.list(params), model:[groceryInstanceCount: Grocery.count()]
+	//respond Grocery.list(params), model:[groceryInstanceCount: Grocery.count()]
 	
 	
 	responseData.put("listId", "dashboard")
@@ -89,7 +88,7 @@ def userdashboard() {
 
 def marketdata(){
 	
-	log.info("Merchant Controller marketdata action")
+	log.info("UserController marketdata action")
 	def responseData = new HashMap<>()
 	def result,url
 	url="/user/marketdata.gsp"
@@ -99,12 +98,65 @@ def marketdata(){
 	session.setAttribute("merchantName", merchantshopName)
 	def data = Grocery.findAllByMerchantshopName(merchantshopName)
 	log.info(data)
+	
+	def user= User.findByUserName(session.user)
+	log.info(user)
+	
 	responseData.put("data", data)
+	responseData.put("uname",user)
+	
 	[result:responseData]
 	
 	
 
 }
+
+	def contact2(){
+		
+		log.info("UserController contact2 action")
+		def responseData = new HashMap<>()
+		def result,url
+		url="/user/contact2.gsp"
+		def mode=params.mode
+		def merchant = Merchant.getAll()
+		/*def shopName = params.shopName
+		log.info(shopName)
+		//session.setAttribute("merchantName", merchantshopName)
+		def data =Merchant.findAllByShopName(shopName)
+		log.info(data)*/
+		
+		def user= User.findByUserName(session.user)
+		log.info(user)
+		
+		responseData.put("merchant", merchant)
+		responseData.put("uname",user)
+		
+		[result:responseData]
+	}
+	
+	def marketcontactdetails(){
+		
+		log.info("UserController marketcontactdetails action")
+		def responseData = new HashMap<>()
+		def result,url
+		url="/user/marketcontactdetails.gsp"
+		def mode=params.mode
+		def shopName = params.shopName
+		log.info(shopName)
+		//session.setAttribute("merchantName", merchantshopName)
+		def data =Merchant.findAllByShopName(shopName)
+		log.info(data)
+		
+		def user= User.findByUserName(session.user)
+		log.info(user)
+		
+		responseData.put("data", data)
+		responseData.put("uname",user)
+		
+		[result:responseData]
+		
+		
+	}
 
 
 def userlist(){
@@ -151,13 +203,10 @@ def logout = {
 	redirect(uri: "/user/userlogin1")
 	}
 
-def userlogin = {
-	log.info("UserController userlogin Action")
-}
+def userlogin = {}
 
 
 def authenticate2={
-	log.info("UserController authenticate2 Action")
 	
 	def user = User.findByUserNameAndPassword(params.userName,params.password)
 	if(user){
@@ -212,7 +261,7 @@ def purched(){
 	log.info("User Controller purched action ********")
 	def username= session.user
 	if(username ==null || username=="" ){
-	 redirect(uri: "/user/login")
+	 redirect(uri: "/address/userlogin")
 	 return
 	}
 	
@@ -249,7 +298,7 @@ def purched(){
 	
 }
 def userdashboard1(){
-	log.info("UserController userdashboard1 Action")
+	
 	
 	respond Grocery.list(params), model:[groceryInstanceCount: Grocery.count()]
 	
@@ -520,7 +569,7 @@ def passwordSave2(){
 		return
 	   }
 	if((userName !=null || userName!="") && (password ==null || password=="") && (newPwd ==null || newPwd=="") && (confirmPwd ==null || confirmPwd=="")){
-		redirect(uri: "/user/login")
+		redirect(uri: "/user/userdashboard1")
 		return false
 	}else{
 	
@@ -545,19 +594,14 @@ def passwordSave2(){
 }
 
 
-def aboutus={
-	log.info("UserController aboutus Action")
-}
+def aboutus={}
 
-def contactusadd={
-	log.info("UserController contactusadd Action")
-}
+def contactusadd={}
 
 def userlogin1 = {
-	log.info("UserController userlogin1 Action")
+	
 }
 def authenticate1 = {
-	log.info("UserController authenticate Action")
 	def user = User.findByUserNameAndPassword(params.userName,params.password)
 	if(user){
 	
@@ -590,10 +634,9 @@ def createappointment(){
 }
 
 def passwordSave2={
-	log.info("UserController passwordSave2 Action")
 	def userName= session.user
 	if(userName ==null || userName=="" ){
-	 redirect(uri: "/user/login1")
+	 redirect(uri: "/user/userlogin1")
 	 return
 	}
 	def responseData = new HashMap<>()
@@ -609,20 +652,18 @@ def passwordSave2={
 	[result:responseData]
 }
 def _form(){
-	log.info("UserController _form Action")
 	respond new Address(params)
 	
 }
 
 def edit(User userInstance) {
-	log.info("UserController edit Action")
 	respond userInstance
 }
  
 
 
 def create() { 
-	log.info("UserController create Action")
+	
 	if(session.user=="" || session.user==null ){
 		log.info("session check  *"+session.user)
 		redirect(action:"userlogin1")
@@ -634,18 +675,17 @@ def create() {
 }
 
 def address() {
-	log.info("UserController address Action")
+	
 	respond new Address(params)
 }
 
 def show(User userInstance) {
-log.info("UserController show Action")
 	respond userInstance
 }
 
 
 def wastecreate(){
-log.info("UserController wastecreate Action")
+	
 	
 	
 }
@@ -653,8 +693,6 @@ log.info("UserController wastecreate Action")
 
 
 def createuser() {
-	log.info("UserController createuser Action")
-	
 	def responseData = new HashMap<>()
 	responseData.put("listId", "createuser")
 	[responseData:responseData]

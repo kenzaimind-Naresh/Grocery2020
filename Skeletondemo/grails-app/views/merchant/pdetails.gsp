@@ -75,13 +75,9 @@ window.onhashchange = function (event) {
 					<div class="collapse navbar-collapse offset" >
 	
 						<ul class="nav navbar-nav menu_nav ml-auto" style="padding-top:30px">
-  				
-  										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  																&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  																&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  																&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  				
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 							<li class="nav-item active"><a class="nav-link" href="/Skeleton/merchant/dashboard"  style="color:black">Home</a></li>
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -98,74 +94,19 @@ window.onhashchange = function (event) {
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Blog</a>
-								<!-- <ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-									<li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
-								</ul> -->
 							</li>
 														
-							<!-- <li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-								 aria-expanded="false">Sign in/Sign up</a>
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="/Skeleton/merchant/login">Login</a></li>
-							<li class="nav-item"><a class="nav-link" href="/Skeleton/admin/login1">Admin</a></li>
-
-								</ul>
-							</li>
-							 -->
-							<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-						<li class="fa fa-shopping-cart" style="font-size:24px" data-toggle="modal" data-target="#cart">(<span class="total-count"></span>)</li>
-							
-																				
+							<li class="nav-item"><a class="nav-link" href="/Skeleton/merchant/contact1">Contact</a></li>
+						<li class="fa fa-shopping-cart" style="font-size:24px" data-toggle="modal" data-target="#cart">(<span class="total-count"></span>)</li>														
 						</ul>
-						
-						<ul class="nav navbar-nav navbar-right">
-							
-							
-							
-						</ul>
-					
-			  <!-- <ul class="nav navbar-nav navbar-right">
-										
-							<li class="nav-item">
-								<button class="search" data-toggle="search-form"><span class="lnr lnr-magnifier" id="search"></span></button>
-							</li>
-						</ul>
-						
-				 -->
-						
 					</div>
-				</div>
-				
-				
-				
-				
-				
+				</div>				
 			</nav>
 		</div>
-		
-		
-	<!-- 	 
-<div class="search-form-wrapper">
-   <g:form class="search-form" id="" action="search1" controller="merchant" method="GET">
-         <input type="text" name="groceryName" id="groceryName" class="search form-control" placeholder="Search" >
-        
-   </g:form>
-</div>
-		  -->
-		 
-		 
 	</header>
 	<!-- End Header Area -->
 	
-
-	
-	
 <br><br><br><br>
-
-
-
 
 	<!--================Login Box Area =================-->
 	<section class="login_box_area section_gap" style="padding-top:20px;padding-left:100px">
@@ -175,11 +116,7 @@ window.onhashchange = function (event) {
 					<img  src="${createLink(controller:'Grocery', action:'showPayload', id:"${groceryInstance.id}")}" width='200' />
 					
 						
-				</div>
-				
-				
-    
-    
+				</div>   
 					<div class="content-headin" style="padding-bottom:20px;">
 						<span style="font-size:17px">
 						

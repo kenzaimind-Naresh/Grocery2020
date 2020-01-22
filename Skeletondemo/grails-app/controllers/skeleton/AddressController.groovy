@@ -46,9 +46,35 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info("Address Controller checkout action ********")
 		def responseData = new HashMap<>()
 		def mode=params.mode
+		def renderData = new HashMap<>()
 		
-		//def shoppingCart = session.shoppingCart		
-		//log.info("********* "+shoppingCart)
+def gname=params.gname;
+def gprice=params.gprice;
+def tcount=Integer.parseInt(params.tcount);
+def tamount=params.tamount;
+log.info(gname)
+log.info(gprice)
+log.info(tcount)
+log.info(tamount)
+List<Cart> cartList=new ArrayList<Cart>();
+   String[] gnames = gname.split("#");
+   String[] gprices = gprice.split("#");
+   log.info(gnames)
+   log.info(gnames[0])
+   for(int i=0;i<tcount;i++){
+	   log.info("incece "+i);
+   Cart tcart=new Cart();
+   tcart.gname=gnames[i];
+   tcart.gprice=gprices[i];
+   cartList.add(tcart);
+   log.info(tcart);
+	   }
+   
+   renderData.put("cartList",cartList);
+   renderData.put("count",tcount);
+   renderData.put("totAmt",tamount);
+   
+log.info("REdnder data "+renderData )
 		
 		def user= User.findByUserName(session.user)
 		log.info(user)
@@ -76,6 +102,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		responseData.put("listId", "dashboard")
 		responseData.put("uname",user)
 		responseData.put("user1",user1)
+		responseData.put("result",renderData);
 		
 		log.info("************")
 		log.info(responseData)
@@ -265,7 +292,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		
 		def username= session.user
 		if(username ==null || username=="" ){
-		 redirect(uri: "/user/userlogin")
+		 redirect(uri: "/user/userlogin1")
 		 return
 		}
 		
@@ -277,9 +304,6 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		def user= User.findByUserName(session.user)
 		log.info(user)
 
-		//Address addressInst = session.getAttribute("savedAddress");
-		//log.info("saved address *********** "+addressInst);
-		
 		def userNameId = user.id
 		def of=0;
 		def data=Address.findAllByUserNameId(userNameId,[sort:"id",max: 10])
@@ -463,12 +487,16 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		 redirect(uri: "/address/userlogin")
 		 return
 		}
+		log.info(params.id+"TTTTTTTTTTTT")
+		def address=Address.get(params.id)
+		log.info(address)
 		
-		def userNameId = user.id
+		def addrId = address.id
 		def of=0;
-		def data=Address.findByUserNameId(userNameId,[sort:"id",max: 5])
+		def data=Address.get(params.id)
+		session.setAttribute("addressId", params.id);
 		log.info(data)
-		def totalcount=Address.findAllByUserNameId(userNameId).size()
+		def totalcount=Address.findAllByAddressId(addrId).size()
 		log.info(totalcount)
 		
 		def addressId = user.id
@@ -510,6 +538,8 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		}
 		def cartId=session.getAttribute("savedCart");
 		def mercName=session.getAttribute("merchantName");
+		def addrId=session.getAttribute("addressId");
+		log.info("SSSSSSSSSSSSSSS"+addrId)
 		log.info("saved cart *********** "+cartId);
 		Cart cartInstance=Cart.findByCartId(cartId)
 		log.info(" cart object *********** "+cartInstance);
@@ -520,16 +550,18 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info(cartInstance.usercartId)
 		log.info(cartInstance.status)
 		log.info(mercName)
+		log.info(addrId)
 		log.info(cartInstance.modifiedBy)
 		
-		def orderResult=OrderStatusService.saveOrder(cartInstance.gname,cartInstance.gprice,cartInstance.tcount,cartInstance.tamount,cartInstance.usercartId,cartInstance.status,mercName,cartInstance.modifiedBy)
+		def orderResult=OrderStatusService.saveOrder(cartInstance.gname,cartInstance.gprice,cartInstance.tcount,cartInstance.tamount,cartInstance.usercartId,cartInstance.status,mercName,addrId,cartInstance.modifiedBy)
 		
 		//Address addressInst = session.getAttribute("savedAddress");
 		//log.info("saved address *********** "+addressInst);
-		
+		def addId=session.getAttribute("addressId");
+		log.info(addId)
 		def addressId = user.id
 		def of=0;
-		def data=Address.findByUserNameId(addressId,[sort:"id",max: 5])
+		def data=Address.get(addId);
 		log.info(data)
 		def totalcount=Address.findAllByUserNameId(addressId).size()
 		log.info(totalcount)
@@ -681,7 +713,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 				
 			}
 			else {
-				def res=AddressService.save(fullName,mobileNumber,pincode,houseNumber,area,landmark,city,state,deliverhere,userNameId)
+				 result=AddressService.save(fullName,mobileNumber,pincode,houseNumber,area,landmark,city,state,deliverhere,userNameId)
 			//	responseData.put("addressInstance", res.getAt("addressInstance"))
 				//responseData.put("AppInstance", res.getAt("appointmentInstance"))
 		
@@ -690,11 +722,11 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 				log.info("&&&&&&&&&&&&&&"+result.get("addressInstance"));
 				//session.setAttribute("savedAddress", result.get("addressInstance"));
 				
-				log.info(res)
+				log.info(result)
 				log.info(mode)
 				
 				//responseData.put(getMessages("default.status.label"),getMessages("default.success.message"))
-				if(res.get("status") == "success"){
+				if(result.get("status") == "success"){
 					redirect(uri: "/Address/create")
 					flash.message = "Your Order is booked"
 					

@@ -67,6 +67,25 @@ class MerchantController {
 		[result:responseData]
 	}
 	
+	def contact1(){
+		
+		log.info("MerchantController contact1 Action")
+		def responseData = new HashMap<>()
+	
+		def mode="web"
+		def of=0;
+		def contact1=Admin.list(sort:"id",order:"desc",max: 5, offset: of)
+		log.info(contact1)
+		def totalcount=Admin.findAll().size()
+		log.info(totalcount)
+		responseData.put("listId", "contact1")
+		responseData.put("totalcount",totalcount )
+		responseData.put("contact1", contact1)
+		responseData.put("offset", of)
+		[result:responseData]
+		
+	}
+	
 	
 	def merchant(){
 		log.info("MerchantController list Action")
@@ -405,10 +424,10 @@ class MerchantController {
 		
 		//log.info("MerchantController Iadashboard Action")
 		def username= session.user
-		if(username ==null || username=="" ){
-		 redirect(uri: "user/userlogin1")
+/*		if(username ==null || username=="" ){
+		 redirect(uri: "/user/userlogin1")
 		 return
-		}
+		}*/
 		
 		//def responseData = new HashMap<>()
 		def mode=params.mode
@@ -466,11 +485,11 @@ class MerchantController {
 		def street=params.street
 		
 			
-		def username= session.user
+/*		def username= session.user
 		if(username ==null || username=="" ){
 		 redirect(uri: "user/userlogin1")
 		 return
-		}
+		}*/
 		
 		//def responseData = new HashMap<>()
 		def mode=params.mode

@@ -126,16 +126,17 @@ window.onhashchange = function (event) {
 <div class="single-product" style="padding-left:30px">
 	
 							
-<h5>${it.fullName}<br></h5>
+<h5>${it.fullName}<br> ${it.id}</h5>
 ${it.mobileNumber}<br>
 ${it.houseNumber}, ${it.area}<br>
 ${it.landmark}, ${it.city}<br>
 ${it.state}, ${it.pincode}.<br><br>
-<g:form controller="Address" action="payment">
-<input type="submit" ID="btnsave" value="Deliver Here" onclick="return validateForm()" class="btn btn-warning" />
-		</g:form>						
-							</div>
-
+<%--<g:form controller="Address" action="payment">
+<input type="hidden" id=${it.id} value=${it.id}/>
+<input type="submit" id="${it.id}" value="Deliver Here" onclick="return validateForm()" class="btn btn-warning" />
+</g:form>	
+--%><g:link controller="Address" action="payment"  id="${it.id}"><button type="button"  class="btn btn-warning">Deliver Here</button></g:link>						
+</div>
 
 </tr>
 </g:each>

@@ -33,8 +33,7 @@ class AdminController {
 		responseData.put("merchantdata", merchantdata)
 		responseData.put("admin", admin)
 		responseData.put("offset", of)
-		
-				[result:responseData]
+		[result:responseData]
 	}
 	
 	def updateprofile(){

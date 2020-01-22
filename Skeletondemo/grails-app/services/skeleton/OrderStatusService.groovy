@@ -37,7 +37,7 @@ class OrderStatusService {
 			}
 		}
 		
-		def saveOrder(groceryName,groceryPrice,totalQuantity,totalAmount,usercartId,status,merchantId,modifiedBy){
+		def saveOrder(groceryName,groceryPrice,totalQuantity,totalAmount,usercartId,status,merchantId,addressId,modifiedBy){
 			log.info("OrderStatusService save-params ")
 			def resultData=new HashMap<>()
 			String []args=["OrderStatus"]
@@ -62,9 +62,12 @@ class OrderStatusService {
 						log.info(status)
 						orderInstance.merchantId=merchantId
 						log.info(merchantId)
-						
+						orderInstance.addressId=addressId
+						log.info(addressId)
 						orderInstance.modifiedBy=modifiedBy
 						log.info(modifiedBy)
+						orderInstance.createdDate=new Date()
+						
 						
 						def sts= save(orderInstance)
 						log.info(sts)
@@ -76,9 +79,6 @@ class OrderStatusService {
 						def st=save(f)
 						log.info(st)
 
-
-				
-			
 				return resultData
 			}
 			catch(Exception e) {

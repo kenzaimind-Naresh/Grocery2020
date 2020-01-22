@@ -218,7 +218,7 @@ padding: 2px 16px;
 								 aria-expanded="false">Shop</a>
 								
 							</li>
-							<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+							<li class="nav-item"><a class="nav-link" href="/Skeleton/user/contact2">Contact</a></li><%--
 							
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="username-sm"></span>${result.user3.userName}<i class="fa fa-user" style="font-size:20px;"></i></a>
@@ -238,7 +238,7 @@ padding: 2px 16px;
 							
 							
 							
-						</ul>
+						--%></ul>
 						
 					</div>
 				</div>
