@@ -91,13 +91,19 @@ class OrderStatusController {
 	
 	def acceptorder(){
 		log.info("OrderController acceptorder Action")
+		def responseData = new HashMap<>();
 		def acceptance=OrderStatus.get(params.id)
-		[result:acceptance]
+		def user = Merchant.findByEmail(session.user)
+		log.info(user)
+		responseData.put("uname", user)
+		responseData.put("acceptance", acceptance)
+		[result:responseData]
 		
 	}
 	
 	def updateOrder(){
 				log.info("OrderStatusController updateOrder Action")
+				def responseData = new HashMap<>();
 				log.info(params.orderId)
 				log.info(params.status);
 				def orderInstance=OrderStatus.get(params.orderId)
@@ -107,9 +113,9 @@ class OrderStatusController {
 				
 				def user = Merchant.findByEmail(session.user)
 				log.info(user)
-				
+				responseData.put("uname", user)
 				orderStatusService.update(params.orderId,params.status,user.firstName);
-			
+				[result:responseData]
 	}
 
 

@@ -439,7 +439,7 @@ def marketdetails(){
 	
 def updateuser(){
 	
-	log info("UserController updateuser Action")
+	log.info("UserController updateuser Action")
 	
 	def userName= session.user
 	if(userName ==null || userName=="" ){

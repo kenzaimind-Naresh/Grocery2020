@@ -124,25 +124,13 @@ function getval(sel)
 							<li class="nav-item"><a class="nav-link" href="/Skeleton/merchant/ldashboard">Home</a></li>
 							
 		
-							
-							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-								 aria-expanded="false">Shop</a>
-								
-							</li>
-							
-							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-								 aria-expanded="false">Blog</a>
-								
-							</li>
-														
+									
 							
 							 
 							<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
 							
 							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="username-sm"></span><i class="fa fa-user" style="font-size:20px;"></i></a>
+								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="username-sm"></span>${result.uname.firstName}<i class="fa fa-user" style="font-size:20px;"></i></a>
 								<ul class="dropdown-menu">
 								
 								<li><g:link controller="merchant" action="updateprofile" class="active"  style="color:	#DAA520;"><i class="fa fa-user"></i> Profile</g:link></li>
@@ -190,20 +178,20 @@ function getval(sel)
             <g:form class="form-horizontal"  controller="orderStatus"  action="updateOrder"  nonvalidate="nonvalidate">
                 <ul class="list">
                     <li><a>Name<span class="last">Price</span></a></li>
-                    <li><a>${result.groceryName }<span class="middle">x${result.totalQuantity}</span> <span class="last">${result.groceryPrice}</span></a></li>
+                    <li><a>${result.acceptance.groceryName }<span class="middle">x${result.acceptance.totalQuantity}</span> <span class="last">${result.acceptance.groceryPrice}</span></a></li>
                 </ul>
                 <ul class="list list_2">
-                    <li><a>Subtotal<span>${result.totalAmount}</span></a></li>
+                    <li><a>Subtotal<span>${result.acceptance.totalAmount}</span></a></li>
 <%--                    <li><a>Shipping <span>Flat rate: $50.00</span></a></li>--%>
-                    <li><a>Total <span class="last">${result.totalAmount}</span></a></li>
+                    <li><a>Total <span class="last">${result.acceptance.totalAmount}</span></a></li>
                     <li class="nav-item submenu dropdown">
                     <a>Status<span class="last">
 <%--                    <input type="text" id="status" name="status" value="${result.status}"/>--%>
 								<select name="statusId" id="statusId" class="form-control" onchange="getval(this)"; >
-                                <option value="">${result.status }</option>
+                                <option value="">${result.acceptance.status }</option>
                                 <option value="Accepted">Accepted</option>
                                 </select>
-                                 <input type="hidden" id="orderId" name="orderId" value="${result.orderId}"/>
+                                 <input type="hidden" id="orderId" name="orderId" value="${result.acceptance.orderId}"/>
                                  <input type="hidden" id="status" name="status"/>
 							</span></a></li>
                 </ul>

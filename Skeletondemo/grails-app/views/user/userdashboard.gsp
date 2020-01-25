@@ -42,6 +42,41 @@ window.onhashchange = function (event) {
 };
 </script>
 
+<style>
+
+
+form.example input[type=text] {
+  padding: 5px;
+  font-size: 15px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: white;
+  padding-left: 50px;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 4px;
+  background: #0b7dda;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
 
 
 <style>
@@ -129,7 +164,7 @@ padding: 2px 16px;
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="/Skeleton/merchant/location"><img src="/Skeleton/website/img/logo12.jpg" alt=""></a>
+					<a class="navbar-brand logo_h" href="/Skeleton/merchant/location1"><img src="/Skeleton/website/img/logo12.jpg" alt=""></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
@@ -142,7 +177,7 @@ padding: 2px 16px;
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item"><a class="nav-link" style="padding-top:30px; padding-bottom:30px;" href="/Skeleton/merchant/location">Home</a></li>
+							<li class="nav-item"><a class="nav-link" style="padding-top:30px; padding-bottom:30px;" href="/Skeleton/merchant/location1">Home</a></li>
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" style="padding-top:30px; padding-bottom:30px;" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Shop</a>
@@ -150,7 +185,7 @@ padding: 2px 16px;
 							</li>
 													
 							<li class="nav-item"><a class="nav-link" style="padding-top:30px; padding-bottom:30px;" href="/Skeleton/user/contact2">Contact</a></li>
-							<li><a href="/Skeleton/address/checkout" style="font-size:18px; padding-top:30px; padding-bottom:30px;color: black" data-target="#cart"><i class="fa fa-shopping-cart">(<span class="total-count"></span>)</i></a></li>
+							
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" style="padding-top:30px; padding-bottom:30px;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="userName-md"></span>${result.uname.userName }<i class="fa fa-user" style="font-size:20px;"></i></a>
 								
@@ -187,17 +222,85 @@ padding: 2px 16px;
       <h3 style="color: white; padding-left:100px">Book your Order by Area  Wise</h3> 
        </div>
     </div>
-           <h3 style="color: white">Book your Order by Area Wise to get Groceries.</h3>
-    
-    <br><br><br><br>
-    <div align="center">
-    <g:link controller="merchant" action="location1"><button type="button" class="btn btn-primary">Proceed</button></g:link>
+           
+    <br><br>
+<div align="center">
+<g:form class="example" action="searchlocation" controller="merchant" method="GET" style="width:500px">			
+  <div class="row">
+  <input type="text" name="city" id="city" class="form-control" required=""  placeholder="Enter Location.."> <br><br>
+    <input type="text" name="street" id="street" class="form-control" required="" placeholder="Enter Colony..."><br><br>
+      <span id="streetinfo" style="color:red;"></span>
+  </div>
+  
+  <br>
+  
+  <div align="center" style="padding-left:140px">
+  <button type="submit" class="form-control" class="btn btn-primary" >Proceed</button>
     
     </div>
-    <br><br>
-  </div>
+</g:form>
 
 </div>
+ 
+    
+    <br><br>
+   
+
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+
+
+
+
+
+ <style>
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color:black;
+   color: white;
+   text-align: center;
+}
+
+a {
+  color: white;
+}
+a:hover {
+  color: white;
+}
+
+
+</style>
 
  <!-- Modal Start-->
 <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -117,7 +117,7 @@ padding: 2px 16px;
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="/Skeleton/merchant/location"><img src="/Skeleton/website/img/logo12.jpg" alt=""></a>
+					<a class="navbar-brand logo_h" href="/Skeleton/merchant/location1"><img src="/Skeleton/website/img/logo12.jpg" alt=""></a>
 					 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
@@ -133,15 +133,12 @@ padding: 2px 16px;
   				
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   				
-							<li class="nav-item active"><a class="nav-link" href="/Skeleton/merchant/location"  style="color:black">Home</a></li>
+							<li class="nav-item active"><a class="nav-link" href="/Skeleton/merchant/location1"  style="color:black">Home</a></li>
 								
 							
-							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-								 aria-expanded="false">Shop</a>
-							</li>
+							
 														
-					       <li class="nav-item"><a class="nav-link" href="/Skeleton/user/contact2">Contact</a></li><%--
+					       <li class="nav-item"><a class="nav-link" href="/Skeleton/user/contact2">Contact</a></li>
 						<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="username-sm"></span>${result.user3.userName}<i class="fa fa-user" style="font-size:20px;"></i></a>
 								<ul class="dropdown-menu">
@@ -154,7 +151,7 @@ padding: 2px 16px;
 							</li>
 								
 																				
-						--%></ul>
+						</ul>
 						
 				
 						

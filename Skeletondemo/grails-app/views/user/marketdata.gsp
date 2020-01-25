@@ -152,7 +152,7 @@ $.ajax({
 		<nav class="navbar navbar-expand-lg navbar-light main_box">
 			<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
-				<a class="navbar-brand logo_h" href="/Skeleton/merchant/location"><img src="/Skeleton/website/img/logo12.jpg" alt=""></a>
+				<a class="navbar-brand logo_h" href="/Skeleton/merchant/location1"><img src="/Skeleton/website/img/logo12.jpg" alt=""></a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 						aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="icon-bar"></span>
@@ -161,13 +161,10 @@ $.ajax({
 				</button>
 				<div class="collapse navbar-collapse offset"  style="padding-left:530px">
 					<ul class="nav navbar-nav menu_nav ml-auto" style="padding-top:30px">
-						<li class="nav-item active"><a class="nav-link" href="/Skeleton/merchant/location"  style="color:black">Home</a></li>
-						<li class="nav-item submenu dropdown">
-							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-									aria-expanded="false">Shop</a>
-						</li>
+						<li class="nav-item active"><a class="nav-link" href="/Skeleton/merchant/location1"  style="color:black">Home</a></li>
+						
 						<li class="nav-item"><a class="nav-link" href="/Skeleton/user/contact2">Contact</a></li>
-						<li class="fa fa-shopping-cart" style="font-size:18px; padding-top:10px; padding-bottom:20px" data-toggle="modal" data-target="#cart">(<span class="total-count"></span>)</li><%--&emsp;&emsp;
+						<li class="fa fa-shopping-cart" style="font-size:18px; padding-top:10px; padding-bottom:20px" data-toggle="modal" data-target="#cart">(<span class="total-count"></span>)</li>&emsp;&emsp;
 						<li class="nav-item submenu dropdown">
 							<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${result.uname.userName}<i class="fa fa-user" style="font-size:20px;"></i></a>
 							<ul class="dropdown-menu">
@@ -177,7 +174,7 @@ $.ajax({
 								<li><a href="/Skeleton/user/logout" style="color: #DAA520;"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 							</ul>
 						</li>
-					--%></ul>
+					</ul>
 				</div>
 			</div>
 		</nav>
