@@ -6,7 +6,7 @@ class UrlMappings {
                 // apply constraints here
             }
         }
-		"/"(controller:"merchant",action:"location")
+		"/"(controller:"merchant",action:"location1")
        //"/"(view:"/dashboard")
         "500"(view:'/error')
 	}

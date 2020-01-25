@@ -199,15 +199,15 @@ padding: 2px 16px;
   <!-- Modal content -->
   <div class="modal-content">
     <div class="modal-header"><br>
-      <h3 style="color: white;  padding-right:350px">Welcome to Online Super Market</h3>
+      <h3 style="color: white;  padding-right:50px">Welcome to Online Super Market</h3>
       
     </div>
     
     
      <br>
-      <div class="row">
-<div class="col">
-<div class="block">
+      <div >
+<div class="container">
+<div class="row">
      <g:each in="${result.emp1}" var="i" expr="true">
     
       <tr>
@@ -216,7 +216,7 @@ padding: 2px 16px;
 								
 							<div class="product-details">
 							<div class="row" style="padding-left:50px">
-								                  <button type="button" class="btn default"><a href="/Skeleton/user/marketdata?merchantshopName=${i.shopName }" style="color: black">${i.shopName}</a></button>
+ <button type="button" class=" primary-btn"><a href="/Skeleton/user/marketdata?merchantshopName=${i.shopName }" style="color: black">${i.shopName}</a></button>
 				
 								</div> 
                 

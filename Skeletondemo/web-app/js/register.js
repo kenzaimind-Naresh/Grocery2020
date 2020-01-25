@@ -96,6 +96,17 @@
 	    	 $("#cityinfo").text("Please Enter City");
 	     }
 	   	  });
+	 
+	 $("#state").focusout(function(){
+	   		$( this ).find( "span" ).css( "display", "inline" );	
+	   		
+	   	 if ( $("#state").val().trim().match('^[a-zA-Z\ \]{3,30}$')!=null && $("#firstName").val().trim()!="") {
+		   	 
+	   		$("#stateinfo").text("");
+	     } else {
+	    	 $("#stateinfo").text("Please Enter Valid state");
+	     }
+	   	  });
 	 $("#zipCode").focusout(function(){
 	   		$( this ).find( "span" ).css( "display", "inline" );	
 	   		
@@ -132,6 +143,7 @@
 	 var mobileNumber = document.forms["myform"]["mobileNumber"].value;
 	 var address = document.forms["myform"]["address"].value;
 	 var city = document.forms["myform"]["city"].value;
+	 var state = document.forms["myform"]["state"].value;
 	 var zipCode = document.forms["myform"]["zipCode"].value;
 	 var modifiedBy = document.forms["myform"]["modifiedBy"].value;
 	 
@@ -186,6 +198,11 @@
 	    	 $("#cityinfo").text("Please Enter City");
 	    	 return false;
 	    }
+	     if (state == null || state == "") {
+		    	document.getElementById('stateinfo').style.display = 'inline';
+		    	 $("#stateinfo").text("Please Enter state");
+		    	 return false;
+		    }
 	    if (zipCode == null || zipCode == "") {
 	    	document.getElementById('zipCodeinfo').style.display = 'inline';
 	    	 $("#zipCodeinfo").text("Please Enter zip Code ");

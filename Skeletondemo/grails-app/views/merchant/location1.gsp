@@ -191,7 +191,7 @@ padding: 2px 16px;
 </head>
 <body>
 
-   
+    
 	<!-- Start Header Area -->
 	<header class="header_area sticky-header">
 		<div class="main_menu">
@@ -212,33 +212,27 @@ padding: 2px 16px;
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item"><a class="nav-link" href="/Skeleton/merchant/location">Home</a></li>
+							<li class="nav-item"><a class="nav-link" >Home</a></li>
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Shop</a>
 								
 							</li>
-							<li class="nav-item"><a class="nav-link" href="/Skeleton/user/contact2">Contact</a></li><%--
 							
 							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="username-sm"></span>${result.user3.userName}<i class="fa fa-user" style="font-size:20px;"></i></a>
+								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+								 aria-expanded="false">Sign in</a>
 								<ul class="dropdown-menu">
-								
-								<li><g:link controller="merchant" action="updateprofile" class="active"  style="color:	#DAA520;"><i class="fa fa-user"></i> Profile</g:link></li>
-								<li><g:link controller="merchant" action="changepass" class="active" style="color:	#DAA520;"><i class="fa fa-key"></i> ChangePassword</g:link></li>
-								<li><a href="/Skeleton/merchant/logout" style="color:	#DAA520;"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-
-								</ul>
+									<li class="nav-item"><a class="nav-link" href="/Skeleton/merchant/login">Merchant Login</a></li>
+							 <li class="nav-item"><a class="nav-link" href="/Skeleton/user/userlogin1">User Login</a></li>
+ 
+							</ul>
 							</li>
 							
 							
 							
-							
-							
-							
-							
-							
-						--%></ul>
+							<li class="nav-item"><a class="nav-link" >Contact</a></li>
+						</ul>
 						
 					</div>
 				</div>
@@ -247,6 +241,7 @@ padding: 2px 16px;
 	
 	</header>
 	<!-- End Header Area -->
+
 
 	<br><br><br><br><br>		
           
@@ -263,23 +258,21 @@ padding: 2px 16px;
   <div class="modal-content">
     <div class="modal-header"><br><br>
     <div class="row">
-      <h3 style="color: white;  padding-left:350px">Welcome to Online Store</h3>
+      <h3 style="color: white;  padding-left:100px">Welcome to Online Store</h3>
       
-      <h3 style="color: white; padding-left:320px">Book your Order by Area  Wise</h3> 
+      <h3 style="color: white; padding-left:100px">Book your Order by Area  Wise</h3> 
        </div>
     </div>
-           <h3 style="color: white">Book your Order by Area Wise to get Groceries.</h3>
-    
-    
-    
-    
-    
+           
+    <br><br>
 <div align="center">
 <g:form class="example" action="searchlocation" controller="merchant" method="GET" style="width:500px">			
   <div class="row">
-  <input type="text" name="city" id="city" class="form-control"  placeholder="Enter Location.."> <br><br>
-    <input type="text" name="street" id="street" class="form-control"  placeholder="Enter Colony..."><br><br>
+  <input type="text" name="city" id="city" class="form-control" required=""  placeholder="Enter Location.."> <br><br>
+    <input type="text" name="street" id="street" class="form-control" required="" placeholder="Enter Colony..."><br><br>
+      <span id="streetinfo" style="color:red;"></span>
   </div>
+  
   <br>
   
   <div align="center" style="padding-left:140px">

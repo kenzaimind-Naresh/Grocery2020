@@ -150,8 +150,7 @@ padding: 2px 16px;
 							</li>
 													
 							<li class="nav-item"><a class="nav-link" style="padding-top:30px; padding-bottom:30px;" href="/Skeleton/user/contact2">Contact</a></li>
-<%--							<li><a href="/Skeleton/address/checkout" style="font-size:18px; padding-top:30px; padding-bottom:30px;color: black" data-target="#cart"><i class="fa fa-shopping-cart">(<span class="total-count"></span>)</i></a></li>--%>
-							<li class="fa fa-shopping-cart" style="font-size:18px; padding-top:10px; padding-bottom:20px" data-target="#cart">(<span class="total-count"></span>)</li>
+							<li><a href="/Skeleton/address/checkout" style="font-size:18px; padding-top:30px; padding-bottom:30px;color: black" data-target="#cart"><i class="fa fa-shopping-cart">(<span class="total-count"></span>)</i></a></li>
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" style="padding-top:30px; padding-bottom:30px;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="userName-md"></span>${result.uname.userName }<i class="fa fa-user" style="font-size:20px;"></i></a>
 								
@@ -183,9 +182,9 @@ padding: 2px 16px;
   <div class="modal-content">
     <div class="modal-header"><br><br>
     <div class="row">
-      <h3 style="color: white;  padding-left:350px">Welcome to Online Store</h3>
+      <h3 style="color: white;  padding-left:100px">Welcome to Online Store</h3>
       
-      <h3 style="color: white; padding-left:320px">Book your Order by Area  Wise</h3> 
+      <h3 style="color: white; padding-left:100px">Book your Order by Area  Wise</h3> 
        </div>
     </div>
            <h3 style="color: white">Book your Order by Area Wise to get Groceries.</h3>

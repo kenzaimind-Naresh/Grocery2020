@@ -162,6 +162,19 @@ class MerchantController {
 
 		
 	}
+	def criteria(){
+		def criteria = Merchant.createCriteria()
+		log.info("Merchant controller criteria action")
+		def merchant = criteria.list() {
+	
+			projections {
+				distinct("city")
+			}
+		
+		}
+	       log.info(merchant)
+		return merchant
+	}
 
 	/*	
 	@Transactional

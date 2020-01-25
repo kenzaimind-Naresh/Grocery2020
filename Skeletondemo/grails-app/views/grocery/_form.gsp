@@ -139,7 +139,7 @@ $(function() {
   <option>Select</option>
   <option value="grms">Grms</option>
   <option value="kgs">Kgs</option>
-   <option value="ml">ml</option>
+   <option value="ml">Ml</option>
   <option value="liter">Liter</option>
     <option value="item">Item</option>
       

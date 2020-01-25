@@ -89,7 +89,8 @@ padding: 2px 16px;
 
 
 
-.overlay {
+
+*.overlay {
   position: absolute;
   top: 60px;
   left: 0;

@@ -17,6 +17,7 @@ class Merchant {
 	String address
 	String street
 	String city
+	String state
 	String zipCode
 	byte[] image
 	String name

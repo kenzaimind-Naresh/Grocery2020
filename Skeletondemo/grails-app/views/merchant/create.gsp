@@ -285,6 +285,47 @@ i:hover {
 </div>
 </div>
 <div class="col-md-12 form-group">
+<div class="fieldcontai ${hasErrors(bean: merchantInstance, field: 'state', 'error')} required">
+
+<select	name="state" required="" id="state" class="form-control" value="${merchantInstance?.state}">
+</div><br>
+<div class="fieldcontai ${hasErrors(bean: merchantInstance, field: 'state', 'error')} required">
+<option value=" "> State</option>
+<option>Andhra Pradesh</option>
+<option>Arunachal Pradesh</option>
+<option>Assam</option>
+<option>Bihar</option>
+<option>Chhattisgarh</option>
+<option>Goa</option>
+<option>Gujarath</option>
+<option>Haryana</option>
+<option>Himachal Pradesh</option>
+<option>Jammu and Kashmir</option>
+<option>Jharkand</option>
+<option>Karnataka</option>
+<option>Kerala</option>
+<option>Madhya Pradesh</option>
+<option>Maharashtra</option>
+<option>Manipur</option>
+<option>Meghalaya</option>
+<option>Mizoram</option>
+<option>Nagaland</option>
+<option>Odisha</option>
+<option>Punjab</option>
+<option>Rajasthan</option>
+<option>Sikkim</option>
+<option>Tamilnadu</option>
+<option>Telangana</option>
+<option>Tripura</option>
+<option>Uttarakhand</option>
+<option>Uttar Pradesh</option>
+<option>West Bengal</option>
+
+</select>
+
+</div>
+</div>
+<div class="col-md-12 form-group">
 
 <div class="fieldcontain ${hasErrors(bean: merchantInstance, field: 'zipCode', 'error')} required">
 	
