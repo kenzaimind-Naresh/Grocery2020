@@ -164,10 +164,10 @@ class MerchantController {
 	}
 	def criteria(){
 		def criteria = Merchant.createCriteria()
-		log.info("Merchant controller criteria action")
+		def test = Merchant.list().unique{ it.city}
+		log.info("Merchant controller criteria action "+test)
 		def merchant = criteria.list() {
-	
-			projections {
+				projections {
 				distinct("city")
 			}
 		
@@ -484,6 +484,9 @@ class MerchantController {
 				data.put("uname",user)
 				data.put("user3",user3)
 				data.put("merchant",merchant)
+				data.put("city",Merchant.list().unique{ it.city})
+				data.put("street",Merchant.list().unique{ it.street})
+				log.info("UUUUUUUUUU "+data)
 				[result:data]
 				
 		

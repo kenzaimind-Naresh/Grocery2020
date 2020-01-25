@@ -66,9 +66,6 @@
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Shop</a>
 								
-							</li>
-							
-														<li class="nav-item"><a class="nav-link" href="#">Pages</a></li>
 							
 							<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 					

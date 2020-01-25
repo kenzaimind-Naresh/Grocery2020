@@ -37,7 +37,7 @@ $(function() {
     $("#city").autocomplete({
     	
     	  source:[
-    	<g:each in="${result.merchant}">
+    	<g:each in="${result.city}">
     	
         '${it.city}',
            
@@ -57,7 +57,7 @@ $(function() {
     $("#street").autocomplete({
     	
     	  source:[
-    	<g:each in="${result.merchant}">
+    	<g:each in="${result.street}">
     	
         '${it.street}',
            

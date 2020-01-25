@@ -415,7 +415,7 @@ log.info("Grocery Controller index action")
 		def modifiedBy=params.modifiedBy
 		log.info(modifiedBy);
 		def user= Merchant.findByEmail(session.user)
-		
+		log.info(user)
 		
 		def res=GroceryService.update(categoryName,groceryName,cost,weight,quantity,offer,createDate,total,user.firstName)
 		log.info("result from service "+res)
@@ -447,7 +447,7 @@ log.info("Grocery Controller index action")
 		}
 		*/
 		//renderPage(mode, url, result)
-			
+		responseData.put("uname", user)
 		[username:user.firstName]	
 		}
 	
@@ -465,6 +465,10 @@ log.info("Grocery Controller index action")
 		Grocery groceryInstance=new Grocery();
 		groceryInstance=Grocery.get(params.id);
 		
+		
+		def user= Merchant.findByEmail(session.user)
+		log.info(user)
+	
 		log.info(groceryInstance.groceryName)
 		def categoryName=Category.getAll()
 		
@@ -475,6 +479,7 @@ log.info("Grocery Controller index action")
 		responseData.put("categoryName",categoryName)
 		responseData.put("gInstance", groceryInstance)
 		log.info(responseData)
+		responseData.put("uname", user)
 		[result:responseData]
 
 /*		if (groceryInstance.hasErrors()) {
