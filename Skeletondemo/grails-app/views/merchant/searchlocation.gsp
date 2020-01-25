@@ -139,16 +139,18 @@ padding: 2px 16px;
 							
 														
 					       <li class="nav-item"><a class="nav-link" href="/Skeleton/user/contact2">Contact</a></li>
+					       <g:while test="${result.user3 != null || result.user3 != ''}"> 
 						<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="username-sm"></span>${result.user3}<i class="fa fa-user" style="font-size:20px;"></i></a>
 								<ul class="dropdown-menu">
-								
+								 ${result}
 								<li><g:link controller="user" action="updateuser" class="active"  style="color:	#DAA520;"><i class="fa fa-user"></i> Profile</g:link></li>
 								<li><g:link controller="user" action="changepass" class="active" style="color:	#DAA520;"><i class="fa fa-key"></i> ChangePassword</g:link></li>
 								<li><a href="/Skeleton/user/logout" style="color:	#DAA520;"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 
 								</ul>
 							</li>
+							</g:while>
 								
 																				
 						</ul>

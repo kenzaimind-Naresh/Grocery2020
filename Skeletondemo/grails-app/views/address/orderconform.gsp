@@ -46,7 +46,6 @@
 
      <script type="text/javascript">
     $( document ).ready(function() {
-        alert("testset");
     	sessionStorage.clear('shoppingCart');
     });
     </script>

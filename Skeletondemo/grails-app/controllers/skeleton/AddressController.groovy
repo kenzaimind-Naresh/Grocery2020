@@ -60,14 +60,14 @@ if(username ==null || username=="" ){
 	session.setAttribute("gname",gname)
 	session.setAttribute("gprice",gprice)
 	session.setAttribute("tcount",tcount)
-	request.setAttribute("tamount",tamount)
+	session.setAttribute("tamount",tamount)
  redirect(uri: "/address/userlogin")
  return
 }
 gname=gname?gname:session.getAttribute("gname")
 gprice=gprice?gprice:session.getAttribute("gprice")
 tcount=tcount?tcount:session.getAttribute("tcount")
-tamount=tamount?tamount:request.getAttribute("tamount")
+tamount=tamount?tamount:session.getAttribute("tamount")
 
 log.info(gname)
 log.info(gprice)

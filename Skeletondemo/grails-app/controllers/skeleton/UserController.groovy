@@ -238,7 +238,7 @@ def mailAction() {
 
 def logout = {
 	log.info("logout  ****")
-	
+	session.user=null
 	session.invalidate();
 	redirect(uri: "/user/userlogin1")
 	}
