@@ -62,7 +62,41 @@ class OrderStatusController {
 		def mode=params.mode
 		log.info(mode)
 		def result,url
-			
+		def renderData = new HashMap<>(); 
+		
+		/*def orderInst = OrderStatus.getAll()
+		log.info("============  "+orderInst)
+		
+		def orderId=orderInst.orderId
+		def grocName=orderInst.groceryName
+		def groceryPrice= orderInst.groceryPrice
+		def quantity = orderInst.totalQuantity
+		def status =  orderInst.status
+		log.info(orderId)
+		log.info(grocName)
+		log.info(groceryPrice)
+		log.info(quantity)
+		log.info(status)
+		List<OrderStatus> orderList=new ArrayList<OrderStatus>();
+		String[] gnames = grocName.split("#");
+		String[] gprices = groceryPrice.split("#");
+		log.info(gnames)
+		log.info(gnames[0])
+		for(int i=0;i<quantity;i++){
+			log.info("incece "+i);
+		OrderStatus order=new OrderStatus();
+		order.groceryName=gnames[i];
+		order.groceryPrice=gprices[i];
+		orderList.add(order);
+		log.info(order);
+			}
+		
+		renderData.put("orderList",orderList);
+		renderData.put("count",quantity);
+		//renderData.put("totAmt",tamount);
+		
+	 log.info("Render data "+renderData )*/
+	 
 		def groceryName = params.groceryName
 		log.info(groceryName)
 		
@@ -72,12 +106,43 @@ class OrderStatusController {
 
 		def merchantId = user.shopName
 		def of=0;
-		def data=OrderStatus.findAllByMerchantId(merchantId,[sort:"id",order:"desc",max: 10, offset: of])
+		def data=OrderStatus.findAllByMerchantId(merchantId,[sort:"id",order:"desc",max: 5, offset: of])
 		log.info(data)
 		def totalcount=OrderStatus.findAllByMerchantId(merchantId).size()
 		log.info(totalcount)
 		def orderStatusInstance=OrderStatus.findByGroceryName(params.groceryName)
 		log.info(orderStatusInstance)
+		
+		/*def orderId=data.orderId
+		def grocName=data.groceryName
+		def grocPrice= data.groceryPrice
+		def quantity = data.totalQuantity
+		def status =  data.status
+		log.info(orderId)
+		log.info(grocName)
+		log.info(grocPrice)
+		log.info(quantity)
+		log.info(status)
+		
+		List<OrderStatus> orderList=new ArrayList<OrderStatus>();
+		String[] gnames = grocName.split("#")
+		String[] gprices = grocPrice.split("#");
+		log.info(gnames)
+		log.info(gnames[0])
+		for(int i=0;i<quantity;i++){
+			log.info("incece "+i);
+		OrderStatus order=new OrderStatus();
+		order.groceryName=gnames[i];
+		order.groceryPrice=gprices[i];
+		orderList.add(order);
+		log.info(order);
+			}
+		
+		renderData.put("orderList",orderList);
+		renderData.put("count",quantity);
+		//renderData.put("totAmt",tamount);
+		
+		log.info("Render data "+renderData )*/
 		
 		responseData.put("data1", orderStatusInstance)
 		responseData.put("listId", "list")
@@ -87,6 +152,39 @@ class OrderStatusController {
 		responseData.put("offset", of)
 		log.info(responseData)
 		[result:responseData]
+	}
+	
+	def offsetlist(){
+		log.info("OrderStatusController offsetlist Action")
+		
+		def username= session.user
+		if(username ==null || username=="" ){
+		 redirect(uri: "/merchant/login")
+		 return
+		}
+		def responseData = new HashMap<>();
+		def mode=params.mode
+		log.info(mode)
+		def result,url
+		
+		if(mode == "web"){
+		def user= Merchant.findByEmail(session.user)
+		log.info(user)
+		
+		def merchantId = user.shopName
+		log.info(merchantId)
+		def of=params.offset;
+		def data=OrderStatus.findAllByMerchantId(merchantId,[sort:"id",order:"desc",max: 5, offset: of])
+		log.info(data)
+		def totalcount=OrderStatus.findAllByMerchantId(merchantId).size()
+		log.info(totalcount)
+		responseData.put("listId", "list")
+		responseData.put("totalcount",totalcount )
+		responseData.put("data", data)
+		responseData.put("uname", user)
+		responseData.put("offset", Integer.parseInt(of))
+		  [result:responseData]
+		}
 	}
 	
 	def acceptorder(){

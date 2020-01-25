@@ -127,17 +127,23 @@ def marketdata(){
 	def result,url
 	url="/user/marketdata.gsp"
 	def mode=params.mode
+	
+	def username= session.user
+	/*if(username ==null || username=="" ){
+	 redirect uri: ("/user/userlogin1")
+	 return
+	}*/
+	/*def user= User.findByUserName(session.user)
+	log.info(user)
+	*/
 	def merchantshopName = params.merchantshopName
 	log.info(merchantshopName)
 	session.setAttribute("merchantName", merchantshopName)
 	def data = Grocery.findAllByMerchantshopName(merchantshopName)
 	log.info(data)
 	
-	def user= User.findByUserName(session.user)
-	log.info(user)
-	
 	responseData.put("data", data)
-	responseData.put("uname",user)
+	//responseData.put("uname",user)
 	
 	[result:responseData]
 	
@@ -515,8 +521,7 @@ def changepass={
 	 return
 	}
 	def responseData = new HashMap<>()
-	//def username= User.findByUsername(session.user)
-	
+		
 	def user= User.findByUserName(session.user)
 	log.info(user)
 	

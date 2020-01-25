@@ -50,8 +50,25 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		
 def gname=params.gname;
 def gprice=params.gprice;
-def tcount=Integer.parseInt(params.tcount);
+def tcount=params.tcount?Integer.parseInt(params.tcount):null;
 def tamount=params.tamount;
+
+def user= User.findByUserName(session.user)
+log.info(user)
+def username= session.user
+if(username ==null || username=="" ){
+	session.setAttribute("gname",gname)
+	session.setAttribute("gprice",gprice)
+	session.setAttribute("tcount",tcount)
+	request.setAttribute("tamount",tamount)
+ redirect(uri: "/address/userlogin")
+ return
+}
+gname=gname?gname:session.getAttribute("gname")
+gprice=gprice?gprice:session.getAttribute("gprice")
+tcount=tcount?tcount:session.getAttribute("tcount")
+tamount=tamount?tamount:request.getAttribute("tamount")
+
 log.info(gname)
 log.info(gprice)
 log.info(tcount)
@@ -76,13 +93,7 @@ List<Cart> cartList=new ArrayList<Cart>();
    
 log.info("REdnder data "+renderData )
 		
-		def user= User.findByUserName(session.user)
-		log.info(user)
-		def username= session.user
-		if(username ==null || username=="" ){
-		 redirect(uri: "/address/userlogin")
-		 return
-		}
+
 		
 	/*	
 		def usercartId = user.id
