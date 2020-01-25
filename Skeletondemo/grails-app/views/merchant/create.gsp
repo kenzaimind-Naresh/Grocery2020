@@ -388,8 +388,5 @@ i:hover {
 			</div></div></div></div></section>
 			
 		</div>
-		
-		
-	
-	</body>
+</body>
 </html>

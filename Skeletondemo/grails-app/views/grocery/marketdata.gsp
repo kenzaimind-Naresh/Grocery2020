@@ -156,13 +156,7 @@ form.example::after {
 		<div class="single-product-slider">
 			<div class="container">
 				
-<div>
- 
-      
-		
-		
-		
-		
+<div>		
       <div class="row">
 <div class="col">
 <div class="block">

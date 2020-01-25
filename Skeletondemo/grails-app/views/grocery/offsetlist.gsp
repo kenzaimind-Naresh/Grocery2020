@@ -110,21 +110,9 @@ window.onhashchange = function (event) {
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item"><a class="nav-link" href="/Skeleton/merchant/ldashboard">Home</a></li>
-							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-								 aria-expanded="false">Shop</a>
-								
-							</li>
+							<li class="nav-item"><a class="nav-link" href="/Skeleton/merchant/ldashboard">Home</a></li>														
 							
-							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-								 aria-expanded="false">Blog</a>
-								
-							</li>
-														
-							
-							<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+							<li class="nav-item"><a class="nav-link" href="/Skeleton/merchant/contact1">Contact</a></li>
 							
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="username-sm"></span>${result.uname.firstName}<i class="fa fa-user" style="font-size:20px;"></i></a>
@@ -137,22 +125,13 @@ window.onhashchange = function (event) {
 								</ul>
 							</li>
 							
-						</ul>
-						
-					
+						</ul>					
 						
 					</div>
 				</div>
 				
 			</nav>
-		</div>
-		
-		
-		 
-	
-		 
-		 
-		 
+		</div>		 
 	</header>
 	<!-- End Header Area -->
 	
@@ -165,10 +144,7 @@ window.onhashchange = function (event) {
 							<h4 style="padding-left:170px;font-family: Calibri" >Groceries List </h4>
 												<g:link controller="grocery" action="create"><h4 style="padding-left:300px;font-family: Calibri;color:#1E90FF">Create Grocery</h4></g:link>
 							
-							</div>
-							
-							
-						
+							</div>						
 					</div>
 	<!-- End banner Area -->
 	
@@ -205,11 +181,9 @@ window.onhashchange = function (event) {
 
       </tbody>
      </table></div>
-     
-     
-     
+  
       <div class="pag">
-                            <div class="col-sm-8 text-right">
+      <div class="col-sm-8 text-right">
        <g:if test="${result.offset > 0}">
      <g:link type="button" style="color:white" controller="grocery" action="offsetlist" params="${[offset:result.offset-5,mode:'web']}" value="Previous"><button class="btn btn-primary">Previous</button></g:link>
     </g:if>

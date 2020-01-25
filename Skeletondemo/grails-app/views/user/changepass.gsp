@@ -77,7 +77,7 @@
 							
 							<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
 									<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="username-sm"></span>${result.uname.userName}<i class="fa fa-user" style="font-size:20px;"></i></a>
+								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="username-sm"></span><i class="fa fa-user" style="font-size:20px;"></i></a>
 								<ul class="dropdown-menu">
 								
 							<li><g:link controller="user" action="updateuser" class="active" style="color:	#DAA520;"><i class="fa fa-user"></i> Profile</g:link></li>
