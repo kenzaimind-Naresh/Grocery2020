@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- InstanceBegin template="/Templates/tourmedimasterpage.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <meta name="Description" content="Loving Care, Medical Treatement, Healthcare Treatment">
+    <meta name="Keywords" content="Medical Treatement, Healthcare Treatment">
+    
+    <!-- InstanceBeginEditable name="doctitle" -->
+    <title>Provider Search</title>
+     <link rel="stylesheet" type="text/css" href="/ProviderSearch/website/css/bootstrap.min.css">
+     <link rel="stylesheet" type="text/css" href="/ProviderSearch/website/css/style.css">
+
+     <link rel="stylesheet" type="text/css" href="/ProviderSearch/website/css/font-awesome.min.css">
+
+
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+    <script type="text/javascript"> 
+<!--
+    (function () {
+        if ("-ms-user-select" in document.documentElement.style && navigator.userAgent.match(/IEMobile\/10\.0/)) {
+            var msViewportStyle = document.createElement("style");
+            msViewportStyle.appendChild(
+    document.createTextNode("@-ms-viewport{width:auto!important}")
+);
+            document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
+        }
+    })();
+    //--> 
+    </script>
+    
+     <script type="text/javascript">
+$(function() {
+	
+    $("#city").autocomplete({
+       source:[
+               <g:each in="${result.solrresult.solrdata}">
+               
+               '${it}', 
+           
+        </g:each>]
+    });
+
+    $("#speciality").autocomplete({
+        source:[
+                <g:each in="${result.solrresult.providerdata}">
+                
+                '${it}', 
+            
+         </g:each>]
+     });
+  });
+
+
+jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});
+
+</script>
+ 
+ <style type="text/css">
+ table tr {
+    cursor: pointer;
+}
+
+ .ui-autocomplete { height: 200px; width: 200px;overflow-y: scroll; overflow-x: hidden;}
+ </style>
+
+    <script type="text/javascript">
+       
+    </script>
+
+    <!-- InstanceEndEditable -->
+    <!-- InstanceBeginEditable name="head" -->
+    <!-- InstanceEndEditable -->
+</head>
+
+<body>
+
+
+    <div class="header">
+        <div class="topbar">
+            <div class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbar">
+                <div class="container">
+                    <div class="pull-right">
+                        <ul class="loginbar pull-right">
+                            <li><a href="/ProviderSearch">Home</a></li>
+                            <li class="topbar-devider"></li>
+                            <li><a href="contactus.html">Contact Us</a></li>
+                            <li class="topbar-devider"></li>
+                            <li class="call">Call US: <span>+ 91 00000 00000</span></li>
+                            
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/ProviderSearch/user/providerSearch.gsp">
+                            <img src="/ProviderSearch/website/img/provider-logo.png" class="tm-logo" /></a>
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="sr-only">Toggle navigation</span> <i class="fa fa-bars"></i></button>
+                    </div>
+                    <div class="navbar-collapse collapse navbar-right">
+                        <ul class="nav navbar-nav">
+                            <li><a href="/ProviderSearch/website/aboutus.html"><span>About Us</span></a></li>
+                            <li><a href="/ProviderSearch/website/services.html"><span>Services</span></a></li>
+                            <li><a href="/ProviderSearch/user/doctorLogin1"><span>Doctor Login</span></a></li>
+                            <li><a href="/ProviderSearch/user/pharmacyLogin1"><span>Pharmacy Login</span></a></li>
+                            <li><a href="/ProviderSearch/user/login1"><span>Admin</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- body -->
+
+    <div class="matterbg">
+        <div class="container intro-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="intro-book">
+
+                        <ul class="nav nav-tabs nav-justified" role="tablist">
+                            <li ><a href="#home" role="tab" data-toggle="tab">FIND PROCEDURE COST</a></li>
+                            <li class="active"><a href="/ProviderSearch/user/providerSearch" >FIND DOCTOR</a></li>
+                            <!--<li><a href="#facility" role="tab" data-toggle="tab">FIND FACILITY</a></li>-->
+                            <li><a href="#drug" role="tab" data-toggle="tab">FIND DRUG</a></li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">FIND BLOOD<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/ProviderSearch/donar/createdonar">Blood Donor Register</a></li>
+                                    <li><a href="postblood.html">Post for Blood</a></li>
+                                    <li><a href="#searchblood" role="tab" data-toggle="tab">Search for Donor</a></li>
+                                </ul>
+                            </li>
+                           <!-- <li><a href="#pharmacy" role="tab" data-toggle="tab">FIND PHARMACY</a></li>-->
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade in " id="home">
+                                <form class="form-signin text-center" role="form">
+                                    <input type="search" class="form-control" placeholder="Text"
+                                        required="" autofocus="">
+                                    <input type="search" class="form-control" placeholder="Zip code or Location" required="">
+                                    <a href="#" class="btn btn-primary" type="submit">Search</a>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade in active" id="doctor">
+                                <g:form class="form-signin text-center" role="form" id="myform" name="myform" controller="user" action="providerSearchinfo">
+                                   <input class="form-control" id="city" name="city" type="text" placeholder="Search by City"/>
+                                    <input class="form-control" id="speciality" name="speciality" type="text" placeholder="Search by Speciality"/>
+                                    <select  class="form-control" name="dGender" id="dGender"  >
+						             <option value="" >--Select Gender--</option>
+						             <option value="Male" >Male</option>
+						             <option value="Female" >Female</option>
+						             </select>
+						             <input type="hidden" id="mode" name="mode" value="web">
+                                     <button class="btn btn-primary " name="submit" type="submit">Submit</button>
+                                </g:form>
+                            </div>
+                            <div class="tab-pane fade in" id="facility">
+                                <form class="form-signin text-center" role="form">
+                                    <input type="search" class="form-control" placeholder="Search by city" required="" autofocus="">
+                                    <input type="search" class="form-control" placeholder="Search by Facility Name" required="">
+                                    <a href="#" class="btn btn-primary" type="submit">Go</a>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade in" id="drug">
+                                <form class="form-signin text-center" role="form">
+                                    <input type="search" class="form-control" placeholder="Health Check" required=""
+                                        autofocus="">
+                                    <input type="search" class="form-control" placeholder="Description" required="">
+                                    <a href="#" class="btn btn-primary" type="submit">Submit</a>
+                                </form>
+                            </div>
+
+                            <div class="tab-pane fade in" id="searchblood">
+                                <form class="form-horizontal text-center" role="form">
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3" style="color: #fff;">Blood Group :</label>
+                                        <div class="col-sm-9">
+                                            <select name="bloodgroup" id="Select1" class="form-control">
+                                                <option value="">--select--</option>
+                                                <option value="agroup">A</option>
+                                                <option value="bgroup">B</option>
+                                                <option value="abgroup">AB</option>
+                                                <option value="ogroup">O</option>
+                                            </select>
+                                        </div>
+                                        <br />
+                                        <label class="control-label col-sm-3" style="color: #fff;">Place :</label>
+                                        <div class="col-sm-9">
+                                            <select name="place" id="Select2" class="form-control">
+                                                <option value="">--select--</option>
+                                                <option value="">1</option>
+                                                <option value="">2</option>
+                                                <option value="">3</option>
+                                                <option value="">4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-12 text-center">
+                                            <button type="submit" class="btn btn-primary text-center" onclick="return validateForm()">
+                                                Search</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+
+
+                            <div class="tab-pane fade in" id="pharmacy">
+                                <form class="form-signin text-center" role="form">
+                                    <input type="search" class="form-control" placeholder="Search by City" required="" autofocus="">
+                                    <input type="search" class="form-control" placeholder="Search by Pharmacy Name" required="">
+                                    <a href="#" class="btn btn-primary" type="submit">Search</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <form class="form-inline pull-right fmaccept">
+                        <div class="form-group">
+
+                            <div class="checkbox">
+                                <label class="checkbox">
+                                    <input name="remember" type="checkbox" value="yes" />
+                                    Accepting New patients
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="checkbox">
+                                <label class="checkbox">
+                                    <input name="remember" type="checkbox" value="yes" />
+                                    Primary Care Providers
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <button class="btn btn-primary " name="filters" type="reset">Reset Filters</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contentbg" style="background-color: #333;">
+        <div class="container">
+            <div class="textbanner">
+                <h3>Provider Search: Help Your Members Connect with the Right Care</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="container contentpd">
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+
+                <h3>Welcome Message</h3>
+
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="contentbg">
+        <div class="container contentpd">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+
+                    <h3>Products</h3>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <div class="thumbnail">
+                                <a href="#"
+                                    target="_blank">
+                                    <img src="/ProviderSearch/website/img/doctor2.jpg" />
+                                    <div class="caption">
+                                        <h2>Doctor</h2>
+                                        <p>
+                                            Text can comes here. Text can comes here.
+                                                
+                                        </p>
+
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <div class="thumbnail">
+                                <a href="#"
+                                    target="_blank">
+                                    <img src="/ProviderSearch/website/img/Laboratory.jpg" />
+                                    <div class="caption">
+                                        <h2>Lab</h2>
+                                        <p>
+                                            A leading blood test laboratory of India, now makes it easy and convenient for patients to check their lab test results online with just a couple...
+                                                
+                                        </p>
+
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <div class="thumbnail">
+                                <a href="#"
+                                    target="_blank">
+                                    <img src="/ProviderSearch/website/img/pharmacy.jpg" />
+                                    <div class="caption">
+                                        <h2>Pharmacy</h2>
+                                        <p>
+                                            In keeping with our goal to make healthcare convenient and accessible to you...
+                                                
+                                        </p>
+
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container contentpd">
+        <h3>Contact Us</h3>
+        <div class="row">
+
+            <div class="col-md-6">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7613.880902749248!2d78.43851323568406!3d17.41464518106789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9730758f30f3%3A0xb218e08107ad8563!2sE-cognosys+Information+Systems+Pvt.+Ltd%2C+hyderabad!5e0!3m2!1sen!2sin!4v1493282671829" width="100%" height="450" frameborder="0" style="border: 0" allowfullscreen></iframe>
+            </div>
+            <div class="col-md-6">
+                <form class="well form-horizontal iconform" action=" " method="post" id="contact_form">
+
+
+                    <div class="form-group">
+
+                        <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input name="first_name" placeholder="First Name" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input name="last_name" placeholder="Last Name" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                <input name="email" placeholder="E-Mail Address" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                <input name="phone" placeholder="(845)555-1212" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                <input name="address" placeholder="Address" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+
+                    <div class="form-group">
+
+                        <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                <input name="city" placeholder="city" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Select Basic -->
+
+                    <div class="form-group">
+
+                        <div class="col-md-12 selectContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                <select name="state" class="form-control selectpicker">
+                                    <option value=" ">Please select your state</option>
+                                    <option>Alabama</option>
+                                    <option>Alaska</option>
+                                    <option>Arizona</option>
+                                    <option>Arkansas</option>
+                                    <option>California</option>
+                                    <option>Colorado</option>
+                                    <option>Connecticut</option>
+                                    <option>Delaware</option>
+                                    <option>District of Columbia</option>
+                                    <option>Florida</option>
+                                    <option>Georgia</option>
+                                    <option>Hawaii</option>
+                                    <option>daho</option>
+                                    <option>Illinois</option>
+                                    <option>Indiana</option>
+                                    <option>Iowa</option>
+                                    <option>Kansas</option>
+                                    <option>Kentucky</option>
+                                    <option>Louisiana</option>
+                                    <option>Maine</option>
+                                    <option>Maryland</option>
+                                    <option>Mass</option>
+                                    <option>Michigan</option>
+                                    <option>Minnesota</option>
+                                    <option>Mississippi</option>
+                                    <option>Missouri</option>
+                                    <option>Montana</option>
+                                    <option>Nebraska</option>
+                                    <option>Nevada</option>
+                                    <option>New Hampshire</option>
+                                    <option>New Jersey</option>
+                                    <option>New Mexico</option>
+                                    <option>New York</option>
+                                    <option>North Carolina</option>
+                                    <option>North Dakota</option>
+                                    <option>Ohio</option>
+                                    <option>Oklahoma</option>
+                                    <option>Oregon</option>
+                                    <option>Pennsylvania</option>
+                                    <option>Rhode Island</option>
+                                    <option>South Carolina</option>
+                                    <option>South Dakota</option>
+                                    <option>Tennessee</option>
+                                    <option>Texas</option>
+                                    <option>Uttah</option>
+                                    <option>Vermont</option>
+                                    <option>Virginia</option>
+                                    <option>Washington</option>
+                                    <option>West Virginia</option>
+                                    <option>Wisconsin</option>
+                                    <option>Wyoming</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+
+                    <div class="form-group">
+
+                        <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                <input name="zip" placeholder="Zip Code" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="form-group">
+
+                        <div class="col-md-12 text-center">
+                            <button type="submit" class="btn btn-primary">Send <span class="glyphicon glyphicon-send"></span></button>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer site-footer">
+        <div class="container copy-foot">
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <ul>
+
+                        <li><a href="#">Terms and Conditions</a></li>
+                        <li class="foot-vert-line">|</li>
+                        <li><a href="#">Privacy Policy</a></li>
+
+                    </ul>
+                </div>
+
+                <div class="col-xs-12 col-md-6">
+                    <p>Copyright © 2017. Provider Search. All right reserved.</p>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <a href="#top" class="go-top"><i class="fa fa-chevron-up fa-1x"></i></a>
+    <script src="/ProviderSearch/website/js/bootstrap.min.js"></script>
+    <script src="/ProviderSearch/website/js/tm-script.js"></script>
+</body>
+
+</html>
