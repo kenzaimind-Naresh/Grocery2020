@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <meta name="Description" content="Loving Care, Medical Treatement, Healthcare Treatment">
+    <meta name="Keywords" content="Medical Treatement, Healthcare Treatment">
+    <title>Provider Search</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/jquery.smartmenus.bootstrap.css" rel="stylesheet">
+
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+
+    <script type="text/javascript"> 
+<!--
+    (function () {
+        if ("-ms-user-select" in document.documentElement.style && navigator.userAgent.match(/IEMobile\/10\.0/)) {
+            var msViewportStyle = document.createElement("style");
+            msViewportStyle.appendChild(
+    document.createTextNode("@-ms-viewport{width:auto!important}")
+);
+            document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
+        }
+    })();
+    //--> 
+    </script>
+
+    <script type="text/javascript">
+       
+    </script>
+</head>
+
+<body>
+
+
+    <div class="header">
+        <div class="topbar">
+            <div class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbar">
+                <div class="container">
+                    <div class="pull-right">
+                        <ul class="loginbar pull-right">
+                            <li><a href="index.html">Home</a></li>
+                            <li class="topbar-devider"></li>
+                            <li><a href="contactus.html">Contact Us</a></li>
+                            <li class="topbar-devider"></li>
+                            <li class="call">Call US: <span>+ 91 00000 00000</span></li>
+                            
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="index.html">
+                            <img src="img/provider-logo.png" class="tm-logo" /></a>
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="sr-only">Toggle navigation</span> <i class="fa fa-bars"></i></button>
+                    </div>
+                    <div class="navbar-collapse collapse navbar-right">
+                        <ul class="nav navbar-nav">
+
+                            <li><a href="index.html"><span>Home</span></a></li>
+                            <li><a href="doctorlogin.html"><span>Login</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- body -->
+                
+                <div class="container">
+               <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 signin-pdtop">
+                 <h3>Contact Us</h3>
+                  <form class="form-horizontal" role="form">
+                     
+                    <div class="form-group">
+                        <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input name="firstName" placeholder="First Name" id="firstName" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input name="lastName" placeholder="Last Name" id="lastName" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                <input name="email" placeholder="E-Mail Address" id="email" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                                <input name="mobileNumber" placeholder="(845)555-1212" id="mobileNumber" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                <input name="address" placeholder="Address" id="address" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+
+                    <div class="form-group">
+
+                        <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                <input name="city" placeholder="city" id="city" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Select Basic -->
+
+                    <div class="form-group">
+
+                        <div class="col-md-12 selectContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                <select name="state" id="state" required="" class="form-control selectpicker">
+                                    <option value=" ">Please select your state</option>
+                                    <option>Alabama</option>
+                                    <option>Alaska</option>
+                                    <option>Arizona</option>
+                                    <option>Arkansas</option>
+                                    <option>California</option>
+                                    <option>Colorado</option>
+                                    <option>Connecticut</option>
+                                    <option>Delaware</option>
+                                    <option>District of Columbia</option>
+                                    <option>Florida</option>
+                                    <option>Georgia</option>
+                                    <option>Hawaii</option>
+                                    <option>daho</option>
+                                    <option>Illinois</option>
+                                    <option>Indiana</option>
+                                    <option>Iowa</option>
+                                    <option>Kansas</option>
+                                    <option>Kentucky</option>
+                                    <option>Louisiana</option>
+                                    <option>Maine</option>
+                                    <option>Maryland</option>
+                                    <option>Mass</option>
+                                    <option>Michigan</option>
+                                    <option>Minnesota</option>
+                                    <option>Mississippi</option>
+                                    <option>Missouri</option>
+                                    <option>Montana</option>
+                                    <option>Nebraska</option>
+                                    <option>Nevada</option>
+                                    <option>New Hampshire</option>
+                                    <option>New Jersey</option>
+                                    <option>New Mexico</option>
+                                    <option>New York</option>
+                                    <option>North Carolina</option>
+                                    <option>North Dakota</option>
+                                    <option>Ohio</option>
+                                    <option>Oklahoma</option>
+                                    <option>Oregon</option>
+                                    <option>Pennsylvania</option>
+                                    <option>Rhode Island</option>
+                                    <option>South Carolina</option>
+                                    <option>South Dakota</option>
+                                    <option>Tennessee</option>
+                                    <option>Texas</option>
+                                    <option>Uttah</option>
+                                    <option>Vermont</option>
+                                    <option>Virginia</option>
+                                    <option>Washington</option>
+                                    <option>West Virginia</option>
+                                    <option>Wisconsin</option>
+                                    <option>Wyoming</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+
+                    <div class="form-group">
+
+                        <div class="col-md-12 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                                <input name="zipCode" placeholder="Zip Code" id="zipCode" class="form-control" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="form-group">
+
+                        <div class="col-md-12 text-center">
+                            <button type="submit" class="btn btn-primary" onclick="return validateForm()">
+                                SEND MAIL</button>
+                        </div>
+                    </div>
+                   </form> 
+            </div>
+
+        </div>
+    </div>
+    
+   <style>
+        label {
+            color: black;
+            padding: 15px 0 0 0;
+        }
+    </style>
+
+    <!-- footer -->
+    <div class="footer site-footer">
+        <div class="container copy-foot">
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <ul>
+
+                        <li><a href="#">Terms and Conditions</a></li>
+                        <li class="foot-vert-line">|</li>
+                        <li><a href="#">Privacy Policy</a></li>
+
+                    </ul>
+                </div>
+            
+                <div class="col-xs-12 col-md-6">
+                    <p>Copyright © 2017. Provider Search. All right reserved.</p>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <a href="#top" class="go-top"><i class="fa fa-chevron-up fa-1x"></i></a>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/tm-script.js" type="text/javascript"></script>
+</body>
+
+</html>
