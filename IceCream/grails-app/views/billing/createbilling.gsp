@@ -21,6 +21,10 @@
 
     <link href="/Icecreams/website/css/sb-admin.css" rel="stylesheet">
 <style type="text/css">
+
+
+
+
      #error{
             display:none;
             color:red;
@@ -198,7 +202,7 @@ table,tr,td {
 font-size: 1em
 }
 
- .ui-autocomplete { height: 200px; overflow-y: scroll; overflow-x: hidden;}                   
+ .ui-autocomplete { height: 200px; width:10px; overflow-y: scroll; overflow-x: hidden;}                   
    </style>
    
    <style>
