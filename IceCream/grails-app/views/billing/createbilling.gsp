@@ -202,7 +202,7 @@ table,tr,td {
 font-size: 1em
 }
 
- .ui-autocomplete { height: 200px; width:10px; overflow-y: scroll; overflow-x: hidden;}                   
+ .ui-autocomplete { height: 200px; width:10px; overflow-y: scroll; overflow-x: hidden;font-size:10px}                   
    </style>
    
    <style>
@@ -457,7 +457,7 @@ function getdata3() {
   	var productDesc= document.getElementById("productDesc3").value;
 	var billingType=document.getElementById("billingType3").value;
 	var quantity3=document.getElementById("quantity3").value;
-	var weight=document.getElementById("weight1").value;
+	var weight=document.getElementById("weight3").value;
 
 	var path = "/Icecreams/billing/getPrice";
 	$.ajax({
@@ -503,7 +503,7 @@ function getdata4() {
 	var productDesc= document.getElementById("productDesc4").value;
 	var billingType=document.getElementById("billingType4").value;
 	var quantity4=document.getElementById("quantity4").value;
-	var weight=document.getElementById("weight1").value;
+	var weight=document.getElementById("weight4").value;
 	
 	var path = "/Icecreams/billing/getPrice";
 	$.ajax({
@@ -548,7 +548,7 @@ function getdata5() {
 	var productDesc= document.getElementById("productDesc5").value;
 	var billingType=document.getElementById("billingType5").value;
 	var quantity5=document.getElementById("quantity5").value;
-	var weight=document.getElementById("weight1").value;
+	var weight=document.getElementById("weight5").value;
 	
 	var path = "/Icecreams/billing/getPrice";
 	$.ajax({
@@ -1179,7 +1179,7 @@ function resetBill(){
 	            <input type="submit" ID="btnsave" value="Save" class="submit" onclick="return validateForm()" style="height:35px;width:120px;border-radius:5px;font-size: 18px"/>
 	        </g:form>
 	           
-	        <br><br>
+	        <br><br>   <br><br>   <br><br>   <br><br>
 	       
 
 	       

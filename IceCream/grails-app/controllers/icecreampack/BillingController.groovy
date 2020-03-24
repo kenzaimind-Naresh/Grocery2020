@@ -8,6 +8,9 @@ import icecreampack.Icecream;
 import icecreampack.User;
 
 import  java.lang.Float;
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter;
+import java.util.Formatter.DateTime;
 
 
 @Transactional(readOnly=true)
@@ -153,8 +156,13 @@ class BillingController {
 		
 		def customerName=params.customerName
 		log.info(customerName)
-		def createDate=params.createDate
-		log.info(createDate)
+		
+		
+		LocalDate now=LocalDate.now();
+		String s=now.format(DateTimeFormatter.ofPattern("dd/MM/YYYY"));
+		def createDate=s
+		
+		log.info("***************"+createDate)
 		def mobileNumber=params.mobileNumber
 		log.info(mobileNumber)
 		def address=params.address

@@ -555,7 +555,6 @@ $(document).ready(function(){
 		    	 }*/
 	    
 	    if (productDesc2.trim() != "" ) {
-	    	alert("HHI");
 	    if (weight2 == null || weight2.trim() == "" ) {
 	    	document.getElementById('weight2info').style.display = 'inline';
 	    	 $("#weight2info").text("Please Enter Weight");
