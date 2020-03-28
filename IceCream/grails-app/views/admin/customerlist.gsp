@@ -289,9 +289,9 @@ font-size: 15px;
       <tr>
       <td>${it.createDate }</td>
       <td>${it.customerName }</td>
-       <td>${it.productDesc1 }</td>
-      <td><a>${it.quantity1}</a></td>
-      <td>${it.price1}</td>
+       <td>${it.productDesc1 }<br>${it.productDesc2 }<br>${it.productDesc3 }<br>${it.productDesc4 }<br>${it.productDesc5 }</td>
+      <td><a>${it.quantity1}<br>${it.quantity2}<br>${it.quantity3}<br>${it.quantity4}<br>${it.quantity5}</a></td>
+      <td>${it.price1}<br>${it.price2}<br>${it.price3}<br>${it.price4}<br>${it.price5}</td>
       <td>${it.grandTotal}</td>
       <td>${it.paymentMode }</td>
       </tr>

@@ -13,11 +13,6 @@ import java.util.List;
 class AdminController {
 
 	def AdminService
-	
-//	def stockavail(Integer max) {
-//		params.max = Math.min(params.max ? params.int('max') : 10, 100)
-//		respond Icecream.list(params), model:[adminInstanceCount: Icecream.count()]
-//	}
 
 	def stockavail(){
 		
@@ -278,6 +273,8 @@ class AdminController {
 		
 		[result:responseData]
 	}
+	
+	
 	def changepass={
 		def responseData = new HashMap<>()
 		//def username= User.findByUsername(session.user)
@@ -429,10 +426,7 @@ class AdminController {
 			
 			[result:responseData]
 			}
-		}
-		
-		
-		
+		}	
 
 /* To check parameters are valid or not */
 def isValid(param){

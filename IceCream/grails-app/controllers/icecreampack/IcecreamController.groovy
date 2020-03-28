@@ -1,5 +1,3 @@
-
-
 package icecreampack
 
 import grails.converters.JSON
@@ -18,7 +16,6 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 
-
 class IcecreamController {
 
 
@@ -33,8 +30,6 @@ class IcecreamController {
 		params.max = Math.min(params.max ? params.int('max') : 5, 100)
 		respond Icecream.list(params), model:[IcecreamInstanceCount: Icecream.count()]
 
-
-
 	}
 
 	def icecreamreport(Integer max){
@@ -43,68 +38,6 @@ class IcecreamController {
 
 		Date today = new Date().clearTime()
 		Date yesterday = today - 1
-
-
-	}
-
-
-
-	def report(){
-		// def resposeData=Icecream.getAll()
-		// respond new Createjewellery(params), model:[resposeData :resposeData]
-
-		log.info("IcecreamController report Action")
-		def mode="web"
-		def url="/Icecream/report.gsp"
-		def data = new HashMap<>()
-		def productDesc=params.productDesc
-		def emp = Icecream.findAll();
-		def username= getSession().user
-		if(username ==null || username=="" ){
-			redirect(uri: "/Employee/index1")
-			return
-		}
-		def emp2= Icecream.findByCompanyEmail(username)
-
-		def usertype=getSession().userType
-		def emp1=Icecream.findAllByProductDesc(productDesc)
-		def msg;
-		if(emp1==null || emp1==[]){
-			msg="Data Not Found"
-		}
-		else{
-			msg=""
-		}
-		def user=new ArrayList()
-		for(int i=0;i<emp.size();i++){
-			user.add(emp[i].productDesc)
-		}
-		data.put("emp", emp)
-		data.put("emp1", emp1)
-		data.put("username", emp2)
-		if(usertype == "Executive"){
-			data.put("listId", "executiveList")
-		}else{
-			data.put("listId", "list")
-		}
-		data.put("message", msg)
-		data.put("emp", emp)
-		data.put("emp1",emp1)
-		data.put("username", emp2)
-		if(usertype == "Executive"){
-			data.put("listId", "executiveList")
-		}else{
-			data.put("listId", "list")
-		}
-		renderPage(mode,url,data)
-	}
-
-
-
-
-	def report1(){
-		def resposeData=Icecream.getAll()
-		respond new Icecream(params), model:[resposeData :resposeData]
 
 
 	}
@@ -256,12 +189,15 @@ class IcecreamController {
 		}
 
 	}
-
-
-	def updatejewellery(){
-
+	
+	def updateIcecream(){
+		
+		log.info("Icecream Controller updateIcecream action")
 		def responseData = new HashMap<>()
-		def icecream=Icecream.getAll()
+		//def icecream=Icecream.getAll()
+		Icecream icecreamInstance=new Icecream();
+		icecreamInstance=Icecream.get(params.id);
+		
 		def admin= Admin.findByAdminName(session.admin)
 
 		def userName= session.admin
@@ -270,11 +206,13 @@ class IcecreamController {
 			return
 		}
 		responseData.put("listId", "icecream")
-		responseData.put("icecream",icecream)
+		responseData.put("icecream",icecreamInstance)
 		responseData.put("uname",admin)
 
 		[result:responseData]
+		
 	}
+
 
 	@Transactional
 	def saveupdate() {
@@ -282,8 +220,10 @@ class IcecreamController {
 		def responseData = new HashMap<>()
 		def result,url
 		url="/Icecream/saveupdate.gsp"
-		def mode=params.mode
-		def myaction = params.myaction
+		
+		def mode= params.mode
+		def myaction=params.myaction
+		
 		def materialId=params.materialId
 		def productDesc=params.productDesc
 		def icecreamType=params.icecreamType
@@ -291,21 +231,33 @@ class IcecreamController {
 		def quantity=params.quantity
 		def retailPrice=params.retailPrice
 		def wholesalePrice=params.wholesalePrice
-		def totalAmount=params.totalAmount
+		
+		def modifiedBy=params.modifiedBy
+		log.info(modifiedBy);
+		
+		def admin= Admin.findByAdminName(session.admin)
+		def userName= session.admin
+		if(userName ==null || userName=="" ){
+			redirect(uri: "/admin/login")
+			return
+		}
+		
+		result=IcecreamService.updateIcecream(materialId,productDesc,icecreamType,weight,quantity,retailPrice,wholesalePrice,modifiedBy)
+		url="/Icecream/saveupdate.gsp"
+		responseData.put("message", "Your Icecream Updated Successfully")
+		responseData.put(getMessages("default.status.label"),"200")
 
-		def totalAvailable=params.totalAvailable
-
-		if(mode == "mobile"){
-			if( ! (isValid(materialId) &&(isValid(productDesc)) && isValid(icecreamType) && isValid(weight) && isValid(quantity)&& isValid(retailPrice)&& isValid(wholesalePrice)&&isValid(totalAvailable))){
+		/*if(mode == "mobile"){
+			if( ! (isValid(materialId) &&(isValid(productDesc)) && isValid(icecreamType) && isValid(weight) && isValid(quantity)&& isValid(retailPrice)&& isValid(wholesalePrice))){
 				responseData.put(getMessages('default.status.label'),getMessages('default.error.message'))
 				responseData.put(getMessages('default.message.label'),getMessages('default.params.missing'))
 				renderPage(mode, url, responseData)
 				return
 			}
 			else {
-				result=IcecreamService.update(materialId,productDesc,icecreamType,retailPrice,quantity,weight,wholesalePrice,totalAmount)
+				result=IcecreamService.updateicecream(materialId,productDesc,icecreamType,weight,quantity,retailPrice,wholesalePrice)
 				url="/Icecream/saveupdate.gsp"
-				responseData.put("message", "Your Profile Updated Successfully")
+				responseData.put("message", "Your Icecream Updated Successfully")
 				responseData.put(getMessages("default.status.label"),"200")
 
 			}
@@ -314,35 +266,26 @@ class IcecreamController {
 		}
 
 		if(mode=="web")	{
-			def admin= Admin.findByAdminName(session.admin)
-			def userName= session.admin
-			if(userName ==null || userName=="" ){
-				redirect(uri: "/admin/login")
-				return
-			}
-			if( ! (isValid(productDesc) && isValid(retailPrice)&& isValid(quantity)&& isValid(weight) && isValid(materialId)&&isValid(totalAvailable)&&isValid(icecreamType)&&isValid(totalAmount)&& isValid(myaction) && isValid(mode) && (userName !=null || userName!="" ))){
+			
+			if( ! (isValid(materialId) &&(isValid(productDesc)) && isValid(icecreamType) && isValid(weight) && isValid(quantity)&& isValid(retailPrice)&& isValid(wholesalePrice)&& isValid(myaction) && isValid(mode) && (userName !=null || userName!="" ))){
 				redirect(uri: "/admin/dashboard")
 				return
 			}
-			if( ! (isValid(productDesc) &&isValid(retailPrice)&& isValid(quantity)&& isValid(weight) && isValid(materialId)&&isValid(totalAvailable) &&isValid(icecreamType)&&isValid(totalAmount))){
+			if( ! (isValid(materialId) &&(isValid(productDesc)) && isValid(icecreamType) && isValid(weight) && isValid(quantity)&& isValid(retailPrice)&& isValid(wholesalePrice))){
 				responseData.put(getMessages('default.status.label'),getMessages('default.error.message'))
 				responseData.put(getMessages('default.message.label'),getMessages('default.params.missing'))
 				renderPage(mode, url, responseData)
 				return
 			}
 			else {
-				result=IcecreamService.update(productDesc,retailPrice,quantity,weight,materialId,totalAvailable,icecreamType,totalAmount)
+				result=IcecreamService.updateicecream(materialId,productDesc,icecreamType,weight,quantity,retailPrice,wholesalePrice)
 				responseData.put("uname", admin)
 				responseData.put(getMessages('default.message.label'),result.getAt("message"))
 				responseData.put(getMessages('default.status.label'),result.getAt("status"))
-			}
+			}*/
+			responseData.put("uname", admin)
 			[result:responseData]
-		}
 	}
-
-
-
-
 
 	def list(){
 		log.info("IcecreamController list Action")
@@ -382,87 +325,12 @@ class IcecreamController {
 		return true;
 	}
 
-	def createcustomer(){
-		def responseData = new HashMap<>()
-		responseData.put("listId", "createcustomer")
-		[responseData:responseData]
-	}
-
-
 	def create() {
 		def responseData = new HashMap<>()
 		responseData.put("listId", "create")
 		[responseData:responseData]
 	}
-	@Transactional
-	def saveCustomer() {
-		log.info("customerdetails Controller saveCustomer action")
-		def responseData = new HashMap<>()
-		def result,url
-
-		def mode=params.mode
-		log.info(mode)
-		def myaction = params.myaction
-		log.info(myaction)
-		def customerName=params.customerName
-		log.info(customerName)
-		def productDesc=params.productDesc
-		log.info(productDesc)
-		def sellQuantity=params.sellQuantity
-		log.info(sellQuantity)
-		def priceType=params.priceType
-		log.info(priceType)
-		def cPrice=params.cPrice
-		log.info(cPrice)
-		def percentage=params.percentage
-		log.info(percentage)
-		def createdBy=params.createdBy
-		log.info(createdBy)
-		def modifiedBy=params.modifiedBy
-		log.info(modifiedBy)
-
-
-		if( ! (isValid(myaction) && isValid(mode))){
-			responseData.put(getMessages('default.status.label'),getMessages('default.error.message'))
-			responseData.put(getMessages('default.message.label'),getMessages('default.params.missing'))
-			renderPage(mode, url, responseData)
-			return
-		}
-
-
-		if(myaction.equals("save")) {
-
-			if( ! (isValid(customerName)&&isValid(productDesc) && isValid(sellQuantity) && isValid(priceType) && isValid(cPrice)&&isValid(percentage) &&isValid(createdBy)&&isValid(modifiedBy))){
-
-				responseData.put(getMessages('default.status.label'),getMessages('default.error.message'))
-				responseData.put(getMessages('default.message.label'),getMessages('default.params.missing'))
-				renderPage(mode, url, responseData)
-				return
-			}
-			else {
-
-				result=CustomerdetailsService.save(customerName,productDesc,sellQuantity,priceType,cPrice,percentage,createdBy,modifiedBy)
-				responseData.put("customerdetailsInstance", result.getAt("customerdetailsInstance"))
-				log.info(result)
-
-				if(result.get("status") == "success"){
-					url="/customerdetails/saveCustomer.gsp"
-					responseData.put("message", "Your Registration completed Successfully")
-					responseData.put(getMessages("default.status.label"),"200")
-				}else if(result.get("status") == "error"){
-					responseData.put("message", "Already Existed")
-					responseData.put(getMessages("default.status.label"),"500")
-					url="/customerdetails/saveCustomer.gsp"
-				}
-			}
-			if(mode=="mobile"){
-				render responseData as JSON
-				return
-			}
-
-			[result:responseData]
-		}
-	}
+	
 
 	@Transactional
 	def getdata() {
@@ -490,129 +358,6 @@ class IcecreamController {
 		render res
 	}
 
-
-
-
-	def createpharmacy()
-	{
-
-		def pharmacy=Billing.getAll()
-		def icecream=Icecream.getAll()
-		def user= User.findByUserName(session.user)
-
-		def username= session.user
-		if(username ==null || username=="" ){
-			redirect(uri: "/user/userlogin")
-			return
-		}
-
-
-		def responseData = new HashMap<>();
-
-		responseData.put("listId", "Bill")
-		responseData.put("icecream",icecream)
-		responseData.put("uname",user)
-		responseData.put("phar",pharmacy)
-		responseData.put(getMessages('default.message.label'),"")
-		[result:responseData]
-
-	}
-
-	/* To save the data of Pharmacy */
-	@Transactional
-	def savepharmacy() {
-		log.info("pharmacy Controller savepharmacy action")
-		def responseData = new HashMap<>()
-		def result,url
-		url="/pharmacy/savepharmacy.gsp"
-		def mode=params.mode
-		def myaction = params.myaction
-		def pFirstname=params.pFirstname
-		def pLastname=params.pLastname
-		def drugdetails=params.drugdetails
-		def drugdetails2=params.drugdetails2
-		def drugdetails3=params.drugdetails3
-		def drugdetails4=params.drugdetails4
-		def drugdetails5=params.drugdetails5
-		def tax=params.tax
-		def rate=params.rate
-		def rate2=params.rate2
-		def rate3=params.rate3
-		def rate4=params.rate4
-		def rate5=params.rate5
-		def quantity=params.quantity
-		def quantity2=params.quantity2
-		def quantity3=params.quantity3
-		def quantity4=params.quantity4
-		def quantity5=params.quantity5
-
-		def total = params.total
-		def total2 = params.total2
-		def total3 = params.total3
-		def total4 = params.total4
-		def total5 = params.total5
-		def grandTotal=params.grandTotal
-		def pMode=params.pMode
-		def modifiedBy=params.modifiedBy
-		def user= User.findByUserName(session.user)
-
-		def username= session.user
-		if(username ==null || username=="" ){
-			redirect(uri: "/user/userlogin")
-			return
-		}
-
-		if( ! ( isValid(pFirstname)&& isValid(pLastname) && isValid(drugdetails)&& isValid(tax)&& isValid(rate)&& isValid(quantity)&& isValid(total)
-		&& isValid(grandTotal)&& isValid(pMode)&& isValid(modifiedBy) && isValid(myaction) && isValid(mode) && (username !=null || username!="" ))){
-			redirect(uri: "/user/userDashboard")
-			return
-		}
-		if(myaction.equals("save")) {
-			if( ! (isValid(pFirstname)&& isValid(pLastname) && isValid(drugdetails)&& isValid(tax)&& isValid(rate)&& isValid(quantity)&& isValid(total)
-			&& isValid(grandTotal)&& isValid(pMode)&& isValid(modifiedBy))){
-				responseData.put(getMessages('default.status.label'),getMessages('default.error.message'))
-				responseData.put(getMessages('default.message.label'),getMessages('default.params.missing'))
-				renderPage(mode, url, responseData)
-				return
-
-			}
-			else {
-				def res1,res2,res3,res4,res5
-
-
-				res1=billingService.save(pFirstname,pLastname,drugdetails,tax,rate,quantity,total,grandTotal,pMode,modifiedBy)
-				responseData.put("PInstance1", res1.getAt("pharmacyInstance"))
-				responseData.put("PInstance2", null)
-				responseData.put("PInstance3", null)
-				responseData.put("PInstance4", null)
-				responseData.put("PInstance5", null)
-
-				if(drugdetails2!="" && quantity2!="" && rate2!="" && total2!=""){
-					res2=billingService.save(pFirstname,pLastname,drugdetails2,tax,rate2,quantity2,total2,grandTotal,pMode,modifiedBy)
-					responseData.put("PInstance2", res2.getAt("pharmacyInstance"))
-				}
-
-				if(drugdetails3!="" && quantity3!="" && rate3!="" && total3!=""){
-					res3=billingService.save(pFirstname,pLastname,drugdetails3,tax,rate3,quantity3,total3,grandTotal,pMode,modifiedBy)
-					responseData.put("PInstance3", res3.getAt("pharmacyInstance"))
-				}
-				if(drugdetails4!="" && quantity4!="" && rate4!="" && total4!=""){
-					res4=billingService.save(pFirstname,pLastname,drugdetails4,tax,rate4,quantity4,total4,grandTotal,pMode,modifiedBy)
-					responseData.put("PInstance4", res4.getAt("pharmacyInstance"))
-				}
-				if(drugdetails5!="" && quantity5!="" && rate5!="" && total5!=""){
-					res5=billingService.save(pFirstname,pLastname,drugdetails5,tax,rate5,quantity5,total5,grandTotal,pMode,modifiedBy)
-					responseData.put("PInstance5", res5.getAt("pharmacyInstance"))
-
-				}
-
-				responseData.put("uname", user)
-				responseData.put(getMessages("default.status.label"),getMessages("default.success.message"))
-				responseData.put("Date", res1.getAt("date"))
-				result=responseData
-			}
-		}
-	}
 	/* To get the messages */
 	def getMessages(code) {
 		return message(code : code)

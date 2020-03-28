@@ -35,13 +35,6 @@ class UserController {
 	}
 		
 	
-	def expire(Integer max){
-	
-	params.max = Math.min(params.max ? params.int('max') : 5, 100)
-	   respond User.list(params), model:[userInstanceCount: User.count()]
-	
-	}
-	
 	def login(){}
 	
 		

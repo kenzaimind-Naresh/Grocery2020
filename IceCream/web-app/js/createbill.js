@@ -37,8 +37,8 @@ $(document).ready(function(){
 	 
 	 $("#productDesc1").focusout(function(){
 	   		$( this ).find( "span" ).css( "display", "inline" );	
-	   		
-	   	 if ( $("#productDesc1").val().trim()!=null && $("#productDesc1").val().trim()!="") {
+
+	   		if ( $("#productDesc1").val().trim()!=null && $("#productDesc1").val().trim()!="") {
 		   	 
 	   		$("#productDesc1info").text("");
 	     } else {

@@ -155,6 +155,60 @@ class IcecreamService {
 				   log.info("IcecreamService update Exception")
 			   }
 		   }
+	  
+	  def updateIcecream(materialId,productDesc,icecreamType,weight,quantity,retailPrice,wholesalePrice,modifiedBy){
+		  
+		  log.info("IcecreamService save-params ")
+		  def resultData=new HashMap<>()
+		  String []args=["Icecream"]
+		  try{
+		  
+			  def IcecreamInstance=Icecream.findByProductDesc(productDesc)
+			  log.info(IcecreamInstance)
+			  
+				  if(IcecreamInstance){
+				  
+					  IcecreamInstance.materialId=materialId
+					  IcecreamInstance.productDesc=productDesc
+					  IcecreamInstance.icecreamType=icecreamType
+					  IcecreamInstance.weight=weight
+					  IcecreamInstance.quantity=quantity
+					  IcecreamInstance.retailPrice=retailPrice
+					  IcecreamInstance.wholesalePrice=wholesalePrice
+					  
+					  IcecreamInstance.modifiedBy=modifiedBy
+					  
+					  IcecreamInstance.createdDate=new Date()
+					  IcecreamInstance.modifiedDate=new Date()
+					  
+					  def sts= save(IcecreamInstance)
+					  log.info(sts)
+					  //log.info(IcecreamInstance.save(failOnError: true))
+					  
+					  
+					  if(sts){
+						  resultData.put(getMessage("default.status.label"),getMessage("default.success.message"))
+						  resultData.put(getMessage("default.message.label"),getMessage("default.insertion.successmessage",args))
+						  resultData.put("IcecreamInstance",IcecreamInstance)
+						  }
+						  else{
+						  resultData.put(getMessage("default.status.label"),getMessage("default.error.message"))
+						  resultData.put(getMessage("default.message.label"),getMessage("default.insertion.errormessage",args))
+						  }
+				  		}
+						
+						  else{
+						  resultData.put(getMessage("default.status.label"),getMessage("default.error.message"))
+						  resultData.put(getMessage("default.message.label"),getMessage("default.object.alreadyexist",args))
+						  }
+						  return resultData
+						  }
+		  
+						  catch(Exception e) {
+						  log.info("IcecreamService save Exception::"+e)
+						  }
+						  
+	  }
 	   
 	   
 	   def getMessage(String code) {

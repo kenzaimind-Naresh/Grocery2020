@@ -19,23 +19,15 @@ class BillingController {
 
 	def BillingService
 	def IcecreamService
-	def	IcecreamController
-	
-	
+	def	IcecreamController	
 	
 		def index(){}
-		
-		/* Sending billing data to display gsp page */
-	def display(){
-		render view:"/billing/display.gsp", model:[billing:Billing.getAll()]
-	}
+			
 	
 	def show(Billing billingInstance) {
 		respond billingInstance
 		}
-	
-	/* deletebilling gsp page */
-	def deletebilling(){}
+
 	
 	/* Sending billing data to updatebilling gsp page */
 	def updatebilling(){
@@ -69,38 +61,11 @@ class BillingController {
 				
 	}
 	
-	def creategold()
-	{
-	
-		def billing=Billing.getAll()
-		def icecream=Icecream.getAll()
-		def user= User.findByUserName(session.user)
-		
-		def username= session.user
-		if(username ==null || username=="" ){
-		 redirect(uri: "/user/userlogin")
-		 return
-		}
-		
-		
-		def responseData = new HashMap<>();
-		
-		responseData.put("listId", "Bill")
-		responseData.put("icecream",icecream)
-		responseData.put("uname",user)
-		responseData.put("phar",billing)
-		responseData.put(getMessages('default.message.label'),"")
-		[result:responseData]
-				
-	}
-	
 	
 	def icecreamsalereport(Integer max){
 		params.max = Math.min(params.max ? params.int('max') : 5, 100)
 		respond Billing.list(params), model:[billingInstanceCount: Billing.count()]
 		
-		
-	   
 		}
 
 	def customreport(Integer max){
@@ -109,9 +74,6 @@ class BillingController {
 		
 		}
 	
-	def help(){
-		
-	}
 	@Transactional
 	def getPrice(){
 		log.info(" BillingController getdata action")
@@ -385,8 +347,5 @@ class BillingController {
 				 render map as JSON
 			 }
 		}
-	
-
-	
 	
 	}

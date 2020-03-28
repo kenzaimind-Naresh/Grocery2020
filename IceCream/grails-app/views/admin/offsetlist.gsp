@@ -195,7 +195,7 @@ background: #0950E8;
       <th style="color:black;font-size: 18px;">Product Description</th>
       <th style="color:black;font-size: 18px;">Weight</th>
       <th style="color:black;font-size: 18px;">Quantity</th>
-      
+      <th style="color:black;font-size: 18px;">Edit</th>
       </tr>
       </thead>
        <g:findAll in="${result.stock}" expr="true">
@@ -204,6 +204,7 @@ background: #0950E8;
        <td>${it.productDesc }</td>
       <td><a>${it.weight}</a></td>
       <td>${it.quantity}</td>
+      <td><g:link controller="icecream" action="updateIcecream" class="btn btn-info" id="${it.id}">Edit</g:link></td>
       </tr>
       </tbody>
       </g:findAll>

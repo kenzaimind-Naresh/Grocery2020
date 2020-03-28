@@ -168,9 +168,9 @@ background: #0950E8;
      <tbody>
       <tr>
       <td>${it.createDate }</td>
-       <td>${it.productDesc1 }</td>
-      <td><a>${it.weight1}</a></td>
-      <td>${it.quantity1}</td>
+       <td>${it.productDesc1 }<br>${it.productDesc2 }<br>${it.productDesc3 }<br>${it.productDesc4 }<br>${it.productDesc5 }</td>
+      <td>${it.weight1}<br>${it.weight2}<br>${it.weight3}<br>${it.weight4}<br>${it.weight5}</td>
+      <td>${it.quantity1}<br>${it.quantity2}<br>${it.quantity3}<br>${it.quantity4}<br>${it.quantity5}</td>
       <td>${it.paymentMode }</td>
       </tr>
       </tbody>
