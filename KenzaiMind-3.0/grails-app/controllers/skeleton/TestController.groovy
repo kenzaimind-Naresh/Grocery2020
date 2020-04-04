@@ -8,15 +8,36 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class TestController {
 
+	// Inject the service
+
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
-		log.info("TestController index Action")
-        params.max = Math.min(max ?: 10, 100)
-        respond Test.list(params), model:[testInstanceCount: Test.count()]
-    }
+	def nexmoService
+	
+	def myTest() {
+		def smsResult
+	log.info("Nexmo SMS Start ....")
+		try {
 
-    def show(Test testInstance) {
+		  smsResult  = nexmoService.sendSms("919491230995", "Hello, welcome to Nexmo SMS....","919652702097");
+		  log.info("sms result  "+smsResult)
+	
+	
+		}catch (NexmoException e) {
+		  // Handle error if failure
+		log.info("failed   ....."+e)
+		}
+	  }
+
+
+	def index(Integer max) {
+		log.info("TestController index Action")
+		params.max = Math.min(max ?: 10, 100)
+		respond Test.list(params), model:[testInstanceCount: Test.count()]
+	}
+	
+
+	    def show(Test testInstance) {
 		log.info("TestController show Action")
         respond testInstance
     }

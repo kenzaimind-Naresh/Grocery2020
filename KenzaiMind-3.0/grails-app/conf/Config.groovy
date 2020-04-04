@@ -96,7 +96,19 @@ environments {
     }
 }
 
-nexmo {
+
+api {
+    key    = "bf74647c" // Your Nexmo API Key
+    secret = "Z6mGiGoIY9YiM6BN" // Your Nexmo API Secret
+  }
+
+sms {
+    default_from = "919701102379" // Your default from telephone number for SMS
+  }
+
+
+
+/*nexmo {
 	endpoint = "https://rest.nexmo.com/"
 	format = "json"
   
@@ -113,8 +125,7 @@ nexmo {
 	sms {
 	  default_from = "15005551234"
 	}
-  }
-
+  }*/
 // log4j configuration
 log4j.main = {
     // Example of changing the log pattern for the default console appender:
@@ -143,4 +154,12 @@ log4j.main = {
 
 
 }
-
+	api {
+	  key    = "bf74647c" // Your Nexmo API Key
+	  secret = "Z6mGiGoIY9YiM6BN" // Your Nexmo API Secret
+	}
+  
+	sms {
+	  default_from = "919701102379" // Your default from telephone number for SMS
+	}
+  

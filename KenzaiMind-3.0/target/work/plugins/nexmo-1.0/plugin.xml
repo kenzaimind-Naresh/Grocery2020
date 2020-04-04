@@ -1,0 +1,14 @@
+<plugin name='nexmo' version='1.0' grailsVersion='2.3 &gt; *'>
+  <author>Casey Scarborough</author>
+  <authorEmail>caseyscarborough@gmail.com</authorEmail>
+  <title>Nexmo Plugin</title>
+  <description>The Nexmo Plugin gives Grails applications SMS (Text Messaging) and Voice functionality. It allows an application to receive
+and send text messages, as well as sending automated voice calls using Nexmo's API.
+</description>
+  <documentation>https://github.com/caseyscarborough/nexmo</documentation>
+  <type>NexmoGrailsPlugin</type>
+  <resources>
+    <resource>NexmoConfig</resource>
+    <resource>grails.plugin.nexmo.NexmoService</resource>
+  </resources>
+</plugin>
