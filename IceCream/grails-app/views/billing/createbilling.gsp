@@ -953,7 +953,7 @@ function resetBill(){
 	            <td id="test3"><input type="text" id="price1" name="price1" onchange="pricecal1()"  width="30" style="height:27px;width:150px;border-radius:5px;font-size: 15px;" ><br>
 	            <span id="price1info" style="color:red"></span></td>
 	    
-	            <td id="test3"><input type="text" id="offerPercentage1" name="offerPercentage1" onchange="pricecal1()" width="30" style="height:27px;width:150px;border-radius:5px;font-size: 15px;" ><br>
+	            <td id="test3"><input type="text" id="offerPercentage1" name="offerPercentage1" value="0" onchange="pricecal1()" width="30" style="height:27px;width:150px;border-radius:5px;font-size: 15px;" ><br>
 	            <span id=offerPercentage1info></span>
 	            </td>
 	             
@@ -1002,7 +1002,7 @@ function resetBill(){
 	            <td id="test3"><input type="text" id="price2" name="price2" onchange="pricecal2()"  width="30" style="height:27px;width:150px;border-radius:5px;font-size: 15px;" ><br>
 	            <span id=price2info></span></td>
 	    
-	            <td id="test3"><input type="text" id="offerPercentage2" name="offerPercentage2" onchange="pricecal2()" width="30" style="height:27px;width:150px;border-radius:5px;font-size: 15px;" ><br>
+	            <td id="test3"><input type="text" id="offerPercentage2" name="offerPercentage2" value="0" onchange="pricecal2()" width="30" style="height:27px;width:150px;border-radius:5px;font-size: 15px;" ><br>
 	            <span id=offerPercentage2info></span>
 	            </td>
 	             
@@ -1051,7 +1051,7 @@ function resetBill(){
 	            <td id="test3"><input type="text" id="price3" name="price3" onchange="pricecal3()"  width="30" style="height:27px;width:150px;border-radius:5px;font-size: 15px;" ><br>
 	            <span id=price3info></span></td>
 	    
-	            <td id="test3"><input type="text" id="offerPercentage3" name="offerPercentage3" onchange="pricecal3()" width="30" style="height:27px;width:150px;border-radius:5px;font-size: 15px;" ><br>
+	            <td id="test3"><input type="text" id="offerPercentage3" name="offerPercentage3" value="0" onchange="pricecal3()" width="30" style="height:27px;width:150px;border-radius:5px;font-size: 15px;" ><br>
 	            <span id=offerPercentage3info></span>
 	            </td>
 	             
@@ -1099,7 +1099,7 @@ function resetBill(){
 	            <td id="test3"><input type="text" id="price4" name="price4" onchange="pricecal4()"  width="30" style="height:27px;width:150px;border-radius:5px;font-size: 15px;" ><br>
 	            <span id=price4info></span></td>
 	    
-	            <td id="test3"><input type="text" id="offerPercentage4" name="offerPercentage4" onchange="pricecal4()" width="30" style="height:27px;width:150px;border-radius:5px;font-size: 15px;" ><br>
+	            <td id="test3"><input type="text" id="offerPercentage4" name="offerPercentage4" value="0" onchange="pricecal4()" width="30" style="height:27px;width:150px;border-radius:5px;font-size: 15px;" ><br>
 	            <span id=offerPercentage4info></span></td>
 	             
 	             <td id="test3"><input type="text" id="total4" name="total4" width="30" style="height:27px;width:150px;border-radius:5px;font-size: 15px;" ><br>
@@ -1145,7 +1145,7 @@ function resetBill(){
 	            <td id="test3"><input type="text" id="price5" name="price5" onchange="pricecal5()"  width="30" style="height:27px;width:150px;border-radius:5px;font-size: 15px;" ><br>
 	            <span id=price5info></span></td>
 	    
-	            <td id="test3"><input type="text" id="offerPercentage5" name="offerPercentage5" onchange="pricecal5()" width="30" style="height:27px;width:150px;border-radius:5px;font-size: 15px;" ><br>
+	            <td id="test3"><input type="text" id="offerPercentage5" name="offerPercentage5" value="0" onchange="pricecal5()" width="30" style="height:27px;width:150px;border-radius:5px;font-size: 15px;" ><br>
 	            <span id=offerPercentage5info></span></td>
 	             
 	             <td id="test3"><input type="text" id="total5" name="total5" width="30" style="height:27px;width:150px;border-radius:5px;font-size: 15px;" ><br>
