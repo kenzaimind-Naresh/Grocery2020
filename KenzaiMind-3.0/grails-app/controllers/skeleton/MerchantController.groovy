@@ -527,11 +527,15 @@ class MerchantController {
 		def mode=params.mode
 		log.info(mode)
 		Cookie cookie=null
-		Cookie[] cookies = null;
+		//cookies;
 		def username
-		cookies=request.getCookies();
-		log.info("cookies :"+cookies)
-		if(cookies!="null"||cookies!=null || cookies!=""){
+		Cookie[] cookies=request.getCookies();
+		log.info("cookies :"+cookies.toString())
+		log.info("cookies :"+cookies!=null)
+		log.info("cookies :"+cookies==null)
+		log.info("cookies :"+cookies.toString().equals("null"))
+		log.info("cookies :"+cookies.equals("null"))
+		if(!cookies.toString().equals("null")){
 		for (int i = 0; i < cookies.length; i++) {
 			cookie = cookies[i];
 			log.info("Name : " + cookie.getName() );
@@ -542,6 +546,7 @@ class MerchantController {
 		 }
 		}
 		log.info("**************** "+username)
+		log.info("**************user* "+session.user)
 		if(username ==null || username=="" ){
 		username= session.user
 		}

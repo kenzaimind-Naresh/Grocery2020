@@ -218,8 +218,8 @@ padding: 2px 16px;
 								
 							</li>
 								 
-					
-							
+											<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+							<g:if test="${result.uname ==null}">
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Sign in</a>
@@ -229,7 +229,21 @@ padding: 2px 16px;
  
 							</ul>
 							</li>
-						<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+							</g:if>
+							<g:else>
+								<li class="nav-item submenu dropdown">
+								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="username-sm"></span>${result.uname.userName}<i class="fa fa-user" style="font-size:20px;"></i></a>
+								<ul class="dropdown-menu">
+								
+								<li><g:link controller="merchant" action="updateprofile" class="active"  style="color:	#DAA520;"><i class="fa fa-user"></i> Profile</g:link></li>
+								<li><g:link controller="merchant" action="changepass" class="active" style="color:	#DAA520;"><i class="fa fa-key"></i> ChangePassword</g:link></li>
+								<li><a href="/Skeleton/merchant/logout" style="color:	#DAA520;"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+
+								</ul>
+							</li>
+							</g:else>
+							
+
 						</ul>
 					</div>
 				</div>

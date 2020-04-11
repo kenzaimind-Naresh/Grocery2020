@@ -41,7 +41,8 @@ def userdashboard() {
 			username=cookie.getValue()
 			log.info("in cookiee   username"+username)
 		}
-		
+		log.info("set cookie value into session   username"+username)
+		session.user=username
 	 }
 	if(username ==null || username=="" ){
 	 username= session.user
