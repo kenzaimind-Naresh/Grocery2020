@@ -178,6 +178,10 @@ log.info("Grocery Controller index action")
 		
 	
 	}
+	
+	def outofstock(){
+	
+	}
 		
     @Transactional
     def save(Grocery groceryInstance) {
@@ -223,20 +227,6 @@ log.info("Grocery Controller index action")
   */
     
     }
-	
-//	def deleteGrocery(){
-//	log.info("grocery Controller deleteGrocery action")
-//		def responseData = new HashMap<>()
-//		def result,url
-//		url="/grocery/deleteGrocery.gsp"
-//		def id=params.id
-//		log.info(id);
-//		
-//		
-//			def res=GroceryService.delete(id,user.firstName)
-//		log.info("result from service "+res)
-//		
-//	}
 
 	def deleteGrocery(){
 		log.info("Grocery Controller deleteGrocery actiotn")
@@ -406,7 +396,7 @@ log.info("Grocery Controller index action")
 		}
 		def responseData = new HashMap<>()
 		def result,url
-		url="/grocery/edit.gsp"
+		url="/grocery/list.gsp"
 		def categoryName=params.categoryName
 		log.info(categoryName);
 		def groceryName=params.groceryName
@@ -460,6 +450,7 @@ log.info("Grocery Controller index action")
 		*/
 		//renderPage(mode, url, result)
 		responseData.put("uname", user)
+		responseData.put(getMessages('default.message.label'),"Your Grocery Updated Successfully")
 		[result:responseData]
 		}
 	
@@ -518,8 +509,8 @@ log.info("Grocery Controller index action")
 
         groceryInstance.save flush:true
 
-		redirect(uri: "/grocery/create")
-		flash.message = "Update Grocery Successfully"
+		redirect(uri: "/grocery/list")
+		flash.message = "Updated Grocery Successfully"
 	
       
 		/*  request.withFormat {

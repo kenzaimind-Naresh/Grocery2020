@@ -90,9 +90,7 @@ function costcal(){
 <g:render template="groceryheader1"/>
 	
 	<br><br><br><br><br>
-		
-		
-	
+                    
 		<div id="edit-grocery" class="content scaffold-edit" role="main">
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>

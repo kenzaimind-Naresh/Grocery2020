@@ -27,7 +27,7 @@
 
 
 </head>
-<body>
+<body>.
 
  <g:render template="merchantheader"/>]
      <br><br><br>

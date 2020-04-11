@@ -198,8 +198,7 @@ def marketdata(){
 	
 	def data = Grocery.findAllByMerchantshopName(merchantshopName)
 	log.info(data)
-	
-	
+	session.setAttribute("merchantName", merchantshopName)
 	def user= User.findByUserName(username)
 	log.info("**********username****" +username)
 	
@@ -329,7 +328,7 @@ def logout = {
 		 
 		 log.info("***************** ")
 		 response.addCookie(cookie1);
-	redirect(uri: "/user/userlogin1")
+	redirect(uri: "/merchant/location1")
 	}
 
 def userlogin = {}

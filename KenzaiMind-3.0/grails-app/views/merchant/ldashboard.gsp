@@ -112,11 +112,16 @@ window.onhashchange = function (event) {
 									</div>
 							</div>
 						
-							
-							
 							<div class="col-lg-3">
 								<div class="banner-content">
 									<h4 style="font-family: Calibri"><a href="/Skeleton/orderStatus/orderstatuslist" class="active"  style="color: black;" >Order</a> </h4>
+									
+								</div>
+							</div>
+							
+							<div class="col-lg-3">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/grocery/outofstock" class="active"  style="color: black;" >Stock Details</a> </h4>
 									
 								</div>
 							</div>

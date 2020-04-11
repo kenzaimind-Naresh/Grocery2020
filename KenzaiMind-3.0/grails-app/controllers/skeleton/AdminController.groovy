@@ -300,8 +300,17 @@ class AdminController {
 	
 		}
 		else{
-		flash.message = "sorry, ${params.adminname}. please try again"
-		redirect(action:"login1")
+		render text: """<script type="text/javascript">
+                    alert("Enter valid Email/Password");
+                    window.location.href = "/Skeleton/admin/login1";
+
+
+		</script>""",
+			contentType: 'js'
+			
+			
+			//flash.message = "sorry, ${params.adminname}. please try again"
+		//redirect(action:"login1")
 		}
 		
 	}

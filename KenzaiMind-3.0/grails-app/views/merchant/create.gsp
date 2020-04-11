@@ -189,17 +189,10 @@ i:hover {
 <div class="col-md-12 form-group">
 
 <div class="fieldcontain ${hasErrors(bean: merchantInstance, field: 'password', 'error')} required">
-	
-	<!-- 
-	<g:field type="password" name="password" class="form-control" id="password" required="" placeholder="Password" />
-		    <span id="passwordinfo" style="color:red;"></span>
-		    
- -->
-    
     <div class="form-label-group input-group">
       <input type="password" id="password" class="form-control" name="password" placeholder="Password" required>
       <div class="input-group-append">
-        <span class="input-group-text" id="passwordinfo">
+        <span class="input-group-text">
           <i id="eye" class="far fa-eye-slash"></i>
         </span>
       </div>

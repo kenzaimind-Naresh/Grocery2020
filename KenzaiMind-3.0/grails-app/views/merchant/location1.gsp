@@ -241,14 +241,7 @@ padding: 2px 16px;
 	</header>
 	<!-- End Header Area -->
 
-
 	<br><br><br><br><br>		
-          
-     
-
-
-			
-
 
 <!-- The Modal -->
 <div id="myModal"  class="overlay">
@@ -265,7 +258,7 @@ padding: 2px 16px;
            
     <br><br>
 <div align="center">
-<g:form class="example" action="searchlocation" controller="merchant" method="GET" style="width:500px">			
+<g:form class="example" ID="myform" action="searchlocation" controller="merchant" method="GET" nonvalidate="nonvalidate" style="width:500px">			
   <div class="row">
   <input type="text" name="city" id="city" class="form-control"  placeholder="Enter Location.."> 
         <span id="cityinfo" style="color:red;"></span>
@@ -277,15 +270,15 @@ padding: 2px 16px;
   <br>
   
   <div align="center" style="padding-left:140px">
-  <button type="submit" value="submit" class="form-control" class="btn btn-primary" >Proceed</button>
-    
+  <button type="submit" value="submit" class="form-control" class="btn btn-primary" onclick="return validateForm()">Proceed</button>
+    <br>
     </div>
 </g:form>
-
+ <br>
 </div>
- 
+</div>
     
-    <br><br>
+   
    
 
 </div>

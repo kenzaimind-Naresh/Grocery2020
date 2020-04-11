@@ -22,8 +22,6 @@
 	    	 $("#streetinfo").text("Please enter Street name");
 	     }
 	   	  });
-  
-	 
 	 
    });
 

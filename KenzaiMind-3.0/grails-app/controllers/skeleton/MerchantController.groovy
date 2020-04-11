@@ -12,7 +12,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat
 import java.util.List;
 
-@Transactional(readOnly = true)
+@Transactional
 class MerchantController {
 
 	def MerchantService
@@ -167,9 +167,9 @@ class MerchantController {
 		
 		def shopName=params.shopName
 		def responseData = new HashMap<>()
-		def pat1=grocery.getAll()
+		def pat1=Grocery.getAll()
 		def dissheet=merchantdata.findAllBygroceryId(params.groceryId)
-		def user= User.findByshopName(session.user)
+		def user= User.findByUserName(session.user)
 		
 		
 		def mode="web"
@@ -398,7 +398,7 @@ class MerchantController {
 		
 		
 		//def userName= session.user
-		if(userName ==null || userName=="" ){
+		if(username ==null || username=="" ){
 		 redirect(uri: "/merchant/login")
 		 return
 		}
@@ -546,7 +546,7 @@ class MerchantController {
 		def user= User.findByUserName(username)
 		log.info(user)
 		
-	def emp=Merchant.findAllByCity(city)
+			def emp=Merchant.findAllByCity(city)
 			def msg;
 			if(emp==null || emp==[]){
 				msg="Data Not Found"

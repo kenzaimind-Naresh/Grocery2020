@@ -30,9 +30,6 @@
 								
 							</li>
 							
-										
-							
-							
 							<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 							
 							<li class="fa fa-shopping-cart" style="font-size:15px; padding-top:10px" data-toggle="modal" data-target="#cart">(<span class="total-count"></span>)</li>

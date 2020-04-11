@@ -115,33 +115,48 @@ th, td {
                                     
 <g:form class="form-horizontal" controller="address" Id="myform" name="myform" action="orderconform" nonvalidate="nonvalidate">
 
-<div class="container-fluid" style="padding-left:750px">
-    <div class="row">
-        <div class="col-lg-6">
+<div class="container-fluid" style="padding-left:450px">
+
+ <div class="col-lg-6">
+<h5 style="font-family: Calibri">Product Details </h5>
+
+ <table class="table table-hover table-condensed ">
+      						<thead>
+      							<tr>
+      								<th>Grocery Name</th>
+      								<th>Quantity</th> 
+      								<th>Price</th>
+      							</tr>
+      						</thead>
+     						<tbody>
+     							<g:each in="${result.result.cartlist}" expr="true">
+    								<tr>
+      									<td style="font-size: 17px;color: black;"> ${it.gname.split("00")[0]}</td>
+      									<td style="font-size: 17px;color: black;"> ${it.gname.split("00")[1]}</td>
+        								<td style="font-size: 17px;color: black;">${it.gprice}</td>
+      								</tr>
+    							</g:each>
+    			    			<tr>
+    			    			<td style="font-size: 17px;color: brown;">Total</td>
+    			    			<td style="font-size: 17px;color: brown;">${result.result.qcount}</td>
+    			    			<td style="font-size: 17px;color: brown;">${result.result.totAmt}</td>
+    			    			</tr>
+    						</tbody>
+     					</table>
+     					
+</div>
+<br>
+<div class="row">
+    <div class="col-lg-6">
 <h5 style="font-family: Calibri">Shipping Address</h5>
                    ${result.data.fullName}<br>
-                      ${result.data.houseNumber},<br>
-                       near ${result.data.landmark}, ${result.data.area}, <br>
-                  ${result.data.city}- ${result.data.pincode}<br>
+                   ${result.data.houseNumber},<br>
+                   near ${result.data.landmark}, ${result.data.area}, <br>
+                   ${result.data.city}- ${result.data.pincode}<br>
                    ${result.data.state}
-                                         
-                                         
-                                  </div>
-                                  </div>
-<br><br>
-
-        <div class="col-lg-6">
-<h5 style="font-family: Calibri">Product Details </h5>
-                                     
-                      Grocery Name: ${result.data2.gname}<br>
-                      Amount : ${result.data2.gprice}<br>
-                      No.of Quantities :  ${result.data2.tcount} <br>
-                 	  T.Amount:  ${result.data2.tamount}
-                  
-                                      
-                                  </div>
-<br>
-
+                   </div>
+                   </div>
+                   <br>
 <div class="form-group">
 <div class="col-sm-6">
 <input type="submit" ID="btnsave" value="Continue" onclick="return validateForm()" class="primary-btn" />
@@ -150,10 +165,5 @@ th, td {
 </div>
 </g:form>
 
-
-
-
-
-
-      
-      </body></html>
+</body>
+</html>

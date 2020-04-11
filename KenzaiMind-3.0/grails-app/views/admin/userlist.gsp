@@ -150,7 +150,7 @@ th, td {
      <tbody>
       <tr>
         <td>${it.firstName}</td>
-        <td>${it.firstName}</td>
+        <td>${it.lastName}</td>
         <td>${it.userName}</td>
         <td>${it.email}</td>
         <td>${it.mobileNumber}</td>

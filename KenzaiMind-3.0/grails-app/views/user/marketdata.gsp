@@ -132,7 +132,7 @@ $.ajax({
 
      <br><br><br><br><br><br>
 <div class="container" >
-
+<b style="color: brown;font-size: 18px;">${result.data.merchantshopName}</b><br>
       <div class="row">
      <g:each in="${result.data}" expr="true">
    
@@ -499,10 +499,6 @@ $('.show-cart').on("change", ".item-count", function(event) {
 displayCart();
 
  </script>
-
-
-   
-
 
 </body>
 </html>

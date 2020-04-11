@@ -49,18 +49,12 @@ window.onhashchange = function (event) {
 		
 <g:render template="groceryheader1"/>
 <br><br><br><br>
+   <br><br>             
+<div align="center">
+<div  style="color:black;font-size:25px; padding-left:20px">${result.message}</div><br>
+<g:link controller="grocery" action="list" class="active"><input type="button" class="primary-btn" value="GroceryList"></g:link>
 
-<body>
-
-<div class="container">
-<div class="row">
-<p style="color:black;font-Size: 20px;padding-left:250px"><br>Your Grocery Details Updated Successfully </p>
-</div>
     </div>
-
-
-
-</body>
 
 
  <style>
@@ -92,5 +86,5 @@ a:hover {
 </div>
 </div>
 
-
+</body>
 </html>

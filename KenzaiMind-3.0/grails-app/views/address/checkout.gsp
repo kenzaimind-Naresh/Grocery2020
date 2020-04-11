@@ -287,6 +287,7 @@ form.example::after {
       			<tr>
       	
       				<th>Grocery Name</th>  
+      				<th>Quantity</th> 
       				<th>Price</th>
  
       			</tr>
@@ -294,12 +295,14 @@ form.example::after {
      		<tbody>
      			<g:each in="${result.result.cartList}" expr="true">
     			<tr>
-      				<td style="font-size: 17px;color: black;"> ${it.gname}</td>
-        			<td style="font-size: 17px;color: black;">${it.gprice}</td>
+      				<td style="font-size: 15px;color: black;"> ${it.gname.split("00")[0]}</td>
+      				<td style="font-size: 15px;color: black;"> ${it.gname.split("00")[1]}</td>
+        			<td style="font-size: 15px;color: black;">${it.gprice}</td>
       			</tr>
     			</g:each>
     			    			<tr>
       				<td style="font-size: 18px;color: brown;"> Total Amount</td>
+      				<td></td>
         			<td style="font-size: 18px;color: brown;">${result.result.totAmt}</td>
       			</tr>
     		</tbody>

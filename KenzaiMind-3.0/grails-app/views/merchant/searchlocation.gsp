@@ -117,25 +117,14 @@ padding: 2px 16px;
 
 	<!-- End Header Area -->
 
-     <br>
-
-      
-      
+     <br> 
     <section class="owl-carousel active-product-area section_gap">
 		<div class="single-product-slider">
 			<div class="container">
-				
-<div>
- 
-     
-     
-     </div>
 </div>
 
 </div>
 </section>
-        
-
 
 <!-- The Modal -->
 <div id="myModal"  class="overlay"><br>
@@ -146,44 +135,27 @@ padding: 2px 16px;
       <h2 style="color: white;  padding-right:250px">Welcome to Online Super Market</h2>
       
     </div>
-    
-    
      <br>
       <div >
 <div class="container">
 <div class="row">
      <g:each in="${result.emp1}" var="i" expr="true">
-    
       <tr>
-      
-						<div class="single-product">
-								
-							<div class="product-details">
-							<div class="row" style="padding-left:50px">
- <button type="button" class=" primary-btn"><a href="/Skeleton/user/marketdata?merchantshopName=${i.shopName }" style="color: black">${i.shopName}</a></button>
-				
-								</div> 
-                
-              
-								<br>
-							</div>
-						</div>
-					
-        </tr>
+		<div class="single-product">
+			<div class="product-details">
+			<div class="row" style="padding-left:50px">
+					<button type="button" class=" primary-btn">
+						<a href="/Skeleton/user/marketdata?merchantshopName=${i.shopName }" style="color: black">${i.shopName}</a>
+					</button>
+			</div> <br>
+			</div>
+		</div>
+      </tr>
     </g:each>
-    
 </div>
-
 </div>
-
+</div>   
 </div>
-    
-</div>
- 
-       
-    <br><br>
-   
-
 </div>
 
 

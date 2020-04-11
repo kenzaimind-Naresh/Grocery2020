@@ -29,6 +29,9 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	def AddressService
 	def appointmentService
 	def OrderStatusService
+	def GroceryService
+	def nexmoService
+	
 	static transactional=true
 	
 	def MerchantController
@@ -49,51 +52,51 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		def mode=params.mode
 		def renderData = new HashMap<>()
 		
-def gname=params.gname;
-def gprice=params.gprice;
-def qCount=params.qCount?Integer.parseInt(params.qCount):null;
-def tamount=params.tamount;
-
-def user= User.findByUserName(session.user)
-log.info(user)
-
-def username= session.user
-if(username ==null || username=="" ){
-	session.setAttribute("gname",gname)
-	session.setAttribute("gprice",gprice)
-	session.setAttribute("qCount",qCount)
-	session.setAttribute("tamount",tamount)
- redirect(uri: "/address/userlogin")
- return
-}
-gname=gname?gname:session.getAttribute("gname")
-gprice=gprice?gprice:session.getAttribute("gprice")
-qCount=qCount?qCount:session.getAttribute("qCount")
-tamount=tamount?tamount:session.getAttribute("tamount")
-
-log.info(gname)
-log.info(gprice)
-log.info(qCount)
-log.info(tamount)
-List<Cart> cartList=new ArrayList<Cart>();
-   String[] gnames = gname.split("#");
-   String[] gprices = gprice.split("#");
-   log.info(gnames)
-   log.info(gnames[0])
-   for(int i=0;i<qCount;i++){
-	   log.info("incece "+i);
-   Cart tcart=new Cart();
-   tcart.gname=gnames[i];
-   tcart.gprice=gprices[i];
-   cartList.add(tcart);
-   log.info("@@@@@@@@@@@"+tcart);
-	   }
-   
-   renderData.put("cartList",cartList);
-   renderData.put("count",qCount);
-   renderData.put("totAmt",tamount);
-   
-log.info("REdnder data "+renderData )
+	def gname=params.gname;
+	def gprice=params.gprice;
+	def qCount=params.qCount?Integer.parseInt(params.qCount):null;
+	def tamount=params.tamount;
+	
+	def user= User.findByUserName(session.user)
+	log.info(user)
+	
+	def username= session.user
+	if(username ==null || username=="" ){
+		session.setAttribute("gname",gname)
+		session.setAttribute("gprice",gprice)
+		session.setAttribute("qCount",qCount)
+		session.setAttribute("tamount",tamount)
+	 redirect(uri: "/address/userlogin")
+	 return
+	}
+	gname=gname?gname:session.getAttribute("gname")
+	gprice=gprice?gprice:session.getAttribute("gprice")
+	qCount=qCount?qCount:session.getAttribute("qCount")
+	tamount=tamount?tamount:session.getAttribute("tamount")
+	
+	log.info(gname)
+	log.info(gprice)
+	log.info(qCount)
+	log.info(tamount)
+	List<Cart> cartList=new ArrayList<Cart>();
+	   String[] gnames = gname.split("#");
+	   String[] gprices = gprice.split("#");
+	   log.info(gnames)
+	   log.info(gnames[0])
+	   for(int i=0;i<qCount;i++){
+		   log.info("incece "+i);
+	   Cart tcart=new Cart();
+	   tcart.gname=gnames[i];
+	   tcart.gprice=gprices[i];
+	   cartList.add(tcart);
+	   log.info("@@@@@@@@@@@"+tcart);
+		   }
+	   
+	   renderData.put("cartList",cartList);
+	   renderData.put("count",qCount);
+	   renderData.put("totAmt",tamount);
+	   
+	log.info("REdnder data "+renderData )
 		
 		def user1=User.findByUserName(username)
 		log.info(user1)
@@ -121,8 +124,6 @@ log.info("REdnder data "+renderData )
 		
 		def user= User.findByUserName(session.user)
 		log.info(user)
-		
-		
 		
 		def username= session.user
 		if(username ==null || username=="" ){
@@ -156,28 +157,6 @@ log.info("REdnder data "+renderData )
 		
 		
 	}
-	
-/*	def authenticate1={
-		
-		def user = User.findByUserNameAndPassword(params.userName,params.password)
-		if(user){
-		
-		session.user=user
-		// flash.message = "Hello ${admin.fullName}:
-		//redirect(action:"userlogindash")
-		redirect(uri: "/user/userdashboard")
-		
-		}
-		else{
-		flash.message = "sorry, ${params.userName}. Enter Valid UserName/Password"
-		redirect(action:"userlogindash")
-		
-		}
-		
-		
-	}
-	
-	*/
 	
 	def authenticate = {
 		log.info("AddressController  authenticate Action")
@@ -410,9 +389,6 @@ log.info("REdnder data "+renderData )
 		def user= User.findByUserName(session.user)
 		log.info(user)
 		
-		
-		
-		
 		def username= session.user
 		if(username ==null || username=="" ){
 		 redirect(uri: "/address/userlogin")
@@ -554,18 +530,16 @@ log.info("REdnder data "+renderData )
 	
 	
 	def shipping(){
-	
 		
 		log.info("Address Controller shipping action ********")
 		def responseData = new HashMap<>()
 		def renderData = new HashMap<>()
+		def renderdata = new HashMap<>()
 		def mode=params.mode
 		log.info(mode)
 		
-		
 		def user= User.findByUserName(session.user)
 		log.info(user)
-		
 		
 		def username= session.user
 		if(username ==null || username=="" ){
@@ -574,12 +548,15 @@ log.info("REdnder data "+renderData )
 		}
 		def cartId=session.getAttribute("savedCart");
 		def mercName=session.getAttribute("merchantName");
+		log.info("SSSSSSSSSSSSSSS"+mercName)
 		def addrId=session.getAttribute("addressId");
 		log.info("SSSSSSSSSSSSSSS"+addrId)
 		log.info("saved cart *********** "+cartId);
 		Cart cartInstance=Cart.findByCartId(cartId)
-		log.info(" cart object *********** "+cartInstance);
 		
+		def quantityCount=cartInstance.qCount?Integer.parseInt(cartInstance.qCount):null;
+		
+		log.info(" cart object *********** "+cartInstance);
 		log.info(cartInstance.gprice)
 		log.info(cartInstance.tcount)
 		log.info(cartInstance.qCount)
@@ -590,10 +567,35 @@ log.info("REdnder data "+renderData )
 		log.info(addrId)
 		log.info(cartInstance.modifiedBy)
 		
-		def orderResult=OrderStatusService.saveOrder(cartInstance.gname,cartInstance.gprice,cartInstance.tcount,cartInstance.qCount,cartInstance.tamount,cartInstance.usercartId,cartInstance.status,mercName,addrId,cartInstance.modifiedBy)
+		//def orderResult=OrderStatusService.saveOrder(cartInstance.gname,cartInstance.gprice,cartInstance.tcount,cartInstance.qCount,cartInstance.tamount,cartInstance.usercartId,cartInstance.status,mercName,addrId,cartInstance.modifiedBy)
 		
-		//Address addressInst = session.getAttribute("savedAddress");
-		//log.info("saved address *********** "+addressInst);
+		log.info("*********Split function in shipping page*******")
+		List<Cart> cartlist=new ArrayList<Cart>();
+		String[] names = cartInstance.gname.split("#");
+		String[] prices = cartInstance.gprice.split("#");
+		log.info(names)
+		log.info(names[0])
+		String[] grocnames = names[0].split("00");
+		log.info(grocnames)
+		log.info(grocnames[0])
+		log.info(grocnames[1])
+		for(int i=0;i<quantityCount;i++){
+			log.info("incece "+i);
+		Cart product=new Cart();
+		product.gname=names[i];
+		product.gprice=prices[i];
+		cartlist.add(product);
+		log.info(product);
+			}
+
+		renderdata.put("cartlist",cartlist);
+		renderdata.put("qcount",cartInstance.qCount);
+		renderdata.put("totAmt",cartInstance.tamount);
+		
+		log.info("Render data "+renderdata )
+	
+		responseData.put("result",renderdata);
+		
 		def addId=session.getAttribute("addressId");
 		log.info(addId)
 		def addressId = user.id
@@ -654,7 +656,6 @@ log.info("REdnder data "+renderData )
 		responseData.put("user1",user1)
 		responseData.put("data1",data1)
 		
-		
 		log.info("************")
 		log.info(responseData)
 		[result:responseData]
@@ -678,14 +679,90 @@ log.info("REdnder data "+renderData )
 		}
 		
 		def userNameId = user.id
-		def of=0;
+		/*def of=0;
 		def data=Address.findByUserNameId(userNameId,[sort:"id",max: 5])
 		log.info(data)
 		def totalcount=Address.findAllByUserNameId(userNameId).size()
-		log.info(totalcount)
+		log.info(totalcount)*/
 		
+		def cartId=session.getAttribute("savedCart");
+		def mercName=session.getAttribute("merchantName");
+		log.info("SSSSSSSSSSSSSSS"+mercName)
+		def addrId=session.getAttribute("addressId");
+		log.info("SSSSSSSSSSSSSSS"+addrId)
+		log.info("saved cart *********** "+cartId);
+		Cart cartInstance=Cart.findByCartId(cartId)
+		log.info(" cart object *********** "+cartInstance);
+		log.info(cartInstance.gname)
+		log.info(cartInstance.gprice)
+		log.info(cartInstance.tcount)
+		log.info(cartInstance.qCount)
+		log.info(cartInstance.tamount)
+		log.info(cartInstance.usercartId)
+		log.info(cartInstance.status)
+		log.info(mercName)
+		log.info(addrId)
+		log.info(cartInstance.modifiedBy)
+		
+		def orderResult=OrderStatusService.saveOrder(cartInstance.gname,cartInstance.gprice,cartInstance.tcount,cartInstance.qCount,cartInstance.tamount,cartInstance.usercartId,cartInstance.status,mercName,addrId,cartInstance.modifiedBy)
+		
+		//Address addressInst = session.getAttribute("savedAddress");
+		//log.info("saved address *********** "+addressInst);
+		def addId=session.getAttribute("addressId");
+		log.info(addId)
+		def addressId = user.id
+		def of=0;
+		def data=Address.get(addId);
+		log.info(data)
+		def totalcount=Address.findAllByUserNameId(addressId).size()
+		log.info(totalcount)
 		def user1=User.findByUserName(username)
 		log.info(user1)
+		def data1=Address.findByAddressId(params.addressId)
+		log.info(data1)
+		
+	
+		def data2=Cart.findByCartId(cartId,[sort:"id",max: 5])
+	
+		def totalcount2=Cart.findAllByCartId(cartId).size()
+					
+		
+		// grocery quantity update
+		
+		log.info(cartInstance.qCount +"eeeeeeeeee")
+		
+		def merchantInstance = Merchant.findByShopName(mercName)
+		log.info(merchantInstance.id + "MMMMMMMMMMMMMM")
+		
+		String[] gnames= cartInstance.gname.split("#")
+		
+		log.info(gnames.length + "NNNNNNNNNNNNN")
+	
+		// def id = params.id
+	for(int a=0;a<gnames.length;a++){
+			
+		
+		def instance = Grocery.findByMerchantIdAndGroceryName(merchantInstance.id,gnames[a].split("00")[0])
+	
+
+		def value = Integer.parseInt(instance.quantity) - Integer.parseInt(gnames[a].split("00")[1])
+		log.info("??????????????? instance.quantity : "+ gnames[a].split("00")[1]);
+		log.info("??????????????? finalvalue : "+  value);
+		
+		GroceryService.update1(merchantInstance.id,gnames[a].split("00")[0],value);
+	}
+		def smsResult
+		log.info("Nexmo SMS Start ....")
+			try {
+	
+			  smsResult  = nexmoService.sendSms(user.mobileNumber, "Hello, welcome to Nexmo SMS....","919652702097");
+			  log.info("mobileNumber  "+user.mobileNumber)
+			  log.info("sms result  "+smsResult)
+		
+			}catch (NexmoException e) {
+			  // Handle error if failure
+			log.info("failed   ....."+e)
+			}
 		
 		responseData.put("totalcount",totalcount)
 		responseData.put("data", data)
