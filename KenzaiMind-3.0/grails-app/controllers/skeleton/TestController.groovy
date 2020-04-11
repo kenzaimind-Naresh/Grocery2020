@@ -19,7 +19,7 @@ class TestController {
 	log.info("Nexmo SMS Start ....")
 		try {
 
-		  smsResult  = nexmoService.sendSms("919491230995", "Hello, welcome to Nexmo SMS....","919652702097");
+		  smsResult  = nexmoService.sendSms("918096801106", "Hello, welcome to Nexmo SMS....","919533000292");
 		  log.info("sms result  "+smsResult)
 	
 	

@@ -530,7 +530,8 @@ class MerchantController {
 		Cookie[] cookies = null;
 		def username
 		cookies=request.getCookies();
-		log.info(cookies)
+		log.info("cookies :"+cookies)
+		if(cookies!="null"||cookies!=null || cookies!=""){
 		for (int i = 0; i < cookies.length; i++) {
 			cookie = cookies[i];
 			log.info("Name : " + cookie.getName() );
@@ -539,6 +540,7 @@ class MerchantController {
 				username=cookie.getValue()
 			}
 		 }
+		}
 		log.info("**************** "+username)
 		if(username ==null || username=="" ){
 		username= session.user

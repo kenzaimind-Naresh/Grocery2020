@@ -38,8 +38,8 @@ class NexmoService {
     }
 
     def http = new HTTPBuilder(config?.endpoint)
-	def key="bf74647c";
-	def secket="Z6mGiGoIY9YiM6BN";
+	def key="b31ebd08";
+	def secket="qIyDocmVBc9xiBWh";
 	log.info("nexmo service     endpoint   "+config?.endpoint)
 	log.info("nexmo service     default   "+config?.sms?.default_from)
 	log.info("nexmo service     api_secret   "+key)
