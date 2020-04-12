@@ -66,7 +66,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		session.setAttribute("gprice",gprice)
 		session.setAttribute("qCount",qCount)
 		session.setAttribute("tamount",tamount)
-	 redirect(uri: "/address/userlogin")
+	  redirect(uri: "/user/userlogin1")
 	 return
 	}
 	gname=gname?gname:session.getAttribute("gname")
@@ -127,7 +127,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		
 		def username= session.user
 		if(username ==null || username=="" ){
-		 redirect(uri: "/address/userlogin")
+		  redirect(uri: "/user/userlogin1")
 		 return
 		}
 		
@@ -224,7 +224,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 			log.info(user)
 			def username= session.user
 			if(username ==null || username=="" ){
-			 redirect(uri: "/address/userlogin")
+			  redirect(uri: "/user/userlogin1")
 			 return
 			}
 			
@@ -338,7 +338,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		
 		def username= session.user
 		if(username ==null || username=="" ){
-		 redirect(uri: "/address/userlogin")
+		  redirect(uri: "/user/userlogin1")
 		 return
 		}
 		
@@ -391,7 +391,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		
 		def username= session.user
 		if(username ==null || username=="" ){
-		 redirect(uri: "/address/userlogin")
+		  redirect(uri: "/user/userlogin1")
 		 return
 		}
 		
@@ -436,7 +436,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		
 		def username= session.user
 		if(username ==null || username=="" ){
-		 redirect(uri: "/address/userlogin")
+		  redirect(uri: "/user/userlogin1")
 		 return
 		}
 		
@@ -478,13 +478,20 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 			log.info("Name : " + cookie.getName() );
 			log.info("Value: " + cookie.getValue() );
 			if(cookie.getName().equals("userKey")){
+				if(!(cookie.getValue().toString().equals("null") ||cookie.getValue().equals(""))){
 				username=cookie.getValue()
+				}
 			}
 		 }
 		log.info("**************** "+username)
-		if(username ==null || username=="" ){
+		if(username ==null || username=="" || username.toString()=="null" ){
 		username= session.user
 		}
+
+		if(username ==null || username=="" ){
+			redirect(uri: "/user/userlogin1")
+			return
+		 }
 		
 		def user= User.findByUserName(username)
 		log.info(user)
@@ -492,10 +499,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		
 		
 		//def username= session.user
-		if(username ==null || username=="" ){
-		 redirect(uri: "/user//userlogin1")
-		 return
-		}
+
 		log.info(params.id+"TTTTTTTTTTTT")
 		def address=Address.get(params.id)
 		log.info(address)
@@ -543,7 +547,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		
 		def username= session.user
 		if(username ==null || username=="" ){
-		 redirect(uri: "/address/userlogin")
+		  redirect(uri: "/user/userlogin1")
 		 return
 		}
 		def cartId=session.getAttribute("savedCart");
@@ -674,7 +678,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		
 		def username= session.user
 		if(username ==null || username=="" ){
-		 redirect(uri: "/address/userlogin")
+		  redirect(uri: "/user/userlogin1")
 		 return
 		}
 		
@@ -753,7 +757,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	}
 		def smsResult
 		log.info("Nexmo SMS Start ....")
-			try {
+/*			try {
 	
 			  smsResult  = nexmoService.sendSms(user.mobileNumber, "Hello, welcome to Nexmo SMS....","919652702097");
 			  log.info("mobileNumber  "+user.mobileNumber)
@@ -762,7 +766,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 			}catch (NexmoException e) {
 			  // Handle error if failure
 			log.info("failed   ....."+e)
-			}
+			}*/
 		
 		responseData.put("totalcount",totalcount)
 		responseData.put("data", data)
@@ -796,7 +800,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		
 		//def username= session.user
 		if(username ==null || username=="" ){
-		 redirect(uri: "/address/userlogin")
+		  redirect(uri: "/user/userlogin1")
 		 return
 		}
 		def user1=User.findByUserName(username)

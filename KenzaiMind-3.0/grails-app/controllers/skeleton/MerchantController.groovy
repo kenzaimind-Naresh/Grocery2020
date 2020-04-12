@@ -17,6 +17,7 @@ class MerchantController {
 
 	def MerchantService
 	def GroceryController
+	UserController uController=new UserController();
 	
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -525,6 +526,7 @@ class MerchantController {
 		def city=params.city
 		def street=params.street
 		def mode=params.mode
+		def merchantshopName
 		log.info(mode)
 		Cookie cookie=null
 		//cookies;
@@ -541,14 +543,27 @@ class MerchantController {
 			log.info("Name : " + cookie.getName() );
 			log.info("Value: " + cookie.getValue() );
 			if(cookie.getName().equals("userKey")){
-				username=cookie.getValue()
+				if(!(cookie.getValue().equals("null") ||cookie.getValue().equals(""))){
+				username=cookie.getValue()}
 			}
+			if(cookie.getName().equals("merchantName")){
+			if(!(cookie.getValue().equals("null") ||cookie.getValue().equals("")))
+			merchantshopName=cookie.getValue()
+			log.info("in cookie   " +merchantshopName)
+		}
 		 }
 		}
 		log.info("**************** "+username)
 		log.info("**************user* "+session.user)
-		if(username ==null || username=="" ){
-		username= session.user
+		if(username ==null || username.toString().equals("null") ||username=="" ){
+			//redirect uri: ("/user/userdashboard")
+			//forward controller: "user", action: "userdashboard"
+			log.info("loading user from sesion")
+			UserController uController=new UserController();
+			uController.loadCookie();
+			
+			
+				username= session.user
 		}
 		def user= User.findByUserName(username)
 		log.info(user)
