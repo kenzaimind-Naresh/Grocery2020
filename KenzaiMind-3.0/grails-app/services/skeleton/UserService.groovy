@@ -33,7 +33,9 @@ class UserService {
 					return false
 				}
 				else{
+					//log.info(userInstance.save(failOnError: true))
 					def e=userInstance.save(flush:true)
+					
 					log.info("*******"+e)
 					return e
 				}
@@ -51,8 +53,9 @@ class UserService {
 		   log.info("UserService save-params ")
 		   def resultData=new HashMap<>()
 		   String []args=["User"]
+	
 		   try{
-		   
+			   if(!User.findByUserNameOrMobileNumber(userName,mobileNumber)){
 			   
 				   def userInstance=getInstance()
 					   
@@ -66,6 +69,7 @@ class UserService {
 					   userInstance.createdDate=new Date()
 					   userInstance.modifiedDate=new Date()
 					   def sts= save(userInstance)
+					   if(sts!=null){
 					   def f=User.get(sts.id)
 					   f.userId=f.id
 					   def st=save(f)
@@ -79,10 +83,16 @@ class UserService {
 						   resultData.put(getMessage("default.status.label"),getMessage("default.success.message"))
 						   resultData.put(getMessage("default.message.label"),getMessage("default.insertion.successmessage",args))
 					   }
+					   }
 					   else{
 						   resultData.put(getMessage("default.status.label"),getMessage("default.error.message"))
 						   resultData.put(getMessage("default.message.label"),getMessage("default.insertion.errormessage",args))
 					   }
+			   }else{
+			   resultData.put(getMessage("default.status.label"),"existed")
+			   resultData.put(getMessage("default.message.label"),getMessage("default.insertion.errormessage",args))
+			   
+			   }
 			   
 			   
 			   return resultData

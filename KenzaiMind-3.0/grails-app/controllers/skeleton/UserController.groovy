@@ -10,6 +10,7 @@ import javax.servlet.http.Cookie
 import grails.converters.JSON;
 class UserController {
 	def UserService
+	def nexmoService
 //	CctvrepairController cctv=new CctvrepairController();
 //	ComputersrepairController computer=new ComputersrepairController();
 	
@@ -1076,7 +1077,18 @@ def saveuser() {
 			redirect(uri: "/user/createuser")
 			flash.message = "User Registration Completed Successfully"
 				
-	
+			def smsResult
+			log.info("Nexmo SMS Start ....")
+			try {
+	log.info("mobile number"+mobileNumber)
+			  smsResult  = nexmoService.sendSms("91"+mobileNumber, "Dear Customer,your Grocery Order has been placed successfully.....","919533000292");
+			  log.info("sms result  "+smsResult)
+		
+		
+			}catch (NexmoException e) {
+			  // Handle error if failure
+			log.info("failed send sms   ....."+e)
+			}
 		
 		
 	//	responseData.put("message", "Your Registration complited Successfully")
@@ -1085,11 +1097,17 @@ def saveuser() {
 		
 		
 		}else if(result.get("status") == "error"){
-		responseData.put("message", "Already Existed")
+		responseData.put("message", "User Not Created,Something went Wrong..")
 		responseData.put(getMessages("default.status.label"),"500")
 		url="/user/saveuser.gsp"
 		
 		}
+		else if(result.get("status") == "existed"){
+			responseData.put("message", "User is Already Exsted, Try With Other Details..")
+			responseData.put(getMessages("default.status.label"),"500")
+			url="/user/saveuser.gsp"
+			
+			}
 		}
 		if(mode=="mobile"){
 		render responseData as JSON
