@@ -213,7 +213,7 @@
 <input type="hidden" id="myaction" name="myaction" value="save"/>
 
 <div class="col-sm-6 text-center"><br><br>
-<input type="submit" ID="btnsave" value="Create" onclick="return validateForm()" class="primary-btn" />
+<input type="submit" ID="btnsave" value="Register" onclick="return validateForm()" class="primary-btn" />
 </div>
 </div>
 </div>
