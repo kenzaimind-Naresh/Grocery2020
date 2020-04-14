@@ -44,6 +44,13 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+<script type="text/javascript">
+    $( document ).ready(function() {
+        alert("Order Confirmed");
+
+    	sessionStorage.clear('shoppingCart');
+    });
+    </script>
  
  <script>
   function PrintElem(elem)
@@ -111,9 +118,14 @@ th, td {
 
 <g:render template="/user/userheader2"/>
 <br><br><br><br><br><br>
-
-                                    
-<g:form class="form-horizontal" controller="address" Id="myform" name="myform" action="orderconform" nonvalidate="nonvalidate">
+<div class="container-fluid" style="padding-left:250px">
+<div class="col-lg-8">
+<div class="order_box">
+	<div  style="color:green;font-size:20px; padding-left:200px;font-weight: bold;">${result.message}</div>
+</div>
+</div>
+</div>
+ <br><br>                                  
 
 <div class="container-fluid" style="padding-left:450px">
 
@@ -138,7 +150,7 @@ th, td {
     							</g:each>
     			    			<tr>
     			    			<td style="font-size: 17px;color: brown;">Total</td>
-    			    			<td style="font-size: 17px;color: brown;">${result.result.qcount}</td>
+    			    			<td style="font-size: 17px;color: brown;">${result.result.tcount}</td>
     			    			<td style="font-size: 17px;color: brown;">${result.result.totAmt}</td>
     			    			</tr>
     						</tbody>
@@ -157,13 +169,7 @@ th, td {
                    </div>
                    </div>
                    <br>
-<div class="form-group">
-<div class="col-sm-6">
-<input type="submit" ID="btnsave" value="Continue" onclick="return validateForm()" class="primary-btn" />
 </div>
-</div>
-</div>
-</g:form>
 
 </body>
 </html>

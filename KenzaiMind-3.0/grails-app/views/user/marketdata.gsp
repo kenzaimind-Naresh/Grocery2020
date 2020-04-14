@@ -132,7 +132,7 @@ $.ajax({
 
      <br><br><br><br><br><br>
 <div class="container" >
-<b style="color: brown;font-size: 18px;">${result.data.merchantshopName}</b><br>
+<b style="color: brown;font-size: 24px;">${result.merchShop}</b>
       <div class="row">
      <g:each in="${result.data}" expr="true">
    
@@ -140,7 +140,7 @@ $.ajax({
      
 <div class="single-product"  style="padding-left:60px">
 
-
+<br>
 <img src="${createLink(controller:'grocery', action:'showPayload', id:"${it.id}")}" alt=" " style="width:145px;height:128px;" />
 
 

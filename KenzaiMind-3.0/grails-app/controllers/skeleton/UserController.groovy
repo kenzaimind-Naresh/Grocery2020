@@ -222,12 +222,16 @@ def marketdata(){
 	def data = Grocery.findAllByMerchantshopName(merchantshopName)
 	log.info(data)
 	session.setAttribute("merchantName", merchantshopName)
+	def data2 = Grocery.findByMerchantshopName(merchantshopName)
+	def merchShop = data2.merchantshopName
+	log.info("merchantshopName "+merchShop)
+	
 	def user= User.findByUserName(username)
 	log.info("**********username****" +username)
 	
 	responseData.put("data", data)
 	responseData.put("uname",user)
-	
+	responseData.put("merchShop",merchShop)
 	
 	//responseData.put("uname",user)
 	

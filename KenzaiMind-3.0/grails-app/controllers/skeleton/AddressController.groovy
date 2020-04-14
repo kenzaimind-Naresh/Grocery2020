@@ -516,8 +516,68 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		def data1=Address.findByAddressId(addressId,[sort:"id",max: 5])
 		log.info(data1)
 		
+		def cartId=session.getAttribute("savedCart");
+		def mercName=session.getAttribute("merchantName");
+		log.info("SSSSSSSSSSSSSSS"+mercName)
+		def addId=session.getAttribute("addressId");
+		log.info("SSSSSSSSSSSSSSS"+addrId)
+		log.info("saved cart *********** "+cartId);
+		Cart cartInstance=Cart.findByCartId(cartId)
+		log.info(" cart object *********** "+cartInstance);
+		log.info(cartInstance.gname)
+		log.info(cartInstance.gprice)
+		log.info(cartInstance.tcount)
+		log.info(cartInstance.qCount)
+		log.info(cartInstance.tamount)
+		log.info(cartInstance.usercartId)
+		log.info(cartInstance.status)
+		log.info(mercName)
+		log.info(addId)
+		log.info(cartInstance.modifiedBy)
+		
+		def orderResult=OrderStatusService.saveOrder(cartInstance.gname,cartInstance.gprice,cartInstance.tcount,cartInstance.qCount,cartInstance.tamount,cartInstance.usercartId,cartInstance.status,mercName,addId,cartInstance.modifiedBy)
+		
+		// grocery quantity update
+		
+		log.info(cartInstance.qCount +"eeeeeeeeee")
+		
+		def merchantInstance = Merchant.findByShopName(mercName)
+		log.info(merchantInstance.id + "MMMMMMMMMMMMMM")
+		
+		String[] gnames= cartInstance.gname.split("#")
+		
+		log.info(gnames.length + "NNNNNNNNNNNNN")
+	
+		// def id = params.id
+	for(int a=0;a<gnames.length;a++){
+			
+		
+		def instance = Grocery.findByMerchantIdAndGroceryName(merchantInstance.id,gnames[a].split("00")[0])
+	
+
+		def value = Integer.parseInt(instance.quantity) - Integer.parseInt(gnames[a].split("00")[1])
+		log.info("??????????????? instance.quantity : "+ gnames[a].split("00")[1]);
+		log.info("??????????????? finalvalue : "+  value);
+		
+		GroceryService.update1(merchantInstance.id,gnames[a].split("00")[0],value);
+	}
+	
 		def user1=User.findByUserName(username)
 		log.info(user1)
+		
+		def smsResult
+		log.info("Nexmo SMS Start ....")
+		try {
+
+		  smsResult  = nexmoService.sendSms(user1.mobileNumber, "Dear Customer,your Grocery Order has been placed successfully.....","919533000292");
+		  log.info("sms mobileNumber  "+user1.mobileNumber)
+		  log.info("sms result  "+smsResult)
+	
+	
+		}catch (NexmoException e) {
+		  // Handle error if failure
+		log.info("failed   ....."+e)
+		}
 		
 		responseData.put("totalcount",totalcount)
 		responseData.put("data", data)
@@ -593,7 +653,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 			}
 
 		renderdata.put("cartlist",cartlist);
-		renderdata.put("qcount",cartInstance.qCount);
+		renderdata.put("tcount",cartInstance.tcount);
 		renderdata.put("totAmt",cartInstance.tamount);
 		
 		log.info("Render data "+renderdata )
@@ -659,13 +719,15 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		responseData.put("uname",user)
 		responseData.put("user1",user1)
 		responseData.put("data1",data1)
+		responseData.put(getMessages('default.message.label'),"Your Order Confirmed Successfully")
+		
 		
 		log.info("************")
 		log.info(responseData)
 		[result:responseData]
 	}
 	
-	def orderconform(){
+	/*def orderconform(){
 		
 		log.info("Address Controller orderconform action ********")
 		def responseData = new HashMap<>()
@@ -683,11 +745,11 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		}
 		
 		def userNameId = user.id
-		/*def of=0;
+		def of=0;
 		def data=Address.findByUserNameId(userNameId,[sort:"id",max: 5])
 		log.info(data)
 		def totalcount=Address.findAllByUserNameId(userNameId).size()
-		log.info(totalcount)*/
+		log.info(totalcount)
 		
 		def cartId=session.getAttribute("savedCart");
 		def mercName=session.getAttribute("merchantName");
@@ -757,7 +819,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	}
 		def smsResult
 		log.info("Nexmo SMS Start ....")
-/*			try {
+			try {
 	
 			  smsResult  = nexmoService.sendSms(user.mobileNumber, "Hello, welcome to Nexmo SMS....","919652702097");
 			  log.info("mobileNumber  "+user.mobileNumber)
@@ -766,7 +828,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 			}catch (NexmoException e) {
 			  // Handle error if failure
 			log.info("failed   ....."+e)
-			}*/
+			}
 		
 		responseData.put("totalcount",totalcount)
 		responseData.put("data", data)
@@ -781,7 +843,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		[result:responseData]
 		
 		
-	}
+	}*/
 	
 	def onlinepay(){
 		log.info("AddressController onlinepay Action")
