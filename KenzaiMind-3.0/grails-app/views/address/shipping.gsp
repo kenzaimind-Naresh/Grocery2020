@@ -145,7 +145,7 @@ th, td {
     								<tr>
       									<td style="font-size: 17px;color: black;"> ${it.gname.split("00")[0]}</td>
       									<td style="font-size: 17px;color: black;"> ${it.gname.split("00")[1]}</td>
-        								<td style="font-size: 17px;color: black;">${it.gprice}</td>
+        								<td style="font-size: 17px;color: black;">${it.tcount}</td>
       								</tr>
     							</g:each>
     			    			<tr>

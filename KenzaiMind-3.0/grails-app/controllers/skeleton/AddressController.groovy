@@ -61,7 +61,8 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	log.info(user)
 	
 	def username= session.user
-	if(username ==null || username=="" ){
+	log.info(" **********((((( "+username)
+	if(user ==null || user=="" ){
 		session.setAttribute("gname",gname)
 		session.setAttribute("gprice",gprice)
 		session.setAttribute("qCount",qCount)
@@ -86,9 +87,12 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	   for(int i=0;i<qCount;i++){
 		   log.info("incece "+i);
 	   Cart tcart=new Cart();
+	 
 	   tcart.gname=gnames[i];
 	   tcart.gprice=gprices[i];
+	   tcart.tcount=Integer.parseInt(gnames[i].split("00")[1])*Integer.parseInt(gprices[i]);
 	   cartList.add(tcart);
+	   log.info("hhhhhhh "+ tcart.tcount)
 	   log.info("@@@@@@@@@@@"+tcart);
 		   }
 	   
@@ -648,6 +652,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		Cart product=new Cart();
 		product.gname=names[i];
 		product.gprice=prices[i];
+		product.tcount=Integer.parseInt(names[i].split("00")[1])*Integer.parseInt(prices[i]);
 		cartlist.add(product);
 		log.info(product);
 			}
