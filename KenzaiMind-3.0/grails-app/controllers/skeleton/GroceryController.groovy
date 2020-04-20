@@ -181,6 +181,43 @@ log.info("Grocery Controller index action")
 	
 	def outofstock(){
 	
+		log.info("GroceryController outofstock Action")
+		
+		def username= session.user
+		if(username ==null || username=="" ){
+		 redirect(uri: "/grocery/list")
+		 return
+		}
+		def responseData = new HashMap<>();
+		def mode=params.mode
+		log.info(mode)
+		def result,url
+			
+		def groceryName = params.groceryName
+		log.info(groceryName)
+		
+		def user= Merchant.findByEmail(session.user)
+		log.info(user)
+		
+		
+		def merchantId = user.id
+		def of=0;
+		def data=Grocery.findByMerchantIdAndQuantity(merchantId,0)
+		log.info("data    ********* "+data)
+		//def totalcount=Grocery.findAllByMerchantIdAndQuantity(merchantId).size()
+		//log.info(totalcount)
+		def groceryInstance=Grocery.findByGroceryName(params.groceryName)
+		//log.info("^^^^^^^^^^^^^^^^^^^"+groceryInstance.groceryName)
+		
+		responseData.put("data1", groceryInstance)
+		responseData.put("listId", "list")
+		//
+		responseData.put("totalcount",totalcount)
+		responseData.put("data", data)
+		responseData.put("uname", user)
+		responseData.put("offset", of)
+		log.info(responseData)
+		[result:responseData]
 	}
 		
     @Transactional

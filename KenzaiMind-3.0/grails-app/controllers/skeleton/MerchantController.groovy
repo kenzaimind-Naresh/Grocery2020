@@ -16,6 +16,8 @@ import java.util.List;
 class MerchantController {
 
 	def MerchantService
+	def nexmoService
+	
 	def GroceryController
 	UserController uController=new UserController();
 	
@@ -595,7 +597,10 @@ class MerchantController {
 					for(int i=0;i<emp1.size();i++){
 						user1.add(emp1[i].street)
 					}
-					
+				
+				def streetname = Merchant.findByCity(city)
+				log.info("streetname "+streetname)
+				//log.info("streetname "+streetname.street)
 				data.put("message", msg)
 				data.put("emp",emp)
 				data.put("message1", msg1)
@@ -880,6 +885,19 @@ class MerchantController {
         merchantInstance.save flush:true
 		redirect(uri: "/merchant/create")
 		flash.message = "Merchant Registration Successfully"
+		
+		def smsResult
+		log.info("Nexmo SMS Start ....")
+		try {
+			log.info("mobile number"+merchantInstance.mobileNumber)
+		  smsResult  = nexmoService.sendSms("91"+merchantInstance.mobileNumber, "Dear Merchant, Your Registration was done successfully.....","919533000292");
+		  log.info("sms result  "+smsResult)
+	
+	
+		}catch (NexmoException e) {
+		  // Handle error if failure
+		log.info("failed send sms   ....."+e)
+		}
 		
         
     }

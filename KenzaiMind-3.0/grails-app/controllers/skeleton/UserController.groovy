@@ -1081,7 +1081,7 @@ def saveuser() {
 			log.info("Nexmo SMS Start ....")
 			try {
 	log.info("mobile number"+mobileNumber)
-			  smsResult  = nexmoService.sendSms("91"+mobileNumber, "Dear Customer,your Grocery Order has been placed successfully.....","919533000292");
+			  smsResult  = nexmoService.sendSms("91"+mobileNumber, "Dear Customer, Your Registration was done successfully.....","919533000292");
 			  log.info("sms result  "+smsResult)
 		
 		

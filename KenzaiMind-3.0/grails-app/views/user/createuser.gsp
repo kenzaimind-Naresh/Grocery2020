@@ -90,7 +90,7 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item "><a class="nav-link" href="/Skeleton/merchant/dashboard">Home</a></li>
+							<li class="nav-item "><a class="nav-link" href="/Skeleton/user/userlogin1">Home</a></li>
 								<li class="nav-item"><a class="nav-link" href="/Skeleton/user/userlogin1">Signin</a></li>							
 							<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
 																				
