@@ -31,6 +31,44 @@
 
 
 <script>
+
+function getStreetdata() {
+	
+	var city= document.getElementById("city").value
+	var path = "/Skeleton/merchant/getStreetData";
+	$.ajax({
+	 url : path,
+	 type : "get",
+	 data :{
+		 city
+	 },
+	 success : function(res) {
+	 //alert(res);
+	 var resp;
+	 resp=res.replace("[","");
+	 resp=resp.replace("]","");
+	 resp=resp.replace(/'/g, "");
+	 //alert(resp);
+	 var cars = [];
+	 //alert(resp.split(",").length);	 
+	 for(var m=0;m<resp.split(",").length;m++){
+		 cars.push(resp.split(",")[m]);
+		 }
+	  
+	 
+	 //alert(cars);
+		    $("#street").autocomplete({
+	    	
+	    	  source:cars
+	    });
+
+	  
+	 },
+	 error : function() {
+	 }
+	})
+	}
+	
 $(function() {
 	
 
@@ -50,22 +88,6 @@ $(function() {
 
 
 
-<script>
-$(function() {
-	
-
-    $("#street").autocomplete({
-    	
-    	  source:[
-    	<g:each in="${result.street}">
-    	
-        '${it.street}',
-           
-        </g:each>]
-    });
-  });
-
-</script>
 
 
 <script>
@@ -274,7 +296,7 @@ padding: 2px 16px;
 <div align="center">
 <g:form class="example" ID="myform" action="searchlocation" controller="merchant" method="GET" nonvalidate="nonvalidate" style="width:500px">			
   <div class="row">
-  <input type="text" name="city" id="city" class="form-control"  placeholder="Enter Location.."> 
+  <input type="text" name="city" id="city" class="form-control"  placeholder="Enter Location.." onchange="getStreetdata()"> 
         <span id="cityinfo" style="color:red;"></span>
        </div> <br>
   <div class="row">

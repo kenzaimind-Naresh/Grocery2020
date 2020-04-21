@@ -519,6 +519,25 @@ class MerchantController {
 	
 	def location(){
 		log.info("MerchantController location Action")
+		
+		
+	}
+	def getStreetData(){
+		log.info("MerchantController getStreetData Action")
+		def city=params.city
+		List<String> stData=new ArrayList<String>();
+		log.info(city);
+		def merObjects=Merchant.findAllByCity(city);
+		log.info(merObjects);
+		log.info(merObjects.size());
+		for(int i=0;i<merObjects.size();i++){
+			log.info(merObjects[i].street)
+			stData.add(merObjects[i].street);
+		}
+		log.info(stData);
+		render stData
+		
+		
 	}
 	
 	def location1(){
