@@ -202,22 +202,56 @@ log.info("Grocery Controller index action")
 		
 		def merchantId = user.id
 		def of=0;
-		def data=Grocery.findByMerchantIdAndQuantity(merchantId,0)
+		def data=Grocery.findAllByMerchantIdAndQuantity(merchantId,0,[sort:"id",order:"desc",max: 5, offset: of])
 		log.info("data    ********* "+data)
-		//def totalcount=Grocery.findAllByMerchantIdAndQuantity(merchantId).size()
-		//log.info(totalcount)
+		def totalcount=Grocery.findAllByMerchantIdAndQuantity(merchantId,0).size()
+		log.info("totalcount size "+totalcount)
 		def groceryInstance=Grocery.findByGroceryName(params.groceryName)
 		//log.info("^^^^^^^^^^^^^^^^^^^"+groceryInstance.groceryName)
 		
 		responseData.put("data1", groceryInstance)
 		responseData.put("listId", "list")
-		//
 		responseData.put("totalcount",totalcount)
 		responseData.put("data", data)
 		responseData.put("uname", user)
 		responseData.put("offset", of)
 		log.info(responseData)
 		[result:responseData]
+	}
+	
+	def offsetlist1(){
+		log.info("groceryController offsetlist Action")
+		
+		def username= session.user
+		if(username ==null || username=="" ){
+		 redirect(uri: "/grocery/login")
+		 return
+		}
+		def responseData = new HashMap<>();
+		def mode=params.mode
+		log.info(mode)
+		def result,url
+		
+		if(mode == "web"){
+		def user= Merchant.findByEmail(session.user)
+		log.info(user)
+		def merchantId = user.id
+		log.info(merchantId)
+		
+		
+		def of=params.offset;
+		def data=Grocery.findAllByMerchantIdAndQuantity(merchantId,0,[sort:"id",order:"desc",max: 5, offset: of])
+		log.info("data    ********* "+data)
+		def totalcount=Grocery.findAllByMerchantIdAndQuantity(merchantId,0).size()
+		log.info("totalcount size "+totalcount)
+		
+		responseData.put("listId", "list")
+		responseData.put("totalcount",totalcount )
+		responseData.put("data", data)
+		responseData.put("uname", user)
+		responseData.put("offset", Integer.parseInt(of))
+		  [result:responseData]
+		}
 	}
 		
     @Transactional
