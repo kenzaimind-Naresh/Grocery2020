@@ -61,7 +61,8 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	log.info(user)
 	
 	def username= session.user
-	if(username ==null || username=="" ){
+	log.info(" **********((((( "+username)
+	if(user ==null || user=="" ){
 		session.setAttribute("gname",gname)
 		session.setAttribute("gprice",gprice)
 		session.setAttribute("qCount",qCount)
@@ -86,9 +87,12 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	   for(int i=0;i<qCount;i++){
 		   log.info("incece "+i);
 	   Cart tcart=new Cart();
+	   
 	   tcart.gname=gnames[i];
 	   tcart.gprice=gprices[i];
+	   tcart.tcount=Double.parseDouble(gnames[i].split("00")[1])*Double.parseDouble(gprices[i]);
 	   cartList.add(tcart);
+	   log.info("hhhhhhh "+ tcart.tcount)
 	   log.info("@@@@@@@@@@@"+tcart);
 		   }
 	   
@@ -569,7 +573,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info("Nexmo SMS Start ....")
 		try {
 
-		  smsResult  = nexmoService.sendSms(user1.mobileNumber, "Dear Customer,your Grocery Order has been placed successfully.....","919533000292");
+		  smsResult  = nexmoService.sendSms("91"+user1.mobileNumber, "Dear Customer,your Grocery Order has been placed successfully.....","919533000292");
 		  log.info("sms mobileNumber  "+user1.mobileNumber)
 		  log.info("sms result  "+smsResult)
 	
@@ -648,6 +652,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		Cart product=new Cart();
 		product.gname=names[i];
 		product.gprice=prices[i];
+		product.tcount=Integer.parseInt(names[i].split("00")[1])*Integer.parseInt(prices[i]);
 		cartlist.add(product);
 		log.info(product);
 			}

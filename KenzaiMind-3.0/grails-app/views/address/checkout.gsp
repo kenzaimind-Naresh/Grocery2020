@@ -296,7 +296,7 @@ form.example::after {
      			<g:each in="${result.result.cartList}" expr="true">
     			<tr>
       				<td style="font-size: 15px;color: black;"> ${it.gname.split("00")[0]}</td>
-      				<td style="font-size: 15px;color: black;"> ${it.gname.split("00")[1]} X${it.gprice}</td>
+      				<td style="font-size: 15px;color: black;"> ${it.gname.split("00")[1]} X ${it.gprice}</td>
         			<td style="font-size: 15px;color: black;">${it.tcount}</td>
       			</tr>
     			</g:each>

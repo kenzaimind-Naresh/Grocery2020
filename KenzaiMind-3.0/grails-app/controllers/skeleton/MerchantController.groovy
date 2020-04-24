@@ -616,10 +616,7 @@ class MerchantController {
 					for(int i=0;i<emp1.size();i++){
 						user1.add(emp1[i].street)
 					}
-				
-				def streetname = Merchant.findByCity(city)
-				log.info("streetname "+streetname)
-				//log.info("streetname "+streetname.street)
+					
 				data.put("message", msg)
 				data.put("emp",emp)
 				data.put("message1", msg1)

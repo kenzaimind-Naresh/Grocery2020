@@ -224,15 +224,29 @@ def marketdata(){
 	log.info(data)
 	session.setAttribute("merchantName", merchantshopName)
 	def data2 = Grocery.findByMerchantshopName(merchantshopName)
+	
+	if(data2){
 	def merchShop = data2.merchantshopName
 	log.info("merchantshopName "+merchShop)
+	
+	responseData.put("merchShop",merchShop)
+	}
+	else{
+		render text: """<script type="text/javascript">
+                    alert("No Stock Available");
+                    window.location.href = "/Skeleton/merchant/location1";
+
+
+		 </script>""",
+		contentType: 'js'
+	}
 	
 	def user= User.findByUserName(username)
 	log.info("**********username****" +username)
 	
 	responseData.put("data", data)
 	responseData.put("uname",user)
-	responseData.put("merchShop",merchShop)
+	
 	
 	//responseData.put("uname",user)
 	
@@ -820,7 +834,9 @@ if(mode=="web")	{
 }
 
 
-
+def errorpage(){
+	
+}
 
 
 
