@@ -835,7 +835,7 @@ if(mode=="web")	{
 
 
 def errorpage(){
-	
+	log.info("User controller errorpage action......")
 }
 
 

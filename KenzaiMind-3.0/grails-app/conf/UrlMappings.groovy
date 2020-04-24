@@ -8,6 +8,8 @@ class UrlMappings {
         }
 		"/"(controller:"merchant",action:"location1")
        //"/"(view:"/dashboard")
-        "500"(view:'/error')
+        "403" (controller: "user", action: "errorpage")
+		"404" (controller: "user", action: "errorpage")
+		"500" (controller: "user", action: "errorpage")
 	}
 }

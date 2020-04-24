@@ -69,8 +69,7 @@
   							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 <li class="nav-item active"><a class="nav-link" href="/Skeleton/user/userdashboard"  style="color:black">Home</a></li>
 							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-								 aria-expanded="false">Shop </a>
+							
 								
 							</li>
 							
@@ -90,6 +89,11 @@
 	</header>
 	<!-- End Header Area -->
 	
+	<br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	<div class="container signin">
+	<p style="font-size: 25px;color: red;">Something went Wrong, Sorry for your Inconvience .....</p>
+	&nbsp;&nbsp;&nbsp;<p>Please Click on HOME to redirect HomePage</p>
+	</div >
 	
 	<div class="footer">
 	<div align="center">
