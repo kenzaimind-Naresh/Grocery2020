@@ -9,6 +9,7 @@ import skeleton.User
 import javax.servlet.http.Cookie;
 
 
+
 import java.util.HashMap;
 import java.text.DateFormat
 import java.text.ParseException;
@@ -74,11 +75,13 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	gprice=gprice?gprice:session.getAttribute("gprice")
 	qCount=qCount?qCount:session.getAttribute("qCount")
 	tamount=tamount?tamount:session.getAttribute("tamount")
+	def shopName=session.getAttribute("merchantName");
 	
 	log.info(gname)
 	log.info(gprice)
 	log.info(qCount)
 	log.info(tamount)
+	log.info("shopName "+shopName);
 	List<Cart> cartList=new ArrayList<Cart>();
 	   String[] gnames = gname.split("#");
 	   String[] gprices = gprice.split("#");
@@ -87,13 +90,24 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	   for(int i=0;i<qCount;i++){
 		   log.info("incece "+i);
 	   Cart tcart=new Cart();
+	   Cart emptycheck=new Cart();
 	   
 	   tcart.gname=gnames[i];
 	   tcart.gprice=gprices[i];
 	   tcart.tcount=Double.parseDouble(gnames[i].split("00")[1])*Double.parseDouble(gprices[i]);
+	    tcart.availStock=0;
+	   if(shopName!=null && shopName!=""){
+		   log.info("shopname and gname"+shopName+","+tcart.gname.split("00")[0])
+		   
+		   def grocInstance=Grocery.findByMerchantshopNameAndGroceryName(shopName,tcart.gname.split("00")[0]);
+		   log.info("available stock "+grocInstance.quantity);
+		   tcart.availStock=grocInstance.quantity;
+		   tcart.availgName=tcart.gname.split("00")[0];
+	   }
+	   
 	   cartList.add(tcart);
 	   log.info("hhhhhhh "+ tcart.tcount)
-	   log.info("@@@@@@@@@@@"+tcart);
+	   log.info("@@@@@@@@@@@"+tcart.availgName+tcart.availStock);
 		   }
 	   
 	   renderData.put("cartList",cartList);

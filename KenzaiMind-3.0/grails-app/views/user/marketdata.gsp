@@ -159,9 +159,11 @@ $.ajax({
 <h6>T.Amt:&#x20b9;${it.total}</h6>
 
 <div class="row">
+<g:if test="${it.quantity>"0"}">
+
 <a href="#" data-name="${it.groceryName}" data-price="${it.total}" data-weight="${it.weight}" class="add-to-cart btn btn-primary">Add to Cart</a>
       &nbsp;&nbsp;
-     
+    </g:if> 
      
 </div>
 

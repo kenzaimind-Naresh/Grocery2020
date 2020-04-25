@@ -181,9 +181,11 @@ def marketdata(){
 	/*def user= User.findByUserName(session.user)
 	log.info(user)
 	*/
+	
 	def merchantshopName
 	def paramMName=params.merchantshopName
-	log.info(paramMName);
+	log.info("merchant name from param "+paramMName);
+	
 	
 	Cookie cookie=null
 	Cookie[] cookies = null;
@@ -204,6 +206,9 @@ def marketdata(){
 			username=cookie.getValue()
 		}
 		
+	 }
+	 	if(username ==null || username=="" ){
+	 username= session.user
 	 }
 	
 	if((merchantshopName.equals(null) || merchantshopName=="" || merchantshopName.equals("null"))&& paramMName==null){
@@ -958,7 +963,14 @@ def authenticate1 = {
 	 log.info("***************** ")
 	 
 	 response.addCookie(cookie1);*/
-	redirect(action:"userdashboard")
+	 log.info("grocery in session "+session.getAttribute("gname"))
+	 if(session.getAttribute("gname")!="" || session.getAttribute("gname")!=null){
+	 redirect(controller:"address",action:"checkout")
+	 }
+	 else{
+	redirect(action:"userdashboard")	
+	}
+	
 	}
 	else{
 	//flash.message = "sorry, ${params.userName}. Enter Valid UserName/Password"

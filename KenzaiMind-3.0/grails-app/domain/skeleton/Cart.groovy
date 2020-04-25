@@ -11,6 +11,8 @@ class Cart {
 		String usercartId
 		String status
 		//String merchantId
+		String availgName
+		String availStock
 
 		String modifiedBy
 		
@@ -24,6 +26,8 @@ class Cart {
 		tamount(maxsize:50, nullable:false)
 		usercartId(maxSize:50,nullable:false)
 		status(maxSize:50,nullable:false)
+		availStock(maxSize:50,nullable:true)
+		availgName(maxSize:50,nullable:true)
 		//merchantId(maxSize:50,nullable:true)
 		
 		}

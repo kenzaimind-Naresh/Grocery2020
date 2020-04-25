@@ -72,6 +72,9 @@
     	  $('.search-form-wrapper').removeClass('open');
     	  $('html').removeClass('search-form-open');
     	});
+		
+		
+
     	});
 
 
@@ -121,6 +124,12 @@ history.pushState({ page: 1 }, "Title 1", "#no-back");
 window.onhashchange = function (event) {
   window.location.hash = "no-back";
 };
+
+function myFunction(){
+alert("hi");
+	
+}
+
 </script>
 <style>
 
