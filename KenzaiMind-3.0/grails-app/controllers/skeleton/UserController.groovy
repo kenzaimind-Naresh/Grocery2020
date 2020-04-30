@@ -54,6 +54,7 @@ def userdashboard() {
 	def username
 	cookies=request.getCookies();
 	log.info(cookies)
+	if(cookies!=null){
 	for (int i = 0; i < cookies.length; i++) {
 		cookie = cookies[i];
 
@@ -65,6 +66,7 @@ def userdashboard() {
 		log.info("set cookie value into session   username"+username)
 		session.user=username
 		}
+	 }
 	 }
 	if(username ==null || username=="" ){
 	 username= session.user
@@ -926,6 +928,7 @@ def userlogin1 = {
 	def username
 	cookies=request.getCookies();
 	log.info(cookies)
+	if(cookies!=null){
 	for (int i = 0; i < cookies.length; i++) {
 		cookie = cookies[i];
 		log.info("Name : " + cookie.getName() );
@@ -934,6 +937,7 @@ def userlogin1 = {
 			if(!(cookie.getValue().equals("null") ||cookie.getValue().equals("")))
 			username=cookie.getValue()
 		}
+	 }
 	 }
 	log.info("**************** "+username)
 	if(!(username.equals(null) ||username.equals(""))){
