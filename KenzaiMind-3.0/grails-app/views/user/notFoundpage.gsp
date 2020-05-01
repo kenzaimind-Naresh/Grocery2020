@@ -94,8 +94,8 @@
 	<div class="container signin">
 	<p style="font-size: 25px;color: red;">Something went Wrong, Sorry for your Inconvience .....</p>
 	&nbsp;&nbsp;&nbsp;<p>Please Click on HOME to redirect HomePage</p>
-	Please Click on <a href="/Skeleton/user/userlogin1">Signin</a> to redirect Login
-	
+	<p>Please Click on <a href="/Skeleton/user/userlogin1">Signin</a> to redirect Login
+	</p>
 	</div >
 	
 	<div class="footer">

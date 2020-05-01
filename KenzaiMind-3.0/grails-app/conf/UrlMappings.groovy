@@ -9,6 +9,7 @@ class UrlMappings {
 		"/"(controller:"merchant",action:"location1")
        //"/"(view:"/dashboard")
        
+		"404" (controller: "user", action: "notFoundpage")
 		
 		"500" (controller: "user", action: "errorpage")
 	}

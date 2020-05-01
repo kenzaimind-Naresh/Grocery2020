@@ -491,6 +491,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		def username
 		cookies=request.getCookies();
 		log.info(cookies)
+		if(cookies!=null){
 		for (int i = 0; i < cookies.length; i++) {
 			cookie = cookies[i];
 			log.info("Name : " + cookie.getName() );
@@ -501,6 +502,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 				}
 			}
 		 }
+		}
 		log.info("**************** "+username)
 		if(username ==null || username=="" || username.toString()=="null" ){
 		username= session.user

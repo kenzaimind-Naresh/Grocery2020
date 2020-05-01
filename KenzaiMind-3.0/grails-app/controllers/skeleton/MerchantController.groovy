@@ -58,6 +58,7 @@ class MerchantController {
 		def username
 		cookies=request.getCookies();
 		log.info(cookies)
+		if(!cookies.toString().equals("null")){
 		for (int i = 0; i < cookies.length; i++) {
 			cookie = cookies[i];
 			log.info("Name : " + cookie.getName() );
@@ -66,6 +67,7 @@ class MerchantController {
 		
 			}
 		 }
+		}
 		log.info("**************** "+username)
 		
 		//def username= session.user
@@ -91,6 +93,7 @@ class MerchantController {
 		def username
 		cookies=request.getCookies();
 		log.info(cookies)
+		if(!cookies.toString().equals("null")){
 		for (int i = 0; i < cookies.length; i++) {
 			cookie = cookies[i];
 			log.info("Name : " + cookie.getName() );
@@ -100,6 +103,7 @@ class MerchantController {
 		 
 			}
 		 }
+		}
 		log.info("**************** "+username)
 		
 		
@@ -151,6 +155,7 @@ class MerchantController {
 		def username
 		cookies=request.getCookies();
 		log.info(cookies)
+		if(!cookies.toString().equals("null")){
 		for (int i = 0; i < cookies.length; i++) {
 			cookie = cookies[i];
 			log.info("Name : " + cookie.getName() );
@@ -160,6 +165,7 @@ class MerchantController {
 		
 			}
 		 }
+		}
 		log.info("**************** "+username)
 		
 		//def username= session.user
@@ -388,6 +394,7 @@ class MerchantController {
 		def username
 		cookies=request.getCookies();
 		log.info(cookies)
+		if(!cookies.toString().equals("null")){
 		for (int i = 0; i < cookies.length; i++) {
 			cookie = cookies[i];
 			log.info("Name : " + cookie.getName() );
@@ -397,6 +404,7 @@ class MerchantController {
 		 
 			}
 		 }
+		}
 		log.info("**************** "+username)
 		
 		
@@ -458,6 +466,7 @@ class MerchantController {
 		def username
 		cookies=request.getCookies();
 		log.info(cookies)
+		if(!cookies.toString().equals("null")){
 		for (int i = 0; i < cookies.length; i++) {
 			cookie = cookies[i];
 			log.info("Name : " + cookie.getName() );
@@ -466,6 +475,7 @@ class MerchantController {
 				username=cookie.getValue()
 		  
 			}
+		}
 		 }
 		log.info("**************** "+username)
 		
@@ -554,7 +564,7 @@ class MerchantController {
 		def username
 		Cookie[] cookies=request.getCookies();
 		log.info("cookies :"+cookies.toString())
-		log.info("cookies :"+cookies!=null)
+		log.info("cookies :"+!cookies.toString().equals("null"))
 		log.info("cookies :"+cookies==null)
 		log.info("cookies :"+cookies.toString().equals("null"))
 		log.info("cookies :"+cookies.equals("null"))
@@ -699,23 +709,22 @@ class MerchantController {
 	def logout = {
 		log.info("logout  ****")
 		
-		Cookie cookie=null
 		Cookie[] cookies = null;
 		def username
 		cookies=request.getCookies();
 		log.info(cookies)
+		if(!cookies.toString().equals("null")){
 		for (int i = 0; i < cookies.length; i++) {
-			cookie = cookies[i];
+			 Cookie cookie = cookies[i];
 			log.info("Name : " + cookie.getName() );
 			log.info("Value: " + cookie.getValue() );
-			if(cookie.getName().equals("merchantKey")){
-				username=cookie.getValue()
-		  Cookie usernameCookieRemove = new Cookie("merchantKey", "");
-		  usernameCookieRemove.setMaxAge(0);
-		  response.addCookie(usernameCookieRemove);
+			cookies[i].setValue("")
+			cookies[i].setMaxAge(0)
+			response.addCookie(cookie)
 			}
-		 }
-		log.info("**************** "+username)
+		}
+		 
+
 		
 		
 		session.invalidate();
@@ -731,6 +740,7 @@ class MerchantController {
 		def username
 		cookies=request.getCookies();
 		log.info(cookies)
+		if(!cookies.toString().equals("null")){
 		for (int i = 0; i < cookies.length; i++) {
 			cookie = cookies[i];
 			log.info("Name : " + cookie.getName() );
@@ -739,6 +749,7 @@ class MerchantController {
 				username=cookie.getValue()
 			}
 		 }
+		}
 		log.info("**************** "+username)
 		
 		//def username= session.user
@@ -751,7 +762,33 @@ class MerchantController {
 	}
 	
 	
-	def login(){ }
+	def login(){ 
+		Cookie[] cookies = null;
+		def username
+		cookies=request.getCookies();
+		log.info(cookies)
+		if(!cookies.toString().equals("null")){
+		for (int i = 0; i < cookies.length; i++) {
+			 Cookie cookie = cookies[i];
+			log.info("Name : " + cookie.getName() );
+			log.info("Value: " + cookie.getValue() );
+			if(cookie.getName().equals("merchantKey")){
+				if(!(cookie.getValue().equals("null") ||cookie.getValue().equals("")))
+				username=cookie.getValue()
+			}
+		 }
+		 }
+		
+		log.info("**************** "+username)
+		if(!(username.equals(null) ||username.equals(""))){
+			log.info("set cookie value into session   username"+username)
+			session.user=username
+			redirect(action:"ldashboard")
+		}
+			
+		
+		
+	}
 	
 	
 	
@@ -802,6 +839,7 @@ class MerchantController {
 		def username
 		cookies=request.getCookies();
 		log.info(cookies)
+		if(!cookies.toString().equals("null")){
 		for (int i = 0; i < cookies.length; i++) {
 			cookie = cookies[i];
 			log.info("Name : " + cookie.getName() );
@@ -811,6 +849,7 @@ class MerchantController {
 		  
 			}
 		 }
+		}
 		log.info("**************** "+username)
 		
 		//def username= session.user
@@ -885,6 +924,19 @@ class MerchantController {
             return
         }
 
+		log.info(merchantInstance.mobileNumber)
+		log.info(merchantInstance.shopId)
+		log.info(merchantInstance.email)
+		
+		def instance=Merchant.findByShopId(merchantInstance.shopId);
+		def instance2=Merchant.findByMobileNumber(merchantInstance.mobileNumber);
+		def instance3=Merchant.findByEmail(merchantInstance.email);
+		log.info("shopid check "+instance)
+		log.info("mobile check "+instance2)
+		//log.info("mobile check "+instance2.equals("null"))	
+		log.info("mobile check "+instance2.equals(null))
+		//log.info("mobile check "+instance2==null)
+		log.info("email check "+instance3)
 		
 		
 		def uploadedFile = request.getFile('image')
@@ -897,10 +949,10 @@ class MerchantController {
 		merchantInstance.name1 = uploaded.originalFilename //getting the file name from the uploaded file
 		merchantInstance.type1 = uploaded.contentType//getting and storing the file type
 		
-		
+		if(instance.equals(null) && instance.equals(null) && instance.equals(null) ){
         merchantInstance.save flush:true
 		redirect(uri: "/merchant/create")
-		flash.message = "Merchant Registration Successfully"
+		flash.message = "Merchant Registration done Successfully"
 		
 		def smsResult
 		log.info("Nexmo SMS Start ....")
@@ -914,7 +966,11 @@ class MerchantController {
 		  // Handle error if failure
 		log.info("failed send sms   ....."+e)
 		}
-		
+		}
+		else{
+			redirect(uri: "/merchant/create")
+			flash.message = "Merchant Registration failed, Please try with different credentials"
+		}
         
     }
 

@@ -25,6 +25,7 @@ def loadCookie(){
 	def username
 	cookies=request.getCookies();
 	log.info(cookies)
+	if(!cookies.toString().equals("null")){
 	for (int i = 0; i < cookies.length; i++) {
 		cookie = cookies[i];
 		log.info("Name : " + cookie.getName() );
@@ -34,6 +35,7 @@ def loadCookie(){
 			username=cookie.getValue()
 		}
 	 }
+	}
 	log.info("**************** "+username)
 return;
 }
@@ -54,7 +56,7 @@ def userdashboard() {
 	def username
 	cookies=request.getCookies();
 	log.info(cookies)
-	if(cookies!=null){
+	if(!cookies.toString().equals("null")){
 	for (int i = 0; i < cookies.length; i++) {
 		cookie = cookies[i];
 
@@ -194,6 +196,7 @@ def marketdata(){
 	def username
 	cookies=request.getCookies();
 	log.info(cookies)
+	if(!cookies.toString().equals("null")){
 	for (int i = 0; i < cookies.length; i++) {
 		cookie = cookies[i];
 		if(cookie.getName().equals("merchantName")){
@@ -209,6 +212,7 @@ def marketdata(){
 		}
 		
 	 }
+	}
 	 	if(username ==null || username=="" ){
 	 username= session.user
 	 }
@@ -352,32 +356,34 @@ def logout = {
 	log.info("logout  ****")
 	session.user=null
 	session.invalidate();
-	Cookie cookie=null
 	Cookie[] cookies = null;
 	def username
 	cookies=request.getCookies();
 	log.info(cookies)
+	if(!cookies.toString().equals("null")){
 	for (int i = 0; i < cookies.length; i++) {
-		cookie = cookies[i];
-		log.info("Name :ccccc " + cookie.getName() );
-		log.info("Value: ccccc" + cookie.getValue() );
-		if(cookie.getName().equals("userKey")){
-			log.info("UIIIIIIIIIII  "+cookie.getValue())
-			cookie.setValue("")
-			cookie.setMaxAge(0)
+		 Cookie cookie = cookies[i];
+		log.info("Name :ccccc " + cookies[i].getName() );
+		log.info("Value: ccccc" + cookies[i].getValue() );
+	//	if(cookie.getName().equals("userKey")){
+			log.info("UIIIIIIIIIII  "+cookies[i].getValue())
+			cookies[i].setValue("")
+			cookies[i].setMaxAge(0)
 			response.addCookie(cookie)
-		}
+			//cookie.setPath("/${grailsApplication.metadata['app.name']}/")
+		//}
 	 }
+	}
 	
-		Cookie cookie1=new Cookie("userKey", "");
-		cookie1.setMaxAge(0)
-		cookie1.setPath("/${grailsApplication.metadata['app.name']}/")
-		 log.info("***************** ")
-		 log.info(cookie1);
+		//Cookie cookie1=new Cookie("userKey", "");
+		//cookie1.setMaxAge(0)
+		
+		 log.info("********after reset********* ")
+		 log.info(cookies);
 		 
 		 log.info("***************** ")
-		 response.addCookie(cookie1);
-	redirect(uri: "/merchant/location1")
+		// response.addCooki(cookie);
+	redirect(uri: "/merchant/logout")
 	}
 
 def userlogin = {}
@@ -615,6 +621,7 @@ def updateuser(){
 		def username
 		cookies=request.getCookies();
 		log.info(cookies)
+		if(!cookies.toString().equals("null")){
 		for (int i = 0; i < cookies.length; i++) {
 			cookie = cookies[i];
 			log.info("Name : " + cookie.getName() );
@@ -625,6 +632,7 @@ def updateuser(){
 				}
 			}
 		 }
+		}
 		log.info("**************** "+username)
 		if(username ==null || username=="" ){
 		username= session.user
@@ -730,6 +738,7 @@ def changepass={
 	def username
 	cookies=request.getCookies();
 	log.info(cookies)
+	if(!cookies.toString().equals("null")){
 	for (int i = 0; i < cookies.length; i++) {
 		cookie = cookies[i];
 
@@ -739,6 +748,7 @@ def changepass={
 		}
 		
 	 }
+	}
 	
 	//def userName= session.user
 	if(username ==null || username=="" ){
@@ -845,6 +855,10 @@ def errorpage(){
 	log.info("User controller errorpage action......")
 }
 
+def notFoundpage(){
+	log.info("User controller notFoundpage action......")
+}
+
 
 
 
@@ -923,14 +937,13 @@ def contactusadd={}
 
 def userlogin1 = {
 	log.info("user controller userlogin1")
-	Cookie cookie=null
 	Cookie[] cookies = null;
 	def username
 	cookies=request.getCookies();
 	log.info(cookies)
-	if(cookies!=null){
-	for (int i = 0; i < cookies.length; i++) {
-		cookie = cookies[i];
+	if(!cookies.toString().equals("null")){
+	for (int i = 0; i < cookies.length; i++) { 
+		 Cookie cookie = cookies[i];
 		log.info("Name : " + cookie.getName() );
 		log.info("Value: " + cookie.getValue() );
 		if(cookie.getName().equals("userKey")){
@@ -968,7 +981,8 @@ def authenticate1 = {
 	 
 	 response.addCookie(cookie1);*/
 	 log.info("grocery in session "+session.getAttribute("gname"))
-	 if(session.getAttribute("gname")!="" || session.getAttribute("gname")!=null){
+	 log.info("grocery in session "+session.getAttribute("gname").toString().equals("null"))
+	 if( !session.getAttribute("gname").toString().equals("null")){
 	 redirect(controller:"address",action:"checkout")
 	 }
 	 else{
