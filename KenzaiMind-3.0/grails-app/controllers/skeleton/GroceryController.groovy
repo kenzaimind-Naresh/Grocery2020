@@ -343,6 +343,9 @@ log.info("Grocery Controller index action")
 		
 		def merchantId = user.id
 		def of=0;
+		log.info(merchantId);
+		log.info(Grocery.findAllByMerchantId(merchantId))
+		
 		def data=Grocery.findAllByMerchantId(merchantId,[sort:"id",order:"desc",max: 5, offset: of])
 		log.info("data    ********* "+data.get(1).groceryName)
 		def totalcount=Grocery.findAllByMerchantId(merchantId).size()

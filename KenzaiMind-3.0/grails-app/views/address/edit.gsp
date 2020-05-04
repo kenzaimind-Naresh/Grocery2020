@@ -1,4 +1,4 @@
-<%@ page import="salesandservice.Address" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
