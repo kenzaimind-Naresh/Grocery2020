@@ -7,7 +7,7 @@ import spock.lang.Specification
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
 @TestFor(GroceryService)
-class GroceryServiceSpec extends Specification {
+class GrocerySpec extends Specification {
 
     def setup() {
     }

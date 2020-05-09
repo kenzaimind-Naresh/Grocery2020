@@ -9,14 +9,15 @@ class Grocery {
 	String weight
 	String name
 	String type
-	String createDate
 	String offer
 	byte[] image
 	String total
 	String merchantId
 	String merchantshopName
-		String modifiedBy
-	//Date createdDate
+	
+	
+	String modifiedBy
+	Date createdDate
 	//Date modifiedDate
 	
 	
@@ -27,12 +28,14 @@ class Grocery {
 		weight(nullable:false)
 		type(blank:true, nullable:true)
 		name(blank:true, nullable:true)
-		createDate(nullable:false)
 		offer(nullable:false)
 		image(nullable:false, maxSize:1073741824) // max of 4kb file for example
 		total(maxSize:50)
 		merchantId(maxSize:50,nullable:false)
 		merchantshopName(maxSize:50,nullable:false)
+		
+		
+		createdDate(blank:true, nullable:true)
 		modifiedBy(nullable:false,maxSize:50)
 		}
 	

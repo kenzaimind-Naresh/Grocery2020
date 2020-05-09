@@ -46,7 +46,7 @@ class GroceryService {
 		}
 		
 		
-		def update(categoryName,groceryName,cost,weight,quantity,offer,createDate,total,modifiedBy){
+		def update(categoryName,groceryName,cost,weight,quantity,offer,total,modifiedBy){
 			log.info("GroceryService update")
 			def resultData=new HashMap<>()
 			String []args=["Grocery"]
@@ -62,9 +62,9 @@ class GroceryService {
 					groceryInstance.weight=weight
 					groceryInstance.quantity=quantity
 					groceryInstance.offer=offer
-					groceryInstance.createDate=createDate
 					groceryInstance.total=total
 					
+					groceryInstance.createdDate=new Date()
 					groceryInstance.modifiedBy=modifiedBy
 					
 					def sts=save(groceryInstance)
@@ -107,7 +107,6 @@ class GroceryService {
 					groceryInstance.cost=groceryInstance.cost
 					groceryInstance.weight=groceryInstance.weight
 					groceryInstance.offer=groceryInstance.offer
-					groceryInstance.createDate=groceryInstance.createDate
 					groceryInstance.total=groceryInstance.total
 					groceryInstance.modifiedBy=groceryInstance.modifiedBy
 					groceryInstance.id= groceryInstance.id
@@ -125,7 +124,6 @@ class GroceryService {
 					log.info(groceryInstance.cost)
 					log.info(groceryInstance.weight)
 					log.info(groceryInstance.offer)
-					log.info(groceryInstance.createDate)
 					log.info(groceryInstance.total)
 					log.info(groceryInstance.modifiedBy)
 					log.info(groceryInstance.id)

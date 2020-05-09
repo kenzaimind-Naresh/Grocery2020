@@ -186,16 +186,6 @@ $(function() {
 <div class="form-group">
              <div class="row">
              
-             <div class="col-md-4 col-sm-4">
-
-<div class="fieldcontain ${hasErrors(bean: groceryInstance, field: 'createDate', 'error')} required">
-	<label for="createDate">
-		<g:message code="grocery.createDate.label" default="Create Date" />
-		<span class="required-indicator"></span>
-	</label>
-	<g:textField name="createDate" required="" id="createDate" class="form-control"  value="${groceryInstance?.createDate}"/>
-
-</div></div>
    <div class="col-md-4 col-sm-4">
 
 

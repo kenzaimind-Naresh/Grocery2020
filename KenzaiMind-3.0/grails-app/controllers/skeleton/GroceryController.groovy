@@ -257,6 +257,9 @@ log.info("Grocery Controller index action")
     @Transactional
     def save(Grocery groceryInstance) {
 		log.info("Grocery Controller save action")
+		log.info(groceryInstance.categoryName)
+		log.info(groceryInstance.cost)
+		groceryInstance.createdDate=new Date()
 		
 		def username= session.user
 		if(username ==null || username=="" ){
@@ -270,18 +273,22 @@ log.info("Grocery Controller index action")
         }
 		
         if (groceryInstance.hasErrors()) {
+			log.info("errors "+groceryInstance.errors)
             respond groceryInstance.errors, view:'create'
             return
         }
 		def mInstatnce=Merchant.findByEmail(username);
 
-		log.info("gname "+mInstatnce)
+		log.info("gname ************** "+mInstatnce)
 		
 
 		def uploadedFile = request.getFile('image')
 		groceryInstance.image = uploadedFile.getBytes() //converting the file to bytes
 		groceryInstance.name = uploadedFile.originalFilename //getting the file name from the uploaded file
 		groceryInstance.type = uploadedFile.contentType//getting and storing the file type
+		
+		log.info("*************")
+		//log.info(groceryInstance.save(failOnError: true))
 		
         groceryInstance.save flush:true
 		redirect(uri: "/grocery/create")
@@ -483,8 +490,6 @@ log.info("Grocery Controller index action")
 		log.info(quantity);
 		def offer=params.offer
 		log.info(offer);
-		def createDate=params.createDate
-		log.info(createDate);
 		def total=params.total
 		log.info(total);
 		
@@ -493,7 +498,7 @@ log.info("Grocery Controller index action")
 		def user= Merchant.findByEmail(session.user)
 		log.info(user)
 		
-		def res=GroceryService.update(categoryName,groceryName,cost,weight,quantity,offer,createDate,total,user.firstName)
+		def res=GroceryService.update(categoryName,groceryName,cost,weight,quantity,offer,total,user.firstName)
 		log.info("result from service "+res)
 		/* To update the data of DiagnosticTest */
 	//	if(myaction.equals("update")) {

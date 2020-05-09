@@ -81,7 +81,7 @@ window.onhashchange = function (event) {
 			<div class="col-sm-12 text-left" style="padding-left:530px">
 				<br>
 				<fieldset class="buttons">
-					<g:submitButton name="create" class="save" class="btn btn-primary"  value="${message(code: 'default.button.create.label', default: 'Create')}" />
+					<g:submitButton name="create" class="save" class="btn btn-primary"  value="${message(code: 'default.button.create.label', default: 'Save')}" />
 				</fieldset>
 				</div>
 			</g:form>

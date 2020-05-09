@@ -90,21 +90,35 @@
 	</header>
 	<!-- End Header Area -->
 
-	
-    
-    
-
- <br><br><br>
-	
+ <br><br><br><br><br><br>
+	<div class="container">
+            <div class="row">
+			<div class="col-lg-3">
+				<div class="banner-content">
+                  <g:link controller="admin" action="merchantlist"><h4 style=" font-family: Calibri">Merchants List</h4></g:link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+            </div>
+            <div class="col-lg-3">
+				<div class="banner-content">
+                  <g:link controller="admin" action="userlist"><h4 style=" font-family: Calibri">Users List</h4></g:link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 </div>
+             </div>
+             <div class="col-lg-3">
+				<div class="banner-content">
+					 <g:link controller="category" action="create"><h4  style=" font-family: Calibri">Create Category</h4></g:link>
+                </div>
+             </div>
+            </div>
+            <br>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><g:link class="list" action="index"><h4 style="padding-left:450px;font-family: Calibri">Category List</h4></g:link></li>
+				<li><g:link class="list" action="index"><h4 style="padding-left:50px;font-family: Calibri">Category List</h4></g:link></li>
 			</ul>
 		</div>
 		<div id="create-category" class="content scaffold-create" role="main">
 		<br><br>
 		
-			<h5 style="padding-left:450px;font-family: Calibri">Create Category</h5>
+			<h5 style="padding-left:50px;font-family: Calibri">Create Category</h5>
 			
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
@@ -128,6 +142,7 @@
 								</div>
 				
 			</g:form>
+		</div>
 		</div>
 	</body>
 </html>

@@ -120,7 +120,25 @@ th, td {
 	
    <br><br><br><br><br>
 
-
+<div class="container">
+            <div class="row">
+			<div class="col-lg-3">
+				<div class="banner-content">
+                  <g:link controller="admin" action="merchantlist"><h4 style=" font-family: Calibri">Merchants List</h4></g:link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+            </div>
+            <div class="col-lg-3">
+				<div class="banner-content">
+                  <g:link controller="admin" action="userlist"><h4 style=" font-family: Calibri">Users List</h4></g:link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 </div>
+             </div>
+             <div class="col-lg-3">
+				<div class="banner-content">
+					 <g:link controller="category" action="create"><h4  style=" font-family: Calibri">Create Category</h4></g:link>
+                </div>
+             </div>
+            </div>
+            
 
  <div class="container signin">
        <div class="row">
@@ -173,7 +191,7 @@ th, td {
        </div></div></div></div></div>
        </div>
        
-
+</div>
 <style>
 .footer {
    position: fixed;
