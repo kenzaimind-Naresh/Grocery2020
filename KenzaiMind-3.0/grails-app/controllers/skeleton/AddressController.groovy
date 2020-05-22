@@ -668,7 +668,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		Cart product=new Cart();
 		product.gname=names[i];
 		product.gprice=prices[i];
-		product.tcount=Integer.parseInt(names[i].split("00")[1])*Integer.parseInt(prices[i]);
+		product.tcount=Double.parseDouble(names[i].split("00")[1])*Double.parseDouble(prices[i]);
 		cartlist.add(product);
 		log.info(product);
 			}
@@ -748,128 +748,20 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		[result:responseData]
 	}
 	
-	/*def orderconform(){
-		
-		log.info("Address Controller orderconform action ********")
-		def responseData = new HashMap<>()
-		def mode=params.mode
-		log.info(mode)
-		
-		def user= User.findByUserName(session.user)
-		log.info(user)
-		
-		
-		def username= session.user
-		if(username ==null || username=="" ){
-		  redirect(uri: "/user/userlogin1")
-		 return
-		}
-		
-		def userNameId = user.id
-		def of=0;
-		def data=Address.findByUserNameId(userNameId,[sort:"id",max: 5])
-		log.info(data)
-		def totalcount=Address.findAllByUserNameId(userNameId).size()
-		log.info(totalcount)
-		
-		def cartId=session.getAttribute("savedCart");
-		def mercName=session.getAttribute("merchantName");
-		log.info("SSSSSSSSSSSSSSS"+mercName)
-		def addrId=session.getAttribute("addressId");
-		log.info("SSSSSSSSSSSSSSS"+addrId)
-		log.info("saved cart *********** "+cartId);
-		Cart cartInstance=Cart.findByCartId(cartId)
-		log.info(" cart object *********** "+cartInstance);
-		log.info(cartInstance.gname)
-		log.info(cartInstance.gprice)
-		log.info(cartInstance.tcount)
-		log.info(cartInstance.qCount)
-		log.info(cartInstance.tamount)
-		log.info(cartInstance.usercartId)
-		log.info(cartInstance.status)
-		log.info(mercName)
-		log.info(addrId)
-		log.info(cartInstance.modifiedBy)
-		
-		def orderResult=OrderStatusService.saveOrder(cartInstance.gname,cartInstance.gprice,cartInstance.tcount,cartInstance.qCount,cartInstance.tamount,cartInstance.usercartId,cartInstance.status,mercName,addrId,cartInstance.modifiedBy)
-		
-		//Address addressInst = session.getAttribute("savedAddress");
-		//log.info("saved address *********** "+addressInst);
-		def addId=session.getAttribute("addressId");
-		log.info(addId)
-		def addressId = user.id
-		def of=0;
-		def data=Address.get(addId);
-		log.info(data)
-		def totalcount=Address.findAllByUserNameId(addressId).size()
-		log.info(totalcount)
-		def user1=User.findByUserName(username)
-		log.info(user1)
-		def data1=Address.findByAddressId(params.addressId)
-		log.info(data1)
-		
-	
-		def data2=Cart.findByCartId(cartId,[sort:"id",max: 5])
-	
-		def totalcount2=Cart.findAllByCartId(cartId).size()
-					
-		
-		// grocery quantity update
-		
-		log.info(cartInstance.qCount +"eeeeeeeeee")
-		
-		def merchantInstance = Merchant.findByShopName(mercName)
-		log.info(merchantInstance.id + "MMMMMMMMMMMMMM")
-		
-		String[] gnames= cartInstance.gname.split("#")
-		
-		log.info(gnames.length + "NNNNNNNNNNNNN")
-	
-		// def id = params.id
-	for(int a=0;a<gnames.length;a++){
-			
-		
-		def instance = Grocery.findByMerchantIdAndGroceryName(merchantInstance.id,gnames[a].split("00")[0])
-	
-
-		def value = Integer.parseInt(instance.quantity) - Integer.parseInt(gnames[a].split("00")[1])
-		log.info("??????????????? instance.quantity : "+ gnames[a].split("00")[1]);
-		log.info("??????????????? finalvalue : "+  value);
-		
-		GroceryService.update1(merchantInstance.id,gnames[a].split("00")[0],value);
-	}
-		def smsResult
-		log.info("Nexmo SMS Start ....")
-			try {
-	
-			  smsResult  = nexmoService.sendSms(user.mobileNumber, "Hello, welcome to Nexmo SMS....","919652702097");
-			  log.info("mobileNumber  "+user.mobileNumber)
-			  log.info("sms result  "+smsResult)
-		
-			}catch (NexmoException e) {
-			  // Handle error if failure
-			log.info("failed   ....."+e)
-			}
-		
-		responseData.put("totalcount",totalcount)
-		responseData.put("data", data)
-		
-		responseData.put("listId", "dashboard")
-		responseData.put("uname",user)
-		responseData.put("user1",user1)
-		responseData.put(getMessages('default.message.label'),"Your Order Confirmed Successfully")
-		
-		log.info("************")
-		log.info(responseData)
-		[result:responseData]
-		
-		
-	}*/
 	
 	def onlinepay(){
 		log.info("AddressController onlinepay Action")
 		params.max = Math.min(params.max ? params.int('max') : 1, 1)
 		respond Merchant.list(params), model:[merchantInstance: Merchant]
+		
+		def responseData = new HashMap<>()
+		def user= User.findByUserName(session.user)
+		log.info(user)
+		
+		responseData.put("uname",user)
+		log.info("************")
+		log.info(responseData)
+		[result:responseData]
 		
 	}
 	

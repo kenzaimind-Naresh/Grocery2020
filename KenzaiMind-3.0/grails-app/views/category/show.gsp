@@ -57,27 +57,13 @@
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
 							<li class="nav-item active"><a class="nav-link" href="/Skeleton/admin/adminDashboard">Home</a></li>
-							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-								 aria-expanded="false">Shop</a>
-								
-							</li>
 							
-							<li class="nav-item submenu dropdown active">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-								 aria-expanded="false">Pages</a>
-								
-							</li>
-							<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-					
-					 					
+							
 					<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="userName-md"></span>ADMIN<i class="fa fa-user" style="font-size:20px;"></i></a>
 								
 								<ul class="dropdown-menu">
 								
-								<li><g:link controller="#" action="#" class="active"  style="color:	#DAA520;"><i class="fa fa-user"></i> Profile</g:link></li>
-								<li><g:link controller="#" action="#" class="active" style="color:	#DAA520;"><i class="fa fa-key"></i> ChangePassword</g:link></li>
 								<li><a href="/Skeleton/admin/logout" style="color:	#DAA520;"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 
 								</ul>
@@ -98,35 +84,14 @@
     
 
  <br><br><br>
-		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-		<div class="nav" role="navigation">
-			<ul>
-				<li><g:link class="list" action="index" style="padding-left:450px;font-family: Calibri;color:orange">Category List</g:link></li>
-			</ul>
-		</div><br>
+<br>
 		<div id="show-category" class="content scaffold-show" role="main">
-			<h4 style="padding-left:450px;font-family: Calibri;color:orange">Show Category</h4>
+			<h4 style="padding-left:450px;font-family: Calibri;color:orange"> Categories</h4>
 			<g:if test="${flash.message}">
 			<div class="message" role="status" style="padding-left:450px;font-family: Calibri">${flash.message}</div>
 			</g:if>
 			<br>
-			<div style="padding-left:450px;font-family: Calibri">
+			<div style="padding-left:450px;font-family: Calibri;font-size: 17px;color: black;">
 			<ol class="property-list category">
 			
 				<g:if test="${categoryInstance?.categoryName}">
@@ -146,9 +111,9 @@
 			<br>
 		
 				<fieldset class="buttons">
-				<g:actionSubmit value="edit" class="edit" action="edit" ><g:link class="edit" action="edit" resource="${categoryInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link></g:actionSubmit>
+				<g:actionSubmit value="Edit" class="primary-btn"><g:link class="edit" action="edit"  resource="${categoryInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link></g:actionSubmit>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+					<g:actionSubmit class="primary-btn" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
 				</div>
 			</g:form>

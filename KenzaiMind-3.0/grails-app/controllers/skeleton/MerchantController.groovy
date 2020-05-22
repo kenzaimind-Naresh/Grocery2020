@@ -53,7 +53,7 @@ class MerchantController {
 		def responseData = new HashMap<>()
 		def user= Merchant.findByEmail(session.user)
 		log.info(user)
-		Cookie cookie=null
+		/*Cookie cookie=null
 		Cookie[] cookies = null;
 		def username
 		cookies=request.getCookies();
@@ -68,9 +68,9 @@ class MerchantController {
 			}
 		 }
 		}
-		log.info("**************** "+username)
+		log.info("**************** "+username)*/
 		
-		//def username= session.user
+		def username= session.user
 		if(username ==null || username=="" ){
 		 redirect(uri: "/merchant/login")
 		 return
@@ -914,6 +914,8 @@ class MerchantController {
     @Transactional
     def save(Merchant merchantInstance) {
 		log.info("MerchantController save Action")
+		merchantInstance.createdDate=new Date()
+		merchantInstance.modifiedDate=new Date()
         if (merchantInstance == null) {
             notFound()
             return
@@ -927,6 +929,8 @@ class MerchantController {
 		log.info(merchantInstance.mobileNumber)
 		log.info(merchantInstance.shopId)
 		log.info(merchantInstance.email)
+		log.info(merchantInstance.createdDate)
+		log.info(merchantInstance.modifiedDate)
 		
 		def instance=Merchant.findByShopId(merchantInstance.shopId);
 		def instance2=Merchant.findByMobileNumber(merchantInstance.mobileNumber);
