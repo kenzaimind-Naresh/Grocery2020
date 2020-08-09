@@ -7,6 +7,7 @@ import com.paytm.pg.merchant.CheckSumServiceHelper
 import grails.transaction.Transactional
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
+import java.util.Random;
 
 @Transactional(readOnly = true)
 class TestController {
@@ -87,15 +88,15 @@ class TestController {
     }
 	
 	
-		def paytmpay2(orderId,customerId,mobileNumber,custEmail,taxAmount) {
+		def paytmpay2(orderid,custid,mobile,cEmail,tranAmount) {
 		log.info("TestController paytm2 Action")
 		//orderId,customerId,mobileNumber,custEmail,taxAmount
 		
-		def orderId=orderId;
-		def customerId=customerId;
-		def mobileNumber=mobileNumber;
-		def custEmail=custEmail;
-		def taxAmount=taxAmount;
+		def orderId=orderid;
+		def customerId=custid;
+		def mobileNumber=mobile;
+		def custEmail=cEmail;
+		def taxAmount=tranAmount;
 				
 		log.info("Order Id :"+orderId);
 		log.info("Customer Id :"+customerId);
@@ -207,8 +208,11 @@ log.info("end of the code")
 		/* WEB for website and WAP for Mobile-websites or App */
 		paytmParams.put("CHANNEL_ID", "WEB");
 		
+		Random rand = new Random(); 
+		int num = rand.nextInt(9000000) + 1000000; 
+		
 		/* Enter your unique order id */
-		paytmParams.put("ORDER_ID", "12374567");
+		paytmParams.put("ORDER_ID", ""+num);
 		
 		/* unique id that belongs to your customer */
 		paytmParams.put("CUST_ID", "100001");
