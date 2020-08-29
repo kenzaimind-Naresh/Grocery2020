@@ -22,7 +22,7 @@ class Test {
 		groceryName(nullable:false,maxSize:50)
 		cost(maxSize:50)
 		weight(nullable:false)
-		createDate(nullable:false)
+		createDate(nullable:true)
 		offer(nullable:false)
 		total(maxSize:50)
 		//reference(maxSize:50,nullable:false)

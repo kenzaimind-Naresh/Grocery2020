@@ -29,7 +29,7 @@ class OrderStatus {
 		merchantId(maxSize:50,nullable:false)
 		addressId(maxSize:50,nullable:false)
 		status(maxsize:50,nullable:false)
-		createdDate(nullable:false)
+		createdDate(nullable:true)
 		
     }
 }

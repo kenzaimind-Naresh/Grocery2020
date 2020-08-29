@@ -16,8 +16,8 @@ class Category {
 	static constraints = { ['categoryName']
 		//categoryId(nullable:false)
 		categoryName(unique: true)
-		//createdDate(nullable:false)
-		//modifiedDate(nullable:false)
+		//createdDate(nullable:true)
+		//modifiedDate(nullable:true)
 		}
 	
 	

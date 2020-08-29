@@ -27,7 +27,8 @@ class Merchant {
 	String type1
 	String modifiedBy
 	
-	
+	Date createdDate
+	Date modifiedDate
 	
 	static constraints = {
 		//merchantId(nullable:false)
@@ -48,6 +49,9 @@ class Merchant {
 		type1(blank:true, nullable:true)
 		name1(blank:true, nullable:true)
 		modifiedBy(nullable:false,maxSize:50)
+		
+		createdDate(nullable:true)
+		modifiedDate(nullable:true)
 		
 	}
 

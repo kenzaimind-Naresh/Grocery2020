@@ -24,8 +24,8 @@ class Admin {
 		dob(maxSize:50)
 		address(maxSize:50)
 		modifiedBy(maxSize:50)
-		createdDate(nullable:false)
-		modifiedDate(nullable:false)
+		createdDate(nullable:true)
+		modifiedDate(nullable:true)
 		
 	}
 	static mapping = {

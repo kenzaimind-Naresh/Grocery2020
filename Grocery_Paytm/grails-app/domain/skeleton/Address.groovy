@@ -36,8 +36,8 @@ class Address {
 		userNameId(maxSize:50,nullable:false)
 				
 				
-		createdDate(nullable:false)
-		modifiedDate(nullable:false)
+		createdDate(nullable:true)
+		modifiedDate(nullable:true)
 	}
 	static mapping = {
 		id generator: "org.hibernate.id.enhanced.SequenceStyleGenerator", params: [initial_value:101, increment_size:1]

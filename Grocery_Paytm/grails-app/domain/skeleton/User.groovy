@@ -27,8 +27,8 @@ class User {
 		password(password: true)
 		mobileNumber(maxSize:30,nullable:false,unique:true)
 		modifiedBy(maxSize:30,nullable:false)
-		createdDate(nullable:false)
-		modifiedDate(nullable:false)
+		createdDate(nullable:true)
+		modifiedDate(nullable:true)
 		
 		
 	}

@@ -971,7 +971,7 @@ class MerchantController {
 		log.info("mobile check "+instance2)
 		//log.info("mobile check "+instance2.equals("null"))	
 		log.info("mobile check "+instance2.equals(null))
-		//log.info("mobile check "+instance2==null)
+		//log.info("mobile check "+instance2==null)+
 		log.info("email check "+instance3)
 		
 		
@@ -980,10 +980,10 @@ class MerchantController {
 		merchantInstance.name = uploadedFile.originalFilename //getting the file name from the uploaded file
 		merchantInstance.type = uploadedFile.contentType//getting and storing the file type
 		
-		def uploaded = request.getFile('qrcode')
-		merchantInstance.qrcode = uploaded.getBytes() //converting the file to bytes
-		merchantInstance.name1 = uploaded.originalFilename //getting the file name from the uploaded file
-		merchantInstance.type1 = uploaded.contentType//getting and storing the file type
+		//def uploaded = request.getFile('qrcode')
+		//merchantInstance.qrcode = uploaded.getBytes() //converting the file to bytes
+		//merchantInstance.name1 = uploaded.originalFilename //getting the file name from the uploaded file
+		//merchantInstance.type1 = uploaded.contentType//getting and storing the file type
 		
 		if(instance.equals(null) && instance.equals(null) && instance.equals(null) ){
         merchantInstance.save flush:true
