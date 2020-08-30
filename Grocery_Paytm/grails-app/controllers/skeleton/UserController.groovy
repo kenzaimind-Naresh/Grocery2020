@@ -1137,6 +1137,10 @@ def saveuser() {
 			  // Handle error if failure
 			log.info("failed send sms   ....."+e)
 			}
+			
+			TestController testController=new TestController();
+			String smsresp=testController.sendSMSToUser(mobileNumber,"Dear Customer, Your Registration was done successfully.....");
+			log.info("SMS response"+smsresp);
 		
 		
 	//	responseData.put("message", "Your Registration complited Successfully")
