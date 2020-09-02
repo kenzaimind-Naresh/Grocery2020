@@ -198,6 +198,9 @@ log.info("end of the code")
 	def paytmpay() {
 		log.info("TestController paytm Action")
 		
+		String suy= sendSMSToUser("9533000292","msg from Manoj ");
+		log.info("respose "+suy)
+		
 		
 		/* initialize a TreeMap object */
 		TreeMap<String, String> paytmParams = new TreeMap<String, String>();
@@ -642,7 +645,8 @@ log.info("end of the code")
 	log.info("send SMS Test in TestController")
 	try {
 			// Construct data
-			String apiKey = "apikey=" + "+xTRVyTy+ck-w5x5PYKKWjZcj1RxRYtnJb1Gs2CRII";
+			//String apiKey = "apikey=" + "+xTRVyTy+ck-w5x5PYKKWjZcj1RxRYtnJb1Gs2CRII";
+			String apiKey = "apikey=" + "gwDcF3bOLGE-zpnFDdBW4LYFtBK3ZAwCda8B8fUvem"
 			String message = "&message=" + "This is your message Mr Manoj";
 			String sender = "&sender=" + "TXTLCL";
 			String numbers = "&numbers=" + "919701102379";
@@ -675,7 +679,7 @@ log.info("end of the code")
 	log.info("sendSMSToUser in TestController")
 	try {
 			// Construct data
-			String apiKey = "apikey=" + "+xTRVyTy+ck-w5x5PYKKWjZcj1RxRYtnJb1Gs2CRII";
+			String apiKey = "apikey=" + "gwDcF3bOLGE-zpnFDdBW4LYFtBK3ZAwCda8B8fUvem";
 			String message = "&message=" + msg;
 			String sender = "&sender=" + "TXTLCL";
 			String numbers = "&numbers=" + "91"+toNumber;
