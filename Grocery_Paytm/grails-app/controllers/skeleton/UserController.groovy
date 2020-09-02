@@ -907,11 +907,12 @@ if(mode=="web")	{
 
 
 def errorpage(){
-	log.info("User controller errorpage action......")
+
 }
 
 def notFoundpage(){
-	log.info("User controller notFoundpage action......")
+
+	render(view:"notFoundpage");
 }
 
 
