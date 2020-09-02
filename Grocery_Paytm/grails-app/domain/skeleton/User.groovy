@@ -11,6 +11,7 @@ class User {
 	String password
 	String email
 	String mobileNumber
+	String otpActivation
 	String modifiedBy
 	Date createdDate
 	Date modifiedDate
@@ -26,6 +27,7 @@ class User {
 		email(email: true)
 		password(password: true)
 		mobileNumber(maxSize:30,nullable:false,unique:true)
+		otpActivation(nullable:true)
 		modifiedBy(maxSize:30,nullable:false)
 		createdDate(nullable:true)
 		modifiedDate(nullable:true)

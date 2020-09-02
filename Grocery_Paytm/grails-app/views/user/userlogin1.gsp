@@ -93,11 +93,9 @@ return false;
 <div class="form-group" ${hasErrors(bean: userInstance, field: 'password', 'error')}>
 <input class="form-control" placeholder="Password" id="password" name="password" onclick="myForm" value="${userInstance?.password}" type="password" required>
 </div>
-<div class="checkbox">
-<label>
-<input name="remember" type="checkbox" value="Remember Me">Remember Me
-</label>
-</div>
+
+<a href="/Skeleton/user/userverification"><h5>Forgot Password?</h5></a>
+
 <input type="submit" id="myform" name="myform"  class="btn btn-lg btn-success btn-block" value="Login" onclick="return validateForm()"  >
 
 <a href="/Skeleton/user/createuser"><h5>RegisterHere</h5></a>

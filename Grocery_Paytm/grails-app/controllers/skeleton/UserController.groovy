@@ -11,6 +11,7 @@ import grails.converters.JSON;
 class UserController {
 	def UserService
 	def nexmoService
+	def mailService
 //	CctvrepairController cctv=new CctvrepairController();
 //	ComputersrepairController computer=new ComputersrepairController();
 	
@@ -129,46 +130,9 @@ def userdashboard() {
 				responseData.put("street",Merchant.list().unique{ it.street})
 				log.info("UUUUUUUUUU "+responseData)
 				[result:responseData]
-				
-	
-	
-	
+					
 }
-/*
-def Contact(){
-	
-	log.info("User Controller Contact action")
-		//log.info("MerchantController Iadashboard Action")
-		def username= session.user
-		if(username ==null || username=="" ){
-		 redirect(uri: "user/userlogin1")
-		 return
-		}
-		//def responseData = new HashMap<>()
-		def mode=params.mode
-		log.info(mode)
-		
-		def user3= User.findByUserName(session.user)
-		log.info(user3)
-		
-		def responseData = new HashMap<>()
-		def result,url
-		url="/user/Contact.gsp"
-		//.def mode=params.mode
-		def merchantshopName = params.merchantshopName
-		log.info(merchantshopName)    
-		def data = Grocery.findAllByMerchantshopName(merchantshopName)
-		log.info(data)
-			responseData.put("user3",user3)
-				
-		responseData.put("data", data)
-		[result:responseData]
-		
-		
-	
 
-}
-*/
 def marketdata(){
 	
 	log.info("UserController marketdata action")
@@ -262,10 +226,98 @@ def marketdata(){
 	//responseData.put("uname",user)
 	
 	[result:responseData]
-	
-	
 
 }
+
+		def userverification(){
+			
+			log.info("UserController userverification Action")
+			
+			
+		}
+		
+		def validateUser(){
+			
+			log.info("UserController validateUser Action")
+			
+			def responseData = new HashMap<>()
+			def otpActivation = params.otpActivation
+			log.info(otpActivation)
+				
+			def user= User.findByUserName(params.username)
+			log.info(user)
+			
+			
+			responseData.put(getMessages('default.message.label')," New Password Created Successfully")
+			responseData.put("uname",user)
+			log.info(responseData)
+			[result:responseData]
+		}
+
+		def forgotpass(){
+		
+		log.info("UserController forgotpass Action")
+		def responseData = new HashMap<>()
+		def mode=params.mode
+		
+		def generator = { String alphabet, int n ->
+			new Random().with {
+				(1..n).collect { alphabet[ nextInt( alphabet.length() ) ] }.join()
+			}
+		}
+
+		def randomValue= generator( (('A'..'Z')+('0'..'9')+('a'..'z')).join(), 6 )
+		log.info("Random String Generator...... "+randomValue)
+		
+		def username = params.username
+		log.info(username)
+		def otpActivation = randomValue
+		log.info(otpActivation)
+		def result,res
+		
+		
+		if(mode=="web"){
+
+			
+			def url="/user/forgotpass.gsp"
+			def user= User.findByUserName(params.username)
+			log.info("user existed in db "+user)
+			
+			if(user){
+			result=UserService.forgotpass(params.username,user.mobileNumber,user.email,otpActivation)
+			if(result.get("status") == "success"){
+				
+				def smsResult
+				log.info("Nexmo SMS Start ....")
+				try {
+					log.info("mobile number "+user.mobileNumber)
+				  smsResult  = nexmoService.sendSms("91"+user.mobileNumber, "Your Verification Code is "+otpActivation+". Do not forward or share this to anyone.","919533000292");
+				  log.info("sms result  "+smsResult)
+			
+			
+				}catch (NexmoException e) {
+				  // Handle error if failure
+				log.info("failed send sms   ....."+e)
+				}
+				
+				responseData.put(getMessages('default.message.label'),result.getAt("message"))
+				responseData.put(getMessages('default.status.label'),result.getAt("status"))
+				responseData.put("otp",user.otpActivation)
+				responseData.put("uname",user.userName)
+			
+		   }
+			}else{
+			responseData.put(getMessages('default.message.label'),"User in Not registerd")
+			responseData.put(getMessages('default.status.label'),"error")
+			responseData.put("uname",params.username)
+			
+			}
+			
+
+		[result:responseData]
+		
+			}
+		}
 
 	def contact2(){
 		
@@ -932,6 +984,47 @@ def passwordSave2(){
 	}
 }
 
+def passwordSave3(){
+	log.info("User controller passwordSave3 action")
+	def responseData = new HashMap<>()
+	def mode=params.mode
+	
+	def newPwd=params.newPwd
+	def confirmPwd=params.confirmPwd
+	def result,res
+	log.info("newPwd "+newPwd)
+	log.info("confirmPwd "+confirmPwd)
+	
+	
+	if(mode=="web"){
+	def userName= session.user
+	log.info(userName)
+	
+	if((userName !=null || userName!="")&& (newPwd ==null || newPwd=="") && (confirmPwd ==null || confirmPwd=="")){
+		redirect(uri: "/user/userdashboard1")
+		return false
+	}else{
+	
+	def url="/user/passwordSave2.gsp"
+	def user= User.findByUserName(params.username)
+	log.info(user)
+	if(newPwd != confirmPwd){
+	 return false
+	}
+	 else{
+	result=UserService.passwordSave3(userName,newPwd)
+	if(result.get("status") == "success"){
+		responseData.put(getMessages('default.message.label'),result.getAt("message"))
+		responseData.put(getMessages('default.status.label'),result.getAt("status"))
+		responseData.put("uname",user)
+	}
+	 }
+	
+	 [result:responseData]
+   }
+	}
+}
+
 
 def aboutus={}
 
@@ -1096,6 +1189,7 @@ def saveuser() {
 	def password=params.password
 	def email=params.email
 	def mobileNumber=params.mobileNumber
+	def otpActivation=params.otpActivation
 	def modifiedBy=params.modifiedBy
 	if( ! (isValid(myaction) && isValid(mode))){
 		responseData.put(getMessages('default.status.label'),getMessages('default.error.message'))
@@ -1116,7 +1210,7 @@ def saveuser() {
 		}
 		else {
 		
-		result=UserService.save(firstName,lastName,userName,password,email,mobileNumber,modifiedBy)
+		result=UserService.save(firstName,lastName,userName,password,email,mobileNumber,otpActivation,modifiedBy)
 		
 		log.info(result)
 		
@@ -1239,4 +1333,6 @@ def createcontactus() {
 			 render map as JSON
 		 }
 	}
+	
+
 }
