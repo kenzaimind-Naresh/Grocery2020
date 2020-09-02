@@ -40,7 +40,7 @@
                     <!-- Form Elements -->
                     <br><br><br><br><br><br>
                     
-                    <div class="page-header"  style="padding-left:250px;color:black;font-size:20px">${result.message}</div>
+                    <div class="page-header"  style="padding-left:250px;color:black;font-size:20px">${result.message},<a class="nav-link" href="/Skeleton/user/userlogin1">Login Here</a></div>
                 </div>
                 </div>
                 </div>

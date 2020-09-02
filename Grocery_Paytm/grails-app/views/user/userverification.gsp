@@ -116,7 +116,7 @@ history.go(1);
             </div>
         </div>
    <br>
-   <h6>Enter your registered User Name and Mobile Number for verification...</h6><br>
+   <h6>Enter your registered User Name for verification...</h6><br>
     <div class="row">
             <div class="col-lg-8">
          <g:form class="form-horizontal" controller="user" ID="myform" action="forgotpass"  nonvalidate="nonvalidate"> 

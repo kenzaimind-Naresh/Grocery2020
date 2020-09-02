@@ -67,15 +67,7 @@
 													
 							<li class="nav-item"><a class="nav-link" style="padding-top:30px; padding-bottom:30px;" href="/Skeleton/user/contact2">Contact</a></li>
 							
-							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" style="padding-top:30px; padding-bottom:30px;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-								<g:if test="${result.uname !=null}">
 
-								<span class="userName-md"></span>${result.uname } <span>&nbsp;&nbsp;</span><i class="fa fa-user" style="font-size:20px;"></i>
-							</g:if>
-								</a>
-								
-							</li>
 								
 						</ul>
 						
@@ -253,6 +245,7 @@ function checkCode(){
             <div class="col-lg-12">
             <g:form class="form-horizontal" controller="user" ID="myform" action="validateUser"  nonvalidate="nonvalidate"> 
            <input type="hidden" id="otp" name="otp" value="${result.otp }">
+		   <input type="hidden" id="username" name="username" value="${result.uname }">
            <div class="form-group">
                  <div class="col-sm-6">
            <input type="text" id="randomValue" name="randomValue" class="form-control" onfocusout="checkCode()">

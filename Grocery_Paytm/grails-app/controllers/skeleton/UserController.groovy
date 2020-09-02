@@ -241,8 +241,9 @@ def marketdata(){
 			log.info("UserController validateUser Action")
 			
 			def responseData = new HashMap<>()
-			def otpActivation = params.otpActivation
-			log.info(otpActivation)
+			def otpActivation = params.otp
+			log.info("otp from page"+otpActivation)
+			log.info("user from page "+params.username)
 				
 			def user= User.findByUserName(params.username)
 			log.info(user)
@@ -997,31 +998,27 @@ def passwordSave3(){
 	
 	
 	if(mode=="web"){
-	def userName= session.user
-	log.info(userName)
-	
-	if((userName !=null || userName!="")&& (newPwd ==null || newPwd=="") && (confirmPwd ==null || confirmPwd=="")){
-		redirect(uri: "/user/userdashboard1")
-		return false
-	}else{
-	
-	def url="/user/passwordSave2.gsp"
+
 	def user= User.findByUserName(params.username)
 	log.info(user)
 	if(newPwd != confirmPwd){
 	 return false
 	}
 	 else{
-	result=UserService.passwordSave3(userName,newPwd)
+	result=UserService.passwordSave3(params.username,newPwd)
 	if(result.get("status") == "success"){
 		responseData.put(getMessages('default.message.label'),result.getAt("message"))
 		responseData.put(getMessages('default.status.label'),result.getAt("status"))
-		responseData.put("uname",user)
+		
+	}
+	else{
+			responseData.put(getMessages('default.message.label'),"Something went wrong")
+		responseData.put(getMessages('default.status.label'),"error")
 	}
 	 }
 	
 	 [result:responseData]
-   }
+   
 	}
 }
 

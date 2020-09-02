@@ -67,21 +67,7 @@
 													
 							<li class="nav-item"><a class="nav-link" style="padding-top:30px; padding-bottom:30px;" href="/Skeleton/user/contact2">Contact</a></li>
 							
-							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" style="padding-top:30px; padding-bottom:30px;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-								<g:if test="${result.uname !=null}">
 
-								<span class="userName-md"></span>${result.uname.userName } <span>&nbsp;&nbsp;</span><i class="fa fa-user" style="font-size:20px;"></i>
-							</g:if>
-								</a>
-								
-								<ul class="dropdown-menu">
-								<li><g:link controller="user" action="updateuser" class="active"  style="color:	#DAA520;"><i class="fa fa-user"></i> Profile</g:link></li>
-								<li><g:link controller="user" action="myorders" class="active"  style="color:	#DAA520;"><i class='fa fa-cart-arrow-down'></i> My Orders </g:link></li>
-								<li><a href="/Skeleton/user/logout" style="color:	#DAA520;"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
-
-								</ul>
-							</li>
 								
 						</ul>
 						
@@ -243,6 +229,7 @@ return true;
            
             <input type="hidden" id="myaction" name="myaction" value="save">
             <input type="hidden" id="mode" name="mode" value="web"> 
+			<input type="hidden" id="username" name="username" value="${result.uname.userName}"> 
              <div class="form-group ic-no-mgbottom">
                             <div class="col-sm-6 text-center">
            <input type="submit" ID="btnsave" value="Save" onclick="return validateForm()" class="btn btn-primary" />
