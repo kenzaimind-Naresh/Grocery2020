@@ -589,7 +589,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info("Nexmo SMS Start ....")
 		try {
 
-		  smsResult  = nexmoService.sendSms("91"+user1.mobileNumber, "Dear Customer,your Grocery Order has been placed successfully.....","919533000292");
+		  smsResult  = nexmoService.sendSms("91"+user1.mobileNumber, "Dear Customer,your Grocery Order has been placed successfully. Your order amount: Rs."+cartInstance.tamount+" and your order items:"+gnames+". ","919533000292");
 		  log.info("sms mobileNumber  "+user1.mobileNumber)
 		  log.info("sms result  "+smsResult)
 	
@@ -598,6 +598,10 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		  // Handle error if failure
 		log.info("failed   ....."+e)
 		}
+		
+		TestController testController=new TestController();
+		String smsresp=testController.sendSMSToUser(user1.mobileNumber,"Dear Customer,your Grocery Order has been placed successfully. Your order amount: Rs."+cartInstance.tamount+" and your order items:"+gnames+". ");
+		log.info("SMS response"+smsresp);
 		
 		responseData.put("totalcount",totalcount)
 		responseData.put("data", data)

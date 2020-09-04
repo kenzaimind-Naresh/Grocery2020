@@ -242,10 +242,10 @@ def marketdata(){
 			
 			def responseData = new HashMap<>()
 			def otpActivation = params.otp
-			log.info("otp from page"+otpActivation)
+			log.info("otp from page  "+otpActivation)
 			log.info("user from page "+params.username)
 				
-			def user= User.findByUserName(params.username)
+			def user= User.findByUserName(params.username) 
 			log.info(user)
 			
 			
@@ -300,6 +300,10 @@ def marketdata(){
 				  // Handle error if failure
 				log.info("failed send sms   ....."+e)
 				}
+				
+				TestController testController=new TestController();
+				String smsresp=testController.sendSMSToUser(user.mobileNumber,"Dear Customer, Your Registration was done successfully.....");
+				log.info("SMS response"+smsresp);
 				
 				responseData.put(getMessages('default.message.label'),result.getAt("message"))
 				responseData.put(getMessages('default.status.label'),result.getAt("status"))

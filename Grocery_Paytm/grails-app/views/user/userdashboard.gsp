@@ -178,12 +178,10 @@ padding: 2px 16px;
 <g:form class="example" action="searchlocation" controller="merchant" method="GET" style="width:500px">			
   <div class="row">
   <input type="text" name="city" id="city" class="form-control" required=""  placeholder="Enter Location.."> <br><br><br>
-    <input type="text" name="street" id="street" class="form-control" required="" placeholder="Enter Colony..."><br><br>
-      <span id="streetinfo" style="color:red;"></span>
+    <%--<input type="text" name="street" id="street" class="form-control" required="" placeholder="Enter Colony..."><br><br>
+      <span id="streetinfo" style="color:red;"></span>--%>
   </div>
-  
-  <br>
-  
+ 
   <div align="center" style="padding-left:140px">
   <button type="submit" class="form-control" class="btn btn-primary" >Proceed</button>
     
@@ -246,10 +244,7 @@ $(function() {
 
 </script>
 
-
-
-
-<script>
+<script><%--
 $(function() {
 	
 
@@ -264,10 +259,7 @@ $(function() {
     });
   });
 
-</script>
-
-
-
+--%></script>
 
  <style>
 .footer {

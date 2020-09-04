@@ -151,7 +151,7 @@ $(document)
          $("#confirmPwdinfo").text("");
         }
        });
-   $("#password").focusout(
+   <%--$("#password").focusout(
      function() {
       $(this).find("span").css("display", "inline");
       var pass = $("#pass").val();
@@ -163,20 +163,14 @@ $(document)
       } else {
        $("#passwordinfo").text("");
       }
-     });
+     });--%>
 
   });
 
 function validateForm() {
 var newPassword = document.forms["myform"]["newPwd"].value;
 var confirmpassword = document.forms["myform"]["confirmPwd"].value;
-var password = document.forms["myform"]["password"].value;
 var ff = /\s$/;
-if (password == null || password.trim() == "") {
-document.getElementById('passwordinfo').style.display = 'inline';
-$("#passwordinfo").text("Please Enter Old Password");
-return false;
-}
 
 if (newPassword == null || newPassword.trim() == "" || password == newPassword || newPassword.match('^[a-zA-Z0-9-\ \-\,.@#$%^&*_!  ]{3,20}$')==null) {
 document.getElementById('newPwdinfo').style.display = 'inline';
@@ -200,73 +194,50 @@ return true;
 }
 }
 </script>
-<script type="text/javascript">
-
-function checkCode(){
-
-	var randomValue= document.getElementById("randomValue").value;
-	var otp = document.getElementById("otp").value;
-
-	if(randomValue == otp){
-		return true;
-	}
-	else{
-		event.preventDefault();
-		alert("Please enter valid Verification Code");
-		
-		return;
-		}
-}
-
-</script>
    
     </head>
-    <br>
-	<g:if test="${result.status =="error"}">
-	<div class="container signin" style="padding-left: 350px">
-       <div class="row">
-            <div class="col-xs-12 col-sm-9 col-md-6">
-                <h4 align="center">This User not Registred</h4>
-            </div>
-        </div>
-        </div>
-	</g:if>
-<br>
-<g:if test="${result.status =="success"}">
 
-	<div class="container signin" style="padding-left: 350px">
+
+
+	<div class="container signin">
        <div class="row">
-            <div class="col-xs-12 col-sm-9 col-md-6">
-                <h6 align="center">Enter your Verification Code here...</h6>
+            <div class="col-xs-9 col-sm-6 col-md-4">
+                <h3 align="center">Create your New Password</h3>
             </div>
+            
         </div>
    
     <div class="row">
             <div class="col-lg-12">
-            <g:form class="form-horizontal" controller="user" ID="myform" action="newPassword"  nonvalidate="nonvalidate"> 
-           <input type="hidden" id="otp" name="otp" value="${result.otp }">
-		   <input type="hidden" id="username" name="username" value="${result.uname }">
+               
+         <g:form class="form-horizontal" controller="merchant" ID="myform" action="passwordSave3"  nonvalidate="nonvalidate"> 
+            
            <div class="form-group">
                  <div class="col-sm-6">
-           <input type="text" id="randomValue" name="randomValue" class="form-control" onfocusout="checkCode()">
-            <span id=randomValueinfo style="color:red"></span>
+            <label style="color: black;">New Password:</label>
+           <input type="password" id="newPwd" name="newPwd" class="form-control" value="" >
+            <span id=newPwdinfo style="color:red"></span>
             </div>
             </div>
             
+           <div class="form-group">
+                 <div class="col-sm-6">
+            <label style="color: black;">Confirm Password: </label>
+           <input type="password" id="confirmPwd" name="confirmPwd" class="form-control" value="">
+            <span id=confirmPwdinfo style="color:red"></span>
+            </div></div>
+           
             <input type="hidden" id="myaction" name="myaction" value="save">
             <input type="hidden" id="mode" name="mode" value="web"> 
+			<input type="hidden" id="firstName" name="firstName" value="${result.uname.firstName}">
+			<input type="hidden" id="email" name="email" value="${result.uname.email}"> 
              <div class="form-group ic-no-mgbottom">
                             <div class="col-sm-6 text-center">
-           <input type="submit" ID="btnsave" value="Next" onclick="checkCode()" class="btn btn-primary" />
+           <input type="submit" ID="btnsave" value="Save" onclick="return validateForm()" class="btn btn-primary" />
             </div>
             </div></g:form>
             </div></div></div>
             
-</g:if>
-
-
-
-
 
             </body>
             </html>

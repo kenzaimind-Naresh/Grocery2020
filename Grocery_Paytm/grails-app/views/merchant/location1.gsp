@@ -298,11 +298,7 @@ padding: 2px 16px;
   <div class="row">
   <input type="text" name="city" id="city" class="form-control"  placeholder="Enter Location.." onchange="getStreetdata()"> 
         <span id="cityinfo" style="color:red;"></span>
-       </div> <br>
-  <div class="row">
-    <input type="text" name="street" id="street" class="form-control" placeholder="Enter Colony..."><br><br>
-      <span id="streetinfo" style="color:red;"></span>
-  </div>
+       </div> 
   <br>
   
   <div align="center" style="padding-left:140px">

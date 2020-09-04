@@ -563,6 +563,48 @@ class MerchantController {
 		}
 	}
 	
+	def passwordSave3(){
+		log.info("MerchantControllerr passwordSave3 action")
+		def responseData = new HashMap<>()
+		def mode=params.mode
+		
+		def newPwd=params.newPwd
+		def confirmPwd=params.confirmPwd
+		def result,res
+		log.info("newPwd "+newPwd)
+		log.info("confirmPwd "+confirmPwd)
+		
+		
+		if(mode=="web"){
+	
+		//def user= User.findByUserName(params.username)
+		//log.info(user)
+		
+		def user= Merchant.findByEmail(params.email)
+		log.info("merchant existed in db "+user)
+		
+		if(newPwd != confirmPwd){
+		 return false
+		}
+		 else{
+		result=MerchantService.passwordSave3(params.email,newPwd)
+		if(result.get("status") == "success"){
+			responseData.put(getMessages('default.message.label'),result.getAt("message"))
+			responseData.put(getMessages('default.status.label'),result.getAt("status"))
+			
+		}
+		else{
+				responseData.put(getMessages('default.message.label'),"Something went wrong")
+			responseData.put(getMessages('default.status.label'),"error")
+		}
+		 }
+		
+		 [result:responseData]
+	   
+		}
+	}
+	
+	
 	def location(){
 		log.info("MerchantController location Action")
 		
@@ -684,6 +726,7 @@ class MerchantController {
 		def merchant=Merchant.getAll()
 		def city=params.city
 		def street=params.street
+		def shopName=params.shopName
 		
 			
 /*		def username= session.user
@@ -713,7 +756,7 @@ class MerchantController {
 				for(int i=0;i<emp.size();i++){
 					user2.add(emp[i].city)
 				}		
-	def emp1=Merchant.findAllByStreet(street)
+	def emp1=Merchant.findAllByShopName(shopName)
 				def msg1;
 				if(emp1==null || emp1==[]){
 					msg1="Data Not Found"
@@ -724,7 +767,7 @@ class MerchantController {
 				}
 				def user1=new ArrayList()
 					for(int i=0;i<emp1.size();i++){
-						user1.add(emp1[i].street)
+						user1.add(emp1[i].shopName)
 					}
 					
 					
@@ -735,11 +778,51 @@ class MerchantController {
 				data.put("emp1",emp1)
 				data.put("uname",user)
 				data.put("merchant",merchant)
+				data.put("shopName",Merchant.list().unique{ it.shopName})
 				[result:data]
 		
 	}
 	
-	
+	def searchedmarket(){
+		
+		log.info("MerchantController searchedmarket Action")
+		def data = new HashMap<>()
+		def merchant=Merchant.getAll()
+		def shopName=params.shopName
+		
+		def mode=params.mode
+		log.info(mode)
+		
+		def user= User.findByUserName(session.user)
+		log.info(user)
+		
+		
+	def emp=Merchant.findAllByShopName(shopName)
+			def msg;
+			if(emp==null || emp==[]){
+				msg="Data Not Found"
+			}
+			else{
+				msg=""
+				
+			}
+			def user2=new ArrayList()
+				for(int i=0;i<emp.size();i++){
+					user2.add(emp[i].shopName)
+				}
+					
+					
+				data.put("listId", "searchlocation")
+				data.put("message", msg)
+				data.put("emp",emp)
+				//data.put("message1", msg1)
+				//data.put("emp1",emp1)
+				data.put("uname",user)
+				data.put("merchant",merchant)
+				data.put("shopName",Merchant.list().unique{ it.shopName})
+				[result:data]
+		
+	}
 	
 	
 	def logout = {
@@ -942,6 +1025,109 @@ class MerchantController {
 		[result:responseData]
 	}
 	
+	def forgotpass(){
+		
+		log.info("merchantController forgotpass Action")
+		
+	}
+	
+	def validateCode(){
+		
+		log.info("merchantController validateCode Action")
+		def responseData = new HashMap<>()
+		def mode=params.mode
+		
+		def generator = { String alphabet, int n ->
+			new Random().with {
+				(1..n).collect { alphabet[ nextInt( alphabet.length() ) ] }.join()
+			}
+		}
+
+		def randomValue= generator( (('A'..'Z')+('0'..'9')+('a'..'z')).join(), 6 )
+		log.info("Random String Generator...... "+randomValue)
+		
+		def email = params.email
+		log.info("Merchant email "+email)
+		def otpActivation = randomValue
+		log.info(" Merchant otp  "+otpActivation)
+		def result,res
+		
+		
+		if(mode=="web"){
+
+			
+			def url="/merchant/validateCode.gsp"
+			def user= Merchant.findByEmail(params.email)
+			log.info("merchant existed in db "+user)
+			
+			//def user= User.findByUserName(params.username)
+			//log.info("user existed in db "+user)
+			
+			if(user){
+			result=MerchantService.validateCode(params.email,otpActivation)
+			if(result.get("status") == "success"){
+				
+				/*def smsResult
+				log.info("Nexmo SMS Start ....")
+				try {
+					log.info("mobile number "+user.mobileNumber)
+				  smsResult  = nexmoService.sendSms("91"+user.mobileNumber, "Your Verification Code is "+otpActivation+". Do not forward or share this to anyone.","919533000292");
+				  log.info("sms result  "+smsResult)
+			
+			
+				}catch (NexmoException e) {
+				  // Handle error if failure
+				log.info("failed send sms   ....."+e)
+				}*/
+				
+				TestController testController=new TestController();
+				String smsresp=testController.sendSMSToUser(user.mobileNumber,"Your Verification Code is "+otpActivation+". Do not forward or share this to anyone.");
+				log.info("SMS response"+smsresp);
+				
+				responseData.put(getMessages('default.message.label'),result.getAt("message"))
+				responseData.put(getMessages('default.status.label'),result.getAt("status"))
+				responseData.put("otp",user.otpActivation)
+				responseData.put("uname",params.email)
+			
+		   }
+			}else{
+			responseData.put(getMessages('default.message.label'),"User in Not registerd")
+			responseData.put(getMessages('default.status.label'),"error")
+			responseData.put("uname",params.email)
+			
+			}
+			
+
+		[result:responseData]
+		
+			}
+		}
+	
+	def newPassword(){
+		
+		log.info("merchantController newPassword Action")
+		
+		def responseData = new HashMap<>()
+		def otpActivation = params.otp
+			log.info("otp from page  "+otpActivation)
+			log.info("merchant from page "+params.email)
+		
+			
+			def user= Merchant.findByEmail(params.email)
+			log.info("merchant existed in db "+user)
+			
+		//def user= User.findByUserName(params.username)
+		//log.info(user)
+		
+		
+		responseData.put(getMessages('default.message.label')," New Password Created Successfully")
+		responseData.put("uname",user)
+		log.info(responseData)
+		[result:responseData]
+	}
+	
+
+	
     def create() {
 		log.info("MerchantController create Action")
         respond new Merchant(params)
@@ -990,7 +1176,7 @@ class MerchantController {
 		redirect(uri: "/merchant/create")
 		flash.message = "Merchant Registration done Successfully"
 		
-		def smsResult
+		/*def smsResult
 		log.info("Nexmo SMS Start ....")
 		try {
 			log.info("mobile number"+merchantInstance.mobileNumber)
@@ -1001,7 +1187,12 @@ class MerchantController {
 		}catch (NexmoException e) {
 		  // Handle error if failure
 		log.info("failed send sms   ....."+e)
-		}
+		}*/
+		
+		TestController testController=new TestController();
+		String smsresp=testController.sendSMSToUser(merchantInstance.mobileNumber,"Dear Sir/Madam, Your Registration was done successfully.....");
+		log.info("SMS response"+smsresp);
+		
 		}
 		else{
 			redirect(uri: "/merchant/create")

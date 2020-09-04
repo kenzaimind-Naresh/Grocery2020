@@ -16,8 +16,6 @@
 	<link rel="stylesheet" href="/Skeleton/website/css/ion.rangeSlider.skinFlat.css" />
 	<link rel="stylesheet" href="/Skeleton/website/css/magnific-popup.css">
 	<link rel="stylesheet" href="/Skeleton/website/css/main.css">
-	
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -101,7 +99,6 @@
 
 .modal-header {
   background-color: #5cb85c;
-  
 }
 
 .modal-body {
@@ -123,64 +120,7 @@ padding: 2px 16px;
   
 }
 
-
-* {
-  box-sizing: border-box;
-}
-
-/* Style the search field */
-form.example input[type=text] {
-  padding: 5px;
-  font-size: 17px;
-  border: 1px light grey;
-  float: left;
-  width: 80%;
-  background: #f1f1f1;
-}
-
-/* Style the submit button */
-form.example button {
-  float: left;
-  width: 70%;
-  padding: 5px;
-  background: #FFCC33;
-  color: black;
-  font-size: 17px;
-  border: 1px light grey;
-  border-left: none; /* Prevent double borders */
-  cursor: pointer;
-}
-
-form.example button:hover {
-  background: #0b7dda;
-}
-
-/* Clear floats */
-form.example::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-
 </style>
-
-<script>
-$(function() {
-	
-
-    $("#shopName").autocomplete({
-    	
-    	  source:[
-    	<g:each in="${result.shopName}">
-    	
-        '${it.shopName}',
-           
-        </g:each>]
-    });
-  });
-
-</script>
 
  <script type="text/javascript">
     $( document ).ready(function() {
@@ -232,29 +172,20 @@ $(function() {
   <!-- Modal content -->
   <div class="modal-content">
     <div class="modal-header"><br><br><br>
-      <h2 style="color: white; padding-right:40px">Welcome to Online Super Market</h2>
+      <h2 style="color: white;  padding-right:250px">Welcome to Online Super Market</h2>
       
     </div>
      <br>
       <div >
 <div class="container">
 <div class="row">
-<g:form class="example" action="searchedmarket" controller="merchant" method="GET" style="width:500px;padding-left:50px">			
-  <!-- Search form -->
-<%--<input class="form-control" type="text" name="shopName" id="shopName" placeholder="Search" aria-label="Search"><br>--%>
-<input class="form-control" type="text" name="shopName" id="shopName" placeholder="Search" aria-label="Search">
-<div class="input-group-append">
-  <button class="form-control" type="submit"><i class="fa fa-search"></i></button>
-</div><br>
 
-</g:form>
-<br>
      <g:each in="${result.emp}" var="i" expr="true">
       <tr>
 		<div class="single-product">
 			<div class="product-details">
 			<div class="row" style="padding-left:50px">
-					<button type="button" class="btn btn-warning">
+					<button type="button" class=" primary-btn">
 						<a href="/Skeleton/user/marketdata?merchantshopName=${i.shopName }" style="color: black">${i.shopName}</a>
 					</button>
 			</div> <br>

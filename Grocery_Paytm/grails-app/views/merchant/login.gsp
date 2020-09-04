@@ -70,12 +70,10 @@ window.onhashchange = function (event) {
 							<div class="col-md-12 form-group">
 								<input type="password" class="form-control" id="password" name="password" placeholder="Password">
 							</div>
-							<div class="col-md-12 form-group">
-								
-							</div>
+							<a href="/Skeleton/merchant/forgotpass"><h5>Forgot Password?</h5></a>
+							
 							<div class="col-md-12 form-group">	
 								<button type="submit" value="submit" class="primary-btn">Log In</button>
-								<a href="#">Forgot Password?</a>
 							</div>
 						</g:form>
 					</div>

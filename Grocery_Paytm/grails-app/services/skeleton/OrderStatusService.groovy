@@ -4,6 +4,8 @@ import grails.transaction.Transactional
 
 @Transactional
 class OrderStatusService {
+	
+	def mailService
 
     def serviceMethod() {
 
@@ -80,6 +82,12 @@ class OrderStatusService {
 						f.orderId=f.id
 						def st=save(f)
 						log.info(st)
+						if(st){
+							def email = User.get(usercartId).email
+							log.info("email from user"+email)
+							log.info("**********Order Email Service********")
+							sendordermail(email,groceryName,totalAmount)
+						}
 
 				return resultData
 			}
@@ -111,6 +119,21 @@ class OrderStatusService {
 				}
 			
 		}
+		
+		def sendordermail(mailid,groceryName,totalAmount){
+			log.info("userService sendotpMail service")
+			try{
+			mailService.sendMail {
+				from "myuser030@gmail.com"
+				to mailid
+				subject "Verification mail for your New Password"
+				body "Dear Customer,your Grocery Order has been placed successfully. Your order amount: Rs."+totalAmount+" and your order items:"+groceryName.split("#")+". "
+			}
+			}
+			catch(Exception e){
+				log.info("Exception while sending mail ")
+				}
+				}
 	
 		
 		def getMessage(String code) {

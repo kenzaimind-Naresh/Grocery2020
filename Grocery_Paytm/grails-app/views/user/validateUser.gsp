@@ -202,7 +202,7 @@ return true;
 	<div class="container signin">
        <div class="row">
             <div class="col-xs-9 col-sm-6 col-md-4">
-                <h3 align="center">Change Password</h3>
+                <h3 align="center">Create your New Password</h3>
             </div>
             
         </div>
