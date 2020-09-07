@@ -21,7 +21,7 @@ class Address {
 	
 	static constraints = {
 		
-		addressId(nullable:false)
+		
 		fullName(maxSize:50)
 		mobileNumber(maxSize:50)
 		pincode(maxSize:10)

@@ -162,6 +162,22 @@ class MerchantService {
 			log.info("Exception while sending mail ")
 			}
 			}
+			
+	def sendmailUser(mailid){
+		log.info("MerchantService sendmailuser service")
+		log.info("merchant mail "+mailid)
+		try{
+		mailService.sendMail {
+			from "myuser030@gmail.com"
+			to mailid
+			subject "Registration Successfull"
+			html "<p>Your Registration done successfully, Thanks for Being with us..</p>"
+		}
+		}
+		catch(Exception e){
+			log.info("Exception while sending mail to user "+e)
+			}
+			}
 	
 	def getMessage(String code) {
 		return getMessage(code,null)

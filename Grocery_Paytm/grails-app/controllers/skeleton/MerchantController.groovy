@@ -1165,6 +1165,8 @@ class MerchantController {
 		merchantInstance.image = uploadedFile.getBytes() //converting the file to bytes
 		merchantInstance.name = uploadedFile.originalFilename //getting the file name from the uploaded file
 		merchantInstance.type = uploadedFile.contentType//getting and storing the file type
+		merchantInstance.createdDate = new Date()
+		merchantInstance.modifiedDate = new Date()
 		
 		//def uploaded = request.getFile('qrcode')
 		//merchantInstance.qrcode = uploaded.getBytes() //converting the file to bytes
@@ -1188,6 +1190,7 @@ class MerchantController {
 		  // Handle error if failure
 		log.info("failed send sms   ....."+e)
 		}*/
+		MerchantService.sendmailUser(merchantInstance.email);
 		
 		TestController testController=new TestController();
 		String smsresp=testController.sendSMSToUser(merchantInstance.mobileNumber,"Dear Sir/Madam, Your Registration was done successfully.....");
