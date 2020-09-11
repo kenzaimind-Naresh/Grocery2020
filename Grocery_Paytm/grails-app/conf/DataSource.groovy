@@ -17,7 +17,7 @@ hibernate {
 environments {
 	development {
 		dataSource {
-			dbCreate = "create-drop'" // one of 'create', 'create-drop','update'
+			dbCreate = "update" // one of 'create', 'create-drop','update'
 			url = "jdbc:mysql://localhost:3306/skeletondemotest"
 			username = "root"
 			password = "ecg123"

@@ -180,7 +180,7 @@ function getdata() {
 <div class="row">
 <g:if test="${it.quantity>"0"}">
 
-<a href="#" data-name="${it.groceryName}" data-price="${it.total}" data-weight="${it.weight}" class="add-to-cart btn btn-primary">Add to Cart</a>
+<a href="#" data-name="${it.groceryName}" data-price="${it.total}" data-quantity="${it.quantity}" data-weight="${it.weight}" class="add-to-cart btn btn-primary">Add to Cart</a>
       &nbsp;&nbsp;
     </g:if> 
      
@@ -296,12 +296,18 @@ var shoppingCart = (function() {
   var obj = {};
  
   // Add to cart
-  obj.addItemToCart = function(name, price, count,weight) {
+  obj.addItemToCart = function(name, price, count,weight,qty) {
     for(var item in cart) {
       if(cart[item].name === name) {
+	  //alert(cart[item].count<=qty);
+	  if(cart[item].count<=qty){	  
         cart[item].count ++;
         saveCart();
         return;
+		}else{
+		alert("Quantity not available at Store");
+		return;
+		}
       }
     }
     var item = new Item(name, price, count);
@@ -441,7 +447,9 @@ $('.add-to-cart').click(function(event) {
   event.preventDefault();
   var name = $(this).data('name');
   var price = Number($(this).data('price'));
-  shoppingCart.addItemToCart(name, price, 1);
+  var qty=Number($(this).data('quantity'));
+  //alert(qty);
+  shoppingCart.addItemToCart(name, price, 1,qty);
   displayCart();
 });
 

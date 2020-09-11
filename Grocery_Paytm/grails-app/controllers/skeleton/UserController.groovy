@@ -1063,18 +1063,19 @@ def userlogin1 = {
 def authenticate1 = {
 	
 	log.info("authenticate1")
+	log.info("params:"+params.email)
 	String pattern = ".*[^0-9].*";
 	Pattern p = Pattern.compile(pattern);
-	Matcher m = p.matcher(params.mobileNumber);
-	log.info("Matcher "+m)
-	boolean b = Pattern.compile(pattern).matcher(params.mobileNumber).matches()
+	Matcher m = p.matcher(params.email);
+	boolean b = Pattern.compile(pattern).matcher(params.email).matches();
+	log.info("reg test "+b);
 	def user
 	if(b){
-	user = User.findByMobileNumberAndPassword(params.mobileNumber,params.password)
-	log.info("User with mobile in if "+user)
+	user = User.findByEmailAndPassword(params.email,params.password)
+	log.info("User with email in if "+user)
 	}else{
-	user = User.findByEmailAndPassword(params.mobileNumber,params.password)
-	log.info("User with email in else "+user)
+	user = User.findByMobileNumberAndPassword(params.email,params.password)
+	log.info("User with mobile number in else "+user)
 	}
 	if(user){
 	
