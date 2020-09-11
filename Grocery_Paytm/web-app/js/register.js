@@ -16,7 +16,7 @@
 		   	 
 	   		$("#shopNameinfo").text("");
 	     } else {
-	    	 $("#shopNameinfo").text("Please Enter shopName");
+	    	 $("#shopNameinfo").text("Please Enter Shop Name");
 	     }
 	   	  });
      
@@ -27,7 +27,7 @@
 		   	 
 	   		$("#firstNameinfo").text("");
 	     } else {
-	    	 $("#firstNameinfo").text("Please Enter Valid Firstname");
+	    	 $("#firstNameinfo").text("Please Enter Valid First Name");
 	     }
 	   	  });
 	 $("#lastName").focusout(function(){
@@ -37,7 +37,7 @@
 		   	 
 	   		$("#lastNameinfo").text("");
 	     } else {
-	    	 $("#lastNameinfo").text("Please Enter Valid Lastname");
+	    	 $("#lastNameinfo").text("Please Enter Valid Last Name");
 	     }
 	   	  });
 	 
@@ -85,11 +85,22 @@
 	    	 $("#addressinfo").text("Please Enter Address");
 	     }
 	   	  });
+	 
+	 $("#street").focusout(function(){
+	   		$( this ).find( "span" ).css( "display", "inline" );	
+	   	
+	   	 if ( $("#street").val().trim().match('^[a-zA-Z]{3,30}$') && $("#street").val().trim()!=""  ){
+		   	 
+	   		$("#streetinfo").text("");
+	     } else {
+	    	 $("#streetinfo").text("Please Enter Street");
+	     }
+	   	  });
 	
 	 $("#city").focusout(function(){
 	   		$( this ).find( "span" ).css( "display", "inline" );	
 	   	
-	   	 if ( $("#city").val().match('^[a-zA-Z]{3,16}$')){
+	   	 if ( $("#city").val().trim().match('^[a-zA-Z]{3,16}$') && $("#city").val().trim()!=""  ){
 		   	 
 	   		$("#cityinfo").text("");
 	     } else {
@@ -114,7 +125,7 @@
 		   	 
 	   		$("#zipCodeinfo").text("");
 	     } else {
-	    	 $("#zipCodeinfo").text("Please Enter zipCode");
+	    	 $("#zipCodeinfo").text("Please Enter Zip Code");
 	     }
 	   	  });
 	
@@ -142,6 +153,7 @@
 	 var password = document.forms["myform"]["password"].value;
 	 var mobileNumber = document.forms["myform"]["mobileNumber"].value;
 	 var address = document.forms["myform"]["address"].value;
+	 var street = document.forms["myform"]["street"].value;
 	 var city = document.forms["myform"]["city"].value;
 	 var state = document.forms["myform"]["state"].value;
 	 var zipCode = document.forms["myform"]["zipCode"].value;
@@ -154,17 +166,17 @@
 		    	 }
 	    if (shopName == null || shopName == "") {
 	    	document.getElementById('shopNameinfo').style.display = 'inline';
-	    	 $("#shopNameinfo").text("Please Enter shopName");
+	    	 $("#shopNameinfo").text("Please Enter Shop Name");
 	    	 return false;
 	    }
          if (firstName == null || firstName.trim() == "" || firstName.match('^[a-zA-Z\ \]{3,30}$') == null) {
 		    document.getElementById('firstNameinfo').style.display = 'inline';	
-	    	 $("#firstNameinfo").text("Please Enter Firstname");	
+	    	 $("#firstNameinfo").text("Please Enter First Name");	
 	    	 return false;
 		    	 }
 	    if (lastName == null || lastName.trim() == "" || lastName.match('^[a-zA-Z\ \]{3,30}$') == null) {
 		    document.getElementById('lastNameinfo').style.display = 'inline';
-	    	 $("#lastNameinfo").text("Please Enter Lastname");
+	    	 $("#lastNameinfo").text("Please Enter Last Name");
 	    	 return false;
 	    }
 	    
@@ -185,12 +197,14 @@
 	    	 return false;
 	    }
 	    
-	   
-	    
-	    
 	    if (address == null || address.trim() == "" || address.match(/^[a-zA-Z0-9-\-\,.;:@#$%^&*/_!]{3,100}$/)==null) {
 	    	document.getElementById('addressinfo').style.display = 'inline';
 	    	 $("#addressinfo").text("Please Enter Address");
+	    	 return false;
+	    }
+	    if (street == null || street == "") {
+	    	document.getElementById('streetinfo').style.display = 'inline';
+	    	 $("#streetinfo").text("Please Enter Street");
 	    	 return false;
 	    }
 	     if (city == null || city == "") {
@@ -205,7 +219,7 @@
 		    }
 	    if (zipCode == null || zipCode == "") {
 	    	document.getElementById('zipCodeinfo').style.display = 'inline';
-	    	 $("#zipCodeinfo").text("Please Enter zip Code ");
+	    	 $("#zipCodeinfo").text("Please Enter Zip Code ");
 	    	 return false;
 	    }
 	   

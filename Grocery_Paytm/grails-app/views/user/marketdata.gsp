@@ -123,6 +123,25 @@ $.ajax({
  }
 })
 }
+
+function getdata() {
+	var quantity= document.getElementById("quantity").value
+	//var doctorId = document.getElementById("doctorId").value
+	var path = "/Skeleton/grocery/getdata";
+	$.ajax({
+	 url : path,
+	 type : "get",
+	 data :{
+		 quantity : quantity,
+	  //doctorId:doctorId
+	 },
+	 success : function(res) {
+	 alert(res.split("#")[1])
+	 },
+	 error : function() {
+	 }
+	})
+	}
 </script>
  
 </head>

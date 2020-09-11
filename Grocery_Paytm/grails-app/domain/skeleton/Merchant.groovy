@@ -14,6 +14,7 @@ class Merchant {
 	String email
 	String password
 	String mobileNumber
+	String otpActivation
 	String address
 	String street
 	String city
@@ -39,6 +40,7 @@ class Merchant {
 		email(email: true, unique: true)
 		password(password: true)
 		mobileNumber(maxSize:50)
+		otpActivation(nullable:true)
 		address(maxSize:50)
 		city(maxSize:50)
 		zipCode(maxSize:50)

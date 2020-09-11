@@ -28,10 +28,10 @@ $(document).ready(function () {
 	$('#offer').val(${ result.gInstance?.offer});
 	$('#total').val(${ result.gInstance?.total});
 	
-	    $("#createDate").datepicker({
+	    $("#createdDate").datepicker({
         minDate: 0,autoclose: true,
         onSelect:function (){
-			$("#createDateinfo").text("");
+			$("#createdDateinfo").text("");
 	    }
     });
     });
@@ -196,17 +196,17 @@ function costcal(){
 <div class="form-group">
              <div class="row">
              
-             <div class="col-md-4 col-sm-4">
+             <%--<div class="col-md-4 col-sm-4">
 
-<div class="fieldcontain ${hasErrors(bean: result.gInstance, field: 'createDate', 'error')} required">
-	<label for="createDate">
-		<g:message code="grocery.createDate.label" default="Create Date" />
+<div class="fieldcontain ${hasErrors(bean: result.gInstance, field: 'createdDate', 'error')} required">
+	<label for="createdDate">
+		<g:message code="grocery.createdDate.label" default="Created Date" />
 		<span class="required-indicator"></span>
 	</label>
-	<g:textField name="createDate" required="" id="createDate" class="form-control"  value="${result.gInstance?.createDate}"/>
+	<g:textField name="createdDate" required="" id="createdDate" class="form-control"  value="${result.gInstance?.createdDate}"/>
 
 </div></div>
-  <div class="col-md-4 col-sm-4">
+  --%><div class="col-md-4 col-sm-4">
 
 
 <div class="fieldcontain ${hasErrors(bean: result.gInstance, field: 'total', 'error')} required">

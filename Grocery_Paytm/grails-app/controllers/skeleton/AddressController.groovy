@@ -589,7 +589,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info("Nexmo SMS Start ....")
 		try {
 
-		  smsResult  = nexmoService.sendSms("91"+user1.mobileNumber, "Dear Customer,your Grocery Order has been placed successfully. Your order amount: Rs."+cartInstance.tamount+" and your order items:"+gnames+". ","919533000292");
+		  smsResult  = nexmoService.sendSms("91"+user1.mobileNumber, "Dear "+user1.userName+", your Grocery Order has been placed successfully. Your Order Amount: Rs."+cartInstance.tamount+" and your Order Items:"+gnames+". ","919533000292");
 		  log.info("sms mobileNumber  "+user1.mobileNumber)
 		  log.info("sms result  "+smsResult)
 	
@@ -600,7 +600,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		}
 		
 		TestController testController=new TestController();
-		String smsresp=testController.sendSMSToUser(user1.mobileNumber,"Dear Customer,your Grocery Order has been placed successfully. Your order amount: Rs."+cartInstance.tamount+" and your order items:"+gnames+". ");
+		String smsresp=testController.sendSMSToUser(user1.mobileNumber,"Dear "+user1.userName+",your Grocery Order has been placed successfully. Your Order Amount: Rs."+cartInstance.tamount+" and your Order Items:"+gnames+". ");
 		log.info("SMS response"+smsresp);
 		
 		responseData.put("totalcount",totalcount)
@@ -672,7 +672,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		Cart product=new Cart();
 		product.gname=names[i];
 		product.gprice=prices[i];
-		product.tcount=Integer.parseInt(names[i].split("00")[1])*Integer.parseInt(prices[i]);
+		product.tcount=Double.parseDouble(names[i].split("00")[1])*Double.parseDouble(prices[i]);
 		cartlist.add(product);
 		log.info(product);
 			}

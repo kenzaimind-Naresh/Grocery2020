@@ -33,6 +33,12 @@ class MerchantService {
 			else{
 				def e=merchantInstance.save(flush:true)
 				log.info("*******"+e)
+				if(e){
+					def email = merchantInstance.email
+					log.info("merchant email from Instance "+email)
+					log.info("Merchant mail service")
+					sendmail(email)
+				}
 				return e
 			}
 		}
@@ -148,6 +154,24 @@ class MerchantService {
 		
 	   }
 	
+	def sendmail(mailid){
+		log.info("MerchantService sendMail service")
+		try{
+		mailService.sendMail {
+			from "myuser030@gmail.com"
+			to mailid
+			subject "Welcome mail from Grocery"
+			body "Hello Sir/Madam, You are Registered Successfully, thanks you for being with us."
+		}
+		}
+		catch(Exception e){
+			System.out.println("Entered Email address is wrong")
+		}
+		finally{
+			return "fail"
+		}
+		}
+	
 	def sendotpmail(mailid,otpActivation){
 		log.info("MerchantService sendotpMail service")
 		try{
@@ -170,8 +194,8 @@ class MerchantService {
 		mailService.sendMail {
 			from "myuser030@gmail.com"
 			to mailid
-			subject "Registration Successfull"
-			html "<p>Your Registration done successfully, Thanks for Being with us..</p>"
+			subject "Registration Successful"
+			html "<p>Hello Sir/Madam, Your Registration done successfully, Thanks for Being with us..</p>"
 		}
 		}
 		catch(Exception e){

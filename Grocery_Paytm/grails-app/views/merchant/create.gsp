@@ -190,7 +190,7 @@ i:hover {
 
 <div class="fieldcontain ${hasErrors(bean: merchantInstance, field: 'password', 'error')} required">
     <div class="form-label-group input-group">
-      <input type="password" id="password" class="form-control" name="password" placeholder="Password" required>
+      <input type="password" id="password" class="form-control" name="password" placeholder="Password"  title="Password must have minimum 6 characters" required>
       <div class="input-group-append">
         <span class="input-group-text">
           <i id="eye" class="far fa-eye-slash"></i>
@@ -213,17 +213,16 @@ i:hover {
 
 <div class="fieldcontain ${hasErrors(bean: merchantInstance, field: 'address', 'error')} required">
 	
-	<g:textField name="address" maxlength="50" class="form-control" id="shopName" required="" placeholder="Address" value="${merchantInstance?.address}"/>
-		    <span id="addressinfo" style="color:red;"></span>
-
-</div>
+	<g:textField name="address" maxlength="50" class="form-control" id="address" required="" placeholder="Address" value="${merchantInstance?.address}"/>
+		    <%--<span id="addressinfo" style="color:red;"></span>--%>
+		    </div>
 </div>
 
 <div class="col-md-12 form-group">
 
 <div class="fieldcontain ${hasErrors(bean: merchantInstance, field: 'street', 'error')} required">
 	
-	<g:textField name="street" maxlength="50" class="form-control" id="shopName" required="" placeholder="Street" value="${merchantInstance?.street}"/>
+	<g:textField name="street" maxlength="50" class="form-control" id="street" required="" placeholder="Street" value="${merchantInstance?.street}"/>
 		    <span id="streetinfo" style="color:red;"></span>
 
 </div>
@@ -232,18 +231,15 @@ i:hover {
 
 <div class="fieldcontain ${hasErrors(bean: merchantInstance, field: 'city', 'error')} required">
 	
-	<g:textField name="city" maxlength="50" class="form-control" id="address" required="" placeholder="City" value="${merchantInstance?.city}"/>
+	<g:textField name="city" maxlength="50" class="form-control" id="city" required="" placeholder="City" value="${merchantInstance?.city}"/>
 		    <span id="cityinfo" style="color:red;"></span>
 
 </div>
 </div>
 <div class="col-md-12 form-group">
-<div class="fieldcontai ${hasErrors(bean: merchantInstance, field: 'state', 'error')} required">
 
-
-</div><br>
-<div class="fieldcontai ${hasErrors(bean: merchantInstance, field: 'state', 'error')} required">
-<select	name="state" required="" id="state" class="form-control" value="${merchantInstance?.state}">
+<div class="fieldcontain ${hasErrors(bean: merchantInstance, field: 'state', 'error')} required">
+<select	name="state" required="true" id="state" class="form-control" value="${merchantInstance?.state}">
 <option value=" "> State</option>
 <option>Andhra Pradesh</option>
 <option>Arunachal Pradesh</option>

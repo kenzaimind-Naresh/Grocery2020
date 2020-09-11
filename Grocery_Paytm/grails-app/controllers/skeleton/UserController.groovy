@@ -5,6 +5,8 @@ import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional;
 
 import java.util.HashMap;
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 import javax.servlet.http.Cookie
 
 import grails.converters.JSON;
@@ -1061,7 +1063,19 @@ def userlogin1 = {
 def authenticate1 = {
 	
 	log.info("authenticate1")
-	def user = User.findByUserNameAndPassword(params.userName,params.password)
+	String pattern = ".*[^0-9].*";
+	Pattern p = Pattern.compile(pattern);
+	Matcher m = p.matcher(params.mobileNumber);
+	log.info("Matcher "+m)
+	boolean b = Pattern.compile(pattern).matcher(params.mobileNumber).matches()
+	def user
+	if(b){
+	user = User.findByMobileNumberAndPassword(params.mobileNumber,params.password)
+	log.info("User with mobile in if "+user)
+	}else{
+	user = User.findByEmailAndPassword(params.mobileNumber,params.password)
+	log.info("User with email in else "+user)
+	}
 	if(user){
 	
 	session.user=user
@@ -1092,7 +1106,7 @@ def authenticate1 = {
 	//redirect(action:"userlogin1")
 	
 	render text: """<script type="text/javascript">
-                    alert("Enter Valid UserName/Password");
+                    alert("Enter Valid Email/Password");
                     window.location.href = "/Skeleton/user/userlogin1";
 
 

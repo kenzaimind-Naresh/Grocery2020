@@ -56,9 +56,9 @@ body {
   
 <script>
 function validateForm() {
-var x = document.forms["myForm"]["userName"].value;
+var x = document.forms["myForm"]["email"].value;
 if (x == "") {
-alert("UserName must be filled out");
+alert("Email/Mobile must be filled out");
 return false;
 }
 }
@@ -87,8 +87,8 @@ return false;
 <div class="panel-body">
 <g:form controller="user" role="form" name="myForm" id="myForm" action="authenticate1" nonvalidate="nonvalidate">
 <fieldset>
-<div class="form-group" ${hasErrors(bean: userInstance, field: 'userName', 'error')}>
-<input class="form-control" placeholder="UserName" id="userName" name="userName" onclick="myForm" value="${userInstance?.userName}"type="text" required>
+<div class="form-group" ${hasErrors(bean: userInstance, field: 'email', 'error')}>
+<input class="form-control" placeholder="Email or Mobile" id="email" name="email" onclick="myForm" value="${userInstance?.email}"type="text" required>
 </div>
 <div class="form-group" ${hasErrors(bean: userInstance, field: 'password', 'error')}>
 <input class="form-control" placeholder="Password" id="password" name="password" onclick="myForm" value="${userInstance?.password}" type="password" required>
