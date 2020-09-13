@@ -105,24 +105,6 @@ $("#dateinfo").text("");
     });
     });
 
-function getdata() {
-var date= document.getElementById("date1").value
-var doctorId = document.getElementById("doctorId").value
-var path = "/ProviderSearch/Appointment/getdata";
-$.ajax({
- url : path,
- type : "get",
- data :{
-  date : date,
-  doctorId:doctorId
- },
- success : function(res) {
- alert(res.split("#")[1])
- },
- error : function() {
- }
-})
-}
 
 function getdata() {
 	var quantity= document.getElementById("quantity").value
@@ -137,6 +119,25 @@ function getdata() {
 	 },
 	 success : function(res) {
 	 alert(res.split("#")[1])
+	 },
+	 error : function() {
+	 }
+	})
+	}
+	
+	function getavail(name) {
+	var name= name;
+	var path = "/Skeleton/grocery/getavail";
+	$.ajax({
+	 url : path,
+	 type : "post",
+	 data :{
+		 name : name
+	
+	 },
+	 success : function(res) {
+	 //alert(res);
+	$('#qtyvalue').val(res);
 	 },
 	 error : function() {
 	 }
@@ -179,7 +180,6 @@ function getdata() {
 
 <div class="row">
 <g:if test="${it.quantity>"0"}">
-
 <a href="#" data-name="${it.groceryName}" data-price="${it.total}" data-quantity="${it.quantity}" data-weight="${it.weight}" class="add-to-cart btn btn-primary">Add to Cart</a>
       &nbsp;&nbsp;
     </g:if> 
@@ -229,6 +229,8 @@ function getdata() {
  <input type="hidden" name="tcount" id="tcount"/>
  <input type="hidden" name="tamount" id="tamount"/>
        <input type="hidden"  name="qCount" id="qCount"/>
+	   <input type="hidden"  name="qtyvalue" id="qtyvalue"/>
+	     <input type="hidden"  name="eetest" id="qtyvalue"/>
    
  
 </div>
@@ -268,11 +270,12 @@ var shoppingCart = (function() {
   cart = [];
  
   // Constructor
-  function Item(name, price, count,weight) {
+  function Item(name, price, count,weight,quantity) {
     this.name = name;
     this.price = price;
     this.count = count;
     this.weight = weight;
+	this.quantity = quantity;
     
   }
  
@@ -296,13 +299,25 @@ var shoppingCart = (function() {
   var obj = {};
  
   // Add to cart
-  obj.addItemToCart = function(name, price, count,weight,qty) {
+  obj.addItemToCart = function(name,price,count,weight,quantity) {
+   getavail(name);
     for(var item in cart) {
       if(cart[item].name === name) {
-	  //alert(cart[item].count<=qty);
-	  if(cart[item].count<=qty){	  
+	 // alert("count in cart" +cart[item].count);
+	  //alert(quantity);
+	
+	  getavail(name);
+	  setTimeout(function(){ 
+$("#eetest").val("time pass");
+	  }, 2000);
+	  var qtytotal=$("#qtyvalue").val();
+	  
+	//alert("from ajax"+qtytotal);
+	//alert("count is "+cart[item].count);
+	  if(cart[item].count<Number(qtytotal)){	  
         cart[item].count ++;
-        saveCart();
+		cart[item].quantity=quantity;
+		saveCart();
         return;
 		}else{
 		alert("Quantity not available at Store");
@@ -447,9 +462,10 @@ $('.add-to-cart').click(function(event) {
   event.preventDefault();
   var name = $(this).data('name');
   var price = Number($(this).data('price'));
-  var qty=Number($(this).data('quantity'));
-  //alert(qty);
-  shoppingCart.addItemToCart(name, price, 1,qty);
+  var quantity=Number($(this).data('quantity'));
+  //alert("first avail qty on db"+quantity);
+  
+  shoppingCart.addItemToCart(name,price,1,1,quantity);
   displayCart();
 });
 
@@ -470,7 +486,7 @@ function displayCart() {
       + "<td>(" + cartArray[i].price + ")</td>"
       + "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name=" + cartArray[i].name + ">-</button>"
       + "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>"
-      + "<button class='plus-item btn btn-primary input-group-addon' data-name=" + cartArray[i].name + ">+</button></div></td>"
+      + "<button class='plus-item btn btn-primary input-group-addon' data-name=" + cartArray[i].name + " data-quantity=" + cartArray[i].quantity +">+</button></div></td>"
       + "<td><button class='delete-item btn btn-danger' data-name=" + cartArray[i].name + ">X</button></td>"
       + " = "
       + "<td>" + cartArray[i].total + "</td>"
@@ -512,7 +528,9 @@ $('.show-cart').on("click", ".minus-item", function(event) {
 })
 // +1
 $('.show-cart').on("click", ".plus-item", function(event) {
-  var name = $(this).data('name')
+  var name = $(this).data('name');
+  var quantity = $(this).data('quantity');
+ // alert("quantity avail"+quantity);
   shoppingCart.addItemToCart(name);
   displayCart();
 })

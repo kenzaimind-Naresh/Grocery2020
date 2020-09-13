@@ -306,6 +306,22 @@ log.info("Grocery Controller index action")
     
     }
 
+	def getavail(){
+	def result;
+	log.info("Grocery Controller getavail actiotn")
+	log.info("params "+params.name);
+	def merchantshopName= session.getAttribute("merchantName")
+		log.info("merchantshopName "+merchantshopName);
+	def groceryInst=Grocery.findByMerchantshopNameAndGroceryName(merchantshopName,params.name);
+	log.info("available quanity"+groceryInst.quantity);
+	if(groceryInst!=null){
+	result= groceryInst.quantity;
+	}
+	log.info("result "+result)
+	render result;
+	}
+	
+	
 	def deleteGrocery(){
 		log.info("Grocery Controller deleteGrocery actiotn")
 		def responseData = new HashMap<>();
