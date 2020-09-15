@@ -50,7 +50,7 @@ class MerchantController {
 	}
 	
 	def updateprofile(){
-		log.info("MerchantController updateprofile Action")
+		log.info("MerchantController enter updateprofile Action")
 		def responseData = new HashMap<>()
 		def user= Merchant.findByEmail(session.user)
 		log.info(user)
@@ -65,19 +65,21 @@ class MerchantController {
 			log.info("Name : " + cookie.getName() );
 			log.info("Value: " + cookie.getValue() );
 			if(cookie.getName().equals("merchantKey")){
+				if(!(cookie.getValue().equals("null") ||cookie.getValue().equals("")))
+				username=cookie.getValue()
 		
 			}
 		 }
 		}
 		log.info("**************** "+username)
 		
-		//def username= session.user
-		if(username ==null || username=="" ){
+	
+		if(username.equals(null) ||username.equals("") ){
 		 redirect(uri: "/merchant/login")
 		 return
 		}
 		def data=Merchant.findByEmail(username)
-		log.info(data)
+		log.info("merchant data"+data)
 		responseData.put("listId", "dashboard")
 		responseData.put("uname",user)
 		responseData.put("data",data)
@@ -882,6 +884,7 @@ class MerchantController {
 	
 	
 	def login(){ 
+	log.info("merchant controller login action")
 		Cookie[] cookies = null;
 		def username
 		cookies=request.getCookies();
