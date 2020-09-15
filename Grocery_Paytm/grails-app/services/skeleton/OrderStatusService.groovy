@@ -121,7 +121,7 @@ class OrderStatusService {
 		}
 		
 		def sendordermail(mailid,groceryName,totalAmount){
-			log.info("userService sendotpMail service")
+			log.info("OrderStatusService sendordermail action")
 			try{
 			mailService.sendMail {
 				from "myuser030@gmail.com"

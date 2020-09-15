@@ -833,14 +833,14 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	for(int a=0;a<gnames.length;a++){
 			
 		
-		def instance = Grocery.findByMerchantIdAndGroceryName(merchantInstance.id,gnames[a].split("00")[0])
+		def instance = Grocery.findByMerchantIdAndGroceryName(merchantInstance.id,gnames[a].split("-")[0])
 	
 
-		def value = Integer.parseInt(instance.quantity) - Integer.parseInt(gnames[a].split("00")[1])
-		log.info("??????????????? instance.quantity : "+ gnames[a].split("00")[1]);
+		def value = Integer.parseInt(instance.quantity) - Integer.parseInt(gnames[a].split("-")[1])
+		log.info("??????????????? instance.quantity : "+ gnames[a].split("-")[1]);
 		log.info("??????????????? finalvalue : "+  value);
 		
-		GroceryService.update1(merchantInstance.id,gnames[a].split("00")[0],value);
+		GroceryService.update1(merchantInstance.id,gnames[a].split("-")[0],value);
 	}
 		def smsResult
 		log.info("Nexmo SMS Start ....")

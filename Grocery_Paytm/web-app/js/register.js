@@ -78,7 +78,7 @@
 	 $("#address").focusout(function(){
 	   		$( this ).find( "span" ).css( "display", "inline" );	
 	   		
-	   	 if ( $("#address").val().trim().match(/^[a-zA-Z0-9-\-\,.;:@#$%^&*/_!]{3,100}$/) && $("#address").val().trim()!=""  ) {
+	   	 if ( $("#address").val().trim().match(/^[a-zA-Z0-9-\-\,.;:@#$%^&*/_!\s]{3,100}$/) && $("#address").val().trim()!=""  ) {
 		   	 
 	   		$("#addressinfo").text("");
 	     } else {
@@ -89,8 +89,8 @@
 	 $("#street").focusout(function(){
 	   		$( this ).find( "span" ).css( "display", "inline" );	
 	   	
-	   	 if ( $("#street").val().trim().match('^[a-zA-Z]{3,30}$') && $("#street").val().trim()!=""  ){
-		   	 
+	   	 if ( $("#street").val().trim().match(/^[a-zA-Z0-9-\-\,.;:@#$%^&*/_!\s]{3,100}$/) && $("#street").val().trim()!=""  ){
+	   		
 	   		$("#streetinfo").text("");
 	     } else {
 	    	 $("#streetinfo").text("Please Enter Street");
@@ -197,12 +197,12 @@
 	    	 return false;
 	    }
 	    
-	    if (address == null || address.trim() == "" || address.match(/^[a-zA-Z0-9-\-\,.;:@#$%^&*/_!]{3,100}$/)==null) {
+	    if (address == null || address.trim() == "" || address.match(/^[a-zA-Z0-9-\-\,.;:@#$%^&*/_!\s]{3,100}$/)==null) {
 	    	document.getElementById('addressinfo').style.display = 'inline';
 	    	 $("#addressinfo").text("Please Enter Address");
 	    	 return false;
 	    }
-	    if (street == null || street == "") {
+	    if (street == null || street == "" || street.match(/^[a-zA-Z0-9-\-\,.;:@#$%^&*/_!\s]{3,100}$/)==null) {
 	    	document.getElementById('streetinfo').style.display = 'inline';
 	    	 $("#streetinfo").text("Please Enter Street");
 	    	 return false;

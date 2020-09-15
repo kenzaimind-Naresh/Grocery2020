@@ -1266,7 +1266,7 @@ def saveuser() {
 		
 		}
 		else if(result.get("status") == "existed"){
-			responseData.put("message", "User is Already Exsted, Try With Other Details..")
+			responseData.put("message", "User is Already Existed, Try With Other Details..")
 			responseData.put(getMessages("default.status.label"),"500")
 			url="/user/saveuser.gsp"
 			

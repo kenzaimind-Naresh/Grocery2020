@@ -153,7 +153,7 @@ i:hover {
 
 <div class="fieldcontain ${hasErrors(bean: merchantInstance, field: 'shopName', 'error')} ">
 	
-	<g:textField name="shopName" maxlength="50" class="form-control" id="shopName"  required="" placeholder="ShopName" value="${merchantInstance?.shopName}"/>
+	<g:textField name="shopName" maxlength="50" class="form-control" id="shopName"  required="" placeholder="Shop Name" value="${merchantInstance?.shopName}"/>
 		    <span id="shopNameinfo" style="color:red;"></span>
 
 </div></div>
@@ -163,7 +163,7 @@ i:hover {
 
 <div class="fieldcontain ${hasErrors(bean: merchantInstance, field: 'firstName', 'error')} ">
 	
-	<g:textField name="firstName" maxlength="50" class="form-control" id="firstName" required="" placeholder="FirstName" value="${merchantInstance?.firstName}"/>
+	<g:textField name="firstName" maxlength="50" class="form-control" id="firstName" required="" placeholder="First Name" value="${merchantInstance?.firstName}"/>
 		    <span id="firstNameinfo" style="color:red;"></span>
 
 </div>
@@ -172,7 +172,7 @@ i:hover {
 
 <div class="fieldcontain ${hasErrors(bean: merchantInstance, field: 'lastName', 'error')} ">
 	
-	<g:textField name="lastName" maxlength="50" class="form-control" id="lastName" required="" placeholder="LastName" value="${merchantInstance?.lastName}"/>
+	<g:textField name="lastName" maxlength="50" class="form-control" id="lastName" required="" placeholder="Last Name" value="${merchantInstance?.lastName}"/>
 		    <span id="lastNameinfo" style="color:red;"></span>
 
 </div>
@@ -204,7 +204,7 @@ i:hover {
 
 <div class="fieldcontain ${hasErrors(bean: merchantInstance, field: 'mobileNumber', 'error')} required">
 	
-	<g:textField name="mobileNumber" maxlength="50" class="form-control" id="mobileNumber" required="" placeholder="MobileNumber" value="${merchantInstance?.mobileNumber}"/>
+	<g:textField name="mobileNumber" maxlength="50" class="form-control" id="mobileNumber" required="" placeholder="Mobile Number" value="${merchantInstance?.mobileNumber}"/>
 		    <span id="mobileNumberinfo" style="color:red;"></span>
 
 </div>
@@ -278,7 +278,7 @@ i:hover {
 
 <div class="fieldcontain ${hasErrors(bean: merchantInstance, field: 'zipCode', 'error')} required">
 	
-	<g:textField name="zipCode" maxlength="50" class="form-control" id="zipCode" required="" placeholder="ZipCode" value="${merchantInstance?.zipCode}"/>
+	<g:textField name="zipCode" maxlength="50" class="form-control" id="zipCode" required="" placeholder="Zip Code" value="${merchantInstance?.zipCode}"/>
 		    <span id="zipCodeinfo" style="color:red;"></span>
 
 </div>
@@ -328,9 +328,9 @@ i:hover {
 				</fieldset>
 			 <div class="col-sm-12 text-left" style="padding-left:180px">
 				
-				<fieldset class="buttons">
-					<g:submitButton name="create" class="save" class="btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-				</fieldset>
+	<fieldset class="buttons">
+		<g:submitButton name="create" class="save" class="btn btn-primary" onclicvk="return validateForm()" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+	</fieldset>
 				</div>
 			</g:form>
 			

@@ -20,8 +20,19 @@ class CategoryController {
     }
 
     def show(Category categoryInstance) {
-        respond categoryInstance
+        //respond categoryInstance
 			log.info("CategoryController show Action")
+			def responseData = new HashMap<>()
+			def admin= Admin.findByAdminname(session.admin)
+			
+			def adminname= session.admin
+			if(adminname ==null || adminname=="" ){
+			 redirect(uri: "/admin/login1")
+			 return
+			}
+			responseData.put("listId", "adminDashboard")
+			responseData.put("admin",admin)
+			[result:responseData]
     }
 
     def create() {

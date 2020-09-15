@@ -136,7 +136,7 @@ function getdata() {
 	
 	 },
 	 success : function(res) {
-	 //alert(res);
+	 alert(res);
 	$('#qtyvalue').val(res);
 	 },
 	 error : function() {
@@ -230,7 +230,7 @@ function getdata() {
  <input type="hidden" name="tamount" id="tamount"/>
        <input type="hidden"  name="qCount" id="qCount"/>
 	   <input type="hidden"  name="qtyvalue" id="qtyvalue"/>
-	     <input type="hidden"  name="eetest" id="qtyvalue"/>
+	     <input type="hidden"  name="eetest" id="eetest"/>
    
  
 </div>

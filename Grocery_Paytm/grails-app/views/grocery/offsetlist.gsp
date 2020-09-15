@@ -129,7 +129,7 @@ window.onhashchange = function (event) {
      <g:each in="${result.data}" expr="true">
     
       <tr>
-        <td style="font-size: 20px;"><a href="#"  style="color: black;font-family: Calibri">${it.groceryName}</a></td>
+        <td><a href="#"  style="color: black;font-family: Calibri">${it.groceryName}</a></td>
               <!-- -  <td style="font-size: 20px;"><a href="/Skeleton/grocery/edit"  style="color: black;">${it.groceryName}</a></td>
          -->
         <td style="color: black;"> ${it.quantity}</td>
