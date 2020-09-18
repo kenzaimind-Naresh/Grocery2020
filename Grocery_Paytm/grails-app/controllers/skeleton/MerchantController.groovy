@@ -836,7 +836,7 @@ if(mode=="web")	{
 				data.put("emp1",emp1)
 				data.put("uname",user)
 				data.put("merchant",merchant)
-				data.put("shopName",Merchant.findAllByCity(city).shopName)
+				data.put("shopName",Merchant.findAllByCity(city))
 				[result:data]
 		
 	}

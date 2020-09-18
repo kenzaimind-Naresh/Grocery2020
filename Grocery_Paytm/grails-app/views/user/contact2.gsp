@@ -141,8 +141,9 @@
 					    <g:each in="${result.data}" expr="true">
 						<div class="info_item">
 							<i class="lnr lnr-home"></i>
+							<h3>${it.shopName}</h3>
 							<h6>${it.street},${it.address}-${it.zipCode}</h6>
-							<p>${it.shopName}</p>
+							
 						</div>
 						<div class="info_item">
 							<i class="lnr lnr-phone-handset"></i>
