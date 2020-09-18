@@ -136,7 +136,7 @@ function getdata() {
 	
 	 },
 	 success : function(res) {
-	 alert(res);
+	 //alert(res);
 	$('#qtyvalue').val(res);
 	 },
 	 error : function() {

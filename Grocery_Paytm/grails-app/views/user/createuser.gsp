@@ -155,7 +155,7 @@
 <div class="fieldcontain">
 	
 
-<input type="text" id="userName" name="userName" value="${userInstance?.userName}" placeholder="User Name" class="form-control" required/>
+<input type="text" id="userName" name="userName" value="${userInstance?.userName}" placeholder="Full Name" class="form-control" required/>
  <span id="userNameinfo" style="color:red"></span>
 	
 </div>
@@ -167,7 +167,7 @@
 
 <div class="fieldcontain">
 <div class="form-label-group input-group">	
-<input type="password" id="password" name="password" placeholder="Password" class="form-control" required/>
+<input type="password" id="password" name="password" placeholder="Password" class="form-control" pattern="[0-9]{6,}" title="Password must have atleast 6 digits" required/>
  <div class="input-group-append">
  <span class="input-group-text">
  <i id="eye" class="far fa-eye-slash"></i>

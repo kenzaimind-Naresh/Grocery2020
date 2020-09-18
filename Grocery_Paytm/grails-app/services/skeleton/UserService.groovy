@@ -55,7 +55,7 @@ class UserService {
 		   String []args=["User"]
 	
 		   try{
-			   if(!User.findByUserNameOrMobileNumber(userName,mobileNumber)){
+			   if(!User.findByEmailOrMobileNumber(email,mobileNumber)){
 			   
 				   def userInstance=getInstance()
 					   

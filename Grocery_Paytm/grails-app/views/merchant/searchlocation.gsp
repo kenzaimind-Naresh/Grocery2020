@@ -174,7 +174,7 @@ $(function() {
     	  source:[
     	<g:each in="${result.shopName}">
     	
-        '${it.shopName}',
+        '${result.shopName}',
            
         </g:each>]
     });

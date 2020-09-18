@@ -17,7 +17,7 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item"><a class="nav-link" style="padding-top:30px; padding-bottom:30px;" href="/Skeleton/user/marketdata">Home</a></li>
+							<li class="nav-item"><a class="nav-link" style="padding-top:30px; padding-bottom:30px;" href="/Skeleton/user/userdashboard">Home</a></li>
 							
 							<li class="nav-item"><a class="nav-link" style="padding-top:30px; padding-bottom:30px;" href="/Skeleton/user/marketdata">Shop</a></li>
 													

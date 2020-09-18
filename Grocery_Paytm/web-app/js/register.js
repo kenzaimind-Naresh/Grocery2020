@@ -44,7 +44,7 @@
 	 $("#email").focusout(function(){
 	   		$( this ).find( "span" ).css( "display", "inline" );	
 	   		
-	   	 if ( $("#email").val().trim().match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/) ) {
+	   	 if ( $("#email").val().trim().match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).val().trim()!="" ) {
 		   	 
 	   		$("#emailinfo").text("");
 	     } else {
@@ -66,7 +66,7 @@
 	 $("#mobileNumber").focusout(function(){
 	   		$( this ).find( "span" ).css( "display", "inline" );	
 	   		
-	   	 if ( $("#mobileNumber").val().trim().match(/^\d{10,16}$/) && $("#mobileNumber").val().trim()!="") {
+	   	 if ( $("#mobileNumber").val().trim().match(/^\d{10}$/) && $("#mobileNumber").val().trim()!="") {
 		   	 
 	   		$("#mobileNumberinfo").text("");
 	     } else {
@@ -191,9 +191,9 @@
 	    	 return false;
 	    }
 	    
-	     if (mobileNumber == null || mobileNumber.trim() == "" || mobileNumber.match(/^\d{10,16}$/)==null) {
+	     if (mobileNumber == null || mobileNumber.trim() == "" || mobileNumber.match(/^\d{10}$/)==null) {
 	    	document.getElementById('mobileNumberinfo').style.display = 'inline';
-	    	 $("#mobileNumberinfo").text("Please Enter MobileNumber");
+	    	 $("#mobileNumberinfo").text("Please Enter Mobile Number");
 	    	 return false;
 	    }
 	    

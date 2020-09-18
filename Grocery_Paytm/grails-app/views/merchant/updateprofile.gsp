@@ -97,178 +97,162 @@ window.onhashchange = function (event) {
 
 <body>
 
-	<g:render template="/merchant/merchantheader1"/>
+<g:render template="/merchant/merchantheader1"/>
+<br><br><br><br>
     
-    <br><br><br><br>
-    
-
 <div align="center">
-<p style="color:black;font-Size: 20px;font-family: Calibri">${flash.message}</p>
-<br>
-    </div>
-
-    
-					<div class="content-heading" style="padding-left:50px;">
-						<h4 style="padding-left:380px;font-family: Calibri">Edit Profile </h4>
-						
-    <br>
-    			<g:form class="form-horizontal" role="form" controller="merchant" Id="myform" name="myform" action="saveupdate"  nonvalidate="nonvalidate">
-    
+	<p style="color:black;font-Size: 20px;font-family: Calibri">${flash.message}</p><br>
+</div>
+<div class="content-heading" style="padding-left:50px;">
+	<h3 style="padding-left:380px;font-family: Calibri">Merchant Profile </h3><br>
+    <g:form class="form-horizontal" role="form" controller="merchant" Id="myform" name="myform" action="saveupdate"  nonvalidate="nonvalidate">
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 signin-pdtop">
-             <div class="form-group">
-             <div class="row">
-<div class="col-md-4 col-sm-4">
-
-<div class="fieldcontain">
-	
-<label for="regId" style="color:black">Shop ID :</label>
-	<input type="text" class="form-control" id="shopId" name="shopId" value="${result.uname.shopId}" placeholder="Shop Id" >
-								                            <span id="shopIdinfo" style="color:red;"></span>
-								
-							
-</div>
-
-
-</div>
-
-<div class="fieldcontain">
-	<label for="shopName" style="color:black">Shop Name :</label>
-			<input type="text" class="form-control" id="shopName" name="shopName" value="${result.data.shopName}" placeholder="Shop Name"  >
-	 <span id="shopNameinfo" style="color:red;"></span>
-							
-						
-</div>
-<div class="col-md-4 col-sm-4">
-
-<div class="fieldcontain">
-	
-<label for="firstName" style="color:black">First Name :</label>
-<input type="text" class="form-control" id="firstName" name="firstName" value="${result.data.firstName}" placeholder="First Name" >
-	   <span id="firstNameinfo" style="color:red;"></span>
-							
-</div>
-</div></div></div>
- <div class="form-group">
-  <div class="row">
-<div class="col-md-4 col-sm-4">
-
-
-<div class="fieldcontain">	
-<label for="lastName" style="color:black">Last Name :</label>
-<input type="text" class="form-control" id="lastName" name="lastName" value="${result.data.lastName}" placeholder="Last Name" >
-	   <span id="lastNameinfo" style="color:red;"></span>
-							
-</div>
-
-</div>
-
-<div class="fieldcontain">
-<label for="email" style="color:black">Email ID :</label>
-<input type="text" class="form-control" id="email" name="email" value="${result.data.email}" placeholder="Email ID" read only >
-															                            <span id="emailinfo" style="color:red;"></span>
-		
-	
-</div>
-  
-<div class="col-md-4 col-sm-4">
-
-
-<div class="fieldcontain">	
-
-
-<label for="mobileNumber" style="color:black">Mobile Number :</label>
-<input type="text" class="form-control" id="mobileNumber" name="mobileNumber" value="${result.data.mobileNumber}"  placeholder="Mobile Number" >
-		    <span id="mobileNumberinfo" style="color:red;"></span>
-							
-</div>
-
-</div>
-
-</div>
-</div>
-
-
- <div class="form-group">
-  <div class="row">
-  
-<div class="col-md-4 col-sm-4">
-
-
-<div class="fieldcontain">
-
-<label for="address" style="color:black">Address :</label>
-<input type="text" class="form-control" id="address" name="address" value="${result.data.address}" placeholder="Address" >
-	  <span id="addressinfo" style="color:red;"></span>
-							
-	
-</div>
-
-</div>
-
-<div class="fieldcontain">
-<label for="city" style="color:black">City :</label>
-<input type="text" class="form-control" id="city" name="city" value="${result.data.city}" placeholder="City" >
-		<span id="cityinfo" style="color:red;"></span>
-
-
-</div>
-
-<div class="col-md-4 col-sm-4">
-
-
-<div class="fieldcontain">	
-
-
-<label for="zipCode" style="color:black">ZipCode :</label>
-<input type="text" class="form-control" id="zipCode" name="zipCode" value="${result.data.zipCode}" pattern="[0-9]{6}" title="six digit zip code" placeholder="Zip Code">
-		 <span id="zipCodeinfo" style="color:red;"></span>
-							
-										
-</div>
-
-</div>
-</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-</div>
-</div>
-    
-    
-							
-							<input type="hidden" id="modifiedBy" name="modifiedBy" value="self">
-							<input type="hidden" id="myaction" name="myaction" value="save">
-						<input type="hidden" id="mode" name="mode" value="web">
-
-    
-    
-    
-
-<div class="form-group" style="padding-left:300px">
-
-<div class="col-md-6 text-center">
-<br>
-                            <button type="submit" class="btn btn-primary" onclick="return validateForm()">Update</button>
-
-</div>
-</div>
-    
-    					</g:form>
-    
+             	<div class="form-group">
+             		<div class="row">
+						<div class="col-md-4 col-sm-4">
+							<div class="fieldcontain">	
+								<label for="regId" style="color:black">Shop ID :</label>
+								<input type="text" class="form-control" id="shopId" name="shopId" value="${result.uname.shopId}" placeholder="Shop Id" readonly>
+								<span id="shopIdinfo" style="color:red;"></span>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-4">
+							<div class="fieldcontain">
+								<label for="shopName" style="color:black">Shop Name :</label>
+								<input type="text" class="form-control" id="shopName" name="shopName" value="${result.data.shopName}" placeholder="Shop Name" readonly>
+		 						<span id="shopNameinfo" style="color:red;"></span>					
+		 					</div>
+		 				</div>
+						<div class="col-md-4 col-sm-4">
+							<div class="fieldcontain">
+								<label for="firstName" style="color:black">First Name :</label>
+									<input type="text" class="form-control" id="firstName" name="firstName" value="${result.data.firstName}" placeholder="First Name" >
+	   								<span id="firstNameinfo" style="color:red;"></span>
+							</div>
+						</div>
 					</div>
+				</div>
+				<div class="form-group">
+  					<div class="row">
+						<div class="col-md-4 col-sm-4">
+							<div class="fieldcontain">	
+								<label for="lastName" style="color:black">Last Name :</label>
+								<input type="text" class="form-control" id="lastName" name="lastName" value="${result.data.lastName}" placeholder="Last Name" >
+	   							<span id="lastNameinfo" style="color:red;"></span>						
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-4">
+							<div class="fieldcontain">
+								<label for="email" style="color:black">Email ID :</label>
+								<input type="text" class="form-control" id="email" name="email" value="${result.data.email}" placeholder="Email ID" readonly >
+								<span id="emailinfo" style="color:red;"></span>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-4">
+							<div class="fieldcontain">
+								<label for="password" style="color:black">Password :</label>
+								<input type="password" id="password" name="password" value="${result.data.password}" class="form-control" readonly/>
+								 <span id="passwordinfo" style="color:red"></span>
+							 </div>
+						 </div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="row">
+					<div class="col-md-4 col-sm-4">
+							<div class="fieldcontain">	
+								<label for="mobileNumber" style="color:black">Mobile Number :</label>
+								<input type="text" class="form-control" id="mobileNumber" name="mobileNumber" value="${result.data.mobileNumber}"  placeholder="Mobile Number" readonly>
+		    					<span id="mobileNumberinfo" style="color:red;"></span>							
+							</div>
+						</div>
+  						<div class="col-md-4 col-sm-4">
+							<div class="fieldcontain">
+								<label for="address" style="color:black">Address :</label>
+								<input type="text" class="form-control" id="address" name="address" value="${result.data.address}" placeholder="Address" >
+	  							<span id="addressinfo" style="color:red;"></span>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-4">
+							<div class="fieldcontain">
+								<label for="street" style="color:black">Street :</label>
+								<input type="text" class="form-control" id="street" name="street" value="${result.data.street}" placeholder="Street" >
+								<span id="streetinfo" style="color:red;"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+  					<div class="row">
+  					<div class="col-md-4 col-sm-4">
+							<div class="fieldcontain">
+								<label for="city" style="color:black">City :</label>
+								<input type="text" class="form-control" id="city" name="city" value="${result.data.city}" placeholder="City" >
+								<span id="cityinfo" style="color:red;"></span>
+							</div>
+						</div>
+	  					<div class="col-md-4 col-sm-4">
+							<div class="fieldcontain">
+							<label for="state" style="color:black">State :</label>
+							<input type="text" class="form-control" id="state" name="state" value="${result.data.state}" placeholder="State" >
+								<span id="stateinfo" style="color:red;"></span>
+							<%--<select	name="state" required="true" id="state" class="form-control">
+							<option>${result.data.state}</option>
+							<option>Andhra Pradesh</option>
+							<option>Arunachal Pradesh</option>
+							<option>Assam</option>
+							<option>Bihar</option>
+							<option>Chhattisgarh</option>
+							<option>Goa</option>
+							<option>Gujarat</option>
+							<option>Haryana</option>
+							<option>Himachal Pradesh</option>
+							<option>Jammu and Kashmir</option>
+							<option>Jharkand</option>
+							<option>Karnataka</option>
+							<option>Kerala</option>
+							<option>Madhya Pradesh</option>
+							<option>Maharashtra</option>
+							<option>Manipur</option>
+							<option>Meghalaya</option>
+							<option>Mizoram</option>
+							<option>Nagaland</option>
+							<option>Odisha</option>
+							<option>Punjab</option>
+							<option>Rajasthan</option>
+							<option>Sikkim</option>
+							<option>Telangana</option>
+							<option>Tripura</option>
+							<option>Uttarakhand</option>
+							<option>Uttar Pradesh</option>
+							<option>West Bengal</option>
+							</select>
+							--%></div>
+						</div>
+  						<div class="col-md-4 col-sm-4">
+							<div class="fieldcontain">	
+								<label for="zipCode" style="color:black">ZipCode :</label>
+								<input type="text" class="form-control" id="zipCode" name="zipCode" value="${result.data.zipCode}" pattern="[0-9]{6}" title="six digit zip code" placeholder="Zip Code">
+		 						<span id="zipCodeinfo" style="color:red;"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>					
+	<input type="hidden" id="modifiedBy" name="modifiedBy" value="self">
+	<input type="hidden" id="myaction" name="myaction" value="save">
+	<input type="hidden" id="mode" name="mode" value="web">
+	<div class="form-group" style="padding-left:300px">
+		<div class="col-md-6 text-center"><br>
+			<button type="submit" class="btn btn-primary" onclick="return validateForm()">Update</button>
+		</div>
+	</div>
+    </g:form>
+</div>
 			
     
 

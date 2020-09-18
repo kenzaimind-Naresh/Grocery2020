@@ -334,16 +334,20 @@ def marketdata(){
 		url="/user/contact2.gsp"
 		def mode=params.mode
 		def merchant = Merchant.getAll()
-		/*def shopName = params.shopName
+		log.info(merchant)
+		def city = params.city
+		log.info(city)
+		def shopName = params.shopName
 		log.info(shopName)
-		//session.setAttribute("merchantName", merchantshopName)
-		def data =Merchant.findAllByShopName(shopName)
-		log.info(data)*/
+		//session.setAttribute("merchantName", shopName)
+		def data =Merchant.findByCityAndShopName(city,shopName)
+		log.info(data)
 		
 		def user= User.findByUserName(session.user)
 		log.info(user)
 		
-		responseData.put("merchant", merchant)
+		responseData.put("merchant",merchant)
+		responseData.put("data",data)
 		responseData.put("uname",user)
 		
 		[result:responseData]

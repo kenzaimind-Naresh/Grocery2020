@@ -44,12 +44,7 @@ window.onhashchange = function (event) {
 <body>
 <g:render template="/user/userheader2"/>
 	
-     <br><br><br>
-
-     
-
-
-
+     <br><br><br><br><br>
  <div class="row">
                 <div class="col-lg-12">
                     <div   style="color:black;font-size:20px; padding-left:550px">${result.message}</div>

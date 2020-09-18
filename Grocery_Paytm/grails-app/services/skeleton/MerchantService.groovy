@@ -47,6 +47,50 @@ class MerchantService {
 		}
 	}
 	
+	def update(firstName,lastName,email,password,mobileNumber,address,city,street,state,zipCode,modifiedBy){
+		log.info("MerchantService saveupdate")
+		def resultData=new HashMap<>()
+		String []args=["Merchant"]
+		try{
+			def merchantInstance=Merchant.findByEmail(email)
+			if(merchantInstance) {
+				log.info("instance")
+				
+				merchantInstance.firstName=firstName
+				merchantInstance.lastName=lastName
+				merchantInstance.email=email
+				merchantInstance.password=password
+				merchantInstance.mobileNumber=mobileNumber
+				merchantInstance.address=address
+				merchantInstance.city=city
+				merchantInstance.street=street
+				merchantInstance.state=state
+				merchantInstance.zipCode=zipCode
+				merchantInstance.modifiedBy=modifiedBy
+				
+				log.info(merchantInstance.save(failOnError: true))
+				def sts=save(merchantInstance)
+				
+				if(sts){
+					resultData.put(getMessage("default.status.label"),getMessage("default.success.message"))
+					resultData.put(getMessage("default.message.label"),getMessage("default.update.successmessage",args))
+				}
+				else{
+					resultData.put(getMessage("default.status.label"),getMessage("default.error.message"))
+					resultData.put(getMessage("default.message.label"),getMessage("default.update.errormessage",args))
+				}
+			}
+			else {
+				resultData.put(getMessage("default.status.label"),getMessage("default.error.message"))
+				resultData.put(getMessage("default.message.label"),getMessage("default.object.notfound",args))
+			}
+			return resultData
+		}
+		catch(Exception e) {
+			log.info("MerchantService saveupdate Exception")
+		}
+	 }
+	
 	def validateCode(email,otpActivation){
 		log.info("MerchantService validateCode service ")
 		def resultData=new HashMap<>()

@@ -48,7 +48,7 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item "><a class="nav-link" href="/Skeleton/user/marketdata">Home</a></li>
+							<li class="nav-item "><a class="nav-link" href="/Skeleton/user/userdashboard">Home</a></li>
 							<li class="nav-item submenu dropdown">
 								<a href="/Skeleton/user/marketdata" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Shop</a>
@@ -98,66 +98,85 @@
 
      
 <!-- Content Header (Page header) -->
-<section class="content-header">
-<h3>
-<p style="padding-left:450px;font-family: Calibri">Edit User</p>
-</h3>
-</section>
-            
-            
+ 
+  <div class="content-heading" style="padding-left:50px;">
+	<h3 style="padding-left:380px;font-family: Calibri">User Profile </h3><br>
+<g:form class="form-horizontal" role="form" controller="User" Id="myform" name="myform" action="saveupdate"  nonvalidate="nonvalidate">    
 	<div class="container">
 <div class="row">
-<div class=" col-sm-6 col-md-8 col-md-offset-2 signin-pdtop">
-<g:form class="form-horizontal" role="form" controller="User" Id="myform" name="myform" action="saveupdate"  nonvalidate="nonvalidate">
 
-<div class="form-group">
+<div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 signin-pdtop">
+       	<div class="form-group">
+       		<div class="row">
 <div class="col-md-4 col-sm-4">
-
+	<div class="fieldcontain">
+	<label for="userName" style="color:black">First Name :</label>
+<input type="text" id="firstName" name="firstName" value="${result.user.firstName}" class="form-control" required/>
+<span id="firstNameinfo" style="color:red"></span>
+	</div>
+</div>
+<div class="col-md-4 col-sm-4">
+	<div class="fieldcontain"> 
+		 <label for="lastName" style="color:black">Last Name :</label>
+<input type="text" id="lastName" name="lastName" value="${result.user.lastName}" class="form-control" required/>
+ <span id="lastNameinfo" style="color:red"></span>
+ </div>
+ </div>
+ </div>
+</div>
+<div class="form-group">
+<div class="row">
+ <div class="col-md-4 col-sm-4">
+<div class="fieldcontain">
 <label for="userName" style="color:black">User Name :</label>
 <input type="text" id="userName" name="userName" value="${result.user.userName}" class="form-control" required/>
  <span id="userNameinfo" style="color:red"></span>
-
-<label for="password" style="color:black">Password :</label>
-<input type="password" id="password" name="password" value="${result.user.password}" class="form-control" required/>
- <span id="passwordinfo" style="color:red"></span>
 </div>
 </div>
 
 
-<div class="form-group">
 <div class="col-md-4 col-sm-4">
-
+<div class="fieldcontain">
+<label for="password" style="color:black">Password :</label>
+<input type="password" id="password" name="password" value="${result.user.password}" class="form-control" readonly/>
+ <span id="passwordinfo" style="color:red"></span>
+ </div>
+ </div>
+</div>
+</div>
+<div class="form-group">
+<div class="row">
+<div class="col-md-4 col-sm-4">
+<div class="fieldcontain">
 <label for="email" style="color:black">Email :</label>
-<input type="text" id="email" name="email" value="${result.user.email}" class="form-control" required/>
+<input type="text" id="email" name="email" value="${result.user.email}" class="form-control" readonly/>
  <span id="emailinfo" style="color:red"></span>
 </div>
-
+</div>
 
 <div class="col-md-4 col-sm-4">
-
+<div class="fieldcontain">
 <label for="mobileNumber" style="color:black">MobileNumber :</label>
-<input type="text" id="mobileNumber" name="mobileNumber" value="${result.user.mobileNumber}" class="form-control" required />
+<input type="text" id="mobileNumber" name="mobileNumber" value="${result.user.mobileNumber}" class="form-control" readonly />
  <span id="mobileNumberinfo" style="color:red"></span>
-</div></div>
-
+</div>
+</div>
+</div>
+</div>
 
 <input type="hidden" id="modifiedBy" name="modifiedBy" value="self"/>
 <input type="hidden" id="mode" name="mode" value="web"/>
 <input type="hidden" id="myaction" name="myaction" value="save"/>
  <div class="form-group">
-                        <div class="col-sm-12">
-                            <button type="submit" class="btn btn-primary" id="myform" name="myform" onclick="return validateForm()">
-                                Create</button>
-                        </div>
-                        
-                    </div>
-                    </g:form>
+<div class="col-sm-12" style="padding-left:270px">
+    <button type="submit" class="btn btn-primary" id="myform" name="myform" onclick="return validateForm()">Update</button>
+     </div>
+     </div>
+</div>
+</div></div>
+ </g:form>
                     
 </div>
-</div>
-
-</div>
-
 
 
 </body>

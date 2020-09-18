@@ -1,7 +1,7 @@
+
+<!DOCTYPE html>
 <html>
 <head>
-<title>Change Password</title>
-
 
 
 
@@ -22,39 +22,73 @@
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   <link rel="stylesheet" href="/resources/demos/style.css">     
+  
 
 
+
+
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script type='text/javascript' src="js/jquery.mycart/jquery.mycart.js"></script>
+
+
+<script>
+history.pushState({ page: 1 }, "Title 1", "#no-back");
+window.onhashchange = function (event) {
+  window.location.hash = "no-back";
+};
+</script>
 
 
 </head>
-<body>.
-
- <g:render template="/merchant/merchantheader1"/>
-     <br><br><br>
-     
-        
-        <div class="container signin">
-       <div class="row">
+<body>
+<g:render template="/merchant/merchantheader1"/>
+	
+     <br><br><br><br><br>
+ <div class="row">
                 <div class="col-lg-12">
-                    <!-- Form Elements -->
-                    <br><br><br><br><br><br>
-                    
-                    <div class="page-header"  style="padding-left:250px;color:black;font-size:20px">${result.message}</div>
-                    
-                    
+                    <div   style="color:black;font-size:20px; padding-left:550px">${result.message}</div>
                 </div>
                 </div>
-                </div>
-                
-                
-<div align="center">
-<p style="color:black;font-Size: 20px;font-family: Calibri">${flash.message}</p>
-<br>
-    </div>
+               
 
-    
+
+
+
+
+ <style>
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color:black;
+   color: white;
+   text-align: center;
+}
+
+a {
+  color: white;
+}
+a:hover {
+  color: white;
+}
+
+
+</style>
+
+
+<div class="footer">
+<div align="center">
+<p>Copyright  <a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a> All rights reserved.</p> 
+<p>
+</div>
+</div>
+ 
+
+     
+		
+			
+
 </body>
 </html>
-
-
-

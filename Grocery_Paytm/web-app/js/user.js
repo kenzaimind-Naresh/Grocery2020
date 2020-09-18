@@ -37,8 +37,9 @@
 	 	
 	 $("#mobileNumber").focusout(function(){
 	   		$( this ).find( "span" ).css( "display", "inline" );	
+	   		//alert("test");
 	   		
-	   	 if ( $("#mobileNumber").val().trim().match(/^\d{0,10}$/) && $("#mobileNumber").val().trim()!="") {
+	   	 if ( $("#mobileNumber").val().trim().match(/^\d{10}$/) && $("#mobileNumber").val().trim()!="") {
 		   	 
 	   		$("#mobileNumberinfo").text("");
 	     } else {
@@ -77,9 +78,9 @@
 	    }
 	    
 	    
-	     if (mobileNumber == null || mobileNumber.trim() == "" || mobileNumber.match(/^\d{0,10}$/)==null) {
+	     if (mobileNumber == null || mobileNumber.trim() == "" || mobileNumber.match(/^\d{10}$/)==null) {
 	    	document.getElementById('mobileNumberinfo').style.display = 'inline';
-	    	 $("#mobileNumberinfo").text("Please Enter MobileNumber");
+	    	 $("#mobileNumberinfo").text("Please Enter Mobile Number");
 	    	 return false;
 	    }
 	   

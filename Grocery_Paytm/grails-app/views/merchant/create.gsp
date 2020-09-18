@@ -90,17 +90,13 @@ i:hover {
 }
 		
 		</style>
-		
+	
 	</head>
 	<body>
 	<g:render template="/merchant/merchantheader"/>
 	
-	
 	<br><br><br><br>
-	
-	
-		
-		
+
 		<div id="create-merchant" class="content scaffold-create" role="main">
 		<div class="container" style="padding-left:220px" >
 			<g:if test="${flash.message}">
@@ -190,7 +186,7 @@ i:hover {
 
 <div class="fieldcontain ${hasErrors(bean: merchantInstance, field: 'password', 'error')} required">
     <div class="form-label-group input-group">
-      <input type="password" id="password" class="form-control" name="password" placeholder="Password"  title="Password must have minimum 6 characters" required>
+      <input type="password" id="password" class="form-control" name="password" placeholder="Password" pattern="[0-9]{6,}" title="Password must have atleast 6 digits" required>
       <div class="input-group-append">
         <span class="input-group-text">
           <i id="eye" class="far fa-eye-slash"></i>

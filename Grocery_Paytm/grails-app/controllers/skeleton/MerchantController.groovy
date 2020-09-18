@@ -358,38 +358,94 @@ class MerchantController {
 	}
 
 */
-		def saveupdate(Merchant merchantInstance) {
-			log.info("MerchantController saveupdate Action")
-			if (merchantInstance == null) {
-				notFound()
-				return
-			}
+	def saveupdate() {
+		log.info("MerchantController saveupdate Action")
+		def responseData = new HashMap<>()
+	def result,url
+	def mode=params.mode
+	log.info(mode)
+	/*def shopId=params.shopId
+	log.info(shopId)
+	def shopName=params.shopName
+	log.info(shopName)*/
+	def firstName=params.firstName
+	log.info(firstName)
+	def lastName=params.lastName
+	log.info(lastName)
+	def email=params.email
+	log.info(email)
+	def password=params.password
+	log.info(password)
+	def mobileNumber=params.mobileNumber
+	log.info(mobileNumber)
+	def address=params.address
+	log.info(address)
+	def city=params.city
+	log.info(city)
+	def street=params.street
+	log.info(street)
+	def state=params.state
+	log.info(state)
+	def zipCode=params.zipCode
+	log.info(zipCode)
 	
-		/*	if (merchantInstance.hasErrors()) {
-				respond merchantInstance.errors, view:'updateprofile'
-				return
-			}
+	def modifiedBy=params.modifiedBy
+	log.info(modifiedBy)
 	
-	*/
-			
-			/*
-			def uploadedFile = request.getFile('image')
-			merchantInstance.image = uploadedFile.getBytes() //converting the file to bytes
-			merchantInstance.name = uploadedFile.originalFilename //getting the file name from the uploaded file
-			merchantInstance.type = uploadedFile.contentType//getting and storing the file type
-			
-			def uploaded = request.getFile('qrcode')
-			merchantInstance.qrcode = uploaded.getBytes() //converting the file to bytes
-			merchantInstance.name1 = uploaded.originalFilename //getting the file name from the uploaded file
-			merchantInstance.type1 = uploaded.contentType//getting and storing the file type
-			
-			*/
-			
-			merchantInstance.save flush:true
-			redirect(uri: "/merchant/updateprofile")
-			flash.message = "Profile Updated Successfully"
-			
-	 
+	if(mode == "mobile"){
+		
+		if( ! (isValid(firstName)&&isValid(lastName)&&isValid(email)&&isValid(password)
+			&&isValid(mobileNumber)&&isValid(address)&&isValid(city)&&isValid(street)&&isValid(state)&&isValid(zipCode)&&isValid(modifiedBy))){
+	responseData.put(getMessages('default.status.label'),getMessages('default.error.message'))
+	responseData.put(getMessages('default.message.label'),getMessages('default.params.missing'))
+	renderPage(mode, url, responseData)
+	return
+}
+else {
+	result=MerchantService.update(firstName,lastName,email,password,mobileNumber,address,city,street,state,zipCode,modifiedBy)
+	url="/merchant/updateprofile.gsp"
+	responseData.put("uname",Merchant.findByEmail(email).firstName)
+	responseData.put("message", "Your Profile Updated Successfully")
+	responseData.put(getMessages("default.status.label"),"200")
+	
+}
+render responseData as JSON
+return
+	}
+	
+if(mode=="web")	{
+	def user= Merchant.findByEmail(session.user)
+	def username= session.user
+	if(username ==null || username=="" ){
+	 redirect(uri: "/merchant/login")
+	 return
+	}
+	
+	
+		if( ! (isValid(firstName)&&isValid(lastName)&&isValid(email)&&isValid(password)
+			&&isValid(mobileNumber)&&isValid(address)&&isValid(city)&&isValid(street)&&isValid(state)&&isValid(zipCode)&&isValid(modifiedBy))){
+				redirect(uri: "/merchant/ldashboard")
+		return
+	}
+		if( ! (isValid(firstName)&&isValid(lastName)&&isValid(email)&&isValid(password)
+			&&isValid(mobileNumber)&&isValid(address)&&isValid(city)&&isValid(street)&&isValid(state)&&isValid(zipCode)&&isValid(modifiedBy))){
+		responseData.put(getMessages('default.status.label'),getMessages('default.error.message'))
+		responseData.put(getMessages('default.message.label'),getMessages('default.params.missing'))
+		renderPage(mode, url, responseData)
+		return
+	}
+	else {
+	result=MerchantService.update(firstName,lastName,email,password,mobileNumber,address,city,street,state,zipCode,modifiedBy)
+	url="/merchant/updateprofile.gsp"
+		responseData.put("uname",user)
+		responseData.put("message", "Your Profile Updated Successfully")
+		responseData.put(getMessages("default.status.label"),"200")
+		
+	}
+
+[result:responseData]
+}
+	
 			
 		}
 		
@@ -559,7 +615,7 @@ class MerchantController {
 			responseData.put("uname",user)
 		}
 		 }
-		
+		 responseData.put("uname",user)
 		 [result:responseData]
 	   }
 		}
@@ -758,7 +814,7 @@ class MerchantController {
 				for(int i=0;i<emp.size();i++){
 					user2.add(emp[i].city)
 				}		
-	def emp1=Merchant.findAllByShopName(shopName)
+	def emp1=Merchant.findAllByCityAndShopName(city,shopName)
 				def msg1;
 				if(emp1==null || emp1==[]){
 					msg1="Data Not Found"
@@ -780,7 +836,7 @@ class MerchantController {
 				data.put("emp1",emp1)
 				data.put("uname",user)
 				data.put("merchant",merchant)
-				data.put("shopName",Merchant.list().unique{ it.shopName})
+				data.put("shopName",Merchant.findAllByCity(city).shopName)
 				[result:data]
 		
 	}
@@ -954,7 +1010,7 @@ class MerchantController {
 			}
 		
 	    def ldashboard ={
-		log.info("MerchantController Iadashboard Action")
+		log.info("MerchantController ldashboard Action")
 		
 		Cookie cookie=null
 		Cookie[] cookies = null;
