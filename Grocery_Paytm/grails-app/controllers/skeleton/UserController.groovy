@@ -142,7 +142,7 @@ def marketdata(){
 	def result,url
 	url="/user/marketdata.gsp"
 	def mode=params.mode
-	
+	session.setAttribute("merchantName","");
 	
 	/*if(username ==null || username=="" ){
 	 redirect uri: ("/user/userlogin1")
@@ -338,29 +338,9 @@ def marketdata(){
 		def city = params.city
 		log.info(city)
 		def merchantshopName=null;
+		def username=null;
 		
-	Cookie cookie=null
-	Cookie[] cookies = null;
-	def username
-	cookies=request.getCookies();
-	log.info(cookies)
-	if(!cookies.toString().equals("null")){
-	for (int i = 0; i < cookies.length; i++) {
-		cookie = cookies[i];
-		if(cookie.getName().equals("merchantName")){
-			if(!(cookie.getValue().equals("null") ||cookie.getValue().equals("")))
-			if(merchantshopName==null){
-			merchantshopName=cookie.getValue()
-			log.info("in cookie   " +merchantshopName)
-			}
-		}
-		if(cookie.getName().equals("userKey")){
-			if(!(cookie.getValue().equals("null") ||cookie.getValue().equals("")))
-			username=cookie.getValue()
-		}
-		
-	 }
-	}
+
 	log.info("merchantshopName "+merchantshopName)
 	if(merchantshopName=="null" || merchantshopName==null || merchantshopName==""){
 	merchantshopName= session.getAttribute("merchantName");
@@ -368,7 +348,7 @@ def marketdata(){
 	 	if(username ==null || username=="" ){
 	 username= session.user
 	 }
-	
+	log.info("merchantshopName from session "+merchantshopName)
 		//session.setAttribute("merchantName", shopName)
 		def data =Merchant.findByShopName(merchantshopName)
 		log.info(data)
