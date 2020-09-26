@@ -1,0 +1,306 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<!-- InstanceBegin template="/Templates/tourmedimasterpage.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <meta name="Description" content="Loving Care, Medical Treatement, Healthcare Treatment">
+    <meta name="Keywords" content="Medical Treatement, Healthcare Treatment">
+    <title>Provider Search</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/jquery.smartmenus.bootstrap.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+
+    <script type="text/javascript"> 
+<!--
+    (function () {
+        if ("-ms-user-select" in document.documentElement.style && navigator.userAgent.match(/IEMobile\/10\.0/)) {
+            var msViewportStyle = document.createElement("style");
+            msViewportStyle.appendChild(
+    document.createTextNode("@-ms-viewport{width:auto!important}")
+);
+            document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
+        }
+    })();
+    //--> 
+    </script>
+
+</head>
+<body>
+    <div class="header">
+        <div class="topbar">
+            <div class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbar">
+                <div class="container">
+                    <div class="pull-right">
+                        <ul class="loginbar pull-right">
+                            <li><a href="index.html">Home</a></li>
+                            <li class="topbar-devider"></li>
+                            <li><a href="doctordashboard.html">Dashboard</a></li>
+
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="navbar-header dash">
+                        <a class="navbar-brand" href="index.html">
+                            <img src="img/provider-logo.png" class="tm-logo" /></a>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown pull-right">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false"><span class="username-md">Ashok Kumar Goyal</span> <i class="fa fa-user"></i>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li><span class="username-sm">Ashok Kumar Goyal</span></li>
+                                    <li class="divider"></li>
+                                    <li><a href="updatedoctor.html"><i class="fa fa-user fa-fw"></i>User Profile</a></li>
+                                    <li><a href="changePass2.html"><i class="fa fa-lock fa-fw"></i>Change Password</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="index.html"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- body -->
+
+
+    <div class="container signin-pdtop">
+
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="linkbar nav-justified">
+                    <li><a href="doctordashboard.html"><i class="fa fa-tachometer"></i></a></li>
+                    <li><a href="appointmentschedule.html"><span>Appointment Schedule</span></a></li>
+                    <li><a href="bookedappointment.html"><span>Booked Appointments</span></a></li>
+                    <li><a href="activationpage.html"><span>Activation</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-9 col-sm-6 col-md-4">
+                <h3>Doctor Update</h3>
+            </div>
+            <div class="col-xs-3 col-sm-6 col-md-8">
+                <i class="fa fa-refresh pull-right dashicon"></i>
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+
+                    <form action="/ProviderSearch/doctor/saveupdate" method="post" id="myform" name="myform" nonvalidate="nonvalidate" class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6">
+                                <label>Registration Id:</label>
+                                <input type="text" id="Text1" name="regId" value="3265" class="form-control">
+                                <span id="Span3"></span>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6">
+                                <label>Clinic Name:</label>
+                                <input type="text" id="Text2" name="clinicName" value="Goyal Hospital and Heart Centre" class="form-control">
+                                <span id="Span4"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6">
+                                <label>Speciality:</label>
+                                <input type="text" id="Text3" name="speciality" value="Dental" class="form-control">
+                                <span id="Span5"></span>
+                            </div>
+
+
+                            <div class="col-md-6 col-sm-6">
+                                <label>Experience(Yrs):</label>
+                                <input type="text" id="Text4" name="experience" value="16" class="form-control">
+                                <span id="Span6"></span>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-md-6 col-sm-6">
+                                <label>First Name:</label>
+                                <input type="text" id="Text5" name="dFirstname" value="Ashok Kumar Goyal" class="form-control">
+                                <span id="Span7"></span>
+                            </div>
+
+
+                            <div class="col-md-6 col-sm-6">
+                                <label>Last Name:</label>
+                                <input type="text" id="Text6" name="dLastname" value="NA" class="form-control">
+                                <span id="Span8"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-md-6 col-sm-6">
+                                <label>Age:</label>
+                                <input type="text" id="Text7" name="dAge" value="30" class="form-control">
+                                <span id="Span9"></span>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <label>Gender:</label>
+                                <select name="dGender" id="Select1" class="form-control">
+                                    <option value="">--select--</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                                <span id="Span10"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6">
+                                <label>Mobile Number: </label>
+                                <input type="text" id="Text8" name="mobileNumber" value="9356200900" class="form-control">
+                                <span id="Span11"></span>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6">
+                                <label>Alternate Mobile:</label>
+                                <input type="text" id="Text9" name="alternateMobile" value="2218700" class="form-control">
+                                <span id="Span12"></span>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12">
+                                <label>Address:</label>
+                                <input type="text" id="Text11" name="address" value="Fauzi Chowk  Street No . -1Ajit RoadAjit Road" class="form-control">
+                                <span id="Span13"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Locality:</label>
+                                <input type="text" id="Text12" name="locality" value="Bathinda" class="form-control">
+                                <span id="Span14"></span>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>City:</label>
+                                <input type="text" id="Text13" name="city" value="Bathinda" class="form-control">
+                                <span id="Span15"></span>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <label>Pin Code:</label>
+                                <input type="text" id="Text14" name="pin" value="248001" class="form-control">
+                                <span id="Span16"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6">
+                                <label>Qualification:</label>
+                                <select name="qualifcation" id="Select2" class="form-control">
+                                    <option value="">--select--</option>
+                                    <option value="MD">Doctor of Medicine (MD)</option>
+                                    <option value="Dr.MuD">Doctor of Medicine (Dr.MuD)</option>
+                                    <option value="Dr.Med">Doctor of Medicine (Dr.Med)</option>
+                                    <option value="MBBS">Bachelor of Medicine, Bachelor of Surgery (MBBS)</option>
+                                    <option value="BMBS">Bachelor of Medicine, Bachelor of Surgery (BMBS)</option>
+                                    <option value="MBChB">Bachelor of Medicine, Bachelor of Surgery (MBChB)</option>
+                                    <option value="MBBCh">Bachelor of Medicine, Bachelor of Surgery (MBBCh)</option>
+                                </select>
+                                <span id="Span17"></span>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6">
+                                <label>Fee:</label>
+                                <input type="text" id="Text15" name="fee" value="500" class="form-control">
+                                <span id="Span18"></span>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6">
+                                <label>Lattitude:</label>
+                                <input type="text" id="lattitude" name="email" value="30.2147679" class="form-control">
+                                <span id="emailinfo"></span>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6">
+                                <label>Longitude:</label>
+                                <input type="text" id="longitude" name="password" value="74.9594115" class="form-control">
+                                <span id="passwordinfo"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12">
+                                <label>Certifications:</label>
+                                <input type="text" id="Text16" name="certifications" class="form-control">
+                                <span id="Span19"></span>
+                            </div>
+                        </div>
+
+                        <input type="hidden" id="Hidden1" name="blood_flag" value="0">
+                        <input type="hidden" id="Hidden2" name="v_flag" value="0">
+                        <input type="hidden" id="Hidden3" name="lattitude" value="NA">
+                        <input type="hidden" id="Hidden4" name="longitude" value="NA">
+                        <input type="hidden" id="Hidden5" name="choice" value="0">
+
+                        <input type="hidden" id="Hidden6" name="locUrl" value="NA">
+                        <input type="hidden" id="Hidden7" name="reference" value="NA">
+                        <input type="hidden" id="Hidden8" name="packName" value="Basic">
+                        <input type="hidden" id="Hidden9" name="status" value="1">
+                        <input type="hidden" id="Hidden10" name="modifiedBy" value="self">
+                        <input type="hidden" id="myaction" name="myaction" value="save">
+                        <input type="hidden" id="Hidden11" name="mode" value="web">
+
+                        <div class="form-group">
+                            <div class="col-sm-12 text-center">
+                                <button type="submit" class="btn btn-primary" onclick="return validateForm()">
+                                    Update</button>
+                            </div>
+                        </div>
+
+                    </form>   
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer site-footer">
+        <div class="container copy-foot">
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <ul>
+                        <li><a href="#">Terms and Conditions</a></li>
+                        <li class="foot-vert-line">|</li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <p>Copyright © 2017. Provider Search. All right reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/tm-script.js" type="text/javascript"></script>
+
+</body>
+</html>

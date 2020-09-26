@@ -1,0 +1,39 @@
+2020-09-26 20:59:03,705 [localhost-startStop-1] INFO  [localhost].[/ProviderSearch]  - Initializing Spring root WebApplicationContext
+2020-09-26 21:00:26,730 [localhost-startStop-1] INFO  hibernate4.HibernatePluginSupport  - Set db generation strategy to 'update' for datasource DEFAULT
+2020-09-26 21:00:31,264 [localhost-startStop-1] INFO  cache.CacheBeanPostProcessor  - postProcessBeanDefinitionRegistry start
+2020-09-26 21:00:31,279 [localhost-startStop-1] INFO  cache.CacheBeanPostProcessor  - postProcessBeanFactory
+2020-09-26 21:00:44,102 [localhost-startStop-1] WARN  util.GrailsUtil  - [WARNING] Property [userId] of domain class hospitalmgnt.User has type [int] and doesn't support constraint [maxSize]. This constraint will not be checked during validation.
+2020-09-26 21:00:44,102 [localhost-startStop-1] WARN  util.GrailsUtil  - [WARNING] Property [userId] of domain class hospitalmgnt.User has type [int] and doesn't support constraint [nullable]. This constraint will not be checked during validation.
+2020-09-26 21:00:44,282 [localhost-startStop-1] WARN  util.GrailsUtil  - [WARNING] Property [drugId] of domain class hospitalmgnt.Drugs has type [int] and doesn't support constraint [maxSize]. This constraint will not be checked during validation.
+2020-09-26 21:00:44,282 [localhost-startStop-1] WARN  util.GrailsUtil  - [WARNING] Property [drugId] of domain class hospitalmgnt.Drugs has type [int] and doesn't support constraint [nullable]. This constraint will not be checked during validation.
+2020-09-26 21:00:44,317 [localhost-startStop-1] WARN  util.GrailsUtil  - [WARNING] Property [pId] of domain class hospitalmgnt.Package has type [int] and doesn't support constraint [maxSize]. This constraint will not be checked during validation.
+2020-09-26 21:00:44,317 [localhost-startStop-1] WARN  util.GrailsUtil  - [WARNING] Property [pId] of domain class hospitalmgnt.Package has type [int] and doesn't support constraint [nullable]. This constraint will not be checked during validation.
+2020-09-26 21:00:44,339 [localhost-startStop-1] WARN  util.GrailsUtil  - [WARNING] Property [dId] of domain class hospitalmgnt.DoctorSchedule has type [int] and doesn't support constraint [maxSize]. This constraint will not be checked during validation.
+2020-09-26 21:00:44,344 [localhost-startStop-1] WARN  util.GrailsUtil  - [WARNING] Property [dId] of domain class hospitalmgnt.DoctorSchedule has type [int] and doesn't support constraint [nullable]. This constraint will not be checked during validation.
+2020-09-26 21:00:44,354 [localhost-startStop-1] WARN  util.GrailsUtil  - [WARNING] Property [doctorId] of domain class hospitalmgnt.Doctor has type [int] and doesn't support constraint [maxSize]. This constraint will not be checked during validation.
+2020-09-26 21:00:44,354 [localhost-startStop-1] WARN  util.GrailsUtil  - [WARNING] Property [doctorId] of domain class hospitalmgnt.Doctor has type [int] and doesn't support constraint [nullable]. This constraint will not be checked during validation.
+2020-09-26 21:00:45,413 [localhost-startStop-1] WARN  config.ConfigurationFactory  - No configuration found. Configuring ehcache from ehcache-failsafe.xml  found in the classpath: jar:file:/C:/Users/SYS-25/.m2/repository/net/sf/ehcache/ehcache-core/2.4.8/ehcache-core-2.4.8.jar!/ehcache-failsafe.xml
+2020-09-26 21:01:21,138 [localhost-startStop-1] INFO  scaffolding.AbstractGrailsTemplateGenerator  - Scaffolding template generator set to use resource loader [org.codehaus.groovy.grails.commons.spring.GrailsWebApplicationContext@79e38dd9: startup date [Sat Sep 26 21:00:29 IST 2020]; parent: Root WebApplicationContext]
+2020-09-26 21:01:41,291 [localhost-startStop-1] INFO  databasemigration.MigrationRunner  - updateOnStart disabled for dataSource; not running migrations
+2020-09-26 21:01:41,575 [localhost-startStop-1] INFO  ScaffoldingGrailsPlugin  - configuring scaffolding...
+2020-09-26 21:01:41,592 [localhost-startStop-1] INFO  ScaffoldingGrailsPlugin  - done configuring scaffolding.
+2020-09-26 21:01:41,909 [localhost-startStop-1] WARN  util.GrailsUtil  - [WARNING] Property [doctorId] of domain class hospitalmgnt.Doctor has type [int] and doesn't support constraint [maxSize]. This constraint will not be checked during validation.
+2020-09-26 21:01:41,910 [localhost-startStop-1] WARN  util.GrailsUtil  - [WARNING] Property [doctorId] of domain class hospitalmgnt.Doctor has type [int] and doesn't support constraint [nullable]. This constraint will not be checked during validation.
+2020-09-26 21:01:41,922 [localhost-startStop-1] WARN  util.GrailsUtil  - [WARNING] Property [dId] of domain class hospitalmgnt.DoctorSchedule has type [int] and doesn't support constraint [maxSize]. This constraint will not be checked during validation.
+2020-09-26 21:01:41,922 [localhost-startStop-1] WARN  util.GrailsUtil  - [WARNING] Property [dId] of domain class hospitalmgnt.DoctorSchedule has type [int] and doesn't support constraint [nullable]. This constraint will not be checked during validation.
+2020-09-26 21:01:41,926 [localhost-startStop-1] WARN  util.GrailsUtil  - [WARNING] Property [drugId] of domain class hospitalmgnt.Drugs has type [int] and doesn't support constraint [maxSize]. This constraint will not be checked during validation.
+2020-09-26 21:01:41,926 [localhost-startStop-1] WARN  util.GrailsUtil  - [WARNING] Property [drugId] of domain class hospitalmgnt.Drugs has type [int] and doesn't support constraint [nullable]. This constraint will not be checked during validation.
+2020-09-26 21:01:41,930 [localhost-startStop-1] WARN  util.GrailsUtil  - [WARNING] Property [pId] of domain class hospitalmgnt.Package has type [int] and doesn't support constraint [maxSize]. This constraint will not be checked during validation.
+2020-09-26 21:01:41,932 [localhost-startStop-1] WARN  util.GrailsUtil  - [WARNING] Property [pId] of domain class hospitalmgnt.Package has type [int] and doesn't support constraint [nullable]. This constraint will not be checked during validation.
+2020-09-26 21:01:41,939 [localhost-startStop-1] WARN  util.GrailsUtil  - [WARNING] Property [userId] of domain class hospitalmgnt.User has type [int] and doesn't support constraint [maxSize]. This constraint will not be checked during validation.
+2020-09-26 21:01:41,940 [localhost-startStop-1] WARN  util.GrailsUtil  - [WARNING] Property [userId] of domain class hospitalmgnt.User has type [int] and doesn't support constraint [nullable]. This constraint will not be checked during validation.
+2020-09-26 21:01:41,943 [localhost-startStop-1] INFO  context.GrailsConfigUtils  - [GrailsContextLoader] Grails application loaded.
+2020-09-26 21:01:42,851 [localhost-startStop-1] INFO  [localhost].[/ProviderSearch]  - Initializing Spring FrameworkServlet 'grails'
+2020-09-26 21:01:43,480 [main] INFO  http11.Http11Protocol  - Starting ProtocolHandler ["http-bio-8080"]
+2020-09-26 21:02:50,117 [http-bio-8080-exec-7] INFO  [localhost].[/ProviderSearch]  - Initializing Spring FrameworkServlet 'gsp'
+2020-09-26 21:02:50,119 [http-bio-8080-exec-7] INFO  [localhost].[/ProviderSearch]  - GSP servlet initialized
+2020-09-26 21:02:59,035 [http-bio-8080-exec-7] INFO  hospitalmgnt.UserController  - UserController providerSearch Action
+2020-09-26 21:02:59,035 [http-bio-8080-exec-7] INFO  hospitalmgnt.UserController  - ****************
+2020-09-26 21:02:59,075 [http-bio-8080-exec-7] INFO  hospitalmgnt.UserController  - UserController provider_autofill method
+2020-09-26 21:03:11,976 [http-bio-8080-exec-7] INFO  hospitalmgnt.UserController  - ******************ddddd
+2020-09-26 21:03:14,203 [http-bio-8080-exec-7] INFO  hospitalmgnt.UserController  - {size=0, providerdata=[], solrdata=[]}

@@ -1,0 +1,290 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <meta name="Description" content="Loving Care, Medical Treatement, Healthcare Treatment">
+    <meta name="Keywords" content="Medical Treatement, Healthcare Treatment">
+    <title>Provider Search</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/jquery.smartmenus.bootstrap.css" rel="stylesheet">
+
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+
+    <script type="text/javascript"> 
+<!--
+    (function () {
+        if ("-ms-user-select" in document.documentElement.style && navigator.userAgent.match(/IEMobile\/10\.0/)) {
+            var msViewportStyle = document.createElement("style");
+            msViewportStyle.appendChild(
+    document.createTextNode("@-ms-viewport{width:auto!important}")
+);
+            document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
+        }
+    })();
+    //--> 
+    </script>
+
+    <script type="text/javascript">
+       
+    </script>
+</head>
+
+<body>
+
+
+    <div class="header">
+        <div class="topbar">
+            <div class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbar">
+                <div class="container">
+                    <div class="pull-right">
+                        <ul class="loginbar pull-right">
+                            <li><a href="index.html">Home</a></li>
+                            <li class="topbar-devider"></li>
+                            <li><a href="contactus.html">Contact Us</a></li>
+                            <li class="topbar-devider"></li>
+                            <li class="call">Call US: <span>+ 91 00000 00000</span></li>
+                            
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="index.html">
+                            <img src="img/provider-logo.png" class="tm-logo" /></a>
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="sr-only">Toggle navigation</span> <i class="fa fa-bars"></i></button>
+                    </div>
+                    <div class="navbar-collapse collapse navbar-right">
+                        <ul class="nav navbar-nav">
+
+                            <li><a href="index.html"><span>Home</span></a></li>
+                            <li><a href="doctorlogin.html"><span>Login</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- body -->
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 signin-pdtop">
+                <h3>Create Doctor</h3>
+
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6">
+                            <label>Registration Id:</label>
+                            <input type="text" id="Text1" name="regId" class="form-control">
+                            <span id="Span2"></span>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6">
+                            <label>Clinic Name:</label>
+                            <input type="text" id="clinicName" name="clinicName" class="form-control">
+                            <span id="dAgeinfo"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6">
+                            <label>Speciality:</label>
+                            <input type="text" id="speciality" name="speciality" class="form-control">
+                            <span id="specialityinfo"></span>
+                        </div>
+
+
+                        <div class="col-md-6 col-sm-6">
+                            <label>Experience(Yrs):</label>
+                            <input type="text" id="experience" name="experience" class="form-control">
+                            <span id="experienceinfo"></span>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-6 col-sm-6">
+                            <label>First Name:</label>
+                            <input type="text" id="dFirstname" name="dFirstname" class="form-control">
+                            <span id="dFirstnameinfo"></span>
+                        </div>
+
+
+                        <div class="col-md-6 col-sm-6">
+                            <label>Last Name:</label>
+                            <input type="text" id="dLastname" name="dLastname" class="form-control">
+                            <span id="dLastnameinfo"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-6 col-sm-6">
+                            <label>Age:</label>
+                            <input type="text" id="Text2" name="dAge" class="form-control">
+                            <span id="Span3"></span>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <label>Gender:</label>
+                            <select name="dGender" id="dGender" class="form-control">
+                                <option value="">--select--</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                            <span id="dGenderinfo"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6">
+                            <label>Mobile Number: </label>
+                            <input type="text" id="mobileNumber" name="mobileNumber" class="form-control">
+                            <span id="mobileNumberinfo"></span>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6">
+                            <label>Alternate Mobile:</label>
+                            <input type="text" id="alternateMobile" name="alternateMobile" class="form-control">
+                            <span id="alternateMobileinfo"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6">
+                            <label>Email:</label>
+                            <input type="text" id="email" name="email" class="form-control">
+                            <span id="emailinfo"></span>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6">
+                            <label>Password:</label>
+                            <input type="password" id="password" name="password" class="form-control">
+                            <span id="passwordinfo"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12">
+                            <label>Address:</label>
+                            <input type="text" id="address" name="address" class="form-control">
+                            <span id="addressinfo"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <label>Locality:</label>
+                            <input type="text" id="locality" name="locality" class="form-control">
+                            <span id="localityinfo"></span>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <label>City:</label>
+                            <input type="text" id="city" name="city" class="form-control">
+                            <span id="cityinfo"></span>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <label>Pin Code:</label>
+                            <input type="text" id="pin" name="pin" class="form-control">
+                            <span id="pininfo"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6">
+                            <label>Qualification:</label>
+                            <select name="qualifcation" id="qualifcation" class="form-control">
+                                <option value="">--select--</option>
+                                <option value="MD">Doctor of Medicine (MD)</option>
+                                <option value="Dr.MuD">Doctor of Medicine (Dr.MuD)</option>
+                                <option value="Dr.Med">Doctor of Medicine (Dr.Med)</option>
+                                <option value="MBBS">Bachelor of Medicine, Bachelor of Surgery (MBBS)</option>
+                                <option value="BMBS">Bachelor of Medicine, Bachelor of Surgery (BMBS)</option>
+                                <option value="MBChB">Bachelor of Medicine, Bachelor of Surgery (MBChB)</option>
+                                <option value="MBBCh">Bachelor of Medicine, Bachelor of Surgery (MBBCh)</option>
+                            </select>
+                            <span id="qualifcationinfo"></span>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6">
+                            <label>Fee:</label>
+                            <input type="text" id="fee" name="fee" class="form-control">
+                            <span id="feeinfo"></span>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12">
+                            <label>Certifications:</label>
+                            <input type="text" id="certifications" name="certifications" class="form-control">
+                            <span id="certificationsinfo"></span>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="blood_flag" name="blood_flag" value="0">
+                    <input type="hidden" id="v_flag" name="v_flag" value="0">
+                    <input type="hidden" id="lattitude" name="lattitude" value="NA">
+                    <input type="hidden" id="longitude" name="longitude" value="NA">
+                    <input type="hidden" id="choice" name="choice" value="0">
+
+                    <input type="hidden" id="locUrl" name="locUrl" value="NA">
+                    <input type="hidden" id="reference" name="reference" value="NA">
+                    <input type="hidden" id="packName" name="packName" value="Basic">
+                    <input type="hidden" id="status" name="status" value="1">
+                    <input type="hidden" id="modifiedBy" name="modifiedBy" value="self">
+                    <input type="hidden" id="myaction" name="myaction" value="save">
+                    <input type="hidden" id="mode" name="mode" value="web">
+
+                    <div class="form-group">
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" class="btn btn-primary" onclick="return validateForm()">
+                                Register</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <style>
+        label {
+            color: black;
+            padding: 15px 0 0 0;
+        }
+    </style>
+
+    <!-- footer -->
+    <div class="footer site-footer">
+        <div class="container copy-foot">
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <ul>
+
+                        <li><a href="#">Terms and Conditions</a></li>
+                        <li class="foot-vert-line">|</li>
+                        <li><a href="#">Privacy Policy</a></li>
+
+                    </ul>
+                </div>
+            
+                <div class="col-xs-12 col-md-6">
+                    <p>Copyright © 2017. Provider Search. All right reserved.</p>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <a href="#top" class="go-top"><i class="fa fa-chevron-up fa-1x"></i></a>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/tm-script.js" type="text/javascript"></script>
+</body>
+
+</html>
