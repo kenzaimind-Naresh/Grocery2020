@@ -744,7 +744,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		responseData.put("uname",user)
 		responseData.put("user1",user1)
 		responseData.put("data1",data1)
-		responseData.put(getMessages('default.message.label'),"Your Order Confirmed Successfully")
+		responseData.put(getMessages('default.message.label'),"Thank you. Your order has been received.")
 		
 		
 		log.info("************")

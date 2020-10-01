@@ -657,6 +657,13 @@ def marketdetails(){
 //	
 //	
 //	}
+
+def paytmTerms(){
+	
+}
+def paytmPolicies(){
+
+}
 	
 def updateuser(){
 	

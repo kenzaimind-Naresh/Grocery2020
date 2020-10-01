@@ -100,7 +100,7 @@
 <!-- Content Header (Page header) -->
  
   <div class="content-heading" style="padding-left:50px;">
-	<h3 style="padding-left:380px;font-family: Calibri">User Profile </h3><br>
+	<h3 style="padding-left:100px;font-family: Calibri">User Profile </h3><br>
 <g:form class="form-horizontal" role="form" controller="User" Id="myform" name="myform" action="saveupdate"  nonvalidate="nonvalidate">    
 	<div class="container">
 <div class="row">

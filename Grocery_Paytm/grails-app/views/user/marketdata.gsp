@@ -183,6 +183,11 @@ function getdata() {
 <a href="#" data-name="${it.groceryName}" data-price="${it.total}" data-quantity="${it.quantity}" data-weight="${it.weight}" class="add-to-cart btn btn-primary">Add to Cart</a>
       &nbsp;&nbsp;
     </g:if> 
+    <g:else>
+    <button class="btn btn-primary" style="font-size: 17px;" disabled="disabled">Out of Stock</button>
+      &nbsp;&nbsp;
+    
+    </g:else>
      
 </div>
 

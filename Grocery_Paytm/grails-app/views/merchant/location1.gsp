@@ -185,25 +185,30 @@ form.example::after {
 
 
 .modal-header {
-  background-color: #5cb85c;
+	padding: 20px 80px;
+  	background-color: #5cb85c;
+  	color: white;
 }
 
 .modal-body {
-padding: 2px 16px;
-
-
+	position: relative;
+	padding: 2px 20px;
 }
 
-
+.modal-footer {
+position: relative;
+  padding-right: 120px;
+  color: white;
+}
 
 .overlay {
   position: absolute;
-  top: 60px;
+  top: 80px;
   left: 0;
   width: 80%;
   height: 60%;
   background-color: white(0,0,0,0.88);
-    padding-left:350px;
+    padding-left:300px;
   
 }
 
@@ -213,71 +218,59 @@ padding: 2px 16px;
 </head>
 <body>
 
-    <!-- Start Header Area -->
+<!-- Start Header Area -->
 	<header class="header_area sticky-header">
 		<div class="main_menu">
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="/Skeleton/merchant/location1"><img src="/Skeleton/website/img/logo12.jpg" alt=""></a>
+					<a class="navbar-brand logo_h" href="/Skeleton/merchant/location1"><img src="/Skeleton/website/img/logo4.jpg" alt=""></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item"><a class="nav-link" >Home</a></li>
+							<li class="nav-item active"><a class="nav-link">Home</a></li>
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Shop</a>
-								
 							</li>
-								 
-											<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 							<g:if test="${result.uname ==null}">
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Sign in</a>
 								<ul class="dropdown-menu">
 									<li class="nav-item"><a class="nav-link" href="/Skeleton/merchant/login">Merchant Login</a></li>
-							 <li class="nav-item"><a class="nav-link" href="/Skeleton/user/userlogin1">User Login</a></li>
- 
-							</ul>
+							 		<li class="nav-item"><a class="nav-link" href="/Skeleton/user/userlogin1">User Login</a></li>
+ 								</ul>
 							</li>
 							</g:if>
 							<g:else>
 								<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="username-sm"></span>${result.uname.userName}<i class="fa fa-user" style="font-size:20px;"></i></a>
 								<ul class="dropdown-menu">
-								
-								<li><g:link controller="merchant" action="updateprofile" class="active"  style="color:	#DAA520;"><i class="fa fa-user"></i> Profile</g:link></li>
-								<li><g:link controller="merchant" action="changepass" class="active" style="color:	#DAA520;"><i class="fa fa-key"></i> ChangePassword</g:link></li>
-								<li><a href="/Skeleton/user/logout" style="color:	#DAA520;"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-
+									<li><g:link controller="merchant" action="updateprofile" class="active"  style="color:	#DAA520;"><i class="fa fa-user"></i> Profile</g:link></li>
+									<li><g:link controller="merchant" action="changepass" class="active" style="color:	#DAA520;"><i class="fa fa-key"></i> ChangePassword</g:link></li>
+									<li><a href="/Skeleton/user/logout" style="color:	#DAA520;"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 								</ul>
-							</li>
+								</li>
 							</g:else>
-							
-
 						</ul>
+						
 					</div>
 				</div>
-				
 			</nav>
-		</div>		
-							
-	
+		</div>
+		
 	</header>
 	<!-- End Header Area -->
-
-	<br><br><br><br><br>		
+	
+<br><br><br><br><br>		
 
 <!-- The Modal -->
 <div id="myModal"  class="overlay">
@@ -309,12 +302,29 @@ padding: 2px 16px;
  <br>
 </div>
 </div>
-    
-   
-   
-
 </div>
 
+<%--<div class="overlay bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal content -->
+<div class="modal-dialog modal-lg" role="document">
+	<div class="modal-content">
+    	<div class="modal-header"><br><br>
+    	<h3 class="modal-title" id="myModalLabel" style="color: white;">Welcome to Online Store<br>Book your Order by Area  Wise</h3>
+    		</div><br><br>
+    	<g:form class="example" ID="myform" action="searchlocation" controller="merchant" method="GET" nonvalidate="nonvalidate" style="width:500px">
+			<div class="modal-body">
+  				<div class="form-group">
+  					<input type="text" name="city" id="city" class="form-control"  placeholder="Enter Location.." onchange="getStreetdata()"> 
+        			<span id="cityinfo" style="color:red;"></span>
+       			</div><br>
+       		</div> <br>
+			<div class="modal-footer">
+				<button type="submit" value="submit" class="form-control" class="btn btn-primary" onclick="return validateForm()">Proceed</button><br>
+			</div><br>
+		</g:form>	
+	</div>
+</div>
+</div>--%>
 <script>
 // Get the modal
 var modal = document.getElementById("myModal");
@@ -364,13 +374,12 @@ a:hover {
 
 </style>
 
+<div class="footer ">
+<p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>  
+<a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a>All rights reserved </p>
+<p> <a href="/Skeleton/user/paytmTerms" target="_blank"><strong>Paytm</strong></a> Privacy Policies | Terms & Conditions </p>
+</div>
 
-<div class="footer">
-<div align="center">
-<p>Copyright  <a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a> All rights reserved.</p> 
-<p>
-</div>
-</div>
 	<script src="js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
 	<script src="/Skeleton/website/js/vendor/bootstrap.min.js"></script>

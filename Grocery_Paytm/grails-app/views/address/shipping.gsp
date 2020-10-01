@@ -117,59 +117,92 @@ th, td {
 <body>
 
 <g:render template="/user/userheader2"/>
-<br><br><br><br><br><br>
-<div class="container-fluid" style="padding-left:250px">
-<div class="col-lg-8">
-<div class="order_box">
-	<div  style="color:green;font-size:20px; padding-left:200px;font-weight: bold;">${result.message}</div>
-</div>
-</div>
-</div>
- <br><br>                                  
-
-<div class="container-fluid" style="padding-left:450px">
-
- <div class="col-lg-6">
-<h5 style="font-family: Calibri">Product Details </h5>
-
- <table class="table table-hover table-condensed ">
-      						<thead>
-      							<tr>
-      								<th>Grocery Name</th>
-      								<th>Quantity</th> 
-      								<th>Price</th>
-      							</tr>
-      						</thead>
-     						<tbody>
-     							<g:each in="${result.result.cartlist}" expr="true">
-    								<tr>
-      									<td style="font-size: 17px;color: black;"> ${it.gname.split("00")[0]}</td>
-      									<td style="font-size: 17px;color: black;"> ${it.gname.split("00")[1]}</td>
-        								<td style="font-size: 17px;color: black;">${it.tcount}</td>
-      								</tr>
-    							</g:each>
-    			    			<tr>
-    			    			<td style="font-size: 17px;color: brown;">Total</td>
-    			    			<td style="font-size: 17px;color: brown;">${result.result.tcount}</td>
-    			    			<td style="font-size: 17px;color: brown;">${result.result.totAmt}</td>
-    			    			</tr>
-    						</tbody>
-     					</table>
-     					
-</div>
-<br>
-<div class="row">
-    <div class="col-lg-6">
-<h5 style="font-family: Calibri">Shipping Address</h5>
-                   ${result.data.fullName}<br>
-                   ${result.data.houseNumber},<br>
-                   near ${result.data.landmark}, ${result.data.area}, <br>
-                   ${result.data.city}- ${result.data.pincode}<br>
-                   ${result.data.state}
-                   </div>
-                   </div>
-                   <br>
-</div>
+<br><br>
+<!--================Order Details Area =================-->
+	<section class="order_details section_gap">
+		<div class="container">
+			<h3 class="title_confirmation">${result.message}</h3>
+			<div class="row order_d_inner">
+				<%--<div class="col-lg-4">
+					<div class="details_item">
+						<h4>Order Info</h4>
+						<ul class="list">
+							<li><a href="#"><span>Order number</span> : 60235</a></li>
+							<li><a href="#"><span>Date</span> : Los Angeles</a></li>
+							<li><a href="#"><span>Total</span> : USD 2210</a></li>
+							<li><a href="#"><span>Payment method</span> : Check payments</a></li>
+						</ul>
+					</div>
+				</div>
+				--%><div class="col-lg-6">
+					<div class="details_item">
+						<h4>Billing Address</h4>
+						<ul class="list">
+							<li><a href="#"><span>Name</span> : ${result.data.fullName}</a></li>
+							<li><a href="#"><span>Street</span> : ${result.data.houseNumber}, near ${result.data.landmark}, ${result.data.area}</a></li>
+							<li><a href="#"><span>City</span> : ${result.data.city}</a></li>
+							<li><a href="#"><span>State</span> : ${result.data.state}</a></li>
+							<li><a href="#"><span>Postcode </span> : ${result.data.pincode}</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="details_item">
+						<h4>Shipping Address</h4>
+						<ul class="list">
+							<li><a href="#"><span>Name</span> : ${result.data.fullName}</a></li>
+							<li><a href="#"><span>Street</span> : ${result.data.houseNumber}, near ${result.data.landmark}, ${result.data.area}</a></li>
+							<li><a href="#"><span>City</span> : ${result.data.city}</a></li>
+							<li><a href="#"><span>State</span> : ${result.data.state}</a></li>
+							<li><a href="#"><span>Postcode </span> : ${result.data.pincode}</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="order_details_table">
+				<h2>Order Details</h2>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col"><strong>Grocery Name</strong></th>
+								<th scope="col"><strong>Quantity</strong></th>
+								<th scope="col"><strong>Total</strong></th>
+							</tr>
+						</thead>
+						<tbody>
+						<g:each in="${result.result.cartlist}" expr="true">
+							<tr>
+								<td>
+									<p>${it.gname.split("00")[0]}</p>
+								</td>
+								<td>
+									<h5>x ${it.gname.split("00")[1]}</h5>
+								</td>
+								<td>
+									<p>${it.tcount}</p>
+								</td>
+							</tr>
+						</g:each>
+							<tr>
+								<td>
+									<h4>Total</h4>
+								</td>
+								<td>
+									<h5>${result.result.tcount}</h5>
+								</td>
+								<td>
+									<p>${result.result.totAmt}</p>
+								</td>
+							</tr>
+							
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Order Details Area =================-->
 
 </body>
 </html>

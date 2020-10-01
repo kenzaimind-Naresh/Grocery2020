@@ -65,7 +65,7 @@ window.onhashchange = function (event) {
 						<h3>Login</h3>
 			<g:form class="form-horizontal" role="form" controller="Merchant" Id="myform" name="myform" action="authenticate"  nonvalidate="nonvalidate">
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="email" name="email" placeholder="Email Id">
+								<input type="text" class="form-control" id="email" name="email" placeholder="Email or Mobile">
 							</div>
 							<div class="col-md-12 form-group">
 								<input type="password" class="form-control" id="password" name="password" placeholder="Password">
@@ -105,14 +105,11 @@ a:hover {
 
 </style>
 
-
-<div class="footer">
-<div align="center">
-<p>Copyright  <a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a> All rights reserved.</p> 
-<p>
+<div class="footer ">
+<p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>  
+<a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a>All rights reserved </p>
+<p> <a href="/Skeleton/user/paytmTerms" target="_blank"><strong>Paytm</strong></a> Privacy Policies | Terms & Conditions </p>
 </div>
-</div>
- 
 	<!-- End footer Area -->
 
 

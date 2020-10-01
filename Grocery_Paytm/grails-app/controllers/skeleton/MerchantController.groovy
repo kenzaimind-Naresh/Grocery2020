@@ -11,6 +11,8 @@ import java.text.DateFormat
 import java.text.ParseException;
 import java.text.SimpleDateFormat
 import java.util.List;
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 
 @Transactional
 class MerchantController {
@@ -971,10 +973,23 @@ if(mode=="web")	{
 	
 	
 	def authenticate  = {
-		log.info("MerchantController authencate Action")
+		log.info("MerchantController authenticate Action")
 			log.info("#########")
-			def user = Merchant.findByEmailAndPassword(params.email,params.password)
-			log.info(user)
+			log.info("params:"+params.email)
+			String pattern = ".*[^0-9].*";
+			Pattern p = Pattern.compile(pattern);
+			Matcher m = p.matcher(params.email);
+			boolean b = Pattern.compile(pattern).matcher(params.email).matches();
+			log.info("reg test "+b);
+			def user
+			if(b){
+			user = Merchant.findByEmailAndPassword(params.email,params.password)
+			log.info("Merchant with email in if "+user)
+			}else{
+			user = Merchant.findByMobileNumberAndPassword(params.email,params.password)
+			log.info("Merchant with mobile number in else "+user)
+			}
+			
 			if(user){
 		   def username= user.email
 				log.info("merchant in   session"+username)
@@ -992,7 +1007,7 @@ if(mode=="web")	{
 				redirect(action:"ldashboard")
 			}else{
 			render text: """<script type="text/javascript">
-                    alert("Enter valid Email/Password");
+                    alert("Enter valid Email or Mobile/Password");
                     window.location.href = "/Skeleton/merchant/login";
 
 

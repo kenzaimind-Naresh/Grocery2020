@@ -182,7 +182,6 @@ form.example::after {
 <body>
 
 <g:render template="/user/userheader2"/>
-	<br><br><br><br><br>		
 
 <!-- start product Area -->
 		<!-- single product slide -->
@@ -209,11 +208,6 @@ form.example::after {
 									<h6>Offer:${fieldValue(bean: groceryInstance, field: "offer")}%</h6>
 									<h6>T.Amt:&#x20b9;${fieldValue(bean: groceryInstance, field: "total")}</h6>
 									<h6>Shop Name:${fieldValue(bean: groceryInstance, field: "merchantshopName")}</h6><br>	
-											
-<%--										<div class="row">--%>
-<%--								<a href="#" data-name="${fieldValue(bean: groceryInstance, field: "groceryName")}" data-price="${fieldValue(bean: groceryInstance, field: "total")}" class="add-to-cart btn btn-primary">Add to Cart</a>--%>
-<%--   							  				&nbsp;&nbsp;--%>
-<%--								  <g:link controller="grocery" class="show" action="show" resource="${groceryInstance}"><button type="submit"  class="btn btn-info">Details</button></g:link>--%>
 								</div>
 							</div>
 						</div>
@@ -268,71 +262,82 @@ form.example::after {
   </div>
 </div> 
 
+<!--================Order Details Area =================-->
+<g:form  role="form" controller="cart" Id="myform" name="myform" action="save">
+	<section class="order_details section_gap">
+		<div class="container">
+			<h2 class="title_confirmation">${result.message}</h2>
+			<div class="order_details_table">
+				<h2>Order Details</h2>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col"><h5>Grocery Name</h5></th>
+								<th scope="col"><h5>Qty X Price</h5></th>
+								<th scope="col"><h5>Total</h5></th>
+							</tr>
+						</thead>
+						<tbody>
+						<g:each in="${result.result.cartList}" expr="true">
+							<tr>
+								<td>
+									<h6>${it.gname.split("00")[0]}</h6>
+								</td>
+								<td>
+									<h6>${it.gname.split("00")[1]} X ${it.gprice}</h6>
+								</td>
+								<td>
+									<h6>${it.tcount}</h6>
+								</td>
+							</tr>
+						</g:each>
+							<tr>
+								<td>
+									<h4 style="color: brown;">Grand Total</h4>
+								</td>
+								<td>
+									<h5></h5>
+								</td>
+								<td>
+									<h4 style="color: brown;">${result.result.totAmt}</h4>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div><br>
+				<g:link controller="user" action="marketdata"><button type="button"  class="primary-btn">Add More</button></g:link>
+				<input type="submit" ID="btnsave" onclick="orderCheck()" value="Order now" class="primary-btn"/>
+			</div>
+		</div>
+	</section>
+<input type="hidden" name="gname" id="gname"/>
+<input type="hidden" name="gprice" id="gprice"/>
+<input type="hidden" name="tcount" id="tcount"/>
+<input type="hidden" name="tamount" id="tamount"/>
+<input type="hidden"  name="qCount" id="qCount"/>
 
- <div class="container signin">
-       <div class="row">
-            <div class="col-xs-9 col-sm-6 col-md-4">
-                <h2 style="font-size: 20px;color: black;">Product List <b style="font-size:18px; color:black;"></h4>
-            </div>
-            
-        </div> <br>
-  <div class="row">
-            <div class="col-lg-6">
-                <div class="panel panel-default">
- <div class="table-responsive">
-<table class="table table-hover table-condensed table-striped">
-      		<thead>
-      			<tr>
-      	
-      				<th>Grocery Name</th>  
-      				<th>QtyXPrice</th> 
-      				<th>Total</th>
- 
-      			</tr>
-      		</thead>
-     		<tbody>
-     			<g:each in="${result.result.cartList}" expr="true">
-    			<tr>
-      				<td style="font-size: 15px;color: black;"> ${it.gname.split("00")[0]}</td>
-      				<td style="font-size: 15px;color: black;"> ${it.gname.split("00")[1]} X ${it.gprice}</td>
-        			<td style="font-size: 15px;color: black;">${it.tcount}</td>
-      			</tr>
-    			</g:each>
-    			    			<tr>
-      				<td style="font-size: 18px;color: brown;"> Grand Total </td>
-      				<td></td>
-        			<td style="font-size: 18px;color: brown;">${result.result.totAmt}</td>
-      			</tr>
-    		</tbody>
-     	</table>
-     </div>
+<input type="hidden" id="usercartId" name="usercartId" value="${result.uname.id}"/>
+<input type="hidden" id="grandTotal" name="grandTotal" value="${result.result.totAmt}" />
 
-     <div class="container">
-	<div style=" padding-left:150px; padding-right:350px;font-family: Calibri">
-		
-     </div>
-     
-</div>
-     
-     
-    </div>
-   </div>
-  </div>
-</div>
+<input type="hidden" id="modifiedBy" name="modifiedBy" value="self"/>
+<input type="hidden" id="mode" name="mode" value="web"/>
+<input type="hidden" id="myaction" name="myaction" value="save"/>
 
-
+</g:form>
+	<!--================End Order Details Area =================-->
               
-<g:form  role="form" controller="cart" Id="myform" name="myform" action="save" >
+<%--<g:form  role="form" controller="cart" Id="myform" name="myform" action="save">
 
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 signin-pdtop">
              <div class="form-group">
              
 
- <input type="hidden" name="gname" id="gname"/>
+<input type="hidden" name="gname" id="gname"/>
 <input type="hidden" name="gprice" id="gprice"/>
- <input type="hidden" name="tcount" id="tcount"/>
- <input type="hidden" name="tamount" id="tamount"/>
+<input type="hidden" name="tcount" id="tcount"/>
+<input type="hidden" name="tamount" id="tamount"/>
 <input type="hidden"  name="qCount" id="qCount"/>   
 
 </div>
@@ -352,15 +357,13 @@ form.example::after {
 
 <g:link controller="user" action="marketdata"><button type="button"  class="btn btn-primary">Add More</button></g:link>	&emsp;&emsp;&emsp;
 
-<input type="submit" ID="btnsave" onclick="orderCheck()" value="Order now" class="btn btn-primary" />
+<input type="submit" ID="btnsave" onclick="orderCheck()" value="Order now" class="btn btn-primary"/>
 
 </div>
 
 </div>
 
-</g:form>
-    	
-        	
+</g:form>--%>    	
   <script type="text/javascript">
   // ************************************************
 // Shopping Cart API
@@ -658,16 +661,11 @@ a:hover {
 
 </style>
 
-
-<div class="footer">
-<div align="center">
-<p>Copyright  <a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a> All rights reserved.</p> 
-<p>
+<div class="footer ">
+<p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>  
+<a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a>All rights reserved </p>
+<p> <a href="/Skeleton/user/paytmTerms" target="_blank"><strong>Paytm</strong></a> Privacy Policies | Terms & Conditions </p>
 </div>
-</div>
- 
-			
-
 </body>
 </html>
 

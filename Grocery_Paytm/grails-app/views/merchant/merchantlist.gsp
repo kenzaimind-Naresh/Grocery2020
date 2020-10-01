@@ -262,21 +262,11 @@ a:hover {
 
 </style>
 
-
-<div class="footer">
-<div align="center">
-<p>Copyright  <a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a> All rights reserved.</p> 
-<p>
-</div>
-</div>
-
-
-
-
-
-
-
- 		
+<div class="footer ">
+<p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>  
+<a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a>All rights reserved </p>
+<p> <a href="/Skeleton/user/paytmTerms" target="_blank"><strong>Paytm</strong></a> Privacy Policies | Terms & Conditions </p>
+</div>		
 
 	<script src="js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="/Skeleton/website/js/vendor/bootstrap.min.js"></script>
@@ -299,9 +289,3 @@ a:hover {
 </body>
 
 </html>
-
-
-
-
-
-

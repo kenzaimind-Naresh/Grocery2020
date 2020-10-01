@@ -111,6 +111,23 @@
     
     
  <br><br><br><br><br>
+ 
+ <!-- Start Banner Area -->
+    <section class="banner-area organic-breadcrumb" style="padding-top: 20px">
+        <div class="container">
+            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end" style="padding: 82px 127px 88px 0;">
+                <div class="col-first">
+                    <h1>Contact</h1>
+                    <nav class="d-flex align-items-center">
+                        <a href="/Skeleton/user/userdashboard">Home<span class="lnr lnr-arrow-right"></span></a>
+                        <a href="/Skeleton/user/contact2">Contact</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Banner Area -->
+ 
 <%--<div class="container"><h4>Super Market</h4><br>
 <div class="row">
      		<g:each in="${result.merchant}" var="i" expr="true">
@@ -165,14 +182,11 @@
 
 <!--Start Footer Area --> 
    
-<div class="footer">
-	<div align="center">
-		<p>Copyright<a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a> All rights reserved.</p> 
-<p>
+<div class="footer ">
+<p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>  
+<a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a>All rights reserved </p>
+<p> <a href="/Skeleton/user/paytmTerms" target="_blank"><strong>Paytm</strong></a> Privacy Policies | Terms & Conditions </p>
 </div>
-</div>
- 		
-
 	<script src="js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
 	<script src="/Skeleton/website/js/vendor/bootstrap.min.js"></script>
