@@ -289,19 +289,19 @@ padding: 2px 16px;
       <h3 style="color: white;  padding-left:100px">Welcome to Online Store</h3>
       
       <h3 style="color: white; padding-left:100px">Book your Order by Area  Wise</h3> 
-       </div>
+    </div>
     </div>
            
     <br><br>
-<div align="center">
-<g:form class="example" ID="myform" action="searchlocation" controller="merchant" method="GET" nonvalidate="nonvalidate" style="width:500px">			
+<div align="center" style="padding-left: 18px;">
+<g:form class="example" ID="myform" action="searchlocation" controller="merchant" method="GET" nonvalidate="nonvalidate" style="width:400px">			
   <div class="row">
   <input type="text" name="city" id="city" class="form-control"  placeholder="Enter Location.." onchange="getStreetdata()"> 
         <span id="cityinfo" style="color:red;"></span>
        </div> 
   <br>
   
-  <div align="center" style="padding-left:140px">
+  <div align="center" style="padding-left:50px">
   <button type="submit" value="submit" class="form-control" class="btn btn-primary" onclick="return validateForm()">Proceed</button>
     <br>
     </div>
