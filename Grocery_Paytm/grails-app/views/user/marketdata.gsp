@@ -30,63 +30,6 @@
 
 
 
-<style>
-
-
-form.example input[type=text] {
-  padding: 5px;
-  font-size: 15px;
-  border: 1px solid grey;
-  float: left;
-  width: 80%;
-  background: white;
-}
-
-form.example button {
-  float: left;
-  width: 20%;
-  padding: 4px;
-  background: orange;
-  color: white;
-  font-size: 17px;
-  border: 1px solid grey;
-  border-left: none;
-  cursor: pointer;
-}
-
-form.example button:hover {
-  background: #0b7dda;
-}
-
-form.example::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-</style>
-
- <style>
-.footer {
-   position: fixed;
-   left: 0;
-   bottom: 0;
-   width: 100%;
-   background-color:black;
-   color: white;
-   text-align: center;
-}
-
-a {
-  color: white;
-}
-a:hover {
-  color: white;
-}
-
-
-</style>
-
   <script type="text/javascript">
 
 jQuery(document).ready(function($) {
@@ -184,7 +127,7 @@ function getdata() {
       &nbsp;&nbsp;
     </g:if> 
     <g:else>
-    <button class="btn btn-primary" style="font-size: 17px;" disabled="disabled">Out of Stock</button>
+    <button class="btn btn-danger" style="font-size: 17px;" disabled="disabled">Out of Stock</button>
       &nbsp;&nbsp;
     
     </g:else>
