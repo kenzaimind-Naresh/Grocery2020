@@ -1215,11 +1215,6 @@ if(mode=="web")	{
             return
         }
 
-        if (merchantInstance.hasErrors()) {
-            respond merchantInstance.errors, view:'create'
-            return
-        }
-
 		log.info(merchantInstance.mobileNumber)
 		log.info(merchantInstance.shopId)
 		log.info(merchantInstance.email)
@@ -1247,7 +1242,8 @@ if(mode=="web")	{
 		//merchantInstance.name1 = uploaded.originalFilename //getting the file name from the uploaded file
 		//merchantInstance.type1 = uploaded.contentType//getting and storing the file type
 		
-		if(instance.equals(null) && instance.equals(null) && instance.equals(null) ){
+		if(instance.equals(null) && instance2.equals(null) && instance3.equals(null) ){
+		log.info("enter into saving part	")
         merchantInstance.save flush:true
 		redirect(uri: "/merchant/create")
 		flash.message = "Merchant Registration done Successfully"

@@ -100,17 +100,10 @@ i:hover {
 		<div id="create-merchant" class="content scaffold-create" role="main">
 		<div class="container" style="padding-left:220px" >
 			<g:if test="${flash.message}">
-			<div class="message" align="center">${flash.message}</div>
+			<div class="message" align="center" style="color:red;">${flash.message}</div>
 			</g:if>
 			</div>
-			<g:hasErrors bean="${merchantInstance}">
-			<ul class="errors" role="alert" style="padding-left:1000px;font-family: Calibri;color:red">
-				<g:eachError bean="${merchantInstance}" var="error">
-				<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-				</g:eachError>
-			</ul>
-			
-			</g:hasErrors>
+
 			
 			<section class="login_box_area section_gap" style="padding-top:20px">
 		<div class="container">
