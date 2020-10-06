@@ -294,8 +294,8 @@ position: relative;
        </div> 
   <br>
   
-  <div align="center" style="padding-left:140px">
-  <button type="submit" value="submit" class="form-control" class="btn btn-primary" onclick="return validateForm()">Proceed</button>
+  <div align="center" style="padding-left:60px">
+  <button type="submit" value="submit" class="form-control" class="btn btn-primary" onclick="return validateForm()" style="width: 50%;">Proceed</button>
     <br>
     </div>
 </g:form>
