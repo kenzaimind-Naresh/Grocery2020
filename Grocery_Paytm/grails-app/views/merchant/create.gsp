@@ -276,7 +276,7 @@ i:hover {
 
 <div class="fieldcontain ${hasErrors(bean: merchantInstance, field: 'image', 'error')} ">
 	<label for="image">
-		<g:message code="merchant.image.label" default="Upload Photo" />
+		<g:message code="merchant.image.label" default="Upload Registration Document" />
 		<span class="required-indicator"></span>
 	</label>
 	<input type="file" id="image" name="image" class="form-control"  accept="image/*"  placeholder="Image" required />

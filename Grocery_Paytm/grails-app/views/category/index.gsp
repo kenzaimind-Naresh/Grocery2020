@@ -44,7 +44,7 @@
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="/Skeleton/admin/adminDashboard"><img src="/Skeleton/website/img/logo12.jpg" alt=""></a>
+					<a class="navbar-brand logo_h" href="/Skeleton/admin/adminDashboard"><img src="/Skeleton/website/img/arvanlogo.jpg" style="height: 60px;width: 150px;" alt=""></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
@@ -57,32 +57,16 @@
 							<li class="nav-item submenu dropdown">
 								<a href="/Skeleton/admin/adminDashboard" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false">Home</a>
-								
-							</li>
-							
+							</li>							
+							<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>			
 							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-								 aria-expanded="false">Shop</a>
-								
-							</li>
-							
-														<li class="nav-item"><a class="nav-link" href="#">Pages</a></li>
-							
-							<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-					
-					 					
-					<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="userName-md"></span>ADMIN<i class="fa fa-user" style="font-size:20px;"></i></a>
-								
 								<ul class="dropdown-menu">
-								
 								<li><g:link controller="#" action="#" class="active"  style="color:	#DAA520;"><i class="fa fa-user"></i> Profile</g:link></li>
 								<li><g:link controller="#" action="#" class="active" style="color:	#DAA520;"><i class="fa fa-key"></i> ChangePassword</g:link></li>
 								<li><a href="/Skeleton/admin/logout" style="color:	#DAA520;"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-
 								</ul>
 							</li>
-					
 						</ul>
 						
 					</div>
@@ -139,19 +123,17 @@ th, td {
 		
 		
 		<div class="row">
-			<h4 style="padding-left:480px;font-family: Calibri">Category List</h4>
-						<h4 style="padding-left:450px;font-family: Calibri"><a href="/Skeleton/Category/create">Create Category</a></h4>
+			<h4 style="padding-left:350px;font-family: Calibri">Category List</h4>
+						<h4 style="padding-left:380px;font-family: Calibri"><a href="/Skeleton/Category/create">Create Category</a></h4>
 			</div>
 			<g:if test="${flash.message}">
 				<div class="message" role="status" style="padding-left:450px;font-family: Calibri">${flash.message}</div>
 			</g:if>
 			<br>
-			<table align="center">
+			<table>
 			<thead>
 					<tr>
-					
 						<g:sortableColumn  property="categoryName" title="${message(code: 'category.categoryName.label', default: 'Category Name')}" />
-					
 					</tr>
 				</thead>
 				<tbody style="color:black">

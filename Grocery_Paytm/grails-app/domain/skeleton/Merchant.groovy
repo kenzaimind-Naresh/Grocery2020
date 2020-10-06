@@ -39,7 +39,7 @@ class Merchant {
 		lastName(maxSize:50)
 		email(email: true, unique: true)
 		password(password: true)
-		mobileNumber(maxSize:50)
+		mobileNumber(maxSize:50, unique: true)
 		otpActivation(nullable:true)
 		address(maxSize:50)
 		city(maxSize:50)

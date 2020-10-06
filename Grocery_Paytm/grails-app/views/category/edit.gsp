@@ -97,19 +97,6 @@
 
  <br><br><br>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 		
 		<div id="edit-category" class="content scaffold-edit" role="main">
 			<h3 style="padding-left:450px;font-family: Calibri">Edit Category</h3>

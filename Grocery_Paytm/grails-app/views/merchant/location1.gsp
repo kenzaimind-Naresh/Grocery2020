@@ -224,7 +224,7 @@ position: relative;
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="/Skeleton/merchant/location1"><img src="/Skeleton/website/img/arvan.jpg" style="height: 60px;width: 150px;" alt=""></a>
+					<a class="navbar-brand logo_h" href="/Skeleton/merchant/location1"><img src="/Skeleton/website/img/arvanlogo.jpg" style="height: 60px;width: 150px;" alt=""></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
@@ -294,7 +294,7 @@ position: relative;
        </div> 
   <br>
   
-  <div align="center" style="padding-left:50px">
+  <div align="center" style="padding-left:140px">
   <button type="submit" value="submit" class="form-control" class="btn btn-primary" onclick="return validateForm()">Proceed</button>
     <br>
     </div>
@@ -371,12 +371,11 @@ a:hover {
   color: white;
 }
 
-
 </style>
 
 <div class="footer ">
 <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>  
-<a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a>All rights reserved </p>
+<a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a> | All rights reserved </p>
 <p> <a href="/Skeleton/user/paytmTerms" target="_blank"><strong>Paytm</strong></a> Privacy Policies | Terms & Conditions </p>
 </div>
 

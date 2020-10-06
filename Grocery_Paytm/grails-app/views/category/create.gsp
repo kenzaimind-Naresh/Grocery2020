@@ -81,7 +81,7 @@
 				<fieldset class="form">
 					<g:render template="form"/>
 				</fieldset>
-							                        <div class="col-sm-12 text-left" style="padding-left:430px">
+				<div class="col-sm-12 text-left">
 				<br>
 				<fieldset class="buttons">
 					<g:submitButton name="create" class="save" class="btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />

@@ -123,7 +123,7 @@ form.example::after {
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="/Skeleton/merchant/location1"><img src="/Skeleton/website/img/arvan.jpg" style="height: 60px;width: 150px;" alt=""></a>
+					<a class="navbar-brand logo_h" href="/Skeleton/merchant/location1"><img src="/Skeleton/website/img/arvanlogo.jpg" style="height: 60px;width: 150px;" alt=""></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
@@ -205,6 +205,7 @@ form.example::after {
         </div>
         <!-- end header -->
     </section>
+    <center>
     <div id="content">
         <div class="page-title">
             <!-- <h2>About Paytm</h2> -->
@@ -223,7 +224,9 @@ form.example::after {
        
     </div>
     </section>
- <div id="footer">
+    </center>
+    
+ <div id="footer"><center>
       <div class="row">
         <div class="page-title white">
           <h2> Our Business </h2>
@@ -268,7 +271,7 @@ form.example::after {
             </ul>
           </div>
         </div>
-      </div>
+      </div></center>
     </div><!-- end footer -->   
 </body>
 </html>

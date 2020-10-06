@@ -41,11 +41,11 @@
 	
 <g:render template="/admin/adminhearder1"/>
 
- <br><br><br>
+ <br><br><br><br><br>
 	
 		<div class="nav" role="navigation">
 			<ul>
-				<li><g:link class="list" action="index" style="padding-left:450px;font-family: Calibri;color:orange">Category List</g:link></li>
+				<li><g:link class="list" action="index" style="padding-left:450px;font-family: Calibri;font-size:20px;"><b>Category List</b></g:link></li>
 			</ul>
 		</div><br>
 		<div id="show-category" class="content scaffold-show" role="main">

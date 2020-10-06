@@ -200,7 +200,7 @@ a:hover {
 
 <div class="footer ">
 <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>  
-<a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a>All rights reserved </p>
+<a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a> | All rights reserved </p>
 <p> <a href="/Skeleton/user/paytmTerms" target="_blank"><strong>Paytm</strong></a> Privacy Policies | Terms & Conditions </p>
 </div>		
 

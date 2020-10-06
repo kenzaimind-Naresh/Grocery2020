@@ -1248,24 +1248,27 @@ if(mode=="web")	{
 		redirect(uri: "/merchant/create")
 		flash.message = "Merchant Registration done Successfully"
 		
-		/*def smsResult
-		log.info("Nexmo SMS Start ....")
-		try {
-			log.info("mobile number"+merchantInstance.mobileNumber)
-		  smsResult  = nexmoService.sendSms("91"+merchantInstance.mobileNumber, "Dear Merchant, Your Registration was done successfully.....","919533000292");
-		  log.info("sms result  "+smsResult)
-	
-	
-		}catch (NexmoException e) {
-		  // Handle error if failure
-		log.info("failed send sms   ....."+e)
-		}*/
 		MerchantService.sendmailUser(merchantInstance.email);
 		
 		TestController testController=new TestController();
 		String smsresp=testController.sendSMSToUser(merchantInstance.mobileNumber,"Dear Sir/Madam, Your Registration was done successfully.....");
 		log.info("SMS response"+smsresp);
 		
+		}
+		else if(!instance.equals(null)){
+			log.info("existed shopId		")
+			redirect(uri: "/merchant/create")
+			flash.message = "ShopId Already Exists, Please try with different ShopId"
+		}
+		else if(!instance2.equals(null)){
+			log.info("existed mobile number		")
+			redirect(uri: "/merchant/create")
+			flash.message = "Mobile Number Already Exists, Please try with different Mobile Number"
+		}
+		else if(!instance3.equals(null)){
+			log.info("existed email		")
+			redirect(uri: "/merchant/create")
+			flash.message = "Email Already Exists, Please try with different Email"
 		}
 		else{
 			redirect(uri: "/merchant/create")
