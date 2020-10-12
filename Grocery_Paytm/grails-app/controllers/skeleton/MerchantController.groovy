@@ -688,6 +688,21 @@ if(mode=="web")	{
 		
 	}
 	
+	def getCityData(){
+		log.info("MerchantController getCityData Action")
+		def city=params.city
+		List<String> cityData=new ArrayList<String>();
+		log.info(city);
+		def merObjects=Merchant.findAllByCity(city);
+		log.info("merObjects  "+merObjects);
+		for(int i=0;i<merObjects.size();i++){
+			log.info(merObjects[i].city)
+			cityData.add(merObjects[i].city);
+		}
+		log.info("cityData  "+cityData)
+		render cityData
+	}
+	
 	def location1(){
 		log.info("MerchantController location1 Action")
 		def data = new HashMap<>()

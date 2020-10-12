@@ -33,6 +33,42 @@
 
 <script>
 
+function getCitydata() {
+	
+	var city= document.getElementById("city").value
+	//alert(city);
+	var path = "/Skeleton/merchant/getCityData";
+	$.ajax({
+	 url : path,
+	 type : "get",
+	 data :{
+		 city
+	 },
+	 success : function(res) {
+		var resp;
+		 resp=res.replace("[","");
+		 resp=resp.replace("]","");
+		 resp=resp.replace(/'/g, "");
+		 var loc = [];
+		 for(var m=0;m<resp.split(",").length;m++){
+			 loc.push(resp.split(",")[m]);
+			 }
+
+	 	if(loc[0]==city){
+		 	return true;
+		 }else{
+	 		event.preventDefault();
+	 		alert("No shops are Available in this location.");
+	 		location.href = "/Skeleton/merchant/location1";
+			return;
+		 	}
+	 
+	 },
+	 error : function() {
+	 }
+	})
+	}
+
 function getStreetdata() {
 	
 	var city= document.getElementById("city").value
@@ -295,7 +331,7 @@ position: relative;
   <br>
   
   <div align="center" style="padding-left:60px">
-  <button type="submit" value="submit" class="form-control" class="btn btn-primary" onclick="return validateForm()" style="width: 50%;">Proceed</button>
+  <button type="submit" value="submit" class="form-control" class="btn btn-primary" onclick="getCitydata()" style="width: 50%;">Proceed</button>
     <br>
     </div>
 </g:form>

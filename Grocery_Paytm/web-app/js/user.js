@@ -7,7 +7,7 @@
 		   	 
 	   		$("#userNameinfo").text("");
 	     } else {
-	    	 $("#userNameinfo").text("Please Enter userName");
+	    	 $("#userNameinfo").text("Please Enter User Name");
 	     }
 	   	  });
      
@@ -61,7 +61,7 @@
 	    
 	    if (userName == null || userName == "") {
 	    	document.getElementById('userNameinfo').style.display = 'inline';
-	    	 $("#userNameinfo").text("Please Enter userName");
+	    	 $("#userNameinfo").text("Please Enter User Name");
 	    	 return false;
 	    }
          
