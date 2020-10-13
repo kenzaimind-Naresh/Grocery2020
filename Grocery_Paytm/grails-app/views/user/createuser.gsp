@@ -149,20 +149,17 @@
 
 <div class="form-group">
   <div class="row">
-<div class="col-md-5 col-sm-5  ">
 
+<input type="hidden" id="userName" name="userName" value="${userInstance?.userName}" class="form-control"/>
+<div class="col-md-5 col-sm-5">
 
 <div class="fieldcontain">
-	
 
-<input type="text" id="userName" name="userName" value="${userInstance?.userName}" placeholder="Full Name" class="form-control" required/>
- <span id="userNameinfo" style="color:red"></span>
-	
-</div>
+<input type="text" id="email" name="email" value="${userInstance?.email}" placeholder="Email" class="form-control" required/>
+ <span id="emailinfo" style="color:red"></span>
 </div>
 
-
-
+</div>
 <div class="col-md-5 col-sm-5">
 
 <div class="fieldcontain">
@@ -180,15 +177,6 @@
 </div><br>
  <div class="form-group">
   <div class="row">
-<div class="col-md-5 col-sm-5">
-
-<div class="fieldcontain">
-
-<input type="text" id="email" name="email" value="${userInstance?.email}" placeholder="Email" class="form-control" required/>
- <span id="emailinfo" style="color:red"></span>
-</div>
-
-</div>
 <div class="col-md-5 col-sm-5">
 
 <div class="fieldcontain">	
@@ -212,7 +200,7 @@
 <input type="hidden" id="mode" name="mode" value="web"/>
 <input type="hidden" id="myaction" name="myaction" value="save"/>
 
-<div class="col-sm-6 text-center"><br><br>
+<div class="col-sm-6 text-center" style="padding-left: 180px;"><br><br>
 <input type="submit" ID="btnsave" value="Register" onclick="return validateForm()" class="primary-btn" />
 </div>
 </div>

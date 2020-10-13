@@ -61,7 +61,8 @@ class UserService {
 					   
 				      userInstance.firstName=firstName
 					   userInstance.lastName=lastName
-					   userInstance.userName=userName
+					   userInstance.userName = userName
+					   log.info("firstName as userName "+userName)
 					   userInstance.password=password
 					   userInstance.email=email
 					   userInstance.mobileNumber=mobileNumber
@@ -108,22 +109,21 @@ class UserService {
    def resultData=new HashMap<>()
    String []args=["User"]
    try{
-	   def userInstance=User.findByUserName(userName)
+	   def userInstance=User.findByEmailOrMobileNumber(email,mobileNumber)
 	   if(userInstance) {
 		   
 		   
 		   userInstance.firstName=firstName
 		   userInstance.lastName=lastName
 		   userInstance.userName=userName
+		   log.info("firstName as userName "+userName)
 		   userInstance.password=password
 		   userInstance.email=email
 		   userInstance.mobileNumber=mobileNumber
 		   userInstance.modifiedBy=modifiedBy
 		   def sts=save(userInstance)
-		   def f=User.get(sts.id)
-		   f.userId=f.id
-		   def st=save(f)
-		   if(st){
+		
+		   if(sts){
 			   resultData.put(getMessage("default.status.label"),getMessage("default.success.message"))
 			   resultData.put(getMessage("default.message.label"),getMessage("default.update.successmessage",args))
 		   }

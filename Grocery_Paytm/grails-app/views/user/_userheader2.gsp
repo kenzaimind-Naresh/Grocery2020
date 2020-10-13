@@ -98,18 +98,30 @@ form.example::after {
 							<li class="nav-item"><a class="nav-link" style="padding-top:30px; padding-bottom:30px;" href="/Skeleton/user/userdashboard">Home</a></li>
 							<li class="nav-item"><a class="nav-link" style="padding-top:30px; padding-bottom:30px;" href="/Skeleton/user/marketdata">Shop</a></li>
 							<li class="nav-item"><a class="nav-link" style="padding-top:30px; padding-bottom:30px;" href="/Skeleton/user/contact2">Contact</a></li>
+							<g:if test="${result.uname ==null}">
 							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" style="padding-top:30px; padding-bottom:30px;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-								<g:if test="${result.uname !=null}">
-								<span class="userName-md"></span>${result.uname.userName } <span>&nbsp;&nbsp;</span><i class="fa fa-user" style="font-size:20px;"></i>
-								</g:if></a>
+								<a href="#" style="padding-top:30px; padding-bottom:30px;" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+								 aria-expanded="false">Sign in</a>
 								<ul class="dropdown-menu">
+									<li class="nav-item"><a class="nav-link" href="/Skeleton/merchant/login">Merchant Login</a></li>
+							 		<li class="nav-item"><a class="nav-link" href="/Skeleton/user/userlogin1">User Login</a></li>
+ 								</ul>
+							</li>
+								
+							</g:if>
+							<g:else>
+							<li class="nav-item submenu dropdown">
+								<a href="#" style="padding-top:30px; padding-bottom:30px;" class="nav-link dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="userName-md"></span>${result.uname.userName} <span>&nbsp;&nbsp;</span><i class="fa fa-user" style="font-size:20px;"></i></a>
+								
+								<ul class="dropdown-menu">
+								
 								<li><g:link controller="user" action="updateuser" class="active"  style="color:	#DAA520;"><i class="fa fa-user"></i> Profile</g:link></li>
 								<li><g:link controller="user" action="changepass" class="active" style="color:	#DAA520;"><i class="fa fa-key"></i> ChangePassword</g:link></li>
 								<li><g:link controller="user" action="myorders" class="active"  style="color:	#DAA520;"><i class='fa fa-cart-arrow-down'></i> My Orders </g:link></li>
-								<li><a href="/Skeleton/user/logout" style="color:	#DAA520;"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+								<li><a href="/Skeleton/user/logout" style="color: #DAA520;" class="clear-cart"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 								</ul>
 							</li>
+							</g:else>
 						</ul>
 					</div>
 				</div>

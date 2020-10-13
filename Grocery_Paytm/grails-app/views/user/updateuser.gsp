@@ -116,14 +116,16 @@
 </div>
 <div class="form-group">
 <div class="row">
- <div class="col-md-4 col-sm-4">
-<div class="fieldcontain">
-<label for="userName" style="color:black">User Name :</label>
-<input type="text" id="userName" name="userName" value="${result.user.userName}" class="form-control" required/>
- <span id="userNameinfo" style="color:red"></span>
-</div>
-</div>
+ 
+<input type="hidden" id="userName" name="userName" value="${result.user.userName}" class="form-control" required/>
 
+<div class="col-md-4 col-sm-4">
+<div class="fieldcontain">
+<label for="email" style="color:black">Email :</label>
+<input type="text" id="email" name="email" value="${result.user.email}" class="form-control" readonly/>
+ <span id="emailinfo" style="color:red"></span>
+</div>
+</div>
 
 <div class="col-md-4 col-sm-4">
 <div class="fieldcontain">
@@ -136,13 +138,7 @@
 </div>
 <div class="form-group">
 <div class="row">
-<div class="col-md-4 col-sm-4">
-<div class="fieldcontain">
-<label for="email" style="color:black">Email :</label>
-<input type="text" id="email" name="email" value="${result.user.email}" class="form-control" readonly/>
- <span id="emailinfo" style="color:red"></span>
-</div>
-</div>
+
 
 <div class="col-md-4 col-sm-4">
 <div class="fieldcontain">

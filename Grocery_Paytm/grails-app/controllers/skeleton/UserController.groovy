@@ -861,7 +861,7 @@ def saveupdate() {
 	log.info(firstName)
 	def lastName=params.lastName
 	log.info(lastName)
-	def userName=params.userName
+	def userName=params.firstName
 	log.info(userName)
 	def password=params.password
 	log.info(password)
@@ -1137,16 +1137,6 @@ def authenticate1 = {
 	}
 	}
 	
-def createappointment(){
-	
-	log.info("Appointment Controller createappointment action")
-	def responseData = new HashMap<>()
-	def result,url
-	url="/appointment/createappointment.gsp"
-	def mode=params.mode
-	[appointment:responseData]
-}
-
 def passwordSave2={
 	def userName= session.user
 	if(userName ==null || userName=="" ){
@@ -1223,7 +1213,7 @@ def saveuser() {
 	def myaction = params.myaction
 	def firstName=params.firstName
 	def lastName=params.lastName
-	def userName=params.userName
+	def userName=firstName
 	def password=params.password
 	def email=params.email
 	def mobileNumber=params.mobileNumber
@@ -1256,19 +1246,6 @@ def saveuser() {
 		
 			redirect(uri: "/user/createuser")
 			flash.message = "User Registration Completed Successfully"
-				
-			def smsResult
-			log.info("Nexmo SMS Start ....")
-			try {
-	log.info("mobile number"+mobileNumber)
-			  smsResult  = nexmoService.sendSms("91"+mobileNumber, "Dear Customer, Your Registration was done successfully.....","919533000292");
-			  log.info("sms result  "+smsResult)
-		
-		
-			}catch (NexmoException e) {
-			  // Handle error if failure
-			log.info("failed send sms   ....."+e)
-			}
 			
 			TestController testController=new TestController();
 			String smsresp=testController.sendSMSToUser(mobileNumber,"Dear Customer, Your Registration was done successfully.....");
