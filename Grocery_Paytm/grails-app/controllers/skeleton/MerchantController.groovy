@@ -808,9 +808,12 @@ if(mode=="web")	{
 		def  location = Merchant.findAllByCityAndShopName(getCity,getShop)
 		log.info("location*******"+location)
 		
-		def city=params.city
+		def city=params.city?params.city:getCity
+		log.info("city selected  "+city);
+		session.setAttribute("cityName",city)
 		def street=params.street
 		def shopName=params.shopName
+		
 		
 		def mode=params.mode
 		log.info("mode "+mode)
