@@ -799,26 +799,26 @@ if(mode=="web")	{
 		log.info("MerchantController searchlocation Action")
 		def data = new HashMap<>()
 		def merchant=Merchant.getAll()
+		log.info("merchantData********"+merchant)
+		
+		def getCity = session.getAttribute("cityName")
+		log.info("getCity****"+getCity)
+		def getShop = session.getAttribute("merchantName")
+		log.info("getShop******"+getShop)
+		def  location = Merchant.findAllByCityAndShopName(getCity,getShop)
+		log.info("location*******"+location)
+		
 		def city=params.city
 		def street=params.street
 		def shopName=params.shopName
 		
-			
-/*		def username= session.user
-		if(username ==null || username=="" ){
-		 redirect(uri: "user/userlogin1")
-		 return
-		}*/
-		
-		//def responseData = new HashMap<>()
 		def mode=params.mode
-		log.info(mode)
-		
+		log.info("mode "+mode)
 		def user= User.findByUserName(session.user)
-		log.info(user)
+		log.info("user "+user)
 		
-		
-	def emp=Merchant.findAllByCity(city)
+		def emp=Merchant.findAllByCity(city)
+		log.info("emp "+emp)
 			def msg;
 			if(emp==null || emp==[]){
 				msg="Data Not Found"
@@ -831,7 +831,10 @@ if(mode=="web")	{
 				for(int i=0;i<emp.size();i++){
 					user2.add(emp[i].city)
 				}		
-	def emp1=Merchant.findAllByCityAndShopName(city,shopName)
+				def cityName = user2[0]
+				log.info("CityName*****"+cityName)
+				
+			def emp1=Merchant.findAllByCityAndShopName(city,shopName)
 				def msg1;
 				if(emp1==null || emp1==[]){
 					msg1="Data Not Found"
@@ -844,7 +847,7 @@ if(mode=="web")	{
 					for(int i=0;i<emp1.size();i++){
 						user1.add(emp1[i].shopName)
 					}
-					
+				
 					
 				data.put("listId", "searchlocation")
 				data.put("message", msg)
@@ -853,6 +856,7 @@ if(mode=="web")	{
 				data.put("emp1",emp1)
 				data.put("uname",user)
 				data.put("merchant",merchant)
+				data.put("location", "location")
 				data.put("shopName",Merchant.findAllByCity(city))
 				[result:data]
 		

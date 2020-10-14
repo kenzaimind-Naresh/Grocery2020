@@ -201,7 +201,8 @@ def marketdata(){
 	log.info(data)
 	session.setAttribute("merchantName", merchantshopName)
 	def data2 = Grocery.findByMerchantshopName(merchantshopName)
-	
+	def city = session.getAttribute("cityName")
+	log.info("city*********"+city)
 	if(data2){
 	def merchShop = data2.merchantshopName
 	log.info("merchantshopName "+merchShop)
@@ -211,7 +212,7 @@ def marketdata(){
 	else{
 		render text: """<script type="text/javascript">
                     alert("No Stock Available");
-                    window.location.href = "/Skeleton/merchant/location1";
+                    window.location.href = "/Skeleton/merchant/searchlocation";
 
 
 		 </script>""",
@@ -459,7 +460,6 @@ def logout = {
 	redirect(uri: "/merchant/logout")
 	}
 
-def userlogin = {}
 
 
 def authenticate2={

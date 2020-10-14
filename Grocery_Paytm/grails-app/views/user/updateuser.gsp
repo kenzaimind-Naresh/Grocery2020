@@ -101,7 +101,7 @@
 <div class="col-md-4 col-sm-4">
 	<div class="fieldcontain">
 	<label for="userName" style="color:black">First Name :</label>
-<input type="text" id="firstName" name="firstName" value="${result.user.firstName}" class="form-control" required/>
+<input type="text" id="firstName" name="firstName" value="${result.user.firstName}" class="form-control" readonly/>
 <span id="firstNameinfo" style="color:red"></span>
 	</div>
 </div>
@@ -143,7 +143,7 @@
 <div class="col-md-4 col-sm-4">
 <div class="fieldcontain">
 <label for="mobileNumber" style="color:black">MobileNumber :</label>
-<input type="text" id="mobileNumber" name="mobileNumber" value="${result.user.mobileNumber}" class="form-control" readonly />
+<input type="text" id="mobileNumber" name="mobileNumber" value="${result.user.mobileNumber}" class="form-control" required />
  <span id="mobileNumberinfo" style="color:red"></span>
 </div>
 </div>
