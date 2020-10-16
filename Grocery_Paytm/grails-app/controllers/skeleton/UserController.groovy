@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 import javax.servlet.http.Cookie
-
+import javax.servlet.http.HttpServletRequest;
 import grails.converters.JSON;
 class UserController {
 	def UserService
@@ -19,6 +19,18 @@ class UserController {
 	
 
 static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: "DELETE"]
+
+
+def testRestapi(){
+
+def responseData = new HashMap<>()
+def user=params.user;
+log.info("user test rest template")
+log.info("user test rest template"+request.user)
+responseData.put("user",user)
+render responseData as JSON
+}
+
 
 def loadCookie(){
 	log.info("UserController loadCookie Action")

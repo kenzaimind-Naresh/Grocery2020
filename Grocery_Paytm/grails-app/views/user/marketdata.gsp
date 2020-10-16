@@ -59,7 +59,7 @@ function getdata() {
 		 quantity : quantity,
 	 },
 	 success : function(res) {
-	 alert(res.split("#")[1])
+	 //alert(res.split("#")[1])
 	 },
 	 error : function() {
 	 }
@@ -190,7 +190,7 @@ function getdata() {
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-<input type="submit" ID="btnsave" value="Check out" class="btn btn-primary" />
+<input type="submit" id="btnsave" value="Check out" class="btn btn-primary" />
 
 </div>
 </g:form>
@@ -228,16 +228,27 @@ var shoppingCart = (function() {
   // Save cart
   function saveCart() {
     sessionStorage.setItem('shoppingCart', JSON.stringify(cart));
+	sessionStorage.setItem("merchantName",'${result.merchShop}');
+	
   }
+
+ //alert("in session "+marchantTest);
+ //alert("in from controller "+'${result.merchShop}');
+   var marchantTest=sessionStorage.getItem("merchantName");
+  if(marchantTest=='${result.merchShop}'){
+  if (sessionStorage.getItem("shoppingCart") != null) {
+    loadCart();
+  }
+  // sessionStorage.setItem('shoppingCart', null);
+ }
+
  
     // Load cart
   function loadCart() {
     cart = JSON.parse(sessionStorage.getItem('shoppingCart'));
   }
-  if (sessionStorage.getItem("shoppingCart") != null) {
-    loadCart();
-  }
- 
+
+
 
   // =============================
   // Public methods and propeties
@@ -246,13 +257,13 @@ var shoppingCart = (function() {
  
   // Add to cart
   obj.addItemToCart = function(name,price,count,weight,quantity) {
-   getavail(name);
+  // getavail(name);
     for(var item in cart) {
       if(cart[item].name === name) {
 	 // alert("count in cart" +cart[item].count);
 	  //alert(quantity);
 	
-	  getavail(name);
+	  //getavail(name);
 	  setTimeout(function(){ 
 $("#eetest").val("time pass");
 	  }, 2000);
@@ -260,7 +271,7 @@ $("#eetest").val("time pass");
 	  
 	//alert("from ajax"+qtytotal);
 	//alert("count is "+cart[item].count);
-	  if(cart[item].count<Number(qtytotal)){	  
+	  if(cart[item].count<Number(quantity)){	  
         cart[item].count ++;
 		cart[item].quantity=quantity;
 		saveCart();
@@ -271,7 +282,8 @@ $("#eetest").val("time pass");
 		}
       }
     }
-    var item = new Item(name, price, count);
+    var item = new Item(name, price, count,weight,quantity);
+
     cart.push(item);
     saveCart();
   }
@@ -409,6 +421,7 @@ $('.add-to-cart').click(function(event) {
   var name = $(this).data('name');
   var price = Number($(this).data('price'));
   var quantity=Number($(this).data('quantity'));
+
   //alert("first avail qty on db"+quantity);
   
   shoppingCart.addItemToCart(name,price,1,1,quantity);
@@ -432,7 +445,7 @@ function displayCart() {
       + "<td>(" + cartArray[i].price + ")</td>"
       + "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name=" + cartArray[i].name + ">-</button>"
       + "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'>"
-      + "<button class='plus-item btn btn-primary input-group-addon' data-name=" + cartArray[i].name + " data-quantity=" + cartArray[i].quantity +">+</button></div></td>"
+      + "<button class='plus-item btn btn-primary input-group-addon' data-name=" + cartArray[i].name + " data-quantity=" + cartArray[i].quantity +" data-price="+cartArray[i].price+    ">+</button></div></td>"
       + "<td><button class='delete-item btn btn-danger' data-name=" + cartArray[i].name + ">X</button></td>"
       + " = "
       + "<td>" + cartArray[i].total + "</td>"
@@ -443,6 +456,13 @@ function displayCart() {
  
   $('.show-cart').html(output);
   $('.total-cart').html(shoppingCart.totalCart());
+  //alert(shoppingCart.totalCart());
+  if(shoppingCart.totalCart()==0){
+  
+  $('#btnsave').hide();
+  }else{
+   $('#btnsave').show();
+  }
   $('.total-count').html(shoppingCart.totalCount());
 
   $('.qCount').html(shoppingCart.qCount());
@@ -460,7 +480,8 @@ function displayCart() {
 // Delete item button
 
 $('.show-cart').on("click", ".delete-item", function(event) {
-  var name = $(this).data('name')
+  var name = $(this).data('name');
+  
   shoppingCart.removeItemFromCartAll(name);
   displayCart();
 })
@@ -475,16 +496,20 @@ $('.show-cart').on("click", ".minus-item", function(event) {
 // +1
 $('.show-cart').on("click", ".plus-item", function(event) {
   var name = $(this).data('name');
-  var quantity = $(this).data('quantity');
- // alert("quantity avail"+quantity);
-  shoppingCart.addItemToCart(name);
+  var quantity = Number($(this).data('quantity'));
+  var price = Number($(this).data('price'));
+ //alert("quantity at pop"+quantity);
+ 
+  shoppingCart.addItemToCart(name,price,1,1,quantity);
   displayCart();
 })
 
 // Item count input
 $('.show-cart').on("change", ".item-count", function(event) {
    var name = $(this).data('name');
+   //alert(name);
    var count = Number($(this).val());
+   
   shoppingCart.setCountForItem(name, count);
   displayCart();
 });
