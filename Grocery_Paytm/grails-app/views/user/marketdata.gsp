@@ -443,10 +443,10 @@ function displayCart() {
     output += "<tr>"
       + "<td>" + cartArray[i].name + "</td>"
       + "<td>(" + cartArray[i].price + ")</td>"
-      + "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name=" + cartArray[i].name + ">-</button>"
-      + "<input type='text' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "' readonly>"
-      + "<button class='plus-item btn btn-primary input-group-addon' data-name=" + cartArray[i].name + " data-quantity=" + cartArray[i].quantity +" data-price="+cartArray[i].price+    ">+</button></div></td>"
-      + "<td><button class='delete-item btn btn-danger' data-name=" + cartArray[i].name + ">X</button></td>"
+      + "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name='" + cartArray[i].name + "'>-</button>"
+      + "<input type='text' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'x` readonly>"
+      + "<button class='plus-item btn btn-primary input-group-addon' data-name='" + cartArray[i].name + "' data-quantity='" + cartArray[i].quantity +"' data-price='"+cartArray[i].price+    "'>+</button></div></td>"
+      + "<td><button class='delete-item btn btn-danger' data-name='" + cartArray[i].name + "'>X</button></td>"
       + " = "
       + "<td>" + cartArray[i].total + "</td>"
       +  "</tr>";
@@ -498,7 +498,7 @@ $('.show-cart').on("click", ".plus-item", function(event) {
   var name = $(this).data('name');
   var quantity = Number($(this).data('quantity'));
   var price = Number($(this).data('price'));
- //alert("quantity at pop"+quantity);
+// alert("name at pop"+name);
  
   shoppingCart.addItemToCart(name,price,1,1,quantity);
   displayCart();
