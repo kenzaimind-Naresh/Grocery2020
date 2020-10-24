@@ -100,7 +100,7 @@ window.onhashchange = function (event) {
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="/Skeleton/merchant/ldashboard"><img src="/Skeleton/website/img/logo12.jpg" alt=""></a>
+					<a class="navbar-brand logo_h" href="/Skeleton/merchant/ldashboard"><img src="/Skeleton/website/img/arvanlogo.jpg" style="height: 60px;width: 150px;" alt=""></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
@@ -117,9 +117,9 @@ window.onhashchange = function (event) {
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="username-sm"></span>${result.uname.firstName}<i class="fa fa-user" style="font-size:20px;"></i></a>
 								<ul class="dropdown-menu">
 								
-								<li><g:link controller="merchant" action="updateprofile" class="active"  style="color:	#DAA520;"><i class="fa fa-user"></i> Profile</g:link></li>
-								<li><g:link controller="user" action="changepass" class="active" style="color:	#DAA520;"><i class="fa fa-key"></i> ChangePassword</g:link></li>
-								<li><a href="/Skeleton/merchant/dashboard" style="color:	#DAA520;"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+								<li><g:link controller="merchant" action="updateprofile" class="active"  style="color:	#DAA520;font-size:14px;"><i class="fa fa-user"></i> Profile</g:link></li>
+								<li><g:link controller="user" action="changepass" class="active" style="color:	#DAA520;font-size:14px;"><i class="fa fa-key"></i> ChangePassword</g:link></li>
+								<li><a href="/Skeleton/merchant/dashboard" style="color:	#DAA520;font-size:14px;"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 
 								</ul>
 							</li>
@@ -140,9 +140,8 @@ window.onhashchange = function (event) {
       		<thead>
       			<tr>
       				<th>Order ID</th>
-      				<th>Grocery Name</th>  
-      				<th>Price</th>
-      				<th>Quantity</th>  
+      				<th>Created Date</th>
+      				<th>Grocery Name</th>    
       				<th>Status</th>  
       				<th>Acceptance</th>        
       			</tr>
@@ -151,12 +150,11 @@ window.onhashchange = function (event) {
      			<g:each in="${result.data}" expr="true">
     			<tr>
       				<td style="font-size: 18px;color: black;"> ${it.orderId}</td>
+        			<td style="font-size: 18px;color: black;"> ${it.createdDate}</td>
         			<td style="font-size: 18px;color: black;">${it.groceryName}</td>
-        			<td style="font-size: 18px;color: black;"> ${it.groceryPrice}</td>
-        			<td style="font-size: 18px;color: black;"> ${it.totalQuantity}</td>
         			<td style="font-size: 18px;color: black;"> ${it.status}</td>
        	 			<td style="color: black;">
-						<g:link controller="orderStatus" action="acceptorder"  id="${it.id}"><button type="button"  class="btn btn-warning">Accept Order</button></g:link>	
+						<g:link controller="orderStatus" action="acceptorder"  id="${it.id}"><button type="button"  class="genric-btn success radius" style="font-size: 15px;">AcceptOrder</button></g:link>	
        	 			</td>
       			</tr>
     			</g:each>
@@ -166,10 +164,12 @@ window.onhashchange = function (event) {
      <div class="pag">
      	<div class="col-sm-8 text-right">
        		<g:if test="${result.offset > 0}">
-     			<g:link type="button" style="color:white" controller="orderStatus" action="offsetlist" params="${[offset:result.offset-5,mode:'web']}" value="Previous"><button class="primary-btn">Previous</button></g:link>
+     			<g:link type="button" style="color:white" controller="orderStatus" action="offsetlist" params="${[offset:result.offset-5,mode:'web']}" value="Previous">
+     			<button class="genric-btn primary circle" style="font-size: 15px;">Previous</button></g:link>
     		</g:if>
   			<g:if test="${result.offset/5 < (result.totalcount)/5-1}">
-     			<g:link type="button" style="color:white" controller="orderStatus" action="offsetlist"   params="${[offset: result.offset+5,mode:'web']}" value="Next"><button class="primary-btn">Next</button></g:link>
+     			<g:link type="button" style="color:white" controller="orderStatus" action="offsetlist"   params="${[offset: result.offset+5,mode:'web']}" value="Next">
+     			<button class="genric-btn primary circle" style="font-size: 15px;">Next</button></g:link>
        		</g:if>
        </div>
     </div>

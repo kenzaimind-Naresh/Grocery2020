@@ -106,64 +106,121 @@ function getval(sel)
 </head>
 <body>
 <g:render template="/grocery/groceryheader1"/>
-	
-	<!-- Start Banner Area -->
-    <section class="banner-area organic-breadcrumb" style="padding-top: 20px">
-        <div class="container">
-            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end" style="padding: 60px 110px 60px 0;">
-                <div class="col-first">
-                    <h1>Accept Order</h1>
-                    <nav class="d-flex align-items-center">
-                        <a href="/Skeleton/merchant/ldashboard">Home<span class="lnr lnr-arrow-right"></span></a>
-                        <a href="/Skeleton/orderStatus/acceptorder">Accept Order</a>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Banner Area -->
-    
-<br><br>  
 
-<div class="container">
-    <div class="col-lg-9">
-        <div class="order_box">
-            <h2>Order List</h2>
-            <g:form class="form-horizontal"  controller="orderStatus"  action="updateOrder"  nonvalidate="nonvalidate">
-               
-                <ul class="list">
-                    <li><a style="font-size: 20px;color: black;">Name<span class="middle">Quantity</span><span class="last">Price</span></a></li>
-                    <g:each in="${result.result.orderList}" expr="true">
-                    <li><a style="font-size: 16px;color: black;">${it.groceryName.split("00")[0] }<span class="middle" style="font-size: 16px;color: black;">${it.groceryName.split("00")[1] }</span> <span class="last" style="font-size: 16px;color: black;">${it.groceryPrice}</span></a></li>
-                    </g:each>
-                </ul>
-                
-                <ul class="list list_2">
-                    <li><a style="font-size: 17px;color: brown;">Total Amount<span class="last" style="font-size: 17px;color: brown;">${result.result.totAmt}</span></a></li>
-                    <li class="nav-item submenu dropdown">
-                    <a style="font-size: 17px;color: brown;">Status<span class="last">
-								<select name="statusId" id="statusId" class="form-control" onchange="getval(this)"; >
-                               <option value="">${result.result.status}</option>
-                                	     <option value="Accepted">Accepted</option>
+ <!--================Order Details Area =================-->
+	<section class="order_details section_gap">
+		<div class="container">
+			<div class="order_details_table">
+				<h2>Order Details</h2>
+				<g:form class="form-horizontal"  controller="orderStatus"  action="updateOrder"  nonvalidate="nonvalidate">
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col"><h5>Name</h5></th>
+								<th scope="col"><h5>Quantity</h5></th>
+								<th scope="col"><div class="col-sm-12 text-right"><h5>Price</h5></div></th>
+							</tr>
+						</thead>
+						<tbody>
+						<g:each in="${result.result.orderList}" expr="true">
+							<tr>
+								<td>
+									<h6>${it.groceryName.split("00")[0] }</h6>
+								</td>
+								<td>
+									<h6>${it.groceryName.split("00")[1] }</h6>
+								</td>
+								<td>
+									<div class="col-sm-12 text-right"><h6>${it.groceryPrice}</h6></div>
+								</td>
+							</tr>
+						</g:each>
+							<tr>
+								<td>
+									<h6 style="color: brown;">Total</h6>
+								</td>
+								<td>
+									<h5></h5>
+								</td>
+								<td>
+									<div class="col-sm-12 text-right"><h6 style="color: brown;">${result.result.totAmt}</h6></div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<h6 style="color: brown;">Status</h6>
+								</td>
+								<td>
+									<h5></h5>
+								</td>
+								<td>
+									<div class="col-sm-12 text-right">
+									<h6>
+									<select name="statusId" id="statusId" class="form-control" onchange="getval(this)"; >
+                               			<option value="">${result.result.status}</option>
+                                	    <option value="Accepted">Accepted</option>
                                 		<option value="30 Minutes">30 Minutes</option>
                                 		<option value="1 Hour">1 Hour</option>
                                 		<option value="2 Hours">2 Hours</option>
-                                </select>
-                                 <input type="hidden" id="orderId" name="orderId" value="${result.acceptance.orderId}"/>
-                                 <input type="hidden" id="status" name="status"/>
-							</span></a></li>
-                </ul>
-                			 <div class="col-sm-12 text-left" style="padding-left:180px">
-				
-				<fieldset class="buttons">
-					<g:submitButton name="update" class="save" class="primary-btn" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-				</fieldset>
+                                	</select>
+                                	<input type="hidden" id="orderId" name="orderId" value="${result.acceptance.orderId}"/>
+                                 	<input type="hidden" id="status" name="status"/>
+                                	</h6>
+                                	</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="col-sm-12 text-right">
+					<fieldset class="buttons">
+					<g:submitButton name="update" class="save" class="genric-btn primary circle" style="font-size: 15px;" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+					</fieldset>
+					</div>
 				</div>
-                </g:form>
-                 
-         </div>
-     </div>
- </div>
+				</g:form>
+			</div>
+		</div>
+	</section>
+	<!--================End Order Details Area =================-->
  
+<style>
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color:black;
+   color: white;
+   text-align: center;
+}
+
+a {
+ // color: white;
+}
+a:hover {
+  //color: white;
+}
+
+
+</style>
+
+<br><br>
+<div class="footer ">
+<p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>  
+<a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a> | All rights reserved </p>
+<p> <a href="/Skeleton/user/paytmTerms" target="_blank"><strong>Paytm</strong></a> Privacy Policies | Terms & Conditions </p>
+</div>
+
+	<script src="js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="/Skeleton/website/js/vendor/bootstrap.min.js"></script>
+	<script src="/Skeleton/website/js/jquery.ajaxchimp.min.js"></script>
+	<script src="/Skeleton/website/js/jquery.nice-select.min.js"></script>
+	<script src="/Skeleton/website/js/jquery.sticky.js"></script>
+	<script src="/Skeleton/website/js/nouislider.min.js"></script>
+	<script src="/Skeleton/website/js/countdown.js"></script>
+	<script src="/Skeleton/web-app/website/js/jquery.magnific-popup.min.js"></script>
+	<script src="/Skeleton/website/js/owl.carousel.min.js"></script>
+	
 </body>
  </html>

@@ -2,9 +2,6 @@ package skeleton
 
 class AdminController {
 
-	def index() {
-	 log.info("adminController index Action")
-	}
 	def login1() {
 		log.info("adminController login1 Action")
 	}
@@ -35,6 +32,7 @@ class AdminController {
 		responseData.put("offset", of)
 		[result:responseData]
 	}
+	
 	def merchantlist(){
 		log.info("adminController merchantlist Action")
 		def responseData = new HashMap<>();
@@ -188,44 +186,7 @@ class AdminController {
 		[result:responseData]
 	}
 	
-	
-	
-	/*def offsetlist(){
-		log.info("admin Controller offsetlist Action")
-		
-		
-		def responseData = new HashMap<>();
-		def adminname= session.admin
-		if(adminname ==null || adminname=="" ){
-		 redirect(uri: "/admin/login1")
-		 return
-		}
 
-		
-		def mode=params.mode
-		log.info(mode)
-		def result,url
-		
-		if(mode == "web"){
-		def admin= Admin.findByAdminname(session.admin)
-		log.info(admin)
-		def merchantId = admin.id
-		log.info(merchantId)
-		
-		
-		def of=params.offset;
-	   def merchantdata=Merchant.list(sort:"id",order:"desc",max: 5, offset: of)
-		log.info(merchantdata)
-		def totalcount=Merchant.findAll().size()
-		log.info(totalcount)
-		responseData.put("listId", "merchantlist")
-		responseData.put("totalcount",totalcount )
-		responseData.put("merchantdata", merchantdata)
-		responseData.put("admin", admin)
-		responseData.put("offset", of)
-		[result:responseData]
-	}
-	}*/
 	def offsetlist(){
 		log.info("adminController offsetlist Action")
 		
@@ -256,26 +217,7 @@ class AdminController {
 		  [result:responseData]
 		}
 	}
-	
-	
-	
-	def updateprofile(){
-		log.info("adminController updateprofile Action")
-		def responseData = new HashMap<>()
-		def admin= Admin.findByAdminname(session.admin)
-		
-		def adminname= session.admin
-		if(adminname ==null || adminname=="" ){
-		// redirect(uri: "/user/login1")
-		 return
-		}
-		//responseData.put("listId", "adminDashboard")
-		responseData.put("admin",admin)
 
-		[result:responseData]
-	}
-	
-	
 	def logout = {
 		
     log.info("adminController logout Action")
@@ -307,10 +249,7 @@ class AdminController {
 
 		</script>""",
 			contentType: 'js'
-			
-			
-			//flash.message = "sorry, ${params.adminname}. please try again"
-		//redirect(action:"login1")
+
 		}
 		
 	}

@@ -109,66 +109,53 @@
 
 <g:render template="/user/userheader2"/>
 
-
-<!-- Start Banner Area -->
-    <section class="banner-area organic-breadcrumb" style="padding-top: 20px">
-        <div class="container">
-            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end" style="padding: 82px 127px 88px 0;">
-                <div class="col-first">
-                    <h1>My Orders</h1>
-                    <nav class="d-flex align-items-center">
-                        <a href="/Skeleton/user/userdashboard">Home<span class="lnr lnr-arrow-right"></span></a>
-                        <a href="/Skeleton/user/myorders">My Orders</a>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Banner Area -->
-
-<br><br>
-
-
-
-
- <div class="container signin">
-       <div class="row">
-            <div class="col-xs-9 col-sm-6 col-md-4">
-                <h2 style="font-size: 20px;color: black;">Product List <b style="font-size:18px; color:black;"></h2>
-            </div>
-        </div> <br>
-  <div class="row">
-            <div class="col-lg-6">
-                <div class="panel panel-default">
- 					<div class="table-responsive">
-						<table class="table table-hover table-condensed table-striped">
-      						<thead>
-      							<tr>
-      								<th>Grocery Name</th>
-      								<th>Quantity</th> 
-      								<th>Price</th>
-      							</tr>
-      						</thead>
-     						<tbody>
-     							<g:each in="${result.result.orderList}" expr="true">
-    								<tr>
-      									<td style="font-size: 17px;color: black;"> ${it.groceryName.split("00")[0]}</td>
-      									<td style="font-size: 17px;color: black;"> ${it.groceryName.split("00")[1]}X ${it.groceryPrice}</td>
-        								<td style="font-size: 17px;color: black;">${it.totalQuantity}</td>
-      								</tr>
-    							</g:each>
-    			    			<tr>
-      								<td style="font-size: 18px;color: brown;"> Total Amount</td>
-      								<td></td>
-        							<td style="font-size: 18px;color: brown;">${result.result.totAmt}</td>
-      							</tr>
-    						</tbody>
-     					</table>
-     				</div>
-    			</div>
-   			</div>
-  		</div>
+<section class="order_details section_gap">
+	<div class="container">
+		<div class="order_details_table">
+			<h2>Product List</h2>
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col"><h5>Grocery Name</h5></th>
+							<th scope="col"><h5>Quantity x Price</h5></th>
+							<th scope="col"><h5>Total</h5></th>
+						</tr>
+					</thead>
+					<tbody>
+					<g:each in="${result.result.orderList}" expr="true">
+						<tr>
+							<td>
+								<h6>${it.groceryName.split("00")[0]}</h6>
+							</td>
+							<td>
+								<h6> ${it.groceryName.split("00")[1]} x ${it.groceryPrice}</h6>
+							</td>
+							<td>
+								<h6>${it.totalQuantity}</h6>
+							</td>
+						</tr>
+					</g:each>
+						<tr>
+							<td>
+								<h6 style="color: brown;">Grand Total</h6>
+							</td>
+							<td>
+								<h6 style="color: brown;"></h6>
+							</td>
+							<td>
+								<h6 style="color: brown;">${result.result.totAmt}</h6>
+							</td>
+						</tr>
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
+</section>
+	<!--================End Order Details Area =================-->
+
 <br><br>
 <div class="footer ">
 <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>  

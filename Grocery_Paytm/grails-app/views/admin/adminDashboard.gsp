@@ -1,7 +1,4 @@
-                
-                
-                
-           <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
 <head>
@@ -120,11 +117,11 @@
        <div class="form-group">
                             <div class="col-sm-12 text-right">
        <g:if test="${result.offset > 0}">
-    <g:link type="button" style="color:white" controller="admin" action="offsetlist" params="${[offset:result.offset-5,mode:'web']}" value="Previous"><button class="primary-btn" >Previous</g:link></button>
+    <g:link type="button" style="color:white" controller="admin" action="offsetlist" params="${[offset:result.offset-5,mode:'web']}" value="Previous"><button class="genric-btn primary circle" style="font-size: 15px;" >Previous</g:link></button>
     </g:if>
   
     <g:if test="${result.offset/5 < (result.totalcount)/5-1}">
-      <g:link type="button" style="color:white" controller="admin" action="offsetlist"   params="${[offset: result.offset+5,mode:'web']}" value="Next"><button class="primary-btn" >Next</g:link></button>
+      <g:link type="button" style="color:white" controller="admin" action="offsetlist"   params="${[offset: result.offset+5,mode:'web']}" value="Next"><button class="genric-btn primary circle" style="font-size: 15px;" >Next</g:link></button>
        </g:if>
        </div>
        </div>
@@ -132,12 +129,52 @@
        </div>
        </div>
        </div>
-       
-            
-        </div>
-    
-    
-    
+           
+        </div> 
+        
+        	<!-- start footer Area -->
+	<style>
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color:black;
+   color: white;
+   text-align: center;
+}
+
+a {
+  color: white;
+}
+a:hover {
+  color: white;
+}
+
+
+</style>
+<div class="footer ">
+<p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>  
+<a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a> | All rights reserved </p>
+<p> <a href="/Skeleton/user/paytmTerms" target="_blank"><strong>Paytm</strong></a> Privacy Policies | Terms & Conditions </p>
+</div>
+	<!-- End footer Area -->
+
+
+	<script src="js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+	 crossorigin="anonymous"></script>
+	<script src="js/vendor/bootstrap.min.js"></script>
+	<script src="js/jquery.ajaxchimp.min.js"></script>
+	<script src="js/jquery.nice-select.min.js"></script>
+	<script src="js/jquery.sticky.js"></script>
+	<script src="js/nouislider.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<!--gmaps Js-->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+	<script src="js/gmaps.min.js"></script>
+	<script src="js/main.js"></script>  
     <script src="/ProviderSearch/website/js/bootstrap.min.js"></script>
     <script src="/ProviderSearch/website/js/tm-script.js"></script>
 </body>

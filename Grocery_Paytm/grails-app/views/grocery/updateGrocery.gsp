@@ -63,16 +63,11 @@ $(function() {
 
 
 function costcal(){
-	alert("coserca");
 	var cost=$('#cost').val();
 	var offer=$('#offer').val();
 
-	
-	//var actprice=price
-	
 	var offervalue=(cost*offer)/100;
 	actualprice=cost-offervalue;
-	alert(actualprice);
 	
 	$('#total').val(actualprice);
 	
@@ -121,7 +116,7 @@ function costcal(){
 		<g:message code="category.categoryName.label" default="Category Name" />
 		<span class="required-indicator"></span>
 	</label>
-         <input type="text" name="categoryName" id="categoryName" class="search form-control" placeholder="Select Category" value="${result.gInstance?.categoryName}"  >
+         <input type="text" name="categoryName" id="categoryName" class="search form-control" placeholder="Select Category" value="${result.gInstance?.categoryName}" readonly>
         
     </div></div>
    
@@ -132,7 +127,7 @@ function costcal(){
 		<g:message code="grocery.groceryName.label" default="groceryName" />
 		<span class="required-indicator"></span>
 	</label>
-         <input type="text" name="groceryName" id="groceryName" class="search form-control" placeholder="Select grocery" value="${result.gInstance?.groceryName}" >
+         <input type="text" name="groceryName" id="groceryName" class="search form-control" placeholder="Select grocery" value="${result.gInstance?.groceryName}" readonly>
         
     </div></div><div class="col-md-4 col-sm-4">
 
@@ -195,18 +190,7 @@ function costcal(){
 
 <div class="form-group">
              <div class="row">
-             
-             <%--<div class="col-md-4 col-sm-4">
-
-<div class="fieldcontain ${hasErrors(bean: result.gInstance, field: 'createdDate', 'error')} required">
-	<label for="createdDate">
-		<g:message code="grocery.createdDate.label" default="Created Date" />
-		<span class="required-indicator"></span>
-	</label>
-	<g:textField name="createdDate" required="" id="createdDate" class="form-control"  value="${result.gInstance?.createdDate}"/>
-
-</div></div>
-  --%><div class="col-md-4 col-sm-4">
+<div class="col-md-4 col-sm-4">
 
 
 <div class="fieldcontain ${hasErrors(bean: result.gInstance, field: 'total', 'error')} required">
@@ -220,7 +204,7 @@ function costcal(){
 </div>
 
 		
-					<g:actionSubmit class="saveupdate" action="saveupdate" class="primary-btn" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+					<g:actionSubmit class="saveupdate" action="saveupdate" class="genric-btn primary circle" style="font-size: 15px;" value="${message(code: 'default.button.update.label', default: 'Update')}" />
 				</fieldset>
 				</div>
 			</g:form>

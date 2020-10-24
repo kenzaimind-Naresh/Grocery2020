@@ -152,7 +152,7 @@ form.example button {
 }
 
 form.example button:hover {
-  background: #0b7dda;
+  background: #f0f3f5;
 }
 
 /* Clear floats */
@@ -241,7 +241,6 @@ $(function() {
 <div class="row">
 <g:form class="example" action="searchedmarket" controller="merchant" method="GET" style="width:500px;padding-left:50px">			
   <!-- Search form -->
-<%--<input class="form-control" type="text" name="shopName" id="shopName" placeholder="Search" aria-label="Search"><br>--%>
 <input class="form-control" type="text" name="shopName" id="shopName" placeholder="Search" aria-label="Search">
 <div class="input-group-append">
   <button class="form-control" type="submit"><i class="fa fa-search"></i></button>
@@ -254,7 +253,7 @@ $(function() {
 		<div class="single-product">
 			<div class="product-details">
 			<div class="row" style="padding-left:50px">
-					<button type="button" class="btn btn-warning">
+					<button type="button" class="genric-btn primary circle" style="font-size: 15px;">
 						<a href="/Skeleton/user/marketdata?merchantshopName=${i.shopName }" style="color: black">${i.shopName}</a>
 					</button>
 			</div> <br>

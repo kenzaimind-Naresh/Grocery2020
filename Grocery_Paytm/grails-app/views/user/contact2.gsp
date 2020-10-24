@@ -109,40 +109,8 @@
 
  <g:render template="/user/userheader2"/>
     
-    
- <br><br><br><br><br>
- 
- <!-- Start Banner Area -->
-    <section class="banner-area organic-breadcrumb" style="padding-top: 20px">
-        <div class="container">
-            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end" style="padding: 82px 127px 88px 0;">
-                <div class="col-first">
-                    <h1>Contact</h1>
-                    <nav class="d-flex align-items-center">
-                        <a href="/Skeleton/user/userdashboard">Home<span class="lnr lnr-arrow-right"></span></a>
-                        <a href="/Skeleton/user/contact2">Contact</a>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Banner Area -->
- 
-<%--<div class="container"><h4>Super Market</h4><br>
-<div class="row">
-     		<g:each in="${result.merchant}" var="i" expr="true">
-    			<tr>
-      				<div class="single-product">
-						<div class="product-details">
-							<div class="row" style="padding-left:50px">
-								<button type="button" class="primary-btn"><a href="/Skeleton/user/marketcontactdetails?shopName=${i.shopName }" style="color: black">${i.shopName}</a></button>
-							</div> 
-						</div>
-					</div>
-				</tr>
-    		</g:each>
-		</div>
-	</div>--%>
+ <br><br><br><br>
+
 
 <!--================Contact Area =================-->
 	<section class="contact_area section_gap_bottom">
@@ -150,17 +118,15 @@
 			<%--<div id="mapBox" class="mapBox" data-lat="40.701083" data-lon="-74.1522848" data-zoom="13" data-info="PO Box CT16122 Collins Street West, Victoria 8007, Australia."
 			 data-mlat="40.701083" data-mlon="-74.1522848">
 			</div>
-			--%>
+			--%><br>
 			<div class="row">
-				<div class="col-lg-3">
+				<div class="col-lg-4">
 					<div class="contact_info">
-					
 					    <g:each in="${result.data}" expr="true">
 						<div class="info_item">
 							<i class="lnr lnr-home"></i>
-							<h3>${it.shopName}</h3>
 							<h6>${it.street},${it.address}-${it.zipCode}</h6>
-							
+							<p>${it.shopName}</p>
 						</div>
 						<div class="info_item">
 							<i class="lnr lnr-phone-handset"></i>

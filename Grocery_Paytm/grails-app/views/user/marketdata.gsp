@@ -90,58 +90,36 @@ function getdata() {
 
 <body>
 <g:render template="/user/userheader"/>
-
-     <br><br><br><br><br><br>
+<br><br><br><br><br><br>
 <div class="container" >
-<b style="color: brown;font-size: 24px;">${result.merchShop}</b>
-      <div class="row">
-     <g:each in="${result.data}" expr="true">
-   
-      <tr>
-     
-<div class="single-product"  style="padding-left:60px">
-
-<br>
-<img src="${createLink(controller:'grocery', action:'showPayload', id:"${it.id}")}" alt=" " style="width:145px;height:128px;" />
-
-
-<div class="product-details">
-
-<h6 class="card-title">${it.groceryName}</h6>
-<div class="price">
-
-<h6>Cost:&#x20b9;${it.cost}</h6>
-
-<h6>Wgt:${it.weight}</h6>
-
-<br>
-
-<h6>Offer:${it.offer}%</h6>
-<h6>T.Amt:&#x20b9;${it.total}</h6>
-
-<div class="row">
-<g:if test="${it.quantity>"0"}">
-<a href="#" data-name="${it.groceryName}" data-price="${it.total}" data-quantity="${it.quantity}" data-weight="${it.weight}" class="add-to-cart btn btn-primary">Add to Cart</a>
-      &nbsp;&nbsp;
-    </g:if> 
-    <g:else>
-    <button class="btn btn-danger" style="font-size: 17px;" disabled="disabled">Out of Stock</button>
-      &nbsp;&nbsp;
-    
-    </g:else>
-     
-</div>
-
-</div>
-
-</div>
-</div>
+	<b style="color: brown;font-size: 24px;padding-left: 100px;">${result.merchShop}</b>
+    <div class="row">
+    	<g:each in="${result.data}" expr="true">
+   		<tr>
+     		<div class="single-product"  style="padding-left:100px"><br>
+				<img src="${createLink(controller:'grocery', action:'showPayload', id:"${it.id}")}" alt=" " style="width:145px;height:128px;" />
+				<div class="product-details">
+					<h6 class="card-title"><b style="color:black;">${it.groceryName}</b></h6>
+					<div class="price">
+						<h6>Cost:&#x20b9;${it.cost}</h6>
+						<h6>Wgt:${it.weight}</h6><br>
+						<h6>Offer:${it.offer}%</h6>
+						<h6>T.Amt:&#x20b9;${it.total}</h6>
+						<div class="row">
+							<g:if test="${it.quantity>"0"}"><br>
+								<a href="#" data-name="${it.groceryName}" data-price="${it.total}" data-quantity="${it.quantity}" data-weight="${it.weight}" class="add-to-cart genric-btn info circle" style="font-size: 15px;">Add to Cart</a>&nbsp;&nbsp;
+    						</g:if> 
+    						<g:else>
+    							<button class="genric-btn danger circle" style="font-size: 17px;" disabled="disabled">Out of Stock</button>&nbsp;&nbsp;
+    						</g:else>
+    					</div>
+					</div>
+				</div>
+			</div>
         </tr>
-    </g:each>
-   
-</div></div>
-
-     
+    	</g:each>
+   </div>
+</div>
 
  <!-- Modal -->
 <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -260,12 +238,12 @@ var shoppingCart = (function() {
   // getavail(name);
     for(var item in cart) {
       if(cart[item].name === name) {
-	 // alert("count in cart" +cart[item].count);
+	 //alert("count in cart" +cart[item].count);
 	  //alert(quantity);
 	
 	  //getavail(name);
 	  setTimeout(function(){ 
-$("#eetest").val("time pass");
+		$("#eetest").val("time pass");
 	  }, 2000);
 	  var qtytotal=$("#qtyvalue").val();
 	  
@@ -517,6 +495,36 @@ $('.show-cart').on("change", ".item-count", function(event) {
 displayCart();
 
  </script>
+ 
+<style>
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color:black;
+   color: white;
+   text-align: center;
+}
+
+a {
+ // color: white;
+}
+a:hover {
+  //color: white;
+}
+
+
+</style>
+
+<br><br>
+<div class="footer ">
+<p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>  
+<a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a> | All rights reserved </p>
+<p> <a href="/Skeleton/user/paytmTerms" target="_blank"><strong>Paytm</strong></a> Privacy Policies | Terms & Conditions </p>
+</div>
+
+	           
 
 </body>
 </html>

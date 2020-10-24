@@ -58,22 +58,15 @@ window.onhashchange = function (event) {
 
 <g:form class="form-horizontal" controller="address" Id="myform" name="myform" action="shipping" nonvalidate="nonvalidate">
 <div class="container">
-<div  class="col-lg-9" style="color:black;padding-left:350px">
+<div  class="col-lg-9" style="color:black;padding-left:340px">
         <div class="order_box">
         <div class="form-group">
 			<div class="radio">
-				<label style="color:black;padding-left:70px"><br>
-				<input type="radio" name="pay" value="CashOnDelivery" onclick="myForm"><b style="color:black;">	Cash On Delivery</b>(Cash/UPI/Card)<br><br>
+				<label style="color:black;padding-left:50px"><br>
+				<input type="radio" name="pay" value="CashOnDelivery" onclick="myForm"><b style="color:black;">		Cash On Delivery</b>(Cash/UPI/Card)<br><br>
 				<div onClick="window.location = 'http://localhost:8080/Skeleton/merchant/proceedtoPaytm';">
    				 <input type="radio" name="paytmpay" style="pointer-events:none;"><b style="color:black;">	Paytm pay</b>
-   				         <%--<g:link controller="merchant" action="proceedtoPaytm" type="radio" name="paytmpay">Paytm pay</g:link>
-   				 
-				--%></div><%--
-				
-				<div onClick="window.location = 'http://localhost:8080/Skeleton/address/onlinepay';">
-    			<input type="radio" name="upipay" style="pointer-events:none;"><b style="color:black;">	BHIM UPI</b>
-				</div>
-				--%></label>
+				</label>
 			</div>    
 		</div>
 	</div>
@@ -86,7 +79,7 @@ window.onhashchange = function (event) {
 
 <div class="form-group">
 <div class="col-sm-12 text-center">
-<input type="submit" ID="btnsave" value="Continue" onclick="return validateForm()" class="btn btn-info btn-lg" />
+<input type="submit" ID="btnsave" value="Continue" onclick="return validateForm()" class="genric-btn primary circle" style="font-size: 15px;" />
 </div>
 </div>
 </div>

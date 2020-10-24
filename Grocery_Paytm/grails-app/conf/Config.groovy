@@ -120,24 +120,7 @@ grails {
 		 ]
 	}
 }
-/*nexmo {
-	endpoint = "https://rest.nexmo.com/"
-	format = "json"
-  
-	api {
-	  key = "abcde123"
-	  secret = "fghij456"
-	}
-  
-	test {
-	  // This must be a verified number in your Nexmo account
-	  phone_number = "9475766637"
-	}
-  
-	sms {
-	  default_from = "15005551234"
-	}
-  }*/
+
 // log4j configuration
 log4j.main = {
     // Example of changing the log pattern for the default console appender:

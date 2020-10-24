@@ -108,25 +108,8 @@
 <body>
 
 <g:render template="/merchant/merchantheader1"/>
-
-
-<!-- Start Banner Area -->
-    <section class="banner-area organic-breadcrumb" style="padding-top: 20px">
-        <div class="container">
-            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end" style="padding: 82px 127px 88px 0;">
-                <div class="col-first">
-                    <h1>Contact</h1>
-                    <nav class="d-flex align-items-center">
-                        <a href="/Skeleton/merchant/ldashboard">Home<span class="lnr lnr-arrow-right"></span></a>
-                        <a href="/Skeleton/merchant/contact1">Contact</a>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Banner Area -->
     
- <br><br>
+ <br><br><br><br><br><br>
 	    
     
  <!--================Contact Area =================-->
@@ -137,19 +120,18 @@
 			</div>
 			--%>
 			<div class="row">
-				<div class="col-lg-3">
+				<div class="col-lg-6">
 					<div class="contact_info">
 					
 					    <g:each in="${result.contact1}" expr="true">
 						<div class="info_item">
 							<i class="lnr lnr-home"></i>
-							<h6>${it.address}</h6>
-							<p>${it.adminname}</p>
+							<h6>${it.address}</h6><br>
 						</div>
 						<div class="info_item">
 							<i class="lnr lnr-phone-handset"></i>
 							<h6>${it.mobileNumber}</h6>
-							<p>Mon to Fri 9am to 6 pm</p>
+							<p>Mon to Fri 9am to 6pm</p>
 						</div>
 						<div class="info_item">
 							<i class="lnr lnr-envelope"></i>

@@ -31,7 +31,7 @@
 								
 								<ul class="dropdown-menu">
 								
-								<li><a href="/Skeleton/admin/logout" style="color:	#DAA520;"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+								<li><a href="/Skeleton/admin/logout" style="color:	#DAA520;font-size:14px;"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 
 								</ul>
 							</li>

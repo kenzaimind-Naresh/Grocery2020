@@ -55,19 +55,15 @@
  <script>
   function PrintElem(elem)
 {
-	  //alert("hi");
 	  Popup($(elem).html());
 }
 
 function Popup(data) 
 {
-	//alert("pop");
-	//alert(data);
     var mywindow = window.open('', 'my div', 'height=400,width=600');
     mywindow.document.write('<html><head><title>my div</title>');
     mywindow.document.write('</head><body>');
     mywindow.document.write(data);
-   // mywindow.document.write("resrteseresr");
     
     mywindow.document.write('</body></html>');
 
@@ -123,18 +119,7 @@ th, td {
 		<div class="container">
 			<h3 class="title_confirmation">${result.message}</h3>
 			<div class="row order_d_inner">
-				<%--<div class="col-lg-4">
-					<div class="details_item">
-						<h4>Order Info</h4>
-						<ul class="list">
-							<li><a href="#"><span>Order number</span> : 60235</a></li>
-							<li><a href="#"><span>Date</span> : Los Angeles</a></li>
-							<li><a href="#"><span>Total</span> : USD 2210</a></li>
-							<li><a href="#"><span>Payment method</span> : Check payments</a></li>
-						</ul>
-					</div>
-				</div>
-				--%><div class="col-lg-6">
+				<div class="col-lg-6">
 					<div class="details_item">
 						<h4>Billing Address</h4>
 						<ul class="list">
@@ -165,39 +150,52 @@ th, td {
 					<table class="table">
 						<thead>
 							<tr>
-								<th scope="col"><strong>Grocery Name</strong></th>
-								<th scope="col"><strong>Quantity</strong></th>
-								<th scope="col"><strong>Total</strong></th>
+								<th scope="col"><h5>Grocery Name</h5></th>
+								<th scope="col"><h5>Qty x Price</h5></th>
+								<th scope="col"><h5>Total</h5></th>
 							</tr>
 						</thead>
 						<tbody>
 						<g:each in="${result.result.cartlist}" expr="true">
 							<tr>
 								<td>
-									<p>${it.gname.split("00")[0]}</p>
+									<h6>${it.gname.split("00")[0]}</h6>
 								</td>
 								<td>
-									<h5>x ${it.gname.split("00")[1]}</h5>
+									<h6> ${it.gname.split("00")[1]} x ${it.gprice}</h6>
 								</td>
 								<td>
-									<p>${it.tcount}</p>
+									<h6>${it.tcount}</h6>
 								</td>
 							</tr>
 						</g:each>
 							<tr>
 								<td>
-									<h4>Total</h4>
+									<h6 style="color: brown;">Grand Total</h6>
 								</td>
 								<td>
-									<h5>${result.result.tcount}</h5>
+									<h6 style="color: brown;">${result.result.tcount}</h6>
 								</td>
 								<td>
-									<p>${result.result.totAmt}</p>
+									<h6 style="color: brown;">${result.result.totAmt}</h6>
 								</td>
 							</tr>
 							
 						</tbody>
 					</table>
+				</div>
+			</div>
+			<br><br>
+			<div class="col-lg-6">
+				<div class="details_item">
+					<h5 style="color: brown;">Note:</h5>
+					<p style="color: black;"> Delivery Charges applicable depends on below distance</p>
+					<ul class="list">
+						<li style="color: black;">0 to 1Kms : Free</li>
+						<li style="color: black;">1 to 3Kms : Rs.30</li>
+						<li style="color: black;">3 to 5Kms : Rs.50</li>
+						<li style="color: black;">5 to 7Kms : Rs.70</li>
+					</ul>
 				</div>
 			</div>
 		</div>

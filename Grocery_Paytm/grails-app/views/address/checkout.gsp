@@ -99,24 +99,6 @@ $(function() {
   });
 
 
-<%--function getdata() {--%>
-<%--	 var doctorId = document.getElementById("usercartId").value--%>
-<%--	 var path = "/Skeleton/Address/getdata";--%>
-<%--	 $.ajax({--%>
-<%--	  url : path,--%>
-<%--	  type : "get",--%>
-<%--	  data :{--%>
-<%--		  usercartId:usercartId--%>
-<%--	  },--%>
-<%--	  success : function(res) {--%>
-<%--		  alert(res.split("#")[1])--%>
-<%--	  },--%>
-<%--	  error : function() {--%>
-<%--	  }--%>
-<%--	 })--%>
-<%--	}--%>
-
-
 </script>
 
 <script>
@@ -274,7 +256,7 @@ form.example::after {
 						<thead>
 							<tr>
 								<th scope="col"><h5>Grocery Name</h5></th>
-								<th scope="col"><h5>Qty X Price</h5></th>
+								<th scope="col"><h5>Quantity x Price</h5></th>
 								<th scope="col"><h5>Total</h5></th>
 							</tr>
 						</thead>
@@ -282,32 +264,32 @@ form.example::after {
 						<g:each in="${result.result.cartList}" expr="true">
 							<tr>
 								<td>
-									<h6>${it.gname.split("00")[0]}</h6>
+									<h5>${it.gname.split("00")[0]}</h5>
 								</td>
 								<td>
-									<h6>${it.gname.split("00")[1]} X ${it.gprice}</h6>
+									<h5>${it.gname.split("00")[1]} X ${it.gprice}</h5>
 								</td>
 								<td>
-									<h6>${it.tcount}</h6>
+									<h5>${it.tcount}</h5>
 								</td>
 							</tr>
 						</g:each>
 							<tr>
 								<td>
-									<h4 style="color: brown;">Grand Total</h4>
+									<h5 style="color: brown;">Grand Total</h5>
 								</td>
 								<td>
 									<h5></h5>
 								</td>
 								<td>
-									<h4 style="color: brown;">${result.result.totAmt}</h4>
+									<h5 style="color: brown;">${result.result.totAmt}</h5>
 								</td>
 							</tr>
 						</tbody>
 					</table>
 				</div><br>
-				<g:link controller="user" action="marketdata"><button type="button"  class="primary-btn">Add More</button></g:link>
-				<input type="submit" ID="btnsave" onclick="orderCheck()" value="Order now" class="primary-btn"/>
+				<g:link controller="user" action="marketdata"><button type="button"  class="genric-btn primary circle" style="font-size: 15px;">Add More</button></g:link>
+				<input type="submit" ID="btnsave" onclick="orderCheck()" value="Order now" class="genric-btn primary circle" style="font-size: 15px;"/>
 			</div>
 		</div>
 	</section>
@@ -327,43 +309,7 @@ form.example::after {
 </g:form>
 	<!--================End Order Details Area =================-->
               
-<%--<g:form  role="form" controller="cart" Id="myform" name="myform" action="save">
-
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 signin-pdtop">
-             <div class="form-group">
-             
-
-<input type="hidden" name="gname" id="gname"/>
-<input type="hidden" name="gprice" id="gprice"/>
-<input type="hidden" name="tcount" id="tcount"/>
-<input type="hidden" name="tamount" id="tamount"/>
-<input type="hidden"  name="qCount" id="qCount"/>   
-
-</div>
-</div>
-
-</div>
-<input type="hidden" id="usercartId" name="usercartId" value="${result.uname.id}"/>
-<input type="hidden" id="grandTotal" name="grandTotal" value="${result.result.totAmt}" />
-
-<input type="hidden" id="modifiedBy" name="modifiedBy" value="self"/>
-<input type="hidden" id="mode" name="mode" value="web"/>
-<input type="hidden" id="myaction" name="myaction" value="save"/>
-
-
-<div class="form-group">
-<div class="col-sm-6 text-center">
-
-<g:link controller="user" action="marketdata"><button type="button"  class="btn btn-primary">Add More</button></g:link>	&emsp;&emsp;&emsp;
-
-<input type="submit" ID="btnsave" onclick="orderCheck()" value="Order now" class="btn btn-primary"/>
-
-</div>
-
-</div>
-
-</g:form>--%>    	
+   	
   <script type="text/javascript">
   // ************************************************
 // Shopping Cart API

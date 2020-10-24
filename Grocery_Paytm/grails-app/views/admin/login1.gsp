@@ -66,7 +66,7 @@
 								
 							</div>
 							<div class="col-md-12 form-group">
-								<button type="submit" value="submit" class="primary-btn">Log In</button>
+								<button type="submit" value="submit" class="genric-btn primary circle" style="font-size: 15px;">Log In</button>
 								<a href="#">Forgot Password?</a>
 							</div>
 						</g:form>

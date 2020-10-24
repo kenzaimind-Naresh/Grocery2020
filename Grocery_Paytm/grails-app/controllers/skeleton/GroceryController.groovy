@@ -24,96 +24,18 @@ class GroceryController {
 	static transactional=true
 	def CategoryController
 	
-	//CategoryController cctv=new CategoryController();
-	//ComputersrepairController computer=new ComputersrepairController();
-	
 	
 static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: "DELETE"]
 
-    def index(Integer max) {
-log.info("Grocery Controller index action")
-        params.max = Math.min(max ?: 10, 100)
-        respond Grocery.list(params), model:[groceryInstanceCount: Grocery.count()]
-    }
-
-	
-	def pdetails() {
-	log.info("Grocery Controller pdetails action")
-		def responseData = new HashMap<>()
-		def mode=params.mode
-		log.info(mode)
-		
-		def user= Merchant.findByEmail(session.user)
-		log.info(user)
-		def username= session.user
-		if(username ==null || username=="" ){
-		 redirect(uri: "/grocery/login")
-		 return
-		}
-		
-		
-		def merchantId = user.id
-		def of=0;
-		def data=Grocery.findAllByMerchantId(merchantId,[sort:"id",order:"desc",max: 5, offset: of])
-		log.info(data)
-		
-		responseData.put("listId", "dashboard")
-		responseData.put("uname",user)
-		responseData.put("data", data)
-		
-		log.info("************")
-		log.info(responseData)
-
-		[result:responseData]
-
-}
-	
-    def show(Grocery groceryInstance) {
-        respond groceryInstance
-		log.info("Grocery Controller show action")
-		//log.info("address Controller create action ***********")
-		
-		 def responseData = new HashMap<>()
-			
-		 def user= User.findByUserName(session.user)
-		 log.info(user)
-		 def username= session.user
-		 if(username ==null || username=="" ){
-		 // redirect(uri: "/grocery/show")
-		  return
-		 }
-		 
-		 responseData.put("listId", "show")
-		 responseData.put("uname",user)
-		 
-		 log.info("************")
-		 log.info(responseData)
- 
-		 [result:responseData]
-		
-		
-    }
 	
 	def showPayload(Grocery groceryInstance) {
 		log.info("Grocery Controller showPayload action")
 		response.outputStream << groceryInstance.image // write the grocery to the output stream
 		response.outputStream.flush()
 		}
-	
-	/*def showQrcode(Grocery groceryInstance) {
-		response.outputStream << groceryInstance.Qrcode // write the grocery to the output stream
-		response.outputStream.flush()
-		}
-	
-	*/
 
     def create() {
 		log.info("Grocery Controller create action")
-       // respond new Grocery(params)
-		
-		
-	//	def categoryName=Category.getAll()
-		//	 respond new Category(params), model:[categoryName :categoryName]
 		
 			def responseData = new HashMap<>()	
 			 def categoryName=Category.getAll()
@@ -161,24 +83,6 @@ log.info("Grocery Controller index action")
 	 [result:responseData]	
 	}
 	
-	def marketdata(){
-		
-		log.info("Merchant Controller marketdata action")
-		def responseData = new HashMap<>()
-		def result,url
-		url="/merchant/marketdata.gsp"
-		def mode=params.mode
-		def merchantshopName = params.merchantshopName
-		log.info(merchantshopName)
-		def data = Grocery.findAllByMerchantshopName(merchantshopName)
-		log.info(data)
-		responseData.put("data", data)
-		[result:responseData]
-		
-		
-	
-	}
-	
 	def outofstock(){
 	
 		log.info("GroceryController outofstock Action")
@@ -207,7 +111,6 @@ log.info("Grocery Controller index action")
 		def totalcount=Grocery.findAllByMerchantIdAndQuantity(merchantId,0).size()
 		log.info("totalcount size "+totalcount)
 		def groceryInstance=Grocery.findByGroceryName(params.groceryName)
-		//log.info("^^^^^^^^^^^^^^^^^^^"+groceryInstance.groceryName)
 		
 		responseData.put("data1", groceryInstance)
 		responseData.put("listId", "list")
@@ -293,16 +196,6 @@ log.info("Grocery Controller index action")
         groceryInstance.save flush:true
 		redirect(uri: "/grocery/create")
 		flash.message = "Grocery Created Successfully"
-	
-		
-     /*   request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'grocery.label', default: 'Grocery'), groceryInstance.id])
-                redirect groceryInstance
-            }
-            '*' { respond groceryInstance, [status: CREATED] }
-        }
-  */
     
     }
 
@@ -339,7 +232,7 @@ log.info("Grocery Controller index action")
 	
 		result=GroceryService.delete(id)
 			def url="/grocery/deleteGrocery"
-			responseData.put(getMessages('default.message.label'),"Deleted Sucessfully ")
+			responseData.put(getMessages('default.message.label'),"You Grocery deleted sucessfully ")
 			responseData.put("uname", user)
 		[result:responseData]
 	}
@@ -366,11 +259,11 @@ log.info("Grocery Controller index action")
 		
 		def merchantId = user.id
 		def of=0;
-		log.info(merchantId);
-		log.info(Grocery.findAllByMerchantId(merchantId))
+		log.info("merchantId "+merchantId);
+		log.info("Image "+Grocery.findAllByMerchantId(merchantId))
 		
 		def data=Grocery.findAllByMerchantId(merchantId,[sort:"id",order:"desc",max: 5, offset: of])
-		log.info("data    ********* "+data.get(1).groceryName)
+		//log.info("data    ********* "+data.get(1).groceryName)
 		def totalcount=Grocery.findAllByMerchantId(merchantId).size()
 		log.info(totalcount)
 		def groceryInstance=Grocery.findByGroceryName(params.groceryName)
@@ -421,47 +314,6 @@ log.info("Grocery Controller index action")
 		  [result:responseData]
 		}
 	}	
-
-    def edit() {
-		
-	    log.info("GroceryController edit Action")
-		
-		def username= session.user
-		if(username ==null || username=="" ){
-		 redirect(uri: "/grocery/edit")
-		 return
-		}
-		def responseData = new HashMap<>();
-		def mode=params.mode
-		log.info(mode)
-		def result,url
-		
-		def groceryName = params.groceryName
-		log.info(groceryName)
-		
-		def user= Merchant.findByEmail(session.user)
-		log.info(user)
-	
-		
-		def merchantId = user.id
-		def of=0;
-		def data=Grocery.findByMerchantId(merchantId,[sort:"id",max: 5])
-		log.info(data)
-		def totalcount=Grocery.findAllByMerchantId(merchantId).size()
-		log.info(totalcount)
-		def groceryInstance=Grocery.findByGroceryName(params.groceryName)
-		log.info(groceryInstance)
-		
-		responseData.put("data1", groceryInstance)
-		responseData.put("listId", "list")
-		responseData.put("totalcount",totalcount)
-		responseData.put("data", data)
-		responseData.put("uname", user)
-		responseData.put("offset", of)
-		log.info(responseData)
-		[result:responseData]
-	
-	}
 		
 	def getdata() {
 		log.info("Grocery Controller getdata action")
@@ -519,44 +371,12 @@ log.info("Grocery Controller index action")
 		
 		def res=GroceryService.update(categoryName,groceryName,cost,weight,quantity,offer,total,createdDate,user.firstName)
 		log.info("result from service "+res)
-		/* To update the data of DiagnosticTest */
-	//	if(myaction.equals("update")) {
-/*			if( ! (isValid(categoryName) && isValid(groceryName) && isValid(cost) && isValid(weight) && isValid(quantity) && isValid(offer) && isValid(createDate)&& isValid(total)&& isValid(modifiedBy))){
-				responseData.put(getMessages('default.status.label'),getMessages('default.error.message'))
-				responseData.put(getMessages('default.message.label'),getMessages('default.params.missing'))
-				renderPage(mode, url, responseData)
-				return
-			}
-			else {
-				def res=GroceryService.update(categoryName,groceryName,cost,weight,quantity,offer,createDate,total,modifiedBy)
-				//if(res.get("status") == "success")
-					responseData.put("uname", user)
-					redirect(uri: "/grocery/saveupdate")
-					flash.message = "Grocery Updated Successfully"
-					
-				//	responseData.put(getMessages('default.message.label'),res.getAt("message"))
-				//	responseData.put(getMessages('default.status.label'),res.getAt("status"))
-			}*/
-			//	result=responseData
-			
-		//}
-		
-		/* To delete the data of DiagnosticTest 
-		if(myaction.equals("delete")) {
-			result=DiagnosticTestService.delete(testName)
-		}
-		*/
-		//renderPage(mode, url, result)
+
 		responseData.put("uname", user)
 		responseData.put(getMessages('default.message.label'),"Your Grocery Updated Successfully")
 		[result:responseData]
 		}
-	
 
-	def gedit(Grocery groceryInstance) {
-		respond groceryInstance
-		log.info("Grocery Controller gedit action")
-	}
 	
 	@Transactional
 	def updateGrocery() {
@@ -583,13 +403,6 @@ log.info("Grocery Controller index action")
 		responseData.put("uname", user)
 		[result:responseData]
 
-/*		if (groceryInstance.hasErrors()) {
-			respond groceryInstance.errors, view:'edit'
-			return
-		}*/
-
-	//	groceryInstance.save flush:true
-
 	}
 	
     @Transactional
@@ -609,16 +422,7 @@ log.info("Grocery Controller index action")
 
 		redirect(uri: "/grocery/list")
 		flash.message = "Updated Grocery Successfully"
-	
-      
-		/*  request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Grocery.label', default: 'Grocery'), groceryInstance.id])
-                redirect groceryInstance
-            }
-            '*'{ respond groceryInstance, [status: OK] }
-        }
-        */
+		
     }
 
     @Transactional
@@ -658,15 +462,7 @@ log.info("Grocery Controller index action")
 			log.info(url)
 			log.info(mode)
 			log.info(map)
-		/*	 if(mode == "web" && map.get("status")=="success"){
-				 
-				render view:url,model:[result:map]
-			}
-			
-			 else{
-				 render map as JSON
-			 }
-		*/
+
 		}
 		
     protected void notFound() {

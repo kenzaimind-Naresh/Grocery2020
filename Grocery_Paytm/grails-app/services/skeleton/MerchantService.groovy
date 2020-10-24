@@ -91,16 +91,17 @@ class MerchantService {
 		}
 	 }
 	
-	def validateCode(email,otpActivation){
+	def validateCode(email,mobileNumber,otpActivation){
 		log.info("MerchantService validateCode service ")
 		def resultData=new HashMap<>()
 		String []args=["User"]
 		try{
-		 def merchantInstance=Merchant.findByEmail(email)
+		 def merchantInstance=Merchant.findByEmailOrMobileNumber(email,mobileNumber)
 		  if(merchantInstance){
 		   merchantInstance.otpActivation=otpActivation
 		   log.info(otpActivation)
 		   log.info(email)
+		   log.info(mobileNumber)
 		   def sts2= save(merchantInstance)
 		   log.info(sts2)
 		   

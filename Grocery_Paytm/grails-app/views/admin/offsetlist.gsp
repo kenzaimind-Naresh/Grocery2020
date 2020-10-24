@@ -152,11 +152,13 @@ window.onhashchange = function (event) {
       <div class="pag">
       <div class="col-sm-8 text-right">
        <g:if test="${result.offset > 0}">
-     <g:link type="button" style="color:white" controller="admin" action="offsetlist" params="${[offset:result.offset-5,mode:'web']}" value="Previous"><button class="primary-btn">Previous</button></g:link>
+     <g:link type="button" style="color:white" controller="admin" action="offsetlist" params="${[offset:result.offset-5,mode:'web']}" value="Previous">
+     <button class="genric-btn primary circle" style="font-size: 15px;">Previous</button></g:link>
     </g:if>
   &nbsp;&nbsp;
     <g:if test="${result.offset/5 < (result.totalcount)/5-1}">
-     <g:link type="button" style="color:white" controller="admin" action="offsetlist"   params="${[offset: result.offset+5,mode:'web']}" value="Next"><button class="primary-btn"> Next</button></g:link>
+     <g:link type="button" style="color:white" controller="admin" action="offsetlist"   params="${[offset: result.offset+5,mode:'web']}" value="Next">
+     <button class="genric-btn primary circle" style="font-size: 15px;"> Next</button></g:link>
        </g:if>
        </div>
        </div>

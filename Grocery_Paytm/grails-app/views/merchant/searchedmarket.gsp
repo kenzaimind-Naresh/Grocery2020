@@ -185,7 +185,7 @@ padding: 2px 16px;
 		<div class="single-product">
 			<div class="product-details">
 			<div class="row" style="padding-left:50px">
-					<button type="button" class=" primary-btn">
+					<button type="button" class="genric-btn primary circle" style="font-size: 15px;">
 						<a href="/Skeleton/user/marketdata?merchantshopName=${i.shopName }" style="color: black">${i.shopName}</a>
 					</button>
 			</div> <br>

@@ -198,42 +198,11 @@ window.onhashchange = function (event) {
 							<label for="state" style="color:black">State :</label>
 							<input type="text" class="form-control" id="state" name="state" value="${result.data.state}" placeholder="State" >
 								<span id="stateinfo" style="color:red;"></span>
-							<%--<select	name="state" required="true" id="state" class="form-control">
-							<option>${result.data.state}</option>
-							<option>Andhra Pradesh</option>
-							<option>Arunachal Pradesh</option>
-							<option>Assam</option>
-							<option>Bihar</option>
-							<option>Chhattisgarh</option>
-							<option>Goa</option>
-							<option>Gujarat</option>
-							<option>Haryana</option>
-							<option>Himachal Pradesh</option>
-							<option>Jammu and Kashmir</option>
-							<option>Jharkand</option>
-							<option>Karnataka</option>
-							<option>Kerala</option>
-							<option>Madhya Pradesh</option>
-							<option>Maharashtra</option>
-							<option>Manipur</option>
-							<option>Meghalaya</option>
-							<option>Mizoram</option>
-							<option>Nagaland</option>
-							<option>Odisha</option>
-							<option>Punjab</option>
-							<option>Rajasthan</option>
-							<option>Sikkim</option>
-							<option>Telangana</option>
-							<option>Tripura</option>
-							<option>Uttarakhand</option>
-							<option>Uttar Pradesh</option>
-							<option>West Bengal</option>
-							</select>
-							--%></div>
+							</div>
 						</div>
   						<div class="col-md-4 col-sm-4">
 							<div class="fieldcontain">	
-								<label for="zipCode" style="color:black">ZipCode :</label>
+								<label for="zipCode" style="color:black">Zip Code :</label>
 								<input type="text" class="form-control" id="zipCode" name="zipCode" value="${result.data.zipCode}" pattern="[0-9]{6}" title="six digit zip code" placeholder="Zip Code">
 		 						<span id="zipCodeinfo" style="color:red;"></span>
 							</div>
@@ -248,7 +217,7 @@ window.onhashchange = function (event) {
 	<input type="hidden" id="mode" name="mode" value="web">
 	<div class="form-group" style="padding-left:300px">
 		<div class="col-md-6 text-center"><br>
-			<button type="submit" class="btn btn-primary" onclick="return validateForm()">Update</button>
+			<button type="submit" class="genric-btn primary circle" style="font-size: 15px;" onclick="return validateForm()">Update</button>
 		</div>
 	</div>
     </g:form>

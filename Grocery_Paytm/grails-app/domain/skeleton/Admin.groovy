@@ -22,7 +22,7 @@ class Admin {
 		password(maxSize:50)
 		mobileNumber(maxSize:25)
 		dob(maxSize:50)
-		address(maxSize:50)
+		address(maxSize:100)
 		modifiedBy(maxSize:50)
 		createdDate(nullable:true)
 		modifiedDate(nullable:true)

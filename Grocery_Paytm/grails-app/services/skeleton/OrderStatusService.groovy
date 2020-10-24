@@ -111,6 +111,13 @@ class OrderStatusService {
 				log.info(status)
 				
 				def sts=save(orderInstance)
+				log.info(sts)
+				if(sts){
+					def email = User.get(orderInstance.usercartId).email
+					log.info("email from user"+email)
+					log.info("**********OrderStatus Email Service********")
+					sendstatusmail(email,username,status)
+				}
 			}
 			return resultData
 			}
@@ -126,15 +133,29 @@ class OrderStatusService {
 			mailService.sendMail {
 				from "myuser030@gmail.com"
 				to mailid
-				subject "Verification mail for your New Password"
-				body "Dear Customer,your Grocery Order has been placed successfully. Your order amount: Rs."+totalAmount+" and your order items:"+groceryName.split("#")+". "
+				subject "Confirmation mail about your Order"
+				body "Dear Customer,your Grocery Order has been placed successfully. Your order amount: Rs."+totalAmount+" and your order items:"+groceryName.split("#")+". Delivery Charges applicable depends on below distance:  0 to 1Km - Free, 1 to 3Kms - Rs.30, 3 to 5Kms - Rs.50, 5 to 7Kms - Rs.70."
 			}
 			}
 			catch(Exception e){
 				log.info("Exception while sending mail ")
 				}
 				}
-	
+		
+		def sendstatusmail(mailid,username,status){
+			log.info("OrderStatusService sendstatusmail action")
+			try{
+			mailService.sendMail {
+				from "myuser030@gmail.com"
+				to mailid
+				subject "Status mail about your Order"
+				body "Dear "+username+",your Grocery Order will be delivered in "+status+". "
+			}
+			}
+			catch(Exception e){
+				log.info("Exception while sending mail "+e)
+				}
+				}
 		
 		def getMessage(String code) {
 			return getMessage(code,null)

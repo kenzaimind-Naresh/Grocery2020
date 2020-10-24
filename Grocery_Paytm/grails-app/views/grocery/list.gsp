@@ -139,8 +139,8 @@ window.onhashchange = function (event) {
         <td style="color: black;"> ${it.weight}</td>
         <td style="color: black;"> ${it.offer}</td>
               <td style="color: black;"> ${it.total}</td>
-           <td><g:link controller="grocery" action="updateGrocery" class="btn btn-info" id="${it.id}">Edit</g:link></td>
-           <td><g:link controller="grocery" action="deleteGrocery" class="btn btn-danger" id="${it.id}">Delete</g:link></td>
+           <td><g:link controller="grocery" action="updateGrocery" class="genric-btn success radius" style="font-size: 15px;" id="${it.id}">Edit</g:link></td>
+           <td><g:link controller="grocery" action="deleteGrocery" class="genric-btn danger radius" style="font-size: 15px;" id="${it.id}">Delete</g:link></td>
 	
         </tr>
     </g:each>
@@ -154,11 +154,13 @@ window.onhashchange = function (event) {
       <div class="pag">
                             <div class="col-sm-8 text-right">
        <g:if test="${result.offset > 0}">
-     <g:link type="button" style="color:white" controller="grocery" action="offsetlist" params="${[offset:result.offset-5,mode:'web']}" value="Previous"><button class="primary-btn">Previous</button></g:link>
+     <g:link type="button" style="color:white" controller="grocery" action="offsetlist" params="${[offset:result.offset-5,mode:'web']}" value="Previous">
+     <button class="genric-btn primary circle" style="font-size: 15px;">Previous</button></g:link>
     </g:if>
   
     <g:if test="${result.offset/5 < (result.totalcount)/5-1}">
-     <g:link type="button" style="color:white" controller="grocery" action="offsetlist"   params="${[offset: result.offset+5,mode:'web']}" value="Next"><button class="primary-btn">Next</button></g:link>
+     <g:link type="button" style="color:white" controller="grocery" action="offsetlist"   params="${[offset: result.offset+5,mode:'web']}" value="Next">
+     <button class="genric-btn primary circle" style="font-size: 15px;">Next</button></g:link>
        </g:if>
        </div>
        </div>

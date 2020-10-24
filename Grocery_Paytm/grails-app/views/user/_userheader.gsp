@@ -47,14 +47,15 @@
 							</g:if>
 							<g:else>
 							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="userName-md"></span>${result.uname.userName} <span>&nbsp;&nbsp;</span><i class="fa fa-user" style="font-size:20px;"></i></a>
+								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="userName-md"></span>${result.uname.userName} 
+								<span>&nbsp;&nbsp;</span><i class="fa fa-user" style="font-size:20px;"></i></a>
 								
 								<ul class="dropdown-menu">
 								
-								<li><g:link controller="user" action="updateuser" class="active"  style="color:	#DAA520;"><i class="fa fa-user"></i> Profile</g:link></li>
-								<li><g:link controller="user" action="changepass" class="active" style="color:	#DAA520;"><i class="fa fa-key"></i> ChangePassword</g:link></li>
-								<li><g:link controller="user" action="myorders" class="active"  style="color:	#DAA520;"><i class='fa fa-cart-arrow-down'></i> My Orders </g:link></li>
-								<li><a href="/Skeleton/user/logout" style="color: #DAA520;" class="clear-cart"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+								<li><g:link controller="user" action="updateuser" class="active"  style="color:	#DAA520;font-size:14px;"><i class="fa fa-user"></i> Profile</g:link></li>
+								<li><g:link controller="user" action="changepass" class="active" style="color:	#DAA520;font-size:14px;"><i class="fa fa-key"></i> Change Password</g:link></li>
+								<li><g:link controller="user" action="myorders" class="active"  style="color:	#DAA520;font-size:14px;"><i class='fa fa-cart-arrow-down'></i> My Orders </g:link></li>
+								<li><a href="/Skeleton/user/logout" style="color: #DAA520;font-size:14px;" class="clear-cart"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 								</ul>
 							</li>
 							</g:else>												

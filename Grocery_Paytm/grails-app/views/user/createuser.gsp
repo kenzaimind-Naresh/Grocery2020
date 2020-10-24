@@ -80,7 +80,7 @@
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="/Skeleton/merchant/dashboard"><img src="/Skeleton/website/img/logo12.jpg" alt=""></a>
+					<a class="navbar-brand logo_h" href="/Skeleton/merchant/dashboard"><img src="/Skeleton/website/img/arvanlogo.jpg" style="height: 60px;width: 150px;" alt=""></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
@@ -164,7 +164,7 @@
 
 <div class="fieldcontain">
 <div class="form-label-group input-group">	
-<input type="password" id="password" name="password" placeholder="Password" class="form-control" pattern="[0-9]{6,}" title="Password must have atleast 6 digits" required/>
+<input type="password" id="password" name="password" placeholder="Password" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}" title="Password must have atleast 6 characters(Uppercase,Lowercase,Numeric,Special character)" required/>
  <div class="input-group-append">
  <span class="input-group-text">
  <i id="eye" class="far fa-eye-slash"></i>
@@ -201,7 +201,7 @@
 <input type="hidden" id="myaction" name="myaction" value="save"/>
 
 <div class="col-sm-6 text-center" style="padding-left: 180px;"><br><br>
-<input type="submit" ID="btnsave" value="Register" onclick="return validateForm()" class="primary-btn" />
+<input type="submit" ID="btnsave" value="Register" onclick="return validateForm()" class="genric-btn primary circle" style="font-size: 15px;"/>
 </div>
 </div>
 </div>

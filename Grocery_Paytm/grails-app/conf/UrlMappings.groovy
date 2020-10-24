@@ -12,9 +12,6 @@ class UrlMappings {
 		"404" (controller: "user", action: "notFoundpage")
 		
 		"500" (controller: "user", action: "errorpage")
-		
-		//"404" (controller: "merchant", action: "notFoundpage")
-		
-		//"500" (controller: "merchant", action: "errorpage")
+
 	}
 }

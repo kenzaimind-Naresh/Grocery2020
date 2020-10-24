@@ -73,7 +73,7 @@ window.onhashchange = function (event) {
 							<a href="/Skeleton/merchant/forgotpass"><h5>Forgot Password?</h5></a>
 							
 							<div class="col-md-12 form-group">	
-								<button type="submit" value="submit" class="primary-btn">Log In</button>
+								<button type="submit" value="submit" class="genric-btn primary circle" style="font-size: 15px;">Login</button>
 							</div>
 						</g:form>
 					</div>

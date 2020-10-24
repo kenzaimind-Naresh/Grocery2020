@@ -146,25 +146,6 @@ $(function() {
          <input type="text" name="categoryName" id="categoryName" class="search form-control" placeholder="Select Category" >
         
     </div></div>
-   
-<!--
-<div class="col-md-4 col-sm-4">
-
-  
-<div class="fieldcontain ${hasErrors(bean: groceryInstance, field: 'categoryName', 'error')} required">
-	<label for="categoryName">
-		<g:message code="category.categoryName.label" default="Category Name" />
-		<span class="required-indicator"></span>
-	</label>
-	
-	<g:select name="categoryName"  from="${categoryName}" optionKey="id"  optionValue="categoryName" class="form-control" noSelection="['':'Please Select....']" />
-      
-      	<g:textField name="categoryName" maxlength="50" id="categoryName" class="form-control" required="" value="${result.categoryName.categoryName}"/>
-      
-
-</div>
-</div>
- -->
 <div class="col-md-4 col-sm-4">
 
 <div class="fieldcontain ${hasErrors(bean: groceryInstance, field: 'groceryName', 'error')} required">
@@ -301,11 +282,50 @@ $(function() {
 				                        <div class="col-sm-12 text-left" style="padding-left:530px">
 				<br>
 				<fieldset class="buttons">
-					<g:submitButton name="create" class="save" class="btn btn-primary"  value="${message(code: 'default.button.create.label', default: 'Create')}" />
+					<g:submitButton name="create" class="save" class="genric-btn primary circle" style="font-size: 15px;"  value="${message(code: 'default.button.create.label', default: 'Create')}" />
 				</fieldset>
 				</div>
 			</g:form>
 		</div>
-		
+
+<style>
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color:black;
+   color: white;
+   text-align: center;
+}
+
+a {
+ // color: white;
+}
+a:hover {
+  //color: white;
+}
+
+
+</style>
+
+<br><br>
+<div class="footer ">
+<p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>  
+<a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a> | All rights reserved </p>
+<p> <a href="/Skeleton/user/paytmTerms" target="_blank"><strong>Paytm</strong></a> Privacy Policies | Terms & Conditions </p>
+</div>
+
+	<script src="js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="/Skeleton/website/js/vendor/bootstrap.min.js"></script>
+	<script src="/Skeleton/website/js/jquery.ajaxchimp.min.js"></script>
+	<script src="/Skeleton/website/js/jquery.nice-select.min.js"></script>
+	<script src="/Skeleton/website/js/jquery.sticky.js"></script>
+	<script src="/Skeleton/website/js/nouislider.min.js"></script>
+	<script src="/Skeleton/website/js/countdown.js"></script>
+	<script src="/Skeleton/web-app/website/js/jquery.magnific-popup.min.js"></script>
+	<script src="/Skeleton/website/js/owl.carousel.min.js"></script>
+	
+				
 	</body>
 </html>

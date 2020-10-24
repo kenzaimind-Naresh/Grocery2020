@@ -26,30 +26,10 @@ class MerchantController {
 	
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
-		log.info("MerchantController index Action")
-        params.max = Math.min(max ?: 10, 100)
-        respond Merchant.list(params), model:[merchantInstanceCount: Merchant.count()]
-    }
-
-    def show(Merchant merchantInstance) {
-        respond merchantInstance
-		log.info("MerchantController show Action")
-    }
-	
-	
-
 	def showQrcode(Merchant merchantInstance) {
 		response.outputStream << merchantInstance.qrcode // write the grocery to the output stream
 		response.outputStream.flush()
 		}
-	
-	def dashboard() {
-		log.info("MerchantController dashboard Action")
-		params.max = Math.min(params.max ? params.int('max') : 8, 100)
-		respond Grocery.list(params), model:[groceryInstanceCount: Grocery.count()]
-			
-	}
 	
 	def updateprofile(){
 		log.info("MerchantController enter updateprofile Action")
@@ -111,8 +91,6 @@ class MerchantController {
 		}
 		log.info("**************** "+username)
 		
-		
-		//def username= session.user
 		if(username ==null || username=="" ){
 		 redirect(uri: "/merchant/login")
 		 return
@@ -146,13 +124,7 @@ class MerchantController {
 		 log.info(user)
 		 
 		 def userNameId = user.id
-		 
-/*		 def c = Cart.createCriteria()
-		 def results = c.list {
-			 eq("usercartId",userNameId)
-			 maxResults(1)
-			 order("usercartId","desc")
-		 }*/
+
 		 def c=Cart.findAllByUsercartId(userNameId,[max: 1,sort:"cartId",order: "desc"])
 		 log.info("cart instace"+c[0])
 		 
@@ -172,100 +144,7 @@ class MerchantController {
 		 return
 		 
 	 }
-	
-	
-	def merchant(){
-		log.info("MerchantController list Action")
-		def responseData = new HashMap<>();
-			def of=0;
-			def newRestdata=Newmerchant.list(sort:"id",order:"desc",max: 5, offset: of)
-			log.info(newRestdata)
-			def totalcount=Newmerchant.findAll().size()
-			log.info(totalcount)
-			responseData.put("totalcount",totalcount )
-			responseData.put("newRestdata", newRestdata)
-			responseData.put("offset", of)
-			[result:responseData]
-		}
 
-	def offsetlist(){
-		log.info("Merchant crontroller merchantdata")
-		Cookie cookie=null
-		Cookie[] cookies = null;
-		def username
-		cookies=request.getCookies();
-		log.info(cookies)
-		if(!cookies.toString().equals("null")){
-		for (int i = 0; i < cookies.length; i++) {
-			cookie = cookies[i];
-			log.info("Name : " + cookie.getName() );
-			log.info("Value: " + cookie.getValue() );
-			if(cookie.getName().equals("merchantKey")){
-				username=cookie.getValue()
-		
-			}
-		 }
-		}
-		log.info("**************** "+username)
-		
-		//def username= session.user
-		if(username ==null || username=="" ){
-		 redirect(uri: "/merchant/login")
-		 return
-		}
-		
-		def shopName=params.shopName
-		def responseData = new HashMap<>()
-		def pat1=Grocery.getAll()
-		def dissheet=merchantdata.findAllBygroceryId(params.groceryId)
-		def user= User.findByUserName(session.user)
-		
-		
-		def mode="web"
-		def of=params.offset;
-		def dischargedata=merchantdata.findAllBygroceryId(params.groceryId,[max: 5,sort:"createdDate",order: "desc", offset: of])
-		def totalcount=merchantdata.findAll().size()
-		def patId=new ArrayList()
-		def patIdd=new ArrayList()
-		
-	for(int i=0;i<pat1.size();i++){
-
-			patId.add(pat1[i].groceryId)
-			
-		}
-	for(int i=0;i<pat1.size();i++){
-		
-					patIdd.add(pat1[i].groceryId)
-					
-				}
-	
-	if(dischargedata!=[]){
-		responseData.put("listId", "merchantdata")
-		responseData.put("totalcount",totalcount )
-		responseData.put("merchantdata", dischargedata)
-		responseData.put("offset", Integer.parseInt(of))
-		responseData.put("dissheet",dissheet)
-		responseData.put("pat1",patId)
-		responseData.put("pat2",patIdd)
-		
-			responseData.put("uname",user)
-			responseData.put(getMessages('default.message.label'),"")
-	}else {
-	responseData.put("listId", "merchantdata")
-	responseData.put("totalcount",totalcount )
-	responseData.put("merchantdata", dischargedata)
-	responseData.put("offset", Integer.parseInt(of))
-	responseData.put("dissheet",dissheet)
-	responseData.put("pat1",patId)
-	responseData.put("pat2",patIdd)
-		responseData.put("uname",user)
-		responseData.put(getMessages('default.message.label'),"Data not found")
-	}
-		
-		[result:responseData]
-
-		
-	}
 	def criteria(){
 		def criteria = Merchant.createCriteria()
 		def test = Merchant.list().unique{ it.city}
@@ -280,96 +159,13 @@ class MerchantController {
 		return merchant
 	}
 
-	/*	
-	@Transactional
-	def saveupdate() {
-		log.info("doctor Controller saveupdate action")
-		def responseData = new HashMap<>()
-		def result,url
-		def mode=params.mode
-		log.info(mode)
-		def shopId = params.shopId
-		log.info(shopId)
-		def shopName = params.shopName
-		log.info(shopName)
-		def firstName = params.firstName
-		log.info(firstName)
-		def lastName=params.lastName
-		log.info(lastName)
-		def email=params.email
-		log.info(email)
-		def mobileNumber=params.mobileNumber
-		log.info(mobileNumber)
-		def address=params.address
-		log.info(address)
-		def city = params.city
-		log.info(city)
-		
-		def zipCode=params.zipCode
-		log.info(zipCode)
-		
-		
-		
-		
-		if(mode == "mobile"){
-			
-			if( ! (isValid(shopId)&& isValid(shopName) && isValid(firstName) && isValid(lastName)&& isValid(email)&& isValid(mobileNumber)
-				&& isValid(address)&& isValid(city)&& isValid(zipCode))){
-		responseData.put(getMessages('default.status.label'),getMessages('default.error.message'))
-		responseData.put(getMessages('default.message.label'),getMessages('default.params.missing'))
-		renderPage(mode, url, responseData)
-		return
-	}
-	else {
-		result=DoctorService.update(shopId,shopName,firstName,lastName,email,mobileNumber,address,city,zipCode)
-		url="/doctor/saveupdate.gsp"
-		responseData.put("uname",Merchant.findByShopId(shopId).firstName)
-		responseData.put("message", "Your Profile Updated Successfully")
-		//responseData.put(getMessages("default.status.label"),"200")
-		
-	}
-	render responseData as JSON
-	return
-		}
-		
-	if(mode=="web")    {
-		def user= Merchant.findByEmail(session.user)
-		def username= session.user
-		if(username ==null || username=="" ){
-		 redirect(uri: "/merchant/login")
-		 return
-		}
-		
-		else {
-			result=MerchantService.update(shopId,shopName,firstName,lastName,email,mobileNumber,address,city,zipCode)
-			responseData.put("uname",user)
-			
-			render text: """<script type="text/javascript">
-                    alert("Profile Updated Successfully");
-                    window.location.href = "/ProviderSearch/doctor/updatedoctor";
-
-
- </script>""",
-			contentType: 'js'
-			
-		}
-	
-	[result:responseData]
-	}
-	
-	}
-
-*/
 	def saveupdate() {
 		log.info("MerchantController saveupdate Action")
 		def responseData = new HashMap<>()
 	def result,url
 	def mode=params.mode
 	log.info(mode)
-	/*def shopId=params.shopId
-	log.info(shopId)
-	def shopName=params.shopName
-	log.info(shopName)*/
+
 	def firstName=params.firstName
 	log.info(firstName)
 	def lastName=params.lastName
@@ -450,37 +246,7 @@ if(mode=="web")	{
 	
 			
 		}
-		
-		def merchantdata(){
-			log.info("Merchant Controller merchantdata action")
-			def responseData = new HashMap<>()
-			def result,url
-			url="/merchant/merchantdata.gsp"
-			def mode=params.mode
-			def merchantId = params.merchantId
-			log.info(merchantId)
-			def data = Grocery.findAllByMerchantId(merchantId)
-			log.info(data.size())
-			responseData.put("data", Grocery.list())
-			responseData.put("merchantCount", Grocery.count())
-			
-			[merchant:responseData]
-			
-			}
-		
-			def list(){
-				log.info("MerchantController list Action")
-				def responseData = new HashMap<>();
-					def of=0;
-					def newRestdata=Newmerchant.list(sort:"id",order:"desc",max: 5, offset: of)
-					log.info(newRestdata)
-					def totalcount=Newmerchant.findAll().size()
-					log.info(totalcount)
-					responseData.put("totalcount",totalcount )
-					responseData.put("newRestdata", newRestdata)
-					responseData.put("offset", of)
-					[result:responseData]
-				}
+
 		
 	def changepass={
 		log.info("MerchantController changepass Action")
@@ -502,16 +268,13 @@ if(mode=="web")	{
 		 }
 		}
 		log.info("**************** "+username)
-		
-		
-		//def userName= session.user
+				
 		if(username ==null || username=="" ){
 		 redirect(uri: "/merchant/login")
 		 return
 		}
 		
 		def responseData = new HashMap<>()
-		//def username= User.findByUsername(session.user)
 		
 		def user= Merchant.findByEmail(session.user)
 		log.info(user)
@@ -520,39 +283,7 @@ if(mode=="web")	{
 		responseData.put("uname",user)
 		log.info(responseData)
 		[result:responseData]
-	}
-	
-	
-	def search(){
-		
-		log.info("MerchantController search Action")
-		def data = new HashMap<>()
-		def grocery=Grocery.getAll()
-		def groceryName=params.groceryName
-		
-		
-	
-	def emp=Grocery.findAllByGroceryName(groceryName)
-			def msg;
-			if(emp==null || emp==[]){
-				msg="Data Not Found"
-			}
-			else{
-				msg=""
-				
-			}
-			def user=new ArrayList()
-				for(int i=0;i<emp.size();i++){
-					user.add(emp[i].groceryName)
-				}
-			
-				data.put("message", msg)
-				data.put("emp",emp)
-				data.put("grocery",grocery)
-				[result:data]
-				
-	}
-	
+	}	
 		
 	def passwordSave2(){
 		log.info("Merchant controller passwordSave2 action")
@@ -574,9 +305,7 @@ if(mode=="web")	{
 		}
 		 }
 		log.info("**************** "+username)
-		
-		
-		//def username= session.user
+
 		log.info(username)
 		if(username ==null || username=="" ){
 			redirect(uri: "/merchant/login")
@@ -611,7 +340,6 @@ if(mode=="web")	{
 		 else{
 		result=MerchantService.passwordSave2(username,newPwd)
 		if(result.get("status") == "success"){
-			// flash.message = "Profile Updated Successfully"
 			responseData.put(getMessages('default.message.label'),result.getAt("message"))
 			responseData.put(getMessages('default.status.label'),result.getAt("status"))
 			responseData.put("uname",user)
@@ -636,9 +364,6 @@ if(mode=="web")	{
 		
 		
 		if(mode=="web"){
-	
-		//def user= User.findByUserName(params.username)
-		//log.info(user)
 		
 		def user= Merchant.findByEmail(params.email)
 		log.info("merchant existed in db "+user)
@@ -663,13 +388,7 @@ if(mode=="web")	{
 	   
 		}
 	}
-	
-	
-	def location(){
-		log.info("MerchantController location Action")
-		
-		
-	}
+
 	def getStreetData(){
 		log.info("MerchantController getStreetData Action")
 		def city=params.city
@@ -933,36 +652,6 @@ if(mode=="web")	{
 		redirect(action:"location1")
 		}
 	
-	def userdashboard() {
-		log.info("MerchantController userdashboard Action")
-		
-		Cookie cookie=null
-		Cookie[] cookies = null;
-		def username
-		cookies=request.getCookies();
-		log.info(cookies)
-		if(!cookies.toString().equals("null")){
-		for (int i = 0; i < cookies.length; i++) {
-			cookie = cookies[i];
-			log.info("Name : " + cookie.getName() );
-			log.info("Value: " + cookie.getValue() );
-			if(cookie.getName().equals("merchantKey")){
-				username=cookie.getValue()
-			}
-		 }
-		}
-		log.info("**************** "+username)
-		
-		//def username= session.user
-		if(username ==null || username=="" ){
-		 redirect(uri: "user/userlogin1")
-		 return
-		}
-		respond Grocery.list(params), model:[groceryInstanceCount: Grocery.count()]
-			
-	}
-	
-	
 	def login(){ 
 	log.info("merchant controller login action")
 		Cookie[] cookies = null;
@@ -998,6 +687,7 @@ if(mode=="web")	{
 		log.info("MerchantController authenticate Action")
 			log.info("#########")
 			log.info("params:"+params.email)
+			log.info("params:"+params.mobileNumber)
 			String pattern = ".*[^0-9].*";
 			Pattern p = Pattern.compile(pattern);
 			Matcher m = p.matcher(params.email);
@@ -1035,11 +725,7 @@ if(mode=="web")	{
 
  </script>""",
 			contentType: 'js'
-	
-			
-			
-			//flash.message = "sorry, ${params.email}. please try again"
-			//redirect(action:"login")
+
 			}
 		
 			
@@ -1097,30 +783,6 @@ if(mode=="web")	{
 	
 	}
 	
-	def merchantlist(){
-		log.info("merchantController merchantlist Action")
-		def responseData = new HashMap<>();
-		def admin= Admin.findByAdminname(session.admin)
-		def adminname= session.admin
-		if(adminname ==null || adminname=="" ){
-		 redirect(uri: "/admin/login1")
-		 return
-		}
-		
-		def mode="web"
-		def of=0;
-		def merchantdata=Merchant.list(sort:"id",order:"desc",max: 5, offset: of)
-		log.info(merchantdata)
-		def totalcount=Merchant.findAll().size()
-		log.info(totalcount)
-		responseData.put("listId", "merchantlist")
-		responseData.put("totalcount",totalcount )
-		responseData.put("merchantdata", merchantdata)
-		responseData.put("admin", admin)
-		responseData.put("offset", of)
-		[result:responseData]
-	}
-	
 	def forgotpass(){
 		
 		log.info("merchantController forgotpass Action")
@@ -1153,28 +815,12 @@ if(mode=="web")	{
 
 			
 			def url="/merchant/validateCode.gsp"
-			def user= Merchant.findByEmail(params.email)
+			def user= Merchant.findByEmailOrMobileNumber(params.email,email)
 			log.info("merchant existed in db "+user)
 			
-			//def user= User.findByUserName(params.username)
-			//log.info("user existed in db "+user)
-			
 			if(user){
-			result=MerchantService.validateCode(params.email,otpActivation)
+			result=MerchantService.validateCode(params.email,user.mobileNumber,otpActivation)
 			if(result.get("status") == "success"){
-				
-				/*def smsResult
-				log.info("Nexmo SMS Start ....")
-				try {
-					log.info("mobile number "+user.mobileNumber)
-				  smsResult  = nexmoService.sendSms("91"+user.mobileNumber, "Your Verification Code is "+otpActivation+". Do not forward or share this to anyone.","919533000292");
-				  log.info("sms result  "+smsResult)
-			
-			
-				}catch (NexmoException e) {
-				  // Handle error if failure
-				log.info("failed send sms   ....."+e)
-				}*/
 				
 				TestController testController=new TestController();
 				String smsresp=testController.sendSMSToUser(user.mobileNumber,"Your Verification Code is "+otpActivation+". Do not forward or share this to anyone.");
@@ -1187,7 +833,7 @@ if(mode=="web")	{
 			
 		   }
 			}else{
-			responseData.put(getMessages('default.message.label'),"User in Not registerd")
+			responseData.put(getMessages('default.message.label'),"User in Not registered")
 			responseData.put(getMessages('default.status.label'),"error")
 			responseData.put("uname",params.email)
 			
@@ -1207,15 +853,10 @@ if(mode=="web")	{
 		def otpActivation = params.otp
 			log.info("otp from page  "+otpActivation)
 			log.info("merchant from page "+params.email)
-		
 			
-			def user= Merchant.findByEmail(params.email)
+			def user= Merchant.findByEmailOrMobileNumber(params.email,params.email)
 			log.info("merchant existed in db "+user)
-			
-		//def user= User.findByUserName(params.username)
-		//log.info(user)
-		
-		
+
 		responseData.put(getMessages('default.message.label')," New Password Created Successfully")
 		responseData.put("uname",user)
 		log.info(responseData)
@@ -1268,7 +909,7 @@ if(mode=="web")	{
 		log.info("enter into saving part	")
         merchantInstance.save flush:true
 		redirect(uri: "/merchant/create")
-		flash.message = "Merchant Registration done Successfully"
+		flash.message = "Merchant Registration done successfully"
 		
 		MerchantService.sendmailUser(merchantInstance.email);
 		
@@ -1297,11 +938,6 @@ if(mode=="web")	{
 			flash.message = "Merchant Registration failed, Please try with different credentials"
 		}
         
-    }
-
-    def edit(Merchant merchantInstance) {
-		log.info("MerchantController edit Action")
-        respond merchantInstance
     }
 
     @Transactional

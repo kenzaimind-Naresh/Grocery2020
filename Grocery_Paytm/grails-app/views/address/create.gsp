@@ -49,7 +49,7 @@ window.onhashchange = function (event) {
 	<br><br><br><br><br>
  	
 <!-- Content Header (Page header) -->
-<section class="content-header" align="center">
+<section class="content-header" style="padding-left:130px">
 <h3 style="font-family: Calibri">Address Details
 </h3>
 </section><br>
@@ -66,16 +66,12 @@ window.onhashchange = function (event) {
 <div class="single-product" style="padding-left:30px">
 	
 							
-<h5>${it.fullName}<br> ${it.id}</h5>
+<h5>${it.fullName}</h5>
 ${it.mobileNumber}<br>
 ${it.houseNumber}, ${it.area}<br>
 ${it.landmark}, ${it.city}<br>
 ${it.state}, ${it.pincode}.<br><br>
-<%--<g:form controller="Address" action="payment">
-<input type="hidden" id=${it.id} value=${it.id}/>
-<input type="submit" id="${it.id}" value="Deliver Here" onclick="return validateForm()" class="btn btn-warning" />
-</g:form>	
---%><g:link controller="Address" action="payment"  id="${it.id}"><button type="button"  class="btn btn-warning">Deliver Here</button></g:link>						
+<g:link controller="Address" action="payment"  id="${it.id}"><button type="button"  class="genric-btn primary circle" style="font-size: 15px;">Deliver Here</button></g:link>						
 </div>
 
 </tr>
@@ -90,7 +86,7 @@ ${it.state}, ${it.pincode}.<br><br>
 <div class="form-group">
 <div style="padding-left:550px">
 <g:form controller="Address" action="newaddress">
-<input type="submit" ID="btnsave" value="Add a new address" onclick="return validateForm()" class="btn btn-info btn-lg" />
+<input type="submit" ID="btnsave" value="Add a New Address" onclick="return validateForm()" class="genric-btn info radius e-large" style="font-size: 17px;"/>
 </g:form>
 </div>
 </div>

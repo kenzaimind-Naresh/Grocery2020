@@ -182,11 +182,13 @@ th, td {
        <div class="form-group">
         <div class="col-sm-12 text-right">
        <g:if test="${result.offset > 0}">
-     <g:link type="button" style="color:white" controller="admin" action="offsetlist1" params="${[offset:result.offset-5,mode:'web']}" value="Previous"><button class="-btnary-btn">Previous</g:link></button>
+     <g:link type="button" style="color:white" controller="admin" action="offsetlist1" params="${[offset:result.offset-5,mode:'web']}" value="Previous">
+     <button class="genric-btn primary circle" style="font-size: 15px;">Previous</g:link></button>
     </g:if>
   
     <g:if test="${result.offset/5 < (result.totalcount)/5-1}">
-     <g:link type="button" style="color:white" controller="admin" action="offsetlist1"   params="${[offset: result.offset+5,mode:'web']}" value="Next" ><button class="primary-btn">Next</g:link></button>
+     <g:link type="button" style="color:white" controller="admin" action="offsetlist1"   params="${[offset: result.offset+5,mode:'web']}" value="Next" >
+     <button class="genric-btn primary circle" style="font-size: 15px;">Next</g:link></button>
        </g:if>
        </div></div></div></div></div>
        </div>

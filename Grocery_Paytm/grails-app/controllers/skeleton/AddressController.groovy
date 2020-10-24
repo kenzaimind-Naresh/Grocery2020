@@ -38,14 +38,6 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	def MerchantController
 	def UserController
 	
-	// dynamic call made via jquery inside _edit.gsp
-	def userlogin = {}
-	
-	def userlogindash = {
-		
-		
-	}
-	
 	def checkout(){
 		
 		log.info("Address Controller checkout action ********")
@@ -132,49 +124,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	
 	
 	}
-	
-	def conformproduct(){
-		
-		log.info("Address Controller conformproduct action ********")
-		def responseData = new HashMap<>()
-		def mode=params.mode
-		log.info(mode)
-		
-		def user= User.findByUserName(session.user)
-		log.info(user)
-		
-		def username= session.user
-		if(username ==null || username=="" ){
-		  redirect(uri: "/user/userlogin1")
-		 return
-		}
-		
-	/*
-		def usercartId = user.id
-		def of=0;
-		def data=Address.findAllByUserNameId(usercartId,[sort:"id",max: 10])
-		log.info(data)
-		def totalcount=Address.findAllByUserNameId(usercartId).size()
-		log.info(totalcount)
-		*/
-		
-		
-		def user1=User.findByUserName(username)
-		log.info(user1)
-		
-	//  responseData.put("totalcount",totalcount)
-	//	responseData.put("data", data)
-			  
-		responseData.put("listId", "dashboard")
-		responseData.put("uname",user)
-		responseData.put("user1",user1)
-		
-		log.info("************")
-		log.info(responseData)
-		[result:responseData]
-		
-		
-	}
+
 	
 	def authenticate = {
 		log.info("AddressController  authenticate Action")
@@ -228,48 +178,6 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	
 		def show(Address addressInstance) {
 			respond addressInstance
-		}
-	
-		def purched() {
-
-			log.info("Address Controller create action ********")
-			def responseData = new HashMap<>()
-			def mode=params.mode
-			log.info(mode)
-			def groceryName = Grocery.getAll()
-			
-			def user= User.findByUserName(session.user)
-			log.info(user)
-			def username= session.user
-			if(username ==null || username=="" ){
-			  redirect(uri: "/user/userlogin1")
-			 return
-			}
-			
-			def userNameId = user.id
-			def of=0;
-			def data=Address.findByUserNameId(userNameId,[sort:"id",max: 5])
-			log.info(data)
-			def totalcount=Address.findAllByUserNameId(userNameId).size()
-			log.info(totalcount)
-			
-			
-			def user1=User.findByUserName(username)
-			log.info(user1)
-			
-			responseData.put("totalcount",totalcount)
-			responseData.put("data", data)
-			
-			responseData.put("listId", "dashboard")
-			responseData.put("uname",user)
-			responseData.put("user1",user1)
-			responseData.put("groceryName",groceryName)
-			
-			log.info("************")
-			log.info(responseData)
-			[result:responseData]
-		
-			
 		}
 		
 		
@@ -330,74 +238,11 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		[result:responseData]
 	 
 	}
-	
-	def acreate(){
-		
-		//respond Grocery.list(params), model:[groceryInstanceCount: Grocery.count()]
-		
-	/*
-		if(session.user=="" || session.user==null ){
-			log.info("session check  *"+session.user)
-			redirect(action:"userlogin")
-			return
-		}
-		
-		respond new Address(params)
-		
-*/
-		log.info("Address Controller acreate action ********")
-		def responseData = new HashMap<>()
-		def mode=params.mode
-		log.info(mode)
-		
-		def user= User.findByUserName(session.user)
-		log.info(user)
-	
-		
-		def username= session.user
-		if(username ==null || username=="" ){
-		  redirect(uri: "/user/userlogin1")
-		 return
-		}
-		
-		def userNameId = user.id
-		def of=0;
-		def data=Address.findByUserNameId(userNameId,[sort:"id",max: 5])
-		log.info(data)
-		def totalcount=Address.findAllByUserNameId(userNameId).size()
-		log.info(totalcount)
-		
-		def user1=User.findByUserName(username)
-		log.info(user1)
-		
-		responseData.put("totalcount",totalcount)
-		responseData.put("data", data)
-		
-		responseData.put("listId", "dashboard")
-		responseData.put("uname",user)
-		responseData.put("user1",user1)
-		
-		log.info("************")
-		log.info(responseData)
-		[result:responseData]
-	
-	}
+
 	
 	def newaddress(){
 		
-		//respond Grocery.list(params), model:[groceryInstanceCount: Grocery.count()]
-		
-	/*
-		if(session.user=="" || session.user==null ){
-			log.info("session check  *"+session.user)
-			redirect(action:"userlogin")
-			return
-		}
-		
-		respond new Address(params)
-		
-*/
-		log.info("Address Controller create action ********")
+		log.info("Address Controller newaddress action ********")
 		def responseData = new HashMap<>()
 		def mode=params.mode
 		log.info(mode)
@@ -438,46 +283,6 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	 
 	}
 	
-	def newaddress1(){
-		
-		log.info("AddressController newaddress1 Action")
-		def responseData = new HashMap<>();
-		def mode=params.mode
-		log.info(mode)
-		def result,url
-			
-		def groceryName = params.groceryName
-		log.info(groceryName)
-		
-		def user= User.findByUserName(session.user)
-		log.info(user)
-		
-		def username= session.user
-		if(username ==null || username=="" ){
-		  redirect(uri: "/user/userlogin1")
-		 return
-		}
-		
-		def userNameId = user.id
-		def of=0;
-		def data=Address.findAllByUserNameId(userNameId,[sort:"id",order:"desc",max: 5, offset: of])
-		log.info(data)
-		def totalcount=Address.findAllByUserNameId(userNameId).size()
-		log.info(totalcount)
-		
-		def user1=User.findByUserName(username)
-		log.info(user1)
-		
-		responseData.put("listId", "list")
-		responseData.put("totalcount",totalcount)
-		responseData.put("data", data)
-		responseData.put("uname", user)
-		responseData.put("offset", of)
-		log.info(responseData)
-		[result:responseData]
-
-	}
-	
 	def payment(){
 		
 		log.info("Address Controller payment action ********")
@@ -515,10 +320,6 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		
 		def user= User.findByUserName(username)
 		log.info(user)
-		
-		
-		
-		//def username= session.user
 
 		log.info(params.id+"TTTTTTTTTTTT")
 		def address=Address.get(params.id)
@@ -568,7 +369,6 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		
 		log.info(gnames.length + "NNNNNNNNNNNNN")
 	
-		// def id = params.id
 	for(int a=0;a<gnames.length;a++){
 			
 		
@@ -585,22 +385,8 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		def user1=User.findByUserName(username)
 		log.info(user1)
 		
-		def smsResult
-		log.info("Nexmo SMS Start ....")
-		try {
-
-		  smsResult  = nexmoService.sendSms("91"+user1.mobileNumber, "Dear "+user1.userName+", your Grocery Order has been placed successfully. Your Order Amount: Rs."+cartInstance.tamount+" and your Order Items:"+gnames+". ","919533000292");
-		  log.info("sms mobileNumber  "+user1.mobileNumber)
-		  log.info("sms result  "+smsResult)
-	
-	
-		}catch (NexmoException e) {
-		  // Handle error if failure
-		log.info("failed   ....."+e)
-		}
-		
 		TestController testController=new TestController();
-		String smsresp=testController.sendSMSToUser(user1.mobileNumber,"Dear "+user1.userName+",your Grocery Order has been placed successfully. Your Order Amount: Rs."+cartInstance.tamount+" and your Order Items:"+gnames+". ");
+		String smsresp=testController.sendSMSToUser(user1.mobileNumber,"Dear "+user1.userName+",your Grocery Order has been placed successfully. Your Order Amount: Rs."+cartInstance.tamount+" and your Order Items:"+gnames+". Delivery Charges applicable depends on below distance:  0 to 1Km - Free, 1 to 3Kms - Rs.30, 3 to 5Kms - Rs.50, 5 to 7Kms - Rs.70.");
 		log.info("SMS response"+smsresp);
 		
 		responseData.put("totalcount",totalcount)
@@ -654,9 +440,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info(mercName)
 		log.info(addrId)
 		log.info(cartInstance.modifiedBy)
-		
-		//def orderResult=OrderStatusService.saveOrder(cartInstance.gname,cartInstance.gprice,cartInstance.tcount,cartInstance.qCount,cartInstance.tamount,cartInstance.usercartId,cartInstance.status,mercName,addrId,cartInstance.modifiedBy)
-		
+				
 		log.info("*********Split function in shipping page*******")
 		List<Cart> cartlist=new ArrayList<Cart>();
 		String[] names = cartInstance.gname.split("#");
@@ -751,157 +535,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info(responseData)
 		[result:responseData]
 	}
-	
-	/*def orderconform(){
-		
-		log.info("Address Controller orderconform action ********")
-		def responseData = new HashMap<>()
-		def mode=params.mode
-		log.info(mode)
-		
-		def user= User.findByUserName(session.user)
-		log.info(user)
-		
-		
-		def username= session.user
-		if(username ==null || username=="" ){
-		  redirect(uri: "/user/userlogin1")
-		 return
-		}
-		
-		def userNameId = user.id
-		def of=0;
-		def data=Address.findByUserNameId(userNameId,[sort:"id",max: 5])
-		log.info(data)
-		def totalcount=Address.findAllByUserNameId(userNameId).size()
-		log.info(totalcount)
-		
-		def cartId=session.getAttribute("savedCart");
-		def mercName=session.getAttribute("merchantName");
-		log.info("SSSSSSSSSSSSSSS"+mercName)
-		def addrId=session.getAttribute("addressId");
-		log.info("SSSSSSSSSSSSSSS"+addrId)
-		log.info("saved cart *********** "+cartId);
-		Cart cartInstance=Cart.findByCartId(cartId)
-		log.info(" cart object *********** "+cartInstance);
-		log.info(cartInstance.gname)
-		log.info(cartInstance.gprice)
-		log.info(cartInstance.tcount)
-		log.info(cartInstance.qCount)
-		log.info(cartInstance.tamount)
-		log.info(cartInstance.usercartId)
-		log.info(cartInstance.status)
-		log.info(mercName)
-		log.info(addrId)
-		log.info(cartInstance.modifiedBy)
-		
-		def orderResult=OrderStatusService.saveOrder(cartInstance.gname,cartInstance.gprice,cartInstance.tcount,cartInstance.qCount,cartInstance.tamount,cartInstance.usercartId,cartInstance.status,mercName,addrId,cartInstance.modifiedBy)
-		
-		//Address addressInst = session.getAttribute("savedAddress");
-		//log.info("saved address *********** "+addressInst);
-		def addId=session.getAttribute("addressId");
-		log.info(addId)
-		def addressId = user.id
-		def of=0;
-		def data=Address.get(addId);
-		log.info(data)
-		def totalcount=Address.findAllByUserNameId(addressId).size()
-		log.info(totalcount)
-		def user1=User.findByUserName(username)
-		log.info(user1)
-		def data1=Address.findByAddressId(params.addressId)
-		log.info(data1)
-		
-	
-		def data2=Cart.findByCartId(cartId,[sort:"id",max: 5])
-	
-		def totalcount2=Cart.findAllByCartId(cartId).size()
-					
-		
-		// grocery quantity update
-		
-		log.info(cartInstance.qCount +"eeeeeeeeee")
-		
-		def merchantInstance = Merchant.findByShopName(mercName)
-		log.info(merchantInstance.id + "MMMMMMMMMMMMMM")
-		
-		String[] gnames= cartInstance.gname.split("#")
-		
-		log.info(gnames.length + "NNNNNNNNNNNNN")
-	
-		// def id = params.id
-	for(int a=0;a<gnames.length;a++){
-			
-		
-		def instance = Grocery.findByMerchantIdAndGroceryName(merchantInstance.id,gnames[a].split("-")[0])
-	
 
-		def value = Integer.parseInt(instance.quantity) - Integer.parseInt(gnames[a].split("-")[1])
-		log.info("??????????????? instance.quantity : "+ gnames[a].split("-")[1]);
-		log.info("??????????????? finalvalue : "+  value);
-		
-		GroceryService.update1(merchantInstance.id,gnames[a].split("-")[0],value);
-	}
-		def smsResult
-		log.info("Nexmo SMS Start ....")
-			try {
-	
-			  smsResult  = nexmoService.sendSms(user.mobileNumber, "Hello, welcome to Nexmo SMS....","919652702097");
-			  log.info("mobileNumber  "+user.mobileNumber)
-			  log.info("sms result  "+smsResult)
-		
-			}catch (NexmoException e) {
-			  // Handle error if failure
-			log.info("failed   ....."+e)
-			}
-		
-		responseData.put("totalcount",totalcount)
-		responseData.put("data", data)
-		
-		responseData.put("listId", "dashboard")
-		responseData.put("uname",user)
-		responseData.put("user1",user1)
-		responseData.put(getMessages('default.message.label'),"Your Order Confirmed Successfully")
-		
-		log.info("************")
-		log.info(responseData)
-		[result:responseData]
-		
-		
-	}*/
-	
-	def onlinepay(){
-		log.info("AddressController onlinepay Action")
-		params.max = Math.min(params.max ? params.int('max') : 1, 1)
-		respond Merchant.list(params), model:[merchantInstance: Merchant]
-		
-	}
-	
-	def wastecreate(){
-		log.info("AddressController wastecreate Action")
-		def responseData = new HashMap<>()
-		def user= User.findByUserName(session.user)
-		log.info(user)
-		
-		
-		
-		//def username= session.user
-		if(username ==null || username=="" ){
-		  redirect(uri: "/user/userlogin1")
-		 return
-		}
-		def user1=User.findByUserName(username)
-		log.info(user1)
-		responseData.put("listId", "dashboard")
-		responseData.put("uname",user)
-		
-		responseData.put("user1",user1)
-		log.info("************")
-		log.info(responseData)
-		[result:responseData]
-	
-		
-	}
 
 	/* To save the data of Patient */
 	@Transactional
@@ -918,9 +552,6 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info(fullName)
 		def mobileNumber = params.mobileNumber
 		log.info(mobileNumber)
-		//def email = params.email
-		//log.info(email)
-		
 		def pincode=params.pincode
 		log.info(pincode)
 		def houseNumber=params.houseNumber
@@ -956,35 +587,24 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 			}
 			else {
 				 result=AddressService.save(fullName,mobileNumber,pincode,houseNumber,area,landmark,city,state,deliverhere,userNameId)
-			//	responseData.put("addressInstance", res.getAt("addressInstance"))
-				//responseData.put("AppInstance", res.getAt("appointmentInstance"))
 		
 				log.info("***********response from AddressService"+result)
 				
 				log.info("&&&&&&&&&&&&&&"+result.get("addressInstance"));
-				//session.setAttribute("savedAddress", result.get("addressInstance"));
 				
 				log.info(result)
 				log.info(mode)
 				
-				//responseData.put(getMessages("default.status.label"),getMessages("default.success.message"))
 				if(result.get("status") == "success"){
 					redirect(uri: "/Address/create")
 					flash.message = "Your Order is booked"
-					
-				//	responseData.put("message", "Your Order is booked")
-					
-					//responseData.put(getMessages('default.message.label'),res.getAt("message"))
-					//responseData.put(getMessages('default.status.label'),res.getAt("status"))
-					//resultData.put(getMessage("default.message.label"),getMessage("default.object.alreadyexist",args))
+
 				}
 				
 				else{
 					responseData.put("message", "You Order is Already Booked")
 					url="/address/print.gsp"
-					
-					//responseData.put(getMessages('default.message.label'),res.getAt("message"))
-					//responseData.put(getMessages('default.status.label'),res.getAt("status"))
+
 				}
 				
 			}

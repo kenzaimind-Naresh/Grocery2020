@@ -62,9 +62,9 @@
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="username-sm"></span>${result.user.userName}<i class="fa fa-user" style="font-size:20px;"></i></a>
 								<ul class="dropdown-menu">
 								
-								<li><g:link controller="user" action="changepass" class="active" style="color:	#DAA520;"><i class="fa fa-key"></i> ChangePassword</g:link></li>
-								<li><g:link controller="user" action="myorders" class="active"  style="color:	#DAA520;"><i class='fa fa-cart-arrow-down'></i> My Orders </g:link></li>
-								<li><a href="/Skeleton/user/logout" style="color:	#DAA520;"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+								<li><g:link controller="user" action="changepass" class="active" style="color:	#DAA520;font-size:14px;"><i class="fa fa-key"></i> Change Password</g:link></li>
+								<li><g:link controller="user" action="myorders" class="active"  style="color:	#DAA520;font-size:14px;"><i class='fa fa-cart-arrow-down'></i> My Orders </g:link></li>
+								<li><a href="/Skeleton/user/logout" style="color:	#DAA520;font-size:14px;"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 
 								</ul>
 							</li>
@@ -142,8 +142,8 @@
 
 <div class="col-md-4 col-sm-4">
 <div class="fieldcontain">
-<label for="mobileNumber" style="color:black">MobileNumber :</label>
-<input type="text" id="mobileNumber" name="mobileNumber" value="${result.user.mobileNumber}" class="form-control" required />
+<label for="mobileNumber" style="color:black">Mobile Number :</label>
+<input type="text" id="mobileNumber" name="mobileNumber" value="${result.user.mobileNumber}" class="form-control" readonly/>
  <span id="mobileNumberinfo" style="color:red"></span>
 </div>
 </div>
@@ -155,7 +155,7 @@
 <input type="hidden" id="myaction" name="myaction" value="save"/>
  <div class="form-group">
 <div class="col-sm-12" style="padding-left:270px">
-    <button type="submit" class="btn btn-primary" id="myform" name="myform" onclick="return validateForm()">Update</button>
+    <button type="submit" class="genric-btn primary circle" style="font-size: 15px;" id="myform" name="myform" onclick="return validateForm()">Update</button>
      </div>
      </div>
 </div>
@@ -163,6 +163,45 @@
  </g:form>
                     
 </div>
+ 
+<style>
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color:black;
+   color: white;
+   text-align: center;
+}
+
+a {
+ // color: white;
+}
+a:hover {
+  //color: white;
+}
+
+
+</style>
+
+<br><br>
+<div class="footer ">
+<p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>  
+<a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a> | All rights reserved </p>
+<p> <a href="/Skeleton/user/paytmTerms" target="_blank"><strong>Paytm</strong></a> Privacy Policies | Terms & Conditions </p>
+</div>
+
+	<script src="js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="/Skeleton/website/js/vendor/bootstrap.min.js"></script>
+	<script src="/Skeleton/website/js/jquery.ajaxchimp.min.js"></script>
+	<script src="/Skeleton/website/js/jquery.nice-select.min.js"></script>
+	<script src="/Skeleton/website/js/jquery.sticky.js"></script>
+	<script src="/Skeleton/website/js/nouislider.min.js"></script>
+	<script src="/Skeleton/website/js/countdown.js"></script>
+	<script src="/Skeleton/web-app/website/js/jquery.magnific-popup.min.js"></script>
+	<script src="/Skeleton/website/js/owl.carousel.min.js"></script>
+	           
 
 
 </body>

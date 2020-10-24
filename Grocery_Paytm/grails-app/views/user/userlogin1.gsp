@@ -94,11 +94,11 @@ return false;
 <input class="form-control" placeholder="Password" id="password" name="password" onclick="myForm" value="${userInstance?.password}" type="password" required>
 </div>
 
-<a href="/Skeleton/user/userverification"><h5>Forgot Password?</h5></a>
+<a href="/Skeleton/user/forgotpass"><h5>Forgot Password?</h5></a>
 
 <input type="submit" id="myform" name="myform"  class="btn btn-lg btn-success btn-block" value="Login" onclick="return validateForm()"  >
 
-<a href="/Skeleton/user/createuser"><h5>RegisterHere</h5></a>
+<a href="/Skeleton/user/createuser"><h5>Register</h5></a>
 
 </fieldset>
 </g:form>
@@ -136,6 +136,46 @@ return false;
 
 <script src="/SalesAndServicesApp/website/js/bootstrap.min.js"></script>
 <script src="/SalesAndServicesApp/website/js/tm-script.js" type="text/javascript"></script>
+ 
+<style>
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color:black;
+   color: white;
+   text-align: center;
+}
+
+a {
+ // color: white;
+}
+a:hover {
+  //color: white;
+}
+
+
+</style>
+
+<br><br>
+<div class="footer ">
+<p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>  
+<a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a> | All rights reserved </p>
+<p> <a href="/Skeleton/user/paytmTerms" target="_blank"><strong>Paytm</strong></a> Privacy Policies | Terms & Conditions </p>
+</div>
+
+	<script src="js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="/Skeleton/website/js/vendor/bootstrap.min.js"></script>
+	<script src="/Skeleton/website/js/jquery.ajaxchimp.min.js"></script>
+	<script src="/Skeleton/website/js/jquery.nice-select.min.js"></script>
+	<script src="/Skeleton/website/js/jquery.sticky.js"></script>
+	<script src="/Skeleton/website/js/nouislider.min.js"></script>
+	<script src="/Skeleton/website/js/countdown.js"></script>
+	<script src="/Skeleton/web-app/website/js/jquery.magnific-popup.min.js"></script>
+	<script src="/Skeleton/website/js/owl.carousel.min.js"></script>
+	           
+
 </body>
 
 </html>

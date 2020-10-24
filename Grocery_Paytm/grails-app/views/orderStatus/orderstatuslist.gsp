@@ -96,24 +96,9 @@ window.onhashchange = function (event) {
 </head>
 <body>
 <g:render template="/grocery/groceryheader1"/>
-	
-	<!-- Start Banner Area -->
-    <section class="banner-area organic-breadcrumb" style="padding-top: 20px">
-        <div class="container">
-            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end" style="padding: 82px 127px 88px 0;">
-                <div class="col-first">
-                    <h1>Order Status</h1>
-                    <nav class="d-flex align-items-center">
-                        <a href="/Skeleton/merchant/ldashboard">Home<span class="lnr lnr-arrow-right"></span></a>
-                        <a href="/Skeleton/orderStatus/orderstatuslist">Order Status</a>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Banner Area -->
+
     
-<br><br>    
+<br><br><br><br><br><br>    
 
 <div class="container">
 	<div style=" padding-left:150px; padding-right:350px;font-family: Calibri">
@@ -121,7 +106,7 @@ window.onhashchange = function (event) {
       		<thead>
       			<tr>
       				<th>Order ID</th>
-      				 <th>CreatedDate</th>
+      				 <th>Created Date</th>
       			     <th>Grocery Name</th>  
       				<th>Status</th>  
       				<th>Acceptance</th>        
@@ -130,19 +115,69 @@ window.onhashchange = function (event) {
      		<tbody>
      			<g:each in="${result.data}" expr="true">
     			<tr>
-      				<td style="font-size: 18px;color: black;"> ${it.orderId}</td>
-      				<td style="font-size: 18px;color: black;"> ${it.createdDate}</td>
-        			<td style="font-size: 18px;color: black;">${it.groceryName}</td>
-        			<td style="font-size: 18px;color: black;"> ${it.status}</td>
+      				<td style="color: black;"> ${it.orderId}</td>
+      				<td style="color: black;"> ${it.createdDate}</td>
+        			<td style="color: black;">${it.groceryName}</td>
+        			<td style="color: black;"> ${it.status}</td>
        	 			<td style="color: black;">
-						<g:link controller="orderStatus" action="acceptorder"  id="${it.id}"><button type="button"  class="btn btn-warning">Accept Order</button></g:link>	
+						<g:link controller="orderStatus" action="acceptorder"  id="${it.id}"><button type="button"  class="genric-btn success radius" style="font-size: 15px;">AcceptOrder</button></g:link>	
        	 			</td>
       			</tr>
     			</g:each>
     		</tbody>
      	</table>
      </div>
-     
+     <div class="pag">
+     	<div class="col-sm-8 text-right">
+       		<g:if test="${result.offset > 0}">
+     			<g:link type="button" style="color:white" controller="orderStatus" action="offsetlist" params="${[offset:result.offset-5,mode:'web']}" value="Previous">
+     			<button class="genric-btn primary circle" style="font-size: 15px;">Previous</button></g:link>
+    		</g:if>
+  			<g:if test="${result.offset/5 < (result.totalcount)/5-1}">
+     			<g:link type="button" style="color:white" controller="orderStatus" action="offsetlist"   params="${[offset: result.offset+5,mode:'web']}" value="Next">
+     			<button class="genric-btn primary circle" style="font-size: 15px;">Next</button></g:link>
+       		</g:if>
+       </div>
+    </div>
 </div> 
+
+<style>
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color:black;
+   color: white;
+   text-align: center;
+}
+
+a {
+ // color: white;
+}
+a:hover {
+  //color: white;
+}
+
+
+</style>
+
+<br><br>
+<div class="footer ">
+<p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>  
+<a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a> | All rights reserved </p>
+<p> <a href="/Skeleton/user/paytmTerms" target="_blank"><strong>Paytm</strong></a> Privacy Policies | Terms & Conditions </p>
+</div>
+
+	<script src="js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="/Skeleton/website/js/vendor/bootstrap.min.js"></script>
+	<script src="/Skeleton/website/js/jquery.ajaxchimp.min.js"></script>
+	<script src="/Skeleton/website/js/jquery.nice-select.min.js"></script>
+	<script src="/Skeleton/website/js/jquery.sticky.js"></script>
+	<script src="/Skeleton/website/js/nouislider.min.js"></script>
+	<script src="/Skeleton/website/js/countdown.js"></script>
+	<script src="/Skeleton/web-app/website/js/jquery.magnific-popup.min.js"></script>
+	<script src="/Skeleton/website/js/owl.carousel.min.js"></script>
+	
 </body>
 </html>

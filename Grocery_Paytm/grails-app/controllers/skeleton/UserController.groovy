@@ -244,35 +244,16 @@ def marketdata(){
 
 }
 
-		def userverification(){
-			
-			log.info("UserController userverification Action")
-			
-			
-		}
-		
-		def validateUser(){
-			
-			log.info("UserController validateUser Action")
-			
-			def responseData = new HashMap<>()
-			def otpActivation = params.otp
-			log.info("otp from page  "+otpActivation)
-			log.info("user from page "+params.username)
-				
-			def user= User.findByUserName(params.username) 
-			log.info(user)
-			
-			
-			responseData.put(getMessages('default.message.label')," New Password Created Successfully")
-			responseData.put("uname",user)
-			log.info(responseData)
-			[result:responseData]
-		}
-
 		def forgotpass(){
+			
+			log.info("UserController forgotpass Action")
+			
+		}
 		
-		log.info("UserController forgotpass Action")
+
+		def validateCode(){
+		
+		log.info("UserController validateCode Action")
 		def responseData = new HashMap<>()
 		def mode=params.mode
 		
@@ -285,8 +266,10 @@ def marketdata(){
 		def randomValue= generator( (('A'..'Z')+('0'..'9')+('a'..'z')).join(), 6 )
 		log.info("Random String Generator...... "+randomValue)
 		
-		def username = params.username
-		log.info(username)
+		def email = params.email
+		log.info("User email "+email)
+		def mobileNumber = params.mobileNumber
+		log.info("User mobileNumber "+mobileNumber)
 		def otpActivation = randomValue
 		log.info(otpActivation)
 		def result,res
@@ -295,15 +278,15 @@ def marketdata(){
 		if(mode=="web"){
 
 			
-			def url="/user/forgotpass.gsp"
-			def user= User.findByUserName(params.username)
+			def url="/user/validateCode.gsp"
+			def user= User.findByEmailOrMobileNumber(params.email,email)
 			log.info("user existed in db "+user)
-			
+			session.setAttribute("userEmail", email) 
 			if(user){
-			result=UserService.forgotpass(params.username,user.mobileNumber,user.email,otpActivation)
+			result=UserService.validateCode(params.email,user.mobileNumber,otpActivation)
 			if(result.get("status") == "success"){
 				
-				def smsResult
+				/*def smsResult
 				log.info("Nexmo SMS Start ....")
 				try {
 					log.info("mobile number "+user.mobileNumber)
@@ -314,7 +297,7 @@ def marketdata(){
 				}catch (NexmoException e) {
 				  // Handle error if failure
 				log.info("failed send sms   ....."+e)
-				}
+				}*/
 				
 				TestController testController=new TestController();
 				String smsresp=testController.sendSMSToUser(user.mobileNumber,"Dear Customer, Your Registration was done successfully.....");
@@ -323,13 +306,13 @@ def marketdata(){
 				responseData.put(getMessages('default.message.label'),result.getAt("message"))
 				responseData.put(getMessages('default.status.label'),result.getAt("status"))
 				responseData.put("otp",user.otpActivation)
-				responseData.put("uname",user.userName)
+				responseData.put("uname",params.email)
 			
 		   }
 			}else{
-			responseData.put(getMessages('default.message.label'),"User in Not registerd")
+			responseData.put(getMessages('default.message.label'),"User in Not registered")
 			responseData.put(getMessages('default.status.label'),"error")
-			responseData.put("uname",params.username)
+			responseData.put("uname",params.email)
 			
 			}
 			
@@ -337,6 +320,27 @@ def marketdata(){
 		[result:responseData]
 		
 			}
+		}
+		
+		def newPassword(){
+			
+			log.info("UserController newPassword Action")
+			
+			def responseData = new HashMap<>()
+			def otpActivation = params.otp
+			log.info("otp from page  "+otpActivation)
+			log.info("user from page "+params.mobileNumber)
+			def useremail = session.getAttribute("userEmail")
+			log.info("user email from session "+useremail)
+				
+			def user= User.findByEmailOrMobileNumber(useremail,useremail)
+			log.info("user existed in db "+user)
+			
+			
+			responseData.put(getMessages('default.message.label')," New Password Created Successfully")
+			responseData.put("uname",user)
+			log.info(responseData)
+			[result:responseData]
 		}
 
 	def contact2(){
@@ -401,32 +405,6 @@ def marketdata(){
 	}
 
 
-    def userlist(){
-	
-	log.info("UserController userlist Action")
-	def adminname= session.admin
-	if(adminname ==null || adminname=="" ){
-	 redirect(uri: "/admin/login1")
-	 return
-	}
-	def responseData = new HashMap<>();
-	def admin= Admin.findByAdminname(session.admin)
-	
-	
-	def mode="web"
-	def of=0;
-	def merchantdata=User.list(sort:"id",order:"desc",max: 5, offset: of)
-	log.info(merchantdata)
-	def totalcount=User.findAll().size()
-	log.info(totalcount)
-	responseData.put("listId", "userlist")
-	responseData.put("totalcount",totalcount )
-	responseData.put("merchantdata", merchantdata)
-	responseData.put("admin", admin)
-	responseData.put("offset", of)
-	[result:responseData]
-}
-
 def mailAction() {
 	log.info("@@@@@@@@@@@@@" )
 	
@@ -434,8 +412,6 @@ def mailAction() {
 	
 	   
    }
-
-
 
 
 def logout = {
@@ -493,183 +469,6 @@ def authenticate2={
 
 }
 
-def search(){
-	
-	log.info("MerchantController search Action")
-	def data = new HashMap<>()
-	def grocery=Grocery.getAll()
-	def groceryName=params.groceryName
-	
-	
-
-def emp=Grocery.findAllByGroceryName(groceryName)
-		def msg;
-		if(emp==null || emp==[]){
-			msg="Data Not Found"
-		}
-		else{
-			msg=""
-			
-		}
-		def user=new ArrayList()
-			for(int i=0;i<emp.size();i++){
-				user.add(emp[i].groceryName)
-			}
-		
-			data.put("message", msg)
-			data.put("emp",emp)
-			data.put("grocery",grocery)
-			[result:data]
-			
-}
-
-def purched(){
-	
-	log.info("User Controller purched action ********")
-	def username= session.user
-	if(username ==null || username=="" ){
-	 redirect(uri: "/address/userlogin")
-	 return
-	}
-	
-	def responseData = new HashMap<>()
-	def mode=params.mode
-	log.info(mode)
-	
-	
-	def user= User.findByUserName(session.user)
-	log.info(user)
-	
-	def userNameId = user.id
-	def of=0;
-	def data=Address.findByUserNameId(userNameId,[sort:"id",max: 5])
-	log.info(data)
-	def totalcount=Address.findAllByUserNameId(userNameId).size()
-	log.info(totalcount)
-	
-	
-	def doctor=User.findByUserName(username)
-	log.info(doctor)
-	
-	responseData.put("totalcount",totalcount)
-	responseData.put("data", data)
-	
-	responseData.put("listId", "dashboard")
-	responseData.put("uname",user)
-	responseData.put("doctor",doctor)
-	
-	log.info("************")
-	log.info(responseData)
-	[result:responseData]
-	
-	
-}
-def userdashboard1(){
-	
-	
-	respond Grocery.list(params), model:[groceryInstanceCount: Grocery.count()]
-	
-	
-/*	def responseData = new HashMap<>()
-	def user= User.findByUserName(session.user)
-	log.info(user)
-	def userName= session.user
-	if(userName ==null || userName=="" ){
-	redirect(uri: "/user/userlogin1")
-	return
-	}
-	
-	
-	*/
-	
-/*	HashMap data=new HashMap<String, String>();
-	ArrayList clist=new ArrayList();
-	
-	ArrayList<Cctvrepair> cObject=Cctvrepair.findAll();
-	ArrayList<Computersrepair> cmpObject=Computersrepair.findAll();
-	Iterator iter = cObject.iterator();
-	while (iter.hasNext()) {
-	  clist.add(iter.next().ccName);
-	}
-	Iterator iter1 = cmpObject.iterator();
-	while (iter1.hasNext()) {
-	  clist.add(iter1.next().cName);
-	}
-	
-	log.info(cObject);
-	log.info(cObject.ccName);
-	log.info(cmpObject.cName);
-	
-	*/
-	/*clist.add(cObject.ccName);
-	clist.add(cmpObject.cName);*/
-	
-	//log.info("******* "+ clist);
-	
-	 
-	
-	
-	//responseData.put("uname",user)
-	//responseData.put("tableData",clist)
-	//responseData.put("tableData",cmpObject.cName)
-	//log.info(responseData);
-	//[result:responseData]
-}
-
-def marketdetails(){
-	
-	log.info("User Controller marketdetails action")
-	def responseData = new HashMap<>()
-	def result,url
-	url="/user/marketdetails.gsp"
-	def mode=params.mode
-	def shopName = params.shopName
-	log.info(shopName)
-	session.setAttribute("shopName", shopName)
-	def data = Merchant.findAllByShopName(shopName)
-	log.info(data)
-	
-	def user= User.findByUserName(session.user)
-	log.info(user)
-	
-	responseData.put("data", data)
-	responseData.put("uname",user)
-	
-	[result:responseData]
-	
-	
-	
-	}
-	
-//	def Contact(){
-//	log.info("User Controller Contact action")
-//	def responseData = new HashMap<>()
-//	def result,url
-//	url="/user/Contact.gsp"
-//	def mode=params.mode
-//	def merchant=Merchant.getAll()
-//	
-//
-//	def shopName = params.shopName
-//	log.info(shopName)
-//	
-//	//session.setAttribute("shopName", shopName)
-//	def data = Merchant.findByShopName(shopName)
-//	log.info(data)
-//	
-//	def user= User.findByUserName(session.user)
-//	log.info(user)
-//	
-//	responseData.put("data", data)
-//	responseData.put("uname",user)
-//	responseData.put("merchant",merchant)
-//	
-//	
-//	[result:responseData]
-//	
-//	
-//	}
-
 def paytmTerms(){
 	
 }
@@ -686,13 +485,6 @@ def updateuser(){
 	// redirect(uri: "/user/userlogin1")
 	 return
 	}
-	
-
-
-	//	def user=User.findByUserName(params.id)
-		//[user:user]
-		
-		
 	
 	def responseData = new HashMap<>();
 	def user= User.findByUserName(session.user)
@@ -741,11 +533,8 @@ def updateuser(){
 		def groceryName = params.groceryName
 		log.info(groceryName)
 		
-		
-		
 		def user= User.findByUserName(username)
 		log.info(user)
-		
 		
 		def usercartId = user.id
 		def of=0;
@@ -765,6 +554,66 @@ def updateuser(){
 		log.info(responseData)
 		[result:responseData]
 			
+	}
+	
+	def offsetlist(){
+		log.info("UserController offsetlist Action")
+		
+		Cookie cookie=null
+		Cookie[] cookies = null;
+		def username
+		cookies=request.getCookies();
+		log.info(cookies)
+		if(!cookies.toString().equals("null")){
+		for (int i = 0; i < cookies.length; i++) {
+			cookie = cookies[i];
+			log.info("Name : " + cookie.getName() );
+			log.info("Value: " + cookie.getValue() );
+			if(cookie.getName().equals("userKey")){
+				if(!(cookie.getValue().equals("null") ||cookie.getValue().equals(""))){
+				username=cookie.getValue()
+				}
+			}
+		 }
+		}
+		log.info("**************** "+username)
+		if(username ==null || username=="" ){
+		username= session.user
+		}
+		if(username ==null || username=="" ){
+		 redirect(uri: "/user/userlogin1")
+		 return
+		}
+		def responseData = new HashMap<>();
+		def mode=params.mode
+		log.info(mode)
+		def result,url
+		
+		def groceryName = params.groceryName
+		log.info(groceryName)
+		
+		def user= User.findByUserName(username)
+		log.info(user)
+		
+		if(mode == "web"){
+		def usercartId = user.id
+		def of=params.offset;
+		def data=OrderStatus.findAllByUsercartId(usercartId,[sort:"id",order:"desc",max: 5, offset: of])
+		log.info(data)
+		def totalcount=OrderStatus.findAllByUsercartId(usercartId).size()
+		log.info(totalcount)
+		def userInstance=OrderStatus.findByGroceryName(params.groceryName)
+		log.info(userInstance)
+		
+		responseData.put("data1", userInstance)
+		responseData.put("listId", "list")
+		responseData.put("totalcount",totalcount )
+		responseData.put("data", data)
+		responseData.put("uname", user)
+		responseData.put("offset", Integer.parseInt(of))
+		log.info(responseData)
+		  [result:responseData]
+		}
 	}
 	
 	def orderdata(){
@@ -970,29 +819,6 @@ def passwordSave2(){
 	log.info(newPwd)
 	log.info(confirmPwd)
 	
-	/*
-	if(mode=="mobile"){
-		def userId = params.userId
-		def userName = User.findByUserId(userId).email
-		
-		if(newPwd != confirmPwd){
-			return false
-		   }
-			else{
-		   result=UserService.passwordSave2(userName,newPwd)
-		   
-		   if(result.get("status") == "success"){
-			   responseData.put(getMessages('default.message.label'),result.getAt("message"))
-			   responseData.put(getMessages('default.status.label'),"200")
-			   responseData.put("uname",userName)
-		   }
-			}log.info(result)log.info(result)
-				   render responseData as JSON
-				   return
-	}
-	
-	*/
-	
 	if(mode=="web"){
 	def userName= session.user
 	log.info(userName)
@@ -1062,10 +888,6 @@ def passwordSave3(){
 	}
 }
 
-
-def aboutus={}
-
-def contactusadd={}
 
 def userlogin1 = {
 	log.info("user controller userlogin1")
@@ -1172,12 +994,6 @@ def _form(){
 	
 }
 
-def edit(User userInstance) {
-	respond userInstance
-}
- 
-
-
 def create() { 
 	
 	if(session.user=="" || session.user==null ){
@@ -1189,24 +1005,6 @@ def create() {
 	respond new Address(params)
 	
 }
-
-def address() {
-	
-	respond new Address(params)
-}
-
-def show(User userInstance) {
-	respond userInstance
-}
-
-
-def wastecreate(){
-	
-	
-	
-}
-
-
 
 def createuser() {
 	def responseData = new HashMap<>()
@@ -1264,11 +1062,6 @@ def saveuser() {
 			log.info("SMS response"+smsresp);
 		
 		
-	//	responseData.put("message", "Your Registration complited Successfully")
-	//	responseData.put(getMessages("default.status.label"),"200")
-		
-		
-		
 		}else if(result.get("status") == "error"){
 		responseData.put("message", "User Not Created,Something went Wrong..")
 		responseData.put(getMessages("default.status.label"),"500")
@@ -1290,42 +1083,7 @@ def saveuser() {
 		[result:responseData]
 		}
 	}
-	
-	
-	
-/*
 
-def createcontactus() {
-	respond new Contactus(params)
-	}
-	
-	*/
-
-	/*
-	@Transactional
-	def savecontactus(Contactus contactusInstance) {
-	if (contactusInstance == null) {
-	notFound()
-	return
-	}
-	
-	if (contactusInstance.hasErrors()) {
-	respond contactusInstance.errors, view:'createcontactus'
-	return
-	}
-	
-	contactusInstance.save flush:true
-	
-	request.withFormat {
-	form multipartForm {
-	// flash.message = message(code: 'default.created.message', args: [message(code: 'computers.label', default: 'Computers'), computersInstance.id])
-	// redirect computersInstance
-	}
-	//'*' { respond computersInstance, [status: CREATED] }
-	}
-	}
-	
-	*/
 	protected void notFound() {
 		request.withFormat {
 			form multipartForm {

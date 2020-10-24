@@ -179,7 +179,7 @@ i:hover {
 
 <div class="fieldcontain ${hasErrors(bean: merchantInstance, field: 'password', 'error')} required">
     <div class="form-label-group input-group">
-      <input type="password" id="password" class="form-control" name="password" placeholder="Password" pattern="[0-9]{6,}" title="Password must have atleast 6 digits" required>
+      <input type="password" id="password" class="form-control" name="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}" title="Password must have atleast 6 characters(Uppercase,Lowercase,Numeric,Special character)" required>
       <div class="input-group-append">
         <span class="input-group-text">
           <i id="eye" class="far fa-eye-slash"></i>
@@ -284,31 +284,6 @@ i:hover {
 </div>
 </div>
 
-
-<%--<div class="col-md-12 form-group">
-
-<div class="fieldcontain ${hasErrors(bean: groceriesInstance, field: 'Payment', 'error')} required">
-	
-<select class="form-control" name="Payment" id="Payment" required>
-  <option value="">Select Payment</option>
-  <option value="Googlepay">BHIM UPI</option>
-</select>
-
-</div>
-</div>
-
-<div class="col-md-12 form-group">
-
-<div class="fieldcontain ${hasErrors(bean: merchantInstance, field: 'qrcode', 'error')} ">
-	<label for="qrcode">
-		<g:message code="merchant.qrcode.label" default="Upload QRcode" />
-		<span class="required-indicator"></span>
-	</label>
-	<input type="file" id="qrcode" name="qrcode" class="form-control"  accept="qrcode/*"  placeholder="Qrcode" required />
-
-</div>
-</div>
---%>
 <input type="hidden" id="modifiedBy" name="modifiedBy" value="self">
 							<input type="hidden" id="myaction" name="myaction" value="save">
 						<input type="hidden" id="mode" name="mode" value="web">
@@ -318,7 +293,7 @@ i:hover {
 			 <div class="col-sm-12 text-left" style="padding-left:180px">
 				
 	<fieldset class="buttons">
-		<g:submitButton name="create" class="save" class="btn btn-primary" onclicvk="return validateForm()" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+		<g:submitButton name="create" class="genric-btn primary circle" style="font-size: 15px;" onclicvk="return validateForm()" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 	</fieldset>
 				</div>
 			</g:form>
@@ -326,5 +301,45 @@ i:hover {
 			</div></div></div></div></section>
 			
 		</div>
+
+<style>
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color:black;
+   color: white;
+   text-align: center;
+}
+
+a {
+ // color: white;
+}
+a:hover {
+  //color: white;
+}
+
+
+</style>
+
+<br><br>
+<div class="footer ">
+<p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>  
+<a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a> | All rights reserved </p>
+<p> <a href="/Skeleton/user/paytmTerms" target="_blank"><strong>Paytm</strong></a> Privacy Policies | Terms & Conditions </p>
+</div>
+
+	<script src="js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="/Skeleton/website/js/vendor/bootstrap.min.js"></script>
+	<script src="/Skeleton/website/js/jquery.ajaxchimp.min.js"></script>
+	<script src="/Skeleton/website/js/jquery.nice-select.min.js"></script>
+	<script src="/Skeleton/website/js/jquery.sticky.js"></script>
+	<script src="/Skeleton/website/js/nouislider.min.js"></script>
+	<script src="/Skeleton/website/js/countdown.js"></script>
+	<script src="/Skeleton/web-app/website/js/jquery.magnific-popup.min.js"></script>
+	<script src="/Skeleton/website/js/owl.carousel.min.js"></script>
+	
+		
 </body>
 </html>

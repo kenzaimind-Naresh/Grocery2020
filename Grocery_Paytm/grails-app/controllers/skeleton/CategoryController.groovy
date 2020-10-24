@@ -20,7 +20,6 @@ class CategoryController {
     }
 
     def show(Category categoryInstance) {
-        //respond categoryInstance
 			log.info("CategoryController show Action")
 			def responseData = new HashMap<>()
 			def admin= Admin.findByAdminname(session.admin)
@@ -36,7 +35,6 @@ class CategoryController {
     }
 
     def create() {
-       // respond new Category(params)
 		log.info("CategoryController create Action")
 		def responseData = new HashMap<>()
 		def admin= Admin.findByAdminname(session.admin)

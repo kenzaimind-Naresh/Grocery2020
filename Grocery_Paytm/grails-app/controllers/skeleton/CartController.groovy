@@ -34,10 +34,6 @@ class CartController {
     @Transactional
     def save(Cart cartInstance) {
 		log.info("CartController save Action")
-		//cartInstance.gname=""
-		//cartInstance.gprice=""
-		//cartInstance.tcount=""
-		//cartInstance.tamount=""
 		
 		log.info(params.gname)
 		log.info(params.gprice)
@@ -48,18 +44,13 @@ class CartController {
 		def grocname=params.gname.split("#")[0].split("00")[0];
 		def merchant=Grocery.findByGroceryName(grocname).merchantId;
 		log.info(grocname);
-		
-		 //def gobject=Grocery.findByGroceryName()
-		 //def merchantId= gobject.merchantId
-		
-        //cartInstance.save flush:true
+
 		
 		def result=CartService.save(cartInstance.gname,cartInstance.gprice,cartInstance.tcount,cartInstance.qCount,cartInstance.tamount,cartInstance.usercartId)
 		log.info("response from service"+result)
 		log.info("((((((((((((((((("+result.get("cartInstance"));
 		session.setAttribute("savedCart", result.get("cartInstance"));
 		redirect(uri: "/address/create")
-		//flash.message = "Create Grocery Successfully"	
     }
 
     def edit(Cart cartInstance) {

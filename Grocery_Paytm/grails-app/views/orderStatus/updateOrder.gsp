@@ -96,26 +96,50 @@ window.onhashchange = function (event) {
 <body>
 
 <g:render template="/grocery/groceryheader1"/>
-	<!-- Start Banner Area -->
-    <section class="banner-area organic-breadcrumb" style="padding-top: 20px">
-        <div class="container">
-            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end" style="padding: 82px 127px 88px 0;">
-                <div class="col-first">
-                    <h1>Order Update</h1>
-                    <nav class="d-flex align-items-center">
-                        <a href="/Skeleton/merchant/ldashboard">Home<span class="lnr lnr-arrow-right"></span></a>
-                        <a href="/Skeleton/orderStatus/updateOrder">Order Update</a>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Banner Area -->
     
-<br><br>    
+<br><br><br><br><br>    
 <div class="center" style="text-align: center;">
-<h3>Status of the Order is Updated Successfully</h3><br>
-<g:link controller="orderStatus" action="orderstatuslist" class="active"><input type="button" class="primary-btn" value="Back to OrderStatus"></g:link>
+<h3>You have accepted the Order</h3><br>
+<g:link controller="orderStatus" action="orderstatuslist" class="active"><input type="button" class="genric-btn primary circle" style="font-size: 15px;" value="Get the Order Status"></g:link>
 </div>
+
+<style>
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color:black;
+   color: white;
+   text-align: center;
+}
+
+a {
+ // color: white;
+}
+a:hover {
+  //color: white;
+}
+
+
+</style>
+
+<br><br>
+<div class="footer ">
+<p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>  
+<a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a> | All rights reserved </p>
+<p> <a href="/Skeleton/user/paytmTerms" target="_blank"><strong>Paytm</strong></a> Privacy Policies | Terms & Conditions </p>
+</div>
+
+	<script src="js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="/Skeleton/website/js/vendor/bootstrap.min.js"></script>
+	<script src="/Skeleton/website/js/jquery.ajaxchimp.min.js"></script>
+	<script src="/Skeleton/website/js/jquery.nice-select.min.js"></script>
+	<script src="/Skeleton/website/js/jquery.sticky.js"></script>
+	<script src="/Skeleton/website/js/nouislider.min.js"></script>
+	<script src="/Skeleton/website/js/countdown.js"></script>
+	<script src="/Skeleton/web-app/website/js/jquery.magnific-popup.min.js"></script>
+	<script src="/Skeleton/website/js/owl.carousel.min.js"></script>
+	
 </body>
 </html>

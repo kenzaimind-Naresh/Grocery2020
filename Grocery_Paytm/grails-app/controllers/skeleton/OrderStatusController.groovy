@@ -12,41 +12,7 @@ class OrderStatusController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def OrderStatusService orderStatusService;
-	def index(Integer max) {
-		log.info("OrderStatusController index Action")
-        params.max = Math.min(max ?: 10, 100)
-        respond OrderStatus.list(params), model:[orderStatusInstanceCount: OrderStatus.count()]
-    }
-
-    def show(OrderStatus orderStatusInstance) {
-	log.info("OrderStatusController show Action")
-        respond orderStatusInstance
-		
-	 def responseData = new HashMap<>()
-		
-	 def user= User.findByUserName(session.user)
-	 log.info(user)
-	 def username= session.user
-	 if(username ==null || username=="" ){
-	 // redirect(uri: "/grocery/show")
-	  return
-	 }
-	 
-	 responseData.put("listId", "show")
-	 responseData.put("uname",user)
-	 
-	 log.info("************")
-	 log.info(responseData)
-
-	 [result:responseData]
-		
-    }
-
-    def create() {
-	log.info("OrderStatusController create Action")
-        respond new OrderStatus(params)
-    }
-	
+	def nexmoService
 	
 	def orderstatuslist(){
 		
@@ -185,13 +151,20 @@ class OrderStatusController {
 				log.info(params.status);
 				def orderInstance=OrderStatus.get(params.orderId)
 				log.info(orderInstance)
-				
 				log.info(session.user)
 				
 				def user = Merchant.findByEmail(session.user)
 				log.info(user)
+				def user1 = User.findByUserId(orderInstance.usercartId)
+				log.info("User Info******* "+user1)
+				
 				responseData.put("uname", user)
-				orderStatusService.update(params.orderId,params.status,user.firstName);
+				orderStatusService.update(params.orderId,params.status,user1.userName);
+				 
+				 TestController testController=new TestController();
+				 String smsresp=testController.sendSMSToUser(user1.mobileNumber,"Dear "+user1.userName+",your Grocery Order will be delivered in "+orderInstance.status+". ");
+				 log.info("SMS response"+smsresp);
+				
 				[result:responseData]
 	}
 
@@ -220,10 +193,6 @@ class OrderStatusController {
         }
     }
 
-    def edit(OrderStatus orderStatusInstance) {
-		log.info("OrderStatusController edit Action")
-        respond orderStatusInstance
-    }
 
     @Transactional
     def update(OrderStatus orderStatusInstance) {

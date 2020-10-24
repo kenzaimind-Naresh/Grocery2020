@@ -63,8 +63,6 @@ class AddressService {
 						log.info(fullName)
 						addressInstance.mobileNumber=mobileNumber
 						log.info(mobileNumber)
-						//addressInstance.email=email
-						//log.info(email)
 						addressInstance.pincode=pincode
 						log.info(pincode)
 						addressInstance.houseNumber=houseNumber
@@ -94,12 +92,7 @@ class AddressService {
 						def f=Address.get(sts.id)
 						f.addressId=f.id
 						def st=save(f)
-						
-					//	if(st){
-							//def fullname=Address.get(fullName)
-							
-					//		UserService.sendaddressmail(email,fullName)
-					//}
+					
 					
 						if(st){
 							resultData.put("status","success")
@@ -205,7 +198,6 @@ class AddressService {
 						resultData.put(getMessage("default.message.label"),getMessage("default.delete.errormessage",args))
 					}
 					
-						//mailstatus=UserService.sendDEmail(email,doctorname,appointmentDate,appointmentTime)
 					
 					return resultData
 				}

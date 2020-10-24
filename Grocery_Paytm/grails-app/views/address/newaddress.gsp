@@ -47,7 +47,7 @@ window.onhashchange = function (event) {
 <body>
 
 <g:render template="/user/userheader2"/>
-	<br><br><br>
+	<br><br><br><br><br>
  	
 <!-- Content Header (Page header) -->
 <section class="content-header" align="center">
@@ -73,7 +73,7 @@ ${it.houseNumber}, ${it.area}<br>
 ${it.landmark}, ${it.city}<br>
 ${it.state}, ${it.pincode}.<br><br>
 <g:form controller="Address" action="payment">
-<input type="submit" ID="btnsave" value="Deliver Here" onclick="return validateForm()" class="btn btn-warning" />
+<input type="submit" ID="btnsave" value="Deliver Here" onclick="return validateForm()" class="genric-btn primary circle" style="font-size: 15px;" />
 		</g:form>						
 							</div>
 
@@ -111,15 +111,12 @@ ${it.state}, ${it.pincode}.<br><br>
 <span id="fullNameinfo"></span>
 	
 </div>
-
-
-
 </div>
 <div class="col-md-4 col-sm-4">
 
 <div class="fieldcontain">
 	
-<label for="mobileNumber" style="color:black">MobileNumber :</label>
+<label for="mobileNumber" style="color:black">Mobile Number :</label>
 <input type="text" id="mobileNumber" name="mobileNumber" class="form-control"    required/>
 <span id="mobileNumberinfo"></span>
 
@@ -129,7 +126,7 @@ ${it.state}, ${it.pincode}.<br><br>
 <div class="col-md-4 col-sm-4">
 
 <div class="fieldcontain">
-<label for="houseNumber" style="color:black">HouseNumber :</label>
+<label for="houseNumber" style="color:black">House Number :</label>
 <input type="text" id="houseNumber" name="houseNumber" class="form-control"   required/>
 <span id="houseNumberinfo"></span>
 	
@@ -179,7 +176,7 @@ ${it.state}, ${it.pincode}.<br><br>
 <div class="fieldcontain">	
 
 
-<label for="pincode" style="color:black">PinCode :</label>
+<label for="pincode" style="color:black">Pin Code :</label>
 <input type="text" id="pincode" name="pincode" class="form-control" required/>
 <span id="pincodeinfo"></span>
 </div>
@@ -190,13 +187,6 @@ ${it.state}, ${it.pincode}.<br><br>
 
 <div class="fieldcontain">
 <label for="state" style="color:black">State :</label>
-<!-- 
-
-<input type="text" id="state" name="state" class="form-control" required/>
-
- -->
-
-
 <select id="state" name="state" class="form-control"  required>
 <option value="">-- Select State--</option>
 <option>Andhra Pradesh</option>
@@ -265,7 +255,7 @@ ${it.state}, ${it.pincode}.<br><br>
 
 <div class="form-group">
 <div class="col-sm-12 text-center">
-<input type="submit" ID="btnsave" value="Submit" onclick="return validateForm()" class="btn btn-info btn-lg" />
+<input type="submit" ID="btnsave" value="Submit" onclick="return validateForm()" class="genric-btn primary circle" style="font-size: 15px;" />
 </div>
 </div>
 </div>

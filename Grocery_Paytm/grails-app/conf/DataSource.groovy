@@ -18,7 +18,7 @@ environments {
 	development {
 		dataSource {
 			dbCreate = "update" // one of 'create', 'create-drop','update'
-			url = "jdbc:mysql://localhost:3306/skeletondemotest"
+			url = "jdbc:mysql://localhost:3306/skeletondemotest" // skeletondemotest
 			username = "root"
 			password = "ecg123"
 		}
@@ -27,7 +27,7 @@ environments {
 	test {
 		dataSource {
 			dbCreate = "create" // one of 'create', 'create-drop','update'
-			url = "jdbc:mysql://localhost:3306/skeletondemotest"
+			url = "jdbc:mysql://localhost:3306/skeletondemotest" // skeletontestoct
 			username = "root"
 			password = "ecg123"
 		}

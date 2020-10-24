@@ -67,15 +67,7 @@
 													
 							<li class="nav-item"><a class="nav-link" style="padding-top:30px; padding-bottom:30px;" href="/Skeleton/user/contact2">Contact</a></li>
 							
-							<li class="nav-item submenu dropdown">
-								
-								<ul class="dropdown-menu">
-								<li><g:link controller="user" action="updateuser" class="active"  style="color:	#DAA520;font-size:14px;"><i class="fa fa-user"></i> Profile</g:link></li>
-								<li><g:link controller="user" action="myorders" class="active"  style="color:	#DAA520;font-size:14px;"><i class='fa fa-cart-arrow-down'></i> My Orders </g:link></li>
-								<li><a href="/Skeleton/user/logout" style="color:	#DAA520;font-size:14px;"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
 
-								</ul>
-							</li>
 								
 						</ul>
 						
@@ -88,6 +80,10 @@
 	<!-- End Header Area -->
 	
      <br><br><br>
+     
+
+
+
 
 <div align="center">
 <p style="color:black;font-Size: 20px">${flash.message}</p>
@@ -106,38 +102,168 @@ window.onpopstate = function () {
 history.go(1);
 };
 </script>
+
+
+  
+	
+<script type="text/javascript">
+
+$(document)
+.ready(
+  function() {
+
+   $("#newPwd")
+     .focusout(
+       function() {
+        $(this).find("span").css("display",
+          "inline");
+        var ff = /\s$/;
+        var newPwd = $("#newPwd").val();
+        var password = $("#password").val();
+        if($("#newPwd").val().trim()=="" ||newPwd == password || $("#newPwd").val().match('^[a-zA-Z0-9-\ \-\,.@#$%^&*_!  ]{3,20}$')== null){
+         $("#newPwdinfo").text("Please Enter Valid NewPassword");
+        
+       }else
+        if ($("#newPwd").val().indexOf(" ") != 0 && ff.test($("#newPwd").val()) == false) {
+
+         $("#newPwdinfo").text("");
+        }
+          else {
+         $("#newPwdinfo")
+           .text(
+             "Please don't begin or end with space");
+        }
+       });
+   $("#confirmPwd")
+     .focusout(
+       function() {
+        $(this).find("span").css("display",
+          "inline");
+
+        var newPwd = $("#newPwd").val();
+        var confirmPwd = $("#confirmPwd").val();
+        if (newPwd != confirmPwd) {
+         $("#confirmPwdinfo")
+           .text(
+             "New Password and Confirm Password should be same");
+
+        } else {
+         $("#confirmPwdinfo").text("");
+        }
+       });
+   $("#password").focusout(
+     function() {
+      $(this).find("span").css("display", "inline");
+      var pass = $("#pass").val();
+      var password = $("#password").val();
+      if (pass != password) {
+       $("#passwordinfo").text(
+         "Please Enter Valid old password");
+
+      } else {
+       $("#passwordinfo").text("");
+      }
+     });
+
+  });
+
+function validateForm() {
+var newPassword = document.forms["myform"]["newPwd"].value;
+var confirmpassword = document.forms["myform"]["confirmPwd"].value;
+var password = document.forms["myform"]["password"].value;
+var ff = /\s$/;
+if (password == null || password.trim() == "") {
+document.getElementById('passwordinfo').style.display = 'inline';
+$("#passwordinfo").text("Please Enter Old Password");
+return false;
+}
+
+if (newPassword == null || newPassword.trim() == "" || password == newPassword || newPassword.match('^[a-zA-Z0-9-\ \-\,.@#$%^&*_!  ]{3,20}$')==null) {
+document.getElementById('newPwdinfo').style.display = 'inline';
+$("#newPwdinfo").text("Please Enter New Password");
+return false;
+}
+if (newPassword.indexOf(" ") == 0 || ff.test(newPassword) == true) {
+document.getElementById('newPwdinfo').style.display = 'inline';
+$("#newPwdinfo").text("Please don't begin or end with space");
+return false;
+}
+
+if (newPassword != confirmpassword) {
+document.getElementById('confirmPwdinfo').style.display = 'inline';
+$("#confirmPwdinfo").text(
+  "New Password and Confirm Password should be same");
+
+return false;
+} else {
+return true;
+}
+}
+</script>
+<script type="text/javascript">
+
+function checkCode(){
+
+	var randomValue= document.getElementById("randomValue").value;
+	var otp = document.getElementById("otp").value;
+
+	if(randomValue == otp){
+		return true;
+	}
+	else{
+		event.preventDefault();
+		alert("Please enter valid Verification Code");
+		
+		return;
+		}
+}
+
+</script>
    
     </head>
+    <br><br>
+	<g:if test="${result.status =="error"}">
+	<div class="container signin" style="padding-left: 350px">
+       <div class="row">
+            <div class="col-xs-12 col-sm-9 col-md-6">
+                <h4 align="center">This User not Registred</h4>
+            </div>
+        </div>
+        </div>
+	</g:if>
+<br>
+<g:if test="${result.status =="success"}">
 
 	<div class="container signin" style="padding-left: 350px">
        <div class="row">
             <div class="col-xs-12 col-sm-9 col-md-6">
-                <h3>Forgot Your Password?</h3>
+                <h6 align="center">Enter your Verification Code here...</h6>
             </div>
         </div>
-   <br>
-   <h6>Enter your registered Email or Mobile Number for verification...</h6><br>
+   
     <div class="row">
-            <div class="col-lg-8">
-         <g:form class="form-horizontal" controller="user" ID="myform" action="validateCode"  nonvalidate="nonvalidate"> 
-	<input type="hidden" name="pass" Id="pass"/>
-            <div class="form-group">
-                 <div class="col-sm-9">
-            <label style="color: black;">Email or Mobile:</label>
-           <input type="text" id="email" name="email" class="form-control" value="">
-            <span id=emailinfo style="color:red"></span>
+            <div class="col-lg-12">
+            <g:form class="form-horizontal" controller="user" ID="myform" action="newPassword"  nonvalidate="nonvalidate"> 
+           <input type="hidden" id="otp" name="otp" value="${result.otp }">
+		   <input type="hidden" id="username" name="username" value="${result.uname }">
+           <div class="form-group">
+                 <div class="col-sm-6">
+           <input type="text" id="randomValue" name="randomValue" class="form-control" onfocusout="checkCode()">
+            <span id=randomValueinfo style="color:red"></span>
             </div>
             </div>
             
             <input type="hidden" id="myaction" name="myaction" value="save">
             <input type="hidden" id="mode" name="mode" value="web"> 
              <div class="form-group ic-no-mgbottom">
-             <div class="col-sm-9 text-center">
-           <input type="submit" ID="btnsave" value="Next" onclick="return validateForm()" class="genric-btn primary circle" style="font-size: 15px;" />
+                            <div class="col-sm-6 text-center">
+           <input type="submit" ID="btnsave" value="Next" onclick="checkCode()" class="genric-btn primary circle" style="font-size: 15px;"/>
             </div>
             </div></g:form>
             </div></div></div>
-
+            
+</g:if>
+ 
 <style>
 .footer {
    position: fixed;
@@ -175,5 +301,7 @@ a:hover {
 	<script src="/Skeleton/website/js/countdown.js"></script>
 	<script src="/Skeleton/web-app/website/js/jquery.magnific-popup.min.js"></script>
 	<script src="/Skeleton/website/js/owl.carousel.min.js"></script>
+	           
+
             </body>
             </html>

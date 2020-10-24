@@ -290,9 +290,9 @@ position: relative;
 								<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="username-sm"></span>${result.uname.userName}<i class="fa fa-user" style="font-size:20px;"></i></a>
 								<ul class="dropdown-menu">
-									<li><g:link controller="merchant" action="updateprofile" class="active"  style="color:	#DAA520;"><i class="fa fa-user"></i> Profile</g:link></li>
-									<li><g:link controller="merchant" action="changepass" class="active" style="color:	#DAA520;"><i class="fa fa-key"></i> ChangePassword</g:link></li>
-									<li><a href="/Skeleton/user/logout" style="color:	#DAA520;"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+									<li><g:link controller="merchant" action="updateprofile" class="active"  style="color:	#DAA520;font-size:14px;"><i class="fa fa-user"></i> Profile</g:link></li>
+									<li><g:link controller="merchant" action="changepass" class="active" style="color:	#DAA520;font-size:14px;"><i class="fa fa-key"></i> ChangePassword</g:link></li>
+									<li><a href="/Skeleton/user/logout" style="color:#DAA520;font-size:14px;"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 								</ul>
 								</li>
 							</g:else>
@@ -340,27 +340,6 @@ position: relative;
 </div>
 </div>
 
-<%--<div class="overlay bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<!-- Modal content -->
-<div class="modal-dialog modal-lg" role="document">
-	<div class="modal-content">
-    	<div class="modal-header"><br><br>
-    	<h3 class="modal-title" id="myModalLabel" style="color: white;">Welcome to Online Store<br>Book your Order by Area  Wise</h3>
-    		</div><br><br>
-    	<g:form class="example" ID="myform" action="searchlocation" controller="merchant" method="GET" nonvalidate="nonvalidate" style="width:500px">
-			<div class="modal-body">
-  				<div class="form-group">
-  					<input type="text" name="city" id="city" class="form-control"  placeholder="Enter Location.." onchange="getStreetdata()"> 
-        			<span id="cityinfo" style="color:red;"></span>
-       			</div><br>
-       		</div> <br>
-			<div class="modal-footer">
-				<button type="submit" value="submit" class="form-control" class="btn btn-primary" onclick="return validateForm()">Proceed</button><br>
-			</div><br>
-		</g:form>	
-	</div>
-</div>
-</div>--%>
 <script>
 // Get the modal
 var modal = document.getElementById("myModal");

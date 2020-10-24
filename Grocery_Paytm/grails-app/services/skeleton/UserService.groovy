@@ -177,16 +177,17 @@ class UserService {
 		   
 		  }
 	   
-	   def forgotpass(userName,mobileNumber,email,otpActivation){
+	   def validateCode(email,mobileNumber,otpActivation){
 		   log.info("UserService forgotpass service ")
 		   def resultData=new HashMap<>()
 		   String []args=["User"]
 		   try{
-			def userInstance=User.findByUserNameOrMobileNumber(userName,mobileNumber)
+			def userInstance=User.findByEmailOrMobileNumber(email,mobileNumber)
 			 if(userInstance){
 			  userInstance.otpActivation=otpActivation
 			  log.info(otpActivation)
 			  log.info(email)
+			  log.info(mobileNumber)
 			  def sts2= save(userInstance)
 			  log.info(sts2)
 			  

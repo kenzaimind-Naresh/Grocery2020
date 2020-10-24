@@ -51,8 +51,10 @@ window.onhashchange = function (event) {
 <br><br><br><br>
    <br><br>             
 <div align="center">
-<div  style="color:black;font-size:25px; padding-left:20px">${result.message}</div><br>
-<g:link controller="grocery" action="list" class="active"><input type="button" class="primary-btn" value="GroceryList"></g:link>
+<div  style="color:black;font-size:20px; padding-left:20px">${result.message}</div><br>
+<g:link controller="grocery" action="list" class="active">
+<input type="button" class="genric-btn primary circle" style="font-size: 15px;" value="Grocery List">
+</g:link>
 
     </div>
 
