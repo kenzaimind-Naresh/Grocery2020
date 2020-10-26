@@ -154,7 +154,8 @@ def marketdata(){
 	def result,url
 	url="/user/marketdata.gsp"
 	def mode=params.mode
-	session.setAttribute("merchantName","");
+	
+	session.setAttribute("mid","");
 	
 	/*if(username ==null || username=="" ){
 	 redirect uri: ("/user/userlogin1")
@@ -165,7 +166,12 @@ def marketdata(){
 	*/
 	
 	def merchantshopName
-	def paramMName=params.merchantshopName
+	def merchantshopId
+	def mid=params.merchantshopName
+	def paramMName
+	if(mid){
+	paramMName=Merchant.get(mid).shopName;
+	}
 	log.info("merchant name from param "+paramMName);
 	
 	
@@ -177,11 +183,11 @@ def marketdata(){
 	if(!cookies.toString().equals("null")){
 	for (int i = 0; i < cookies.length; i++) {
 		cookie = cookies[i];
-		if(cookie.getName().equals("merchantName")){
+		if(cookie.getName().equals("mid")){
 			if(!(cookie.getValue().equals("null") ||cookie.getValue().equals("")))
 			if(paramMName==null){
-			merchantshopName=cookie.getValue()
-			log.info("in cookie   " +merchantshopName)
+			merchantshopId=cookie.getValue()
+			log.info("in cookie   " +merchantshopId)
 			}
 		}
 		if(cookie.getName().equals("userKey")){
@@ -195,31 +201,37 @@ def marketdata(){
 	 username= session.user
 	 }
 	
-	if((merchantshopName.equals(null) || merchantshopName=="" || merchantshopName.equals("null"))&& paramMName==null){
-	merchantshopName= session.getAttribute("merchantName")
-	log.info("in session   " +merchantshopName)
+	if((merchantshopId.equals(null) || merchantshopId=="" || merchantshopId.equals("null"))&& paramMName==null){
+	merchantshopId= session.getAttribute("mid")
+	log.info("in session MID   " +merchantshopId)
 	}
-	if(merchantshopName.equals(null) || merchantshopName=="" || merchantshopName.equals("null")){
+	if(merchantshopId.equals(null) || merchantshopId=="" || merchantshopId.equals("null")){
 	
-	merchantshopName = params.merchantshopName
-	log.info(merchantshopName)
-	session.setAttribute("merchantName", merchantshopName)
-	Cookie cookie1 = new Cookie("merchantName", ""+merchantshopName);
+	merchantshopId=params.merchantshopName
+
+	
+	log.info("Merc Id"+merchantshopId)
+	session.setAttribute("mid", merchantshopId)
+	session.setAttribute("mid", mid)
+	Cookie cookie1 = new Cookie("mid", ""+mid);
 	cookie1.setMaxAge(60*60*24*365)
 	response.addCookie(cookie1);
 	}
 	
-	def data = Grocery.findAllByMerchantshopName(merchantshopName)
-	log.info(data)
-	session.setAttribute("merchantName", merchantshopName)
-	def data2 = Grocery.findByMerchantshopName(merchantshopName)
+	def data = Grocery.findAllByMerchantId(merchantshopId)
+	log.info("Grocery data "+data)
+	log.info("setting mid to session")
+	session.setAttribute("mid", merchantshopId)
+	log.info("after setting mid to session"+session.getAttribute("mid"))
+	def data2 = Grocery.findByMerchantId(merchantshopId)
 	def city = session.getAttribute("cityName")
 	log.info("city*********"+city)
 	if(data2){
 	def merchShop = data2.merchantshopName
 	log.info("merchantshopName "+merchShop)
+	log.info("merchantshopNameID*********** "+data2.id)
 	
-	responseData.put("merchShop",merchShop)
+	responseData.put("merchShop",merchantshopId)
 	}
 	else{
 		render text: """<script type="text/javascript">
@@ -360,14 +372,14 @@ def marketdata(){
 
 	log.info("merchantshopName "+merchantshopName)
 	if(merchantshopName=="null" || merchantshopName==null || merchantshopName==""){
-	merchantshopName= session.getAttribute("merchantName");
+	merchantshopName= session.getAttribute("mid");
 	}
 	 	if(username ==null || username=="" ){
 	 username= session.user
 	 }
 	log.info("merchantshopName from session "+merchantshopName)
 		//session.setAttribute("merchantName", shopName)
-		def data =Merchant.findByShopName(merchantshopName)
+		def data =Merchant.get(merchantshopName)
 		log.info(data)
 		
 		def user= User.findByUserName(session.user)

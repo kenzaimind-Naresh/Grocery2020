@@ -449,7 +449,7 @@ if(mode=="web")	{
 				if(!(cookie.getValue().equals("null") ||cookie.getValue().equals(""))){
 				username=cookie.getValue()}
 			}
-			if(cookie.getName().equals("merchantName")){
+			if(cookie.getName().equals("mid")){
 			if(!(cookie.getValue().equals("null") ||cookie.getValue().equals("")))
 			merchantshopName=cookie.getValue()
 			log.info("in cookie   " +merchantshopName)
@@ -522,9 +522,9 @@ if(mode=="web")	{
 		
 		def getCity = session.getAttribute("cityName")
 		log.info("getCity****"+getCity)
-		def getShop = session.getAttribute("merchantName")
+		def getShop = session.getAttribute("mid")
 		log.info("getShop******"+getShop)
-		def  location = Merchant.findAllByCityAndShopName(getCity,getShop)
+		def  location = Merchant.findAllByCityAndId(getCity,getShop)
 		log.info("location*******"+location)
 		
 		def city=params.city?params.city:getCity

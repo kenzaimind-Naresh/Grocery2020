@@ -49,11 +49,30 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	def gprice=params.gprice;
 	def qCount=params.qCount?Integer.parseInt(params.qCount):null;
 	def tamount=params.tamount;
+		Cookie cookie=null
+	Cookie[] cookies = null;
+	def username
+	cookies=request.getCookies();
+	log.info(cookies)
+	if(!cookies.toString().equals("null")){
+	for (int i = 0; i < cookies.length; i++) {
+		cookie = cookies[i];
+
+		if(cookie.getName().equals("userKey")){
+			if(!(cookie.getValue().equals("null") ||cookie.getValue().equals("")))
+			username=cookie.getValue()
+		}
+		if(username !=null || username.toString()!="null"){
+		log.info("set cookie value into session   username"+username)
+		session.user=username
+		}
+	 }
+	 }
 	
 	def user= User.findByUserName(session.user)
 	log.info(user)
 	
-	def username= session.user
+	username= session.user
 	log.info(" **********((((( "+username)
 	if(user ==null || user=="" ){
 		session.setAttribute("gname",gname)
@@ -67,7 +86,11 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	gprice=gprice?gprice:session.getAttribute("gprice")
 	qCount=qCount?qCount:session.getAttribute("qCount")
 	tamount=tamount?tamount:session.getAttribute("tamount")
-	def shopName=session.getAttribute("merchantName");
+	def smid=session.getAttribute("mid");
+	log.info("mid from session "+smid)
+	def shopName;
+	if(smid)
+	shopName=Merchant.get(smid).shopName
 	
 	log.info(gname)
 	log.info(gprice)
@@ -294,6 +317,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		Cookie cookie=null
 		Cookie[] cookies = null;
 		def username
+		def merchantshopId
 		cookies=request.getCookies();
 		log.info(cookies)
 		if(cookies!=null){
@@ -306,6 +330,11 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 				username=cookie.getValue()
 				}
 			}
+			if(cookie.getName().equals("mid")){
+			if(!(cookie.getValue().equals("null") ||cookie.getValue().equals("")))
+			merchantshopId=cookie.getValue()
+			log.info("in cookie  merchantshop " +merchantshopId)
+		}
 		 }
 		}
 		log.info("**************** "+username)
@@ -319,7 +348,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		 }
 		
 		def user= User.findByUserName(username)
-		log.info(user)
+		log.info("user logged in "+user)
 
 		log.info(params.id+"TTTTTTTTTTTT")
 		def address=Address.get(params.id)
@@ -338,7 +367,11 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info(data1)
 		
 		def cartId=session.getAttribute("savedCart");
-		def mercName=session.getAttribute("merchantName");
+		def mercId=session.getAttribute("mid");
+		log.info("mid from session"+mercId);
+		def mercName
+		if(mercId)
+		mercName=Merchant.get(mercId).shopName;
 		log.info("SSSSSSSSSSSSSSS"+mercName)
 		def addId=session.getAttribute("addressId");
 		log.info("SSSSSSSSSSSSSSS"+addrId)
@@ -362,7 +395,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		
 		log.info(cartInstance.qCount +"eeeeeeeeee")
 		
-		def merchantInstance = Merchant.findByShopName(mercName)
+		def merchantInstance = Merchant.get(mercId)
 		log.info(merchantInstance.id + "MMMMMMMMMMMMMM")
 		
 		String[] gnames= cartInstance.gname.split("#")
@@ -421,7 +454,8 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		 return
 		}
 		def cartId=session.getAttribute("savedCart");
-		def mercName=session.getAttribute("merchantName");
+		def mercId=session.getAttribute("mid");
+		def mercName=Merchant.get(mercId).shopName;
 		log.info("SSSSSSSSSSSSSSS"+mercName)
 		def addrId=session.getAttribute("addressId");
 		log.info("SSSSSSSSSSSSSSS"+addrId)
