@@ -467,7 +467,7 @@ def authenticate2={
 	def user = User.findByUserNameAndPassword(params.userName,params.password)
 	if(user){
 	
-	session.user=user
+	session.user=user.email
 	// flash.message = "Hello ${admin.fullName}:
 	//redirect(action:"userlogindash")
 	redirect(uri: "/user/userdashboard")
@@ -508,14 +508,14 @@ def updateuser(){
 		log.info("Value: " + cookie.getValue() );
 		if(cookie.getName().equals("userKey")){
 			if(!(cookie.getValue().equals("null") ||cookie.getValue().equals("")))
-			useremail=cookie.getValue()
+			sessionValue=cookie.getValue()
 	
 		}
 	 }
 	}
-	log.info("**************** "+useremail)
+	log.info("**************** "+sessionValue)
 
-	if(useremail.equals(null) ||useremail.equals("") ){
+	if(sessionValue.equals(null) ||sessionValue.equals("") ){
 	 redirect(uri: "/user/userlogin1")
 	 return
 	}
@@ -758,7 +758,7 @@ def saveupdate() {
 	log.info(firstName)
 	def lastName=params.lastName
 	log.info(lastName)
-	def userName=params.firstName
+	def userName=params.email
 	log.info(userName)
 	def password=params.password
 	log.info(password)
@@ -798,7 +798,9 @@ return
 	
 if(mode=="web")	{
 	def user= User.findByEmail(session.user)
+	log.info("in session "+session.user)
 	def username= session.user
+	log.info("user obj "+user)
 	if(username ==null || username=="" ){
 	 redirect(uri: "/user/userLogin1")
 	 return
@@ -821,7 +823,8 @@ if(mode=="web")	{
 		responseData.put("uname",user)
 		responseData.put("message", "Your Profile Updated Successfully")
 		responseData.put(getMessages("default.status.label"),"200")
-		
+	
+log.info("sdfdsfdsf "+responseData)	
 	}
 
 [result:responseData]

@@ -65,7 +65,8 @@ class MerchantController {
 		responseData.put("listId", "dashboard")
 		responseData.put("uname",user)
 		responseData.put("data",data)
-		log.info("************")
+		responseData.put("flag","M")
+		log.info("***********flag*"+session.flag)
 		log.info(responseData)
 		[result:responseData]
 	}
@@ -112,6 +113,7 @@ class MerchantController {
 		responseData.put("uname",user)
 		responseData.put("contact1", contact1)
 		responseData.put("offset", of)
+		responseData.put("flag", session.flag)
 		[result:responseData]
 		
 	}
@@ -205,6 +207,7 @@ else {
 	responseData.put("uname",Merchant.findByEmail(email).firstName)
 	responseData.put("message", "Your Profile Updated Successfully")
 	responseData.put(getMessages("default.status.label"),"200")
+	responseData.put("flag", session.flag)
 	
 }
 render responseData as JSON
@@ -238,6 +241,7 @@ if(mode=="web")	{
 		responseData.put("uname",user)
 		responseData.put("message", "Your Profile Updated Successfully")
 		responseData.put(getMessages("default.status.label"),"200")
+		responseData.put("flag", session.flag)
 		
 	}
 
@@ -281,6 +285,7 @@ if(mode=="web")	{
 		
 		responseData.put(getMessages('default.message.label'),"Password Changed Successfully")
 		responseData.put("uname",user)
+		responseData.put("flag", session.flag)
 		log.info(responseData)
 		[result:responseData]
 	}	
@@ -346,6 +351,7 @@ if(mode=="web")	{
 		}
 		 }
 		 responseData.put("uname",user)
+		 responseData.put("flag", session.flag)
 		 [result:responseData]
 	   }
 		}
@@ -507,6 +513,7 @@ if(mode=="web")	{
 				data.put("merchant",merchant)
 				data.put("city",Merchant.list().unique{ it.city})
 				data.put("street",Merchant.list().unique{ it.street})
+				data.put("flag", session.flag)
 				log.info("UUUUUUUUUU "+data)
 				[result:data]
 				
@@ -580,6 +587,7 @@ if(mode=="web")	{
 				data.put("merchant",merchant)
 				data.put("location", "location")
 				data.put("shopName",Merchant.findAllByCity(city))
+					data.put("flag", session.flag)
 				[result:data]
 		
 	}
@@ -621,6 +629,7 @@ if(mode=="web")	{
 				data.put("uname",user)
 				data.put("merchant",merchant)
 				data.put("shopName",Merchant.list().unique{ it.shopName})
+					data.put("flag", session.flag)
 				[result:data]
 		
 	}
@@ -716,6 +725,7 @@ if(mode=="web")	{
 				 response.addCookie(cookie1);
 				
 				session.user=user.email
+				session.flag="M"
 				redirect(action:"ldashboard")
 			}else{
 			render text: """<script type="text/javascript">
@@ -775,6 +785,7 @@ if(mode=="web")	{
 		responseData.put("listId", "ldashboard")
 		responseData.put("uname",user)
 		responseData.put("data", data)
+		responseData.put("flag", session.flag)
 		
 		log.info("************")
 		log.info(responseData)
@@ -830,12 +841,14 @@ if(mode=="web")	{
 				responseData.put(getMessages('default.status.label'),result.getAt("status"))
 				responseData.put("otp",user.otpActivation)
 				responseData.put("uname",params.email)
+				responseData.put("flag", session.flag)
 			
 		   }
 			}else{
 			responseData.put(getMessages('default.message.label'),"User in Not registered")
 			responseData.put(getMessages('default.status.label'),"error")
 			responseData.put("uname",params.email)
+			responseData.put("flag", session.flag)
 			
 			}
 			
@@ -859,6 +872,7 @@ if(mode=="web")	{
 
 		responseData.put(getMessages('default.message.label')," New Password Created Successfully")
 		responseData.put("uname",user)
+		responseData.put("flag", session.flag)
 		log.info(responseData)
 		[result:responseData]
 	}

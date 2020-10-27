@@ -101,7 +101,7 @@
 <div class="col-md-4 col-sm-4">
 	<div class="fieldcontain">
 	<label for="userName" style="color:black">First Name :</label>
-<input type="text" id="firstName" name="firstName" value="${result.data.firstName}" class="form-control" readonly/>
+<input type="text" id="firstName" name="firstName" value="${result.data.firstName}" class="form-control" />
 <span id="firstNameinfo" style="color:red"></span>
 	</div>
 </div>
