@@ -48,22 +48,47 @@ window.onhashchange = function (event) {
 	<body>
 		
   <g:render template="groceryheader1"/>
-	
-	<br><br><br>
 		
-		
+<br><br><br><br>		
 		<div align="center">
 <p style="color:black;font-Size: 25px;font-family: Calibri">${flash.message}</p>
 <br>
     </div>
     
 		<div id="create-grocery" class="content scaffold-create" role="main">
-			<div class="row" >
-			<h4 style="padding-left:450px;font-family: Calibri">Create Grocery</h4>
-			
-						<h4 style="padding-left:350px;font-family: Calibri"><g:link controller="grocery" action="list" >Grocery List</g:link></h4>
-			
-			</div>
+			    
+<!-- start banner Area -->
+		<div class="container">
+					<br>
+						<div class="row">
+							<div class="col-lg-3">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri" ><a href="#" class="active"  style="color: blue;" >Create Grocery</a> </h4>
+									</div>
+							</div>
+							
+							<div class="col-lg-3">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/grocery/list" class="active"  style="color: black;" >View List</a> </h4>
+									</div>
+							</div>
+						
+							<div class="col-lg-3">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/orderStatus/orderstatuslist" class="active"  style="color: black;" >Order</a> </h4>
+									
+								</div>
+							</div>
+							
+							<div class="col-lg-3">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/grocery/outofstock" class="active"  style="color: black;" >Stock Details</a> </h4>
+									
+								</div>
+							</div>
+					</div>
+				</div>
+	<!-- End banner Area -->
 			<br>
 			
 			

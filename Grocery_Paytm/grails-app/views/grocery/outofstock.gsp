@@ -86,15 +86,37 @@
 
 <g:render template="groceryheader1"/>
     
-
-	<!-- start banner Area -->
+<!-- start banner Area -->
 		<div class="container">
-					<br><br><br><br>
+					<br><br><br><br><br><br>
 						<div class="row">
-							<h4 style="padding-left:170px;font-family: Calibri" >Out Of Stock List </h4>							
+							<div class="col-lg-3">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri" ><a href="/Skeleton/grocery/create" class="active"  style="color: black;" >Create Grocery</a> </h4>
+									</div>
+							</div>
 							
-						</div>
+							<div class="col-lg-3">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/grocery/list" class="active"  style="color: black;" >View List</a> </h4>
+									</div>
+							</div>
+						
+							<div class="col-lg-3">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/orderStatus/orderstatuslist" class="active"  style="color: black;" >Order</a> </h4>
+									
+								</div>
+							</div>
+							
+							<div class="col-lg-3">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="#" class="active"  style="color: blue;" >Stock Details</a> </h4>
+									
+								</div>
+							</div>
 					</div>
+				</div>
 	<!-- End banner Area -->
 	
 	<br>

@@ -37,7 +37,7 @@ def loadCookie(){
 	log.info("user controller userlogin1")
 	Cookie cookie=null
 	Cookie[] cookies = null;
-	def username
+	def useremail
 	cookies=request.getCookies();
 	log.info(cookies)
 	if(!cookies.toString().equals("null")){
@@ -47,11 +47,11 @@ def loadCookie(){
 		log.info("Value: " + cookie.getValue() );
 		if(cookie.getName().equals("userKey")){
 			if(!(cookie.getValue().equals("null") ||cookie.getValue().equals("")))
-			username=cookie.getValue()
+			useremail=cookie.getValue()
 		}
 	 }
 	}
-	log.info("**************** "+username)
+	log.info("**************** "+useremail)
 return;
 }
 
@@ -60,7 +60,7 @@ def userdashboard() {
 	log.info("UserController userdashboard Action")
 	def responseData = new HashMap<>()
 	def mode=params.mode
-	log.info("username in session"+session.user)
+	log.info("useremail in session"+session.user)
 	
 	def merchant=Merchant.getAll()
 	def city=params.city
@@ -68,7 +68,7 @@ def userdashboard() {
 	
 	Cookie cookie=null
 	Cookie[] cookies = null;
-	def username
+	def useremail
 	cookies=request.getCookies();
 	log.info(cookies)
 	if(!cookies.toString().equals("null")){
@@ -77,19 +77,19 @@ def userdashboard() {
 
 		if(cookie.getName().equals("userKey")){
 			if(!(cookie.getValue().equals("null") ||cookie.getValue().equals("")))
-			username=cookie.getValue()
+			useremail=cookie.getValue()
 		}
-		if(username !=null || username.toString()!="null"){
-		log.info("set cookie value into session   username"+username)
-		session.user=username
+		if(useremail !=null || useremail.toString()!="null"){
+		log.info("set cookie value into session useremail: "+useremail)
+		session.user=useremail
 		}
 	 }
 	 }
-	if(username ==null || username=="" ){
-	 username= session.user
+	if(useremail ==null || useremail=="" ){
+	 useremail= session.user
 	 
-	 log.info("user in   session"+username)
-	 Cookie cookie1 = new Cookie("userKey", ""+username);
+	 log.info("user in   session"+useremail)
+	 Cookie cookie1 = new Cookie("userKey", ""+useremail);
 	  cookie1.setMaxAge(60*60*24*365)
 	 cookie1.setPath("/${grailsApplication.metadata['app.name']}/")
 	  log.info("***************** ")
@@ -102,7 +102,7 @@ def userdashboard() {
 	}
 
 
-	def user3= User.findByUserName(username)
+	def user3= User.findByUserName(useremail)
 	log.info(user3)
 	
 	def emp=Merchant.findAllByCity(city)
@@ -177,7 +177,7 @@ def marketdata(){
 	
 	Cookie cookie=null
 	Cookie[] cookies = null;
-	def username
+	def useremail
 	cookies=request.getCookies();
 	log.info(cookies)
 	if(!cookies.toString().equals("null")){
@@ -192,13 +192,13 @@ def marketdata(){
 		}
 		if(cookie.getName().equals("userKey")){
 			if(!(cookie.getValue().equals("null") ||cookie.getValue().equals("")))
-			username=cookie.getValue()
+			useremail=cookie.getValue()
 		}
 		
 	 }
 	}
-	 	if(username ==null || username=="" ){
-	 username= session.user
+	 	if(useremail ==null || useremail=="" ){
+	 useremail= session.user
 	 }
 	
 	if((merchantshopId.equals(null) || merchantshopId=="" || merchantshopId.equals("null"))&& paramMName==null){
@@ -231,7 +231,7 @@ def marketdata(){
 	log.info("merchantshopName "+merchShop)
 	log.info("merchantshopNameID*********** "+data2.id)
 	
-	responseData.put("merchShop",merchantshopId)
+	responseData.put("merchShop",merchShop)
 	}
 	else{
 		render text: """<script type="text/javascript">
@@ -243,8 +243,8 @@ def marketdata(){
 		contentType: 'js'
 	}
 	
-	def user= User.findByUserName(username)
-	log.info("**********username****" +username)
+	def user= User.findByUserName(useremail)
+	log.info("**********username****" +useremail)
 	
 	responseData.put("data", data)
 	responseData.put("uname",user)
@@ -431,7 +431,7 @@ def logout = {
 	session.user=null
 	session.invalidate();
 	Cookie[] cookies = null;
-	def username
+	def useremail
 	cookies=request.getCookies();
 	log.info(cookies)
 	if(!cookies.toString().equals("null")){
@@ -491,18 +491,42 @@ def paytmPolicies(){
 def updateuser(){
 	
 	log.info("UserController updateuser Action")
+	def responseData = new HashMap<>()
+	log.info("useremail in session"+session.user)
+	def sessionValue = session.user
+	def user= User.findByUserName(sessionValue)
+	log.info("user data from sessionvalue "+user)
+	Cookie cookie=null
+	Cookie[] cookies = null;
+	def useremail
+	cookies=request.getCookies();
+	log.info(cookies)
+	if(!cookies.toString().equals("null")){
+	for (int i = 0; i < cookies.length; i++) {
+		cookie = cookies[i];
+		log.info("Name : " + cookie.getName() );
+		log.info("Value: " + cookie.getValue() );
+		if(cookie.getName().equals("userKey")){
+			if(!(cookie.getValue().equals("null") ||cookie.getValue().equals("")))
+			useremail=cookie.getValue()
 	
-	def userName= session.user
-	if(userName ==null || userName=="" ){
-	// redirect(uri: "/user/userlogin1")
+		}
+	 }
+	}
+	log.info("**************** "+useremail)
+
+	if(useremail.equals(null) ||useremail.equals("") ){
+	 redirect(uri: "/user/userlogin1")
 	 return
 	}
 	
-	def responseData = new HashMap<>();
-	def user= User.findByUserName(session.user)
-	
-	
-	responseData.put("user", user)
+	def data= User.findByUserName(sessionValue)
+	log.info("user data "+data)
+	responseData.put("listId", "dashboard")
+	responseData.put("uname",user)
+	responseData.put("data",data)
+	log.info("************")
+	log.info(responseData)
 	[result:responseData]
 
 	}
@@ -514,7 +538,7 @@ def updateuser(){
 		
 		Cookie cookie=null
 		Cookie[] cookies = null;
-		def username
+		def useremail
 		cookies=request.getCookies();
 		log.info(cookies)
 		if(!cookies.toString().equals("null")){
@@ -524,16 +548,16 @@ def updateuser(){
 			log.info("Value: " + cookie.getValue() );
 			if(cookie.getName().equals("userKey")){
 				if(!(cookie.getValue().equals("null") ||cookie.getValue().equals(""))){
-				username=cookie.getValue()
+				useremail=cookie.getValue()
 				}
 			}
 		 }
 		}
-		log.info("**************** "+username)
-		if(username ==null || username=="" ){
-		username= session.user
+		log.info("**************** "+useremail)
+		if(useremail ==null || useremail=="" ){
+		useremail= session.user
 		}
-		if(username ==null || username=="" ){
+		if(useremail ==null || useremail=="" ){
 		 redirect(uri: "/user/userlogin1")
 		 return
 		}
@@ -545,7 +569,7 @@ def updateuser(){
 		def groceryName = params.groceryName
 		log.info(groceryName)
 		
-		def user= User.findByUserName(username)
+		def user= User.findByUserName(useremail)
 		log.info(user)
 		
 		def usercartId = user.id
@@ -573,7 +597,7 @@ def updateuser(){
 		
 		Cookie cookie=null
 		Cookie[] cookies = null;
-		def username
+		def useremail
 		cookies=request.getCookies();
 		log.info(cookies)
 		if(!cookies.toString().equals("null")){
@@ -583,16 +607,16 @@ def updateuser(){
 			log.info("Value: " + cookie.getValue() );
 			if(cookie.getName().equals("userKey")){
 				if(!(cookie.getValue().equals("null") ||cookie.getValue().equals(""))){
-				username=cookie.getValue()
+				useremail=cookie.getValue()
 				}
 			}
 		 }
 		}
-		log.info("**************** "+username)
-		if(username ==null || username=="" ){
-		username= session.user
+		log.info("**************** "+useremail)
+		if(useremail ==null || useremail=="" ){
+		useremail= session.user
 		}
-		if(username ==null || username=="" ){
+		if(useremail ==null || useremail=="" ){
 		 redirect(uri: "/user/userlogin1")
 		 return
 		}
@@ -604,7 +628,7 @@ def updateuser(){
 		def groceryName = params.groceryName
 		log.info(groceryName)
 		
-		def user= User.findByUserName(username)
+		def user= User.findByUserName(useremail)
 		log.info(user)
 		
 		if(mode == "web"){
@@ -690,7 +714,7 @@ def changepass={
 	log.info("UserController changepass Action")
 	Cookie cookie=null
 	Cookie[] cookies = null;
-	def username
+	def useremail
 	cookies=request.getCookies();
 	log.info(cookies)
 	if(!cookies.toString().equals("null")){
@@ -699,20 +723,20 @@ def changepass={
 
 		if(cookie.getName().equals("userKey")){
 			if(!(cookie.getValue().equals("null") ||cookie.getValue().equals("")))
-			username=cookie.getValue()
+			useremail=cookie.getValue()
 		}
 		
 	 }
 	}
 	
 	//def userName= session.user
-	if(username ==null || username=="" ){
+	if(useremail ==null || useremail=="" ){
 	 redirect(uri: "/user/userlogin1")
 	 return
 	}
 	def responseData = new HashMap<>()
 		
-	def user= User.findByUserName(username)
+	def user= User.findByUserName(useremail)
 	log.info(user)
 	
 	
@@ -904,7 +928,7 @@ def passwordSave3(){
 def userlogin1 = {
 	log.info("user controller userlogin1")
 	Cookie[] cookies = null;
-	def username
+	def useremail
 	cookies=request.getCookies();
 	log.info(cookies)
 	if(!cookies.toString().equals("null")){
@@ -914,14 +938,14 @@ def userlogin1 = {
 		log.info("Value: " + cookie.getValue() );
 		if(cookie.getName().equals("userKey")){
 			if(!(cookie.getValue().equals("null") ||cookie.getValue().equals("")))
-			username=cookie.getValue()
+			useremail=cookie.getValue()
 		}
 	 }
 	 }
-	log.info("**************** "+username)
-	if(!(username.equals(null) ||username.equals(""))){
-		log.info("set cookie value into session   username"+username)
-		session.user=username
+	log.info("**************** "+useremail)
+	if(!(useremail.equals(null) ||useremail.equals(""))){
+		log.info("set cookie value into session   username"+useremail)
+		session.user=useremail
 	redirect(action:"userdashboard")
 	
 	}
@@ -1035,9 +1059,9 @@ def saveuser() {
 	def myaction = params.myaction
 	def firstName=params.firstName
 	def lastName=params.lastName
-	def userName=firstName
-	def password=params.password
 	def email=params.email
+	def userName=email
+	def password=params.password
 	def mobileNumber=params.mobileNumber
 	def otpActivation=params.otpActivation
 	def modifiedBy=params.modifiedBy

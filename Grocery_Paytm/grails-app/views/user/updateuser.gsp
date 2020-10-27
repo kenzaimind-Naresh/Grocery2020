@@ -59,7 +59,7 @@
 							
 							<li class="nav-item"><a class="nav-link" href="/Skeleton/user/contact2">Contact</a></li>
 									<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="username-sm"></span>${result.user.userName}<i class="fa fa-user" style="font-size:20px;"></i></a>
+								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="username-sm"></span>${result.uname.firstName}<i class="fa fa-user" style="font-size:20px;"></i></a>
 								<ul class="dropdown-menu">
 								
 								<li><g:link controller="user" action="changepass" class="active" style="color:	#DAA520;font-size:14px;"><i class="fa fa-key"></i> Change Password</g:link></li>
@@ -101,14 +101,14 @@
 <div class="col-md-4 col-sm-4">
 	<div class="fieldcontain">
 	<label for="userName" style="color:black">First Name :</label>
-<input type="text" id="firstName" name="firstName" value="${result.user.firstName}" class="form-control" readonly/>
+<input type="text" id="firstName" name="firstName" value="${result.data.firstName}" class="form-control" readonly/>
 <span id="firstNameinfo" style="color:red"></span>
 	</div>
 </div>
 <div class="col-md-4 col-sm-4">
 	<div class="fieldcontain"> 
 		 <label for="lastName" style="color:black">Last Name :</label>
-<input type="text" id="lastName" name="lastName" value="${result.user.lastName}" class="form-control" required/>
+<input type="text" id="lastName" name="lastName" value="${result.data.lastName}" class="form-control" required/>
  <span id="lastNameinfo" style="color:red"></span>
  </div>
  </div>
@@ -117,12 +117,12 @@
 <div class="form-group">
 <div class="row">
  
-<input type="hidden" id="userName" name="userName" value="${result.user.userName}" class="form-control" required/>
+<input type="hidden" id="userName" name="userName" value="${result.data.userName}" class="form-control" required/>
 
 <div class="col-md-4 col-sm-4">
 <div class="fieldcontain">
 <label for="email" style="color:black">Email :</label>
-<input type="text" id="email" name="email" value="${result.user.email}" class="form-control" readonly/>
+<input type="text" id="email" name="email" value="${result.data.email}" class="form-control" readonly/>
  <span id="emailinfo" style="color:red"></span>
 </div>
 </div>
@@ -130,7 +130,7 @@
 <div class="col-md-4 col-sm-4">
 <div class="fieldcontain">
 <label for="password" style="color:black">Password :</label>
-<input type="password" id="password" name="password" value="${result.user.password}" class="form-control" readonly/>
+<input type="password" id="password" name="password" value="${result.data.password}" class="form-control" readonly/>
  <span id="passwordinfo" style="color:red"></span>
  </div>
  </div>
@@ -143,7 +143,7 @@
 <div class="col-md-4 col-sm-4">
 <div class="fieldcontain">
 <label for="mobileNumber" style="color:black">Mobile Number :</label>
-<input type="text" id="mobileNumber" name="mobileNumber" value="${result.user.mobileNumber}" class="form-control" readonly/>
+<input type="text" id="mobileNumber" name="mobileNumber" value="${result.data.mobileNumber}" class="form-control" readonly/>
  <span id="mobileNumberinfo" style="color:red"></span>
 </div>
 </div>

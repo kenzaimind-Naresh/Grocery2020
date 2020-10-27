@@ -47,7 +47,7 @@
 							</g:if>
 							<g:else>
 							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="userName-md"></span>${result.uname.userName} 
+								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="userName-md"></span>${result.uname.firstName} 
 								<span>&nbsp;&nbsp;</span><i class="fa fa-user" style="font-size:20px;"></i></a>
 								
 								<ul class="dropdown-menu">

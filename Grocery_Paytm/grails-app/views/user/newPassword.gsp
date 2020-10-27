@@ -217,7 +217,7 @@ return true;
            
             <input type="hidden" id="myaction" name="myaction" value="save">
             <input type="hidden" id="mode" name="mode" value="web"> 
-			<input type="hidden" id="username" name="username" value="${result.uname.userName}"> 
+			<input type="hidden" id="username" name="username" value="${result.uname.firstName}"> 
              <div class="form-group ic-no-mgbottom">
                             <div class="col-sm-6 text-center">
            <input type="submit" ID="btnsave" value="Save" onclick="return validateForm()" class="genric-btn primary circle" style="font-size: 15px;"/>

@@ -96,10 +96,39 @@ window.onhashchange = function (event) {
 </head>
 <body>
 <g:render template="/grocery/groceryheader1"/>
-
-    
-<br><br><br><br><br><br>    
-
+   
+<!-- start banner Area -->
+		<div class="container">
+					<br><br><br><br><br><br>
+						<div class="row">
+							<div class="col-lg-3">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri" ><a href="/Skeleton/grocery/create" class="active"  style="color: black;" >Create Grocery</a> </h4>
+									</div>
+							</div>
+							
+							<div class="col-lg-3">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/grocery/list" class="active"  style="color: black;" >View List</a> </h4>
+									</div>
+							</div>
+						
+							<div class="col-lg-3">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="#" class="active"  style="color: blue;" >Order</a> </h4>
+									
+								</div>
+							</div>
+							
+							<div class="col-lg-3">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/grocery/outofstock" class="active"  style="color: black;" >Stock Details</a> </h4>
+									
+								</div>
+							</div>
+					</div>
+				</div>
+	<!-- End banner Area --><br>
 <div class="container">
 	<div style=" padding-left:150px; padding-right:350px;font-family: Calibri">
 		<table class="table table-hover table-condensed table-striped">
@@ -140,7 +169,7 @@ window.onhashchange = function (event) {
        </div>
     </div>
 </div> 
-
+<br><br><br><br>
 <style>
 .footer {
    position: fixed;

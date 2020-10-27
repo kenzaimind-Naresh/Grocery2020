@@ -96,19 +96,37 @@ window.onhashchange = function (event) {
 
 <g:render template="groceryheader1"/>
     
-
-	<!-- start banner Area -->
+<!-- start banner Area -->
 		<div class="container">
-					<br><br><br><br>
+					<br><br><br><br><br><br>
 						<div class="row">
-							<h4 style="padding-left:170px;font-family: Calibri" >Groceries List </h4>
-					<g:link controller="grocery" action="create"><h4 style="padding-left:300px;font-family: Calibri;color:#1E90FF">Create Grocery</h4></g:link>
+							<div class="col-lg-3">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri" ><a href="/Skeleton/grocery/create" class="active"  style="color: black;" >Create Grocery</a> </h4>
+									</div>
+							</div>
 							
-							
-							
+							<div class="col-lg-3">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="#" class="active"  style="color: blue;" >View List</a> </h4>
+									</div>
+							</div>
 						
-						</div>
+							<div class="col-lg-3">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/orderStatus/orderstatuslist" class="active"  style="color: black;" >Order</a> </h4>
+									
+								</div>
+							</div>
+							
+							<div class="col-lg-3">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/grocery/outofstock" class="active"  style="color: black;" >Stock Details</a> </h4>
+									
+								</div>
+							</div>
 					</div>
+				</div>
 	<!-- End banner Area -->
 	
 	<br>

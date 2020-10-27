@@ -71,7 +71,7 @@
 								<a href="#" class="nav-link dropdown-toggle" style="padding-top:30px; padding-bottom:30px;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 								<g:if test="${result.uname !=null}">
 
-								<span class="userName-md"></span>${result.uname.userName } <span>&nbsp;&nbsp;</span><i class="fa fa-user" style="font-size:20px;"></i>
+								<span class="userName-md"></span>${result.uname.firstName } <span>&nbsp;&nbsp;</span><i class="fa fa-user" style="font-size:20px;"></i>
 							</g:if>
 								</a>
 								

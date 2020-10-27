@@ -98,7 +98,7 @@ window.onhashchange = function (event) {
 <body>
 
 <g:render template="/merchant/merchantheader1"/>
-<br><br><br><br>
+<br><br><br>
     
 <div align="center">
 	<p style="color:black;font-Size: 20px;font-family: Calibri">${flash.message}</p><br>
