@@ -597,16 +597,18 @@ if(mode=="web")	{
 		log.info("MerchantController searchedmarket Action")
 		def data = new HashMap<>()
 		def merchant=Merchant.getAll()
-		def shopName=params.shopName
-		
+		def shopNameparam=params.shopName
+		log.info("shopName "+shopNameparam)
+		def shopName=shopNameparam.split("-")[0]
+		def city =session.getAttribute("cityName")
 		def mode=params.mode
-		log.info(mode)
+		log.info("city name"+city)
 		
 		def user= User.findByUserName(session.user)
 		log.info(user)
 		
 		
-	def emp=Merchant.findAllByShopName(shopName)
+	def emp=Merchant.findAllByCity(city)
 			def msg;
 			if(emp==null || emp==[]){
 				msg="Data Not Found"
