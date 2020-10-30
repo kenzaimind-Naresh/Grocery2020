@@ -32,11 +32,25 @@
 
 
 <script>
-
+$(document).ready(function(){
+    
+    $("#city").focusout(function(){
+	   		$( this ).find( "span" ).css( "display", "inline" );	
+	   		
+	   	 if ( $("#city").val() ){
+		   	 
+	   		$("#cityinfo").text("");
+	     } else {
+	    	 $("#cityinfo").text("Please enter City name");
+	     }
+	   	  });
+});
+ 	  
 function getCitydata() {
 	
 	var city= document.getElementById("city").value
-	//alert(city);
+
+	if(city){
 	var path = "/Skeleton/merchant/getCityData";
 	$.ajax({
 	 url : path,
@@ -67,7 +81,12 @@ function getCitydata() {
 	 error : function() {
 	 }
 	})
+	}else{
+		event.preventDefault();
+		$("#cityinfo").text("Please enter City name");
+		return;
 	}
+		}
 
 function getStreetdata() {
 	
@@ -290,7 +309,7 @@ position: relative;
 								<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="username-sm"></span>${result.uname.firstName}<i class="fa fa-user" style="font-size:20px;"></i></a>
 								<ul class="dropdown-menu">
-																	<g:if test="${result.flag =="M"}">
+								<g:if test="${result.flag =="M"}">
 								<li><g:link controller="merchant" action="updateprofile" class="active"  style="color:	#DAA520;font-size:14px;"><i class="fa fa-user"></i> Profile</g:link></li>
 									</g:if>
 									<g:else>
@@ -335,7 +354,7 @@ position: relative;
        </div> 
   <br>
   
-  <div align="center" style="padding-left:60px">
+  <div align="center" style="padding-left:60px" onclick="return validateForm()">
   <button type="submit" value="submit" class="form-control" class="btn btn-primary" onclick="getCitydata()" style="width: 50%;">Proceed</button>
     <br>
     </div>
@@ -385,14 +404,16 @@ window.onclick = function(event) {
 }
 
 a {
-  color: white;
+ // color: white;
 }
 a:hover {
-  color: white;
+  //color: white;
 }
+
 
 </style>
 
+<br><br>
 <div class="footer ">
 <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>  
 <a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a> | All rights reserved </p>
@@ -400,7 +421,6 @@ a:hover {
 </div>
 
 	<script src="js/vendor/jquery-2.2.4.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
 	<script src="/Skeleton/website/js/vendor/bootstrap.min.js"></script>
 	<script src="/Skeleton/website/js/jquery.ajaxchimp.min.js"></script>
 	<script src="/Skeleton/website/js/jquery.nice-select.min.js"></script>
@@ -409,12 +429,7 @@ a:hover {
 	<script src="/Skeleton/website/js/countdown.js"></script>
 	<script src="/Skeleton/web-app/website/js/jquery.magnific-popup.min.js"></script>
 	<script src="/Skeleton/website/js/owl.carousel.min.js"></script>
-	<!--gmaps Js-->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-	<script src="/Skeleton/website/js/gmaps.min.js"></script>
-	<script src="/Skeleton/website/js/main.js"></script>
-	
- <!--End Footer Area -->  
-		
+	           
+
 </body>
 </html>

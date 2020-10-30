@@ -1,54 +1,36 @@
  <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-   
-    <title>Skeleton</title>
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="shortcut icon" href="${assetPath(src: 'favicon.png')}" type="image/x-icon">
- <!-- Bootstrap Core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Favicon-->
+	<link rel="shortcut icon" href="img/fav.png">
+	<!-- Author Meta -->
+	<meta name="author" content="CodePixar">
+	<!-- Meta Description -->
+	<meta name="description" content="">
+	<!-- Meta Keyword -->
+	<meta name="keywords" content="">
+	<!-- meta character set -->
+	<meta charset="UTF-8">
+	<!-- Site Title -->
+	<title>Skeleton</title>
 
-    <!-- MetisMenu CSS -->
-    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
- 
+	<!--
+		CSS
+		============================================= -->
+	<link rel="stylesheet" href="/Skeleton/website/css/linearicons.css">
+	<link rel="stylesheet" href="/Skeleton/website/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/Skeleton/website/css/themify-icons.css">
+	<link rel="stylesheet" href="/Skeleton/website/css/bootstrap.css">
+	<link rel="stylesheet" href="/Skeleton/website/css/owl.carousel.css">
+	<link rel="stylesheet" href="/Skeleton/website/css/nice-select.css">
+	<link rel="stylesheet" href="/Skeleton/website/css/nouislider.min.css">
+	<link rel="stylesheet" href="/Skeleton/website/css/ion.rangeSlider.css" />
+	<link rel="stylesheet" href="/Skeleton/website/css/ion.rangeSlider.skinFlat.css" />
+	<link rel="stylesheet" href="/Skeleton/website/css/magnific-popup.css">
+	<link rel="stylesheet" href="/Skeleton/website/css/main.css"> 
     
-<!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="${resource(dir: 'service/bootstrap/css', file: 'bootstrap.min.css')}" type="text/css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="${resource(dir: 'service/bootstrap/css', file: 'font-awesome.min.css')}" type="text/css">
-<!-- Ionicons -->
-	<link rel="stylesheet" href="${resource(dir: 'service/bootstrap/css', file: 'ionicons.min.css')}" type="text/css">  
-    
-<style>
-body {
-    font-family: Verdana;
-    background-color: #eee;
-}
-
-
-</style>
 
 </head>
 <body>
@@ -72,19 +54,18 @@ return false;
 }
 }
 </script>
+<g:render template="/user/header"/>
+<br><br><br><br><br><br>
+<section class="content-header">
 
-<section class="content-header" align="center">
-<h2>
-<b style="color:Black">Login</b>
-</h2>
-</section>
-<div class="col-md-4 col-md-offset-4">
+<div class="col-md-8 col-md-offset-8">
 <div class="login-panel panel panel-default">
-<div class="panel-heading">
-
-<h3 class="panel-title">Please Sign In</h3>
-</div>
-<div class="panel-body">
+<div class="panel-heading" align="center" style="padding-left: 400px;">
+<h3>
+<b style="color:black;">User Login</b>
+</h3>
+</div><br>
+<div class="panel-body" style="padding-left:400px; ">
 <g:form controller="user" role="form" name="myForm" id="myForm" action="authenticate1" nonvalidate="nonvalidate">
 <fieldset>
 <div class="form-group" ${hasErrors(bean: userInstance, field: 'email', 'error')}>
@@ -96,17 +77,15 @@ return false;
 
 <a href="/Skeleton/user/forgotpass"><h5>Forgot Password?</h5></a>
 
-<input type="submit" id="myform" name="myform"  class="btn btn-lg btn-success btn-block" value="Login" onclick="return validateForm()"  >
-
-<a href="/Skeleton/user/createuser"><h5>Register</h5></a>
+<input type="submit" id="myform" name="myform"  class="btn btn-lg btn-success btn-block" value="Login" onclick="return validateForm()">
+<a class="btn btn-lg btn-warning btn-block" href="/Skeleton/user/createuser">Register</a>
 
 </fieldset>
 </g:form>
 </div>
 </div>
 </div>
-</div>
-
+</section>
 
 <div class="modal fade" id="myModal" style="Top:100px">
 <div class="modal-dialog modal-lg">

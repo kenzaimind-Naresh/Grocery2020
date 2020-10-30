@@ -46,20 +46,20 @@ class GroceryService {
 		}
 		
 		
-		def update(categoryName,groceryName,cost,weight,quantity,offer,total,createdDate,modifiedBy){
+		def update(categoryName,groceryName,cost,weight,quantity,offer,total,createdDate,mid,modifiedBy){
 			log.info("GroceryService update")
 			def resultData=new HashMap<>()
 			String []args=["Grocery"]
 			try{
-				def groceryInstance=Grocery.findByGroceryName(groceryName)
+				def groceryInstance=Grocery.findByGroceryNameAndMerchantId(groceryName,mid)
 				log.info(groceryInstance)
 				if(groceryInstance) {
 					groceryInstance.categoryName=categoryName
 					groceryInstance.groceryName=groceryName
-					log.info("g name   "+ groceryName)
+					log.info("gname   "+ groceryName)
 					groceryInstance.cost=cost
-					
 					groceryInstance.weight=weight
+					log.info("weight  "+weight)
 					groceryInstance.quantity=quantity
 					groceryInstance.offer=offer
 					groceryInstance.total=total

@@ -352,7 +352,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info(groceryName);
 		def cost=params.cost
 		log.info(cost);
-		def weight=params.weight
+		def weight=params.weight+","+params.weightunits
 		log.info(weight);
 		def quantity=params.quantity
 		log.info(quantity);
@@ -369,7 +369,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		def user= Merchant.findByEmail(session.user)
 		log.info(user)
 		
-		def res=GroceryService.update(categoryName,groceryName,cost,weight,quantity,offer,total,createdDate,user.firstName)
+		def res=GroceryService.update(categoryName,groceryName,cost,weight,quantity,offer,total,createdDate,user.id,user.firstName)
 		log.info("result from service "+res)
 
 		responseData.put("uname", user)
@@ -385,8 +385,8 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		def responseData = new HashMap<>()
 		Grocery groceryInstance=new Grocery();
 		groceryInstance=Grocery.get(params.id);
-		
-		
+		def weight = groceryInstance.weight
+		log.info("weight from grocery "+weight)
 		def user= Merchant.findByEmail(session.user)
 		log.info(user)
 	
@@ -398,6 +398,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 			return
 		}
 		responseData.put("categoryName",categoryName)
+		responseData.put("weight",weight)
 		responseData.put("gInstance", groceryInstance)
 		log.info(responseData)
 		responseData.put("uname", user)

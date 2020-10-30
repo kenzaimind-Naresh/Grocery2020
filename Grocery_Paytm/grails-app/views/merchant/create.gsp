@@ -293,7 +293,7 @@ i:hover {
 			 <div class="col-sm-12 text-left" style="padding-left:180px">
 				
 	<fieldset class="buttons">
-		<g:submitButton name="create" class="genric-btn primary circle" style="font-size: 15px;" onclicvk="return validateForm()" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+		<g:submitButton name="create" class="genric-btn primary circle" style="font-size: 15px;" onclick="return validateForm()" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 	</fieldset>
 				</div>
 			</g:form>
@@ -326,7 +326,7 @@ a:hover {
 <br><br>
 <div class="footer ">
 <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>  
-<a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a> | All rights reserved </p>
+<a href="http://www.kenzaimindapps.in/" target="_blank"><strong style="color: blue;"> Kenzaimind Info Solutions</strong></a> | All rights reserved </p>
 <p> <a href="/Skeleton/user/paytmTerms" target="_blank"><strong>Paytm</strong></a> Privacy Policies | Terms & Conditions </p>
 </div>
 

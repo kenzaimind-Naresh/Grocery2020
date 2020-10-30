@@ -599,7 +599,6 @@ if(mode=="web")	{
 		def merchant=Merchant.getAll()
 		def shopName=params.shopName
 		log.info("shopName "+shopName)
-		
 		def city =session.getAttribute("cityName")
 		def mode=params.mode
 		log.info("city name"+city)
@@ -608,7 +607,7 @@ if(mode=="web")	{
 		log.info(user)
 		
 		
-	def emp=Merchant.findAllByCityAndShopName(city,shopName)
+		def emp=Merchant.findAllByCityAndShopName(city,shopName)
 			def msg;
 			if(emp==null || emp==[]){
 				msg="Data Not Found"
@@ -660,7 +659,7 @@ if(mode=="web")	{
 		
 		session.invalidate();
 		//sessionStorage.clear()
-		redirect(action:"location1")
+		redirect(action:"login")
 		}
 	
 	def login(){ 

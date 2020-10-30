@@ -69,31 +69,12 @@ $('#potentials').append("<option value='" + '${it.categoryName}'+ "'>");
 		<g:message code="category.categoryName.label" default="Category Name" />
 		<span class="required-indicator"></span>
 	</label>
-         <!--  <input type="text" name="categoryName" required="" id="categoryName" class="search form-control" placeholder="Select Category" >  -->
-        <input tabindex='1' list="potentials" type="text" placeholder="Select category" class="search form-control" id="categoryName" name="categoryName"></input>
+        <input tabindex='1' list="potentials" type="text" placeholder="Select Category" class="search form-control" id="categoryName" name="categoryName"></input>
 		<datalist id="potentials">
 		</datalist>
         
     </div></div>
-   
-<!-- 
-<div class="col-md-4 col-sm-4">
 
-  
-<div class="fieldcontain ${hasErrors(bean: groceryInstance, field: 'categoryName', 'error')} required">
-	<label for="categoryName">
-		<g:message code="category.categoryName.label" default="Category Name" />
-		<span class="required-indicator"></span>
-	</label>
-	
-	<g:select name="categoryName"  from="${categoryName}" optionKey="id"  optionValue="categoryName" class="form-control" noSelection="['':'Please Select....']" />
-      
-      	<g:textField name="categoryName" maxlength="50" id="categoryName" class="form-control" required="" value="${result.categoryName.categoryName}"/>
-      
-
-</div>
-</div>
- -->
  
  
 <div class="col-md-4 col-sm-4">

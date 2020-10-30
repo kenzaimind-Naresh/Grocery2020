@@ -168,6 +168,7 @@ def marketdata(){
 	def merchantshopName
 	def merchantshopId
 	def mid=params.merchantshopName
+	log.info("mid "+mid)
 	def paramMName
 	if(mid){
 	paramMName=Merchant.get(mid).shopName;
@@ -950,8 +951,16 @@ def userlogin1 = {
 		log.info("set cookie value into session   username"+useremail)
 		session.user=useremail
 	redirect(action:"userdashboard")
-	
 	}
+	def responseData = new HashMap<>()
+	
+def user= User.findByUserName(useremail)
+log.info(user)
+
+
+responseData.put("uname",user)
+log.info(responseData)
+[result:responseData]
 	
 }
 def authenticate1 = {

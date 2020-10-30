@@ -14,6 +14,22 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+<style type="text/css">
+
+/* Create two equal columns that floats next to each other */
+.fieldcontai {
+  float: left;
+  width: 50%;
+  height: 50px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  clear: both;
+}
+
+
+</style>
   <script type="text/javascript">
 
 jQuery(document).ready(function($) {
@@ -145,16 +161,25 @@ function costcal(){
              <div class="row">
              
 <div class="col-md-4 col-sm-4">
-
-
 <div class="fieldcontai ${hasErrors(bean:result.gInstance, field: 'weight', 'error')} required">
 	<label for="weight">
 		<g:message code="grocery.weight.label" default="Weight" />
 		<span class="required-indicator"></span>
 	</label>
-	<g:textField name="weight" required="" id="weight" class="form-control" value="${result.gInstance?.weight}"/>
-	
-	
+	<g:textField name="weight" required="" id="weight" class="form-control" value="${result.weight.split(",")[0] }"/>
+</div><br>
+<div class="fieldcontai ${hasErrors(bean: result.gInstance, field: 'weight', 'error')} required" >
+
+<select name="weightunits" required="" id="weightunits" class="form-control"> 
+  <option value="${result.weight.split(",")[1] }">${result.weight.split(",")[1] }</option>
+  <option value="grms">Grams</option>
+  <option value="kgs">Kg[s]</option>
+   <option value="ml">Ml</option>
+  <option value="liter">Litre</option>
+    <option value="item">Item[s]</option>
+      
+</select>
+
 </div>
 </div>
 
@@ -212,8 +237,7 @@ function costcal(){
 	
 	
 <br><br><br><br><br><br><br><br><br>	
-	
- <style>
+<style>
 .footer {
    position: fixed;
    left: 0;
@@ -225,19 +249,32 @@ function costcal(){
 }
 
 a {
-  color: white;
+ // color: white;
 }
 a:hover {
-  color: white;
+  //color: white;
 }
 
 
 </style>
 
+<br><br>
 <div class="footer ">
 <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>  
 <a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a> | All rights reserved </p>
 <p> <a href="/Skeleton/user/paytmTerms" target="_blank"><strong>Paytm</strong></a> Privacy Policies | Terms & Conditions </p>
 </div>
+
+	<script src="js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="/Skeleton/website/js/vendor/bootstrap.min.js"></script>
+	<script src="/Skeleton/website/js/jquery.ajaxchimp.min.js"></script>
+	<script src="/Skeleton/website/js/jquery.nice-select.min.js"></script>
+	<script src="/Skeleton/website/js/jquery.sticky.js"></script>
+	<script src="/Skeleton/website/js/nouislider.min.js"></script>
+	<script src="/Skeleton/website/js/countdown.js"></script>
+	<script src="/Skeleton/web-app/website/js/jquery.magnific-popup.min.js"></script>
+	<script src="/Skeleton/website/js/owl.carousel.min.js"></script>
+	           
+
 	</body>
 </html>

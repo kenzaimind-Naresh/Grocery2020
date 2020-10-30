@@ -184,9 +184,3 @@ a:hover {
 </body>
 
 </html>
-
-
-
-
-
-

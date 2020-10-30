@@ -175,9 +175,7 @@ window.onhashchange = function (event) {
     </div>
 </div>
 
-
-
- <style>
+<style>
 .footer {
    position: fixed;
    left: 0;
@@ -189,24 +187,23 @@ window.onhashchange = function (event) {
 }
 
 a {
-  color: white;
+ // color: white;
 }
 a:hover {
-  color: white;
+  //color: white;
 }
 
 
 </style>
 
+<br><br>
 <div class="footer ">
 <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>  
 <a href="http://www.kenzaimindapps.in/" target="_blank"><strong> Kenzaimind Info Solutions</strong></a> | All rights reserved </p>
 <p> <a href="/Skeleton/user/paytmTerms" target="_blank"><strong>Paytm</strong></a> Privacy Policies | Terms & Conditions </p>
-</div>		
+</div>
 
 	<script src="js/vendor/jquery-2.2.4.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-	 crossorigin="anonymous"></script>
 	<script src="/Skeleton/website/js/vendor/bootstrap.min.js"></script>
 	<script src="/Skeleton/website/js/jquery.ajaxchimp.min.js"></script>
 	<script src="/Skeleton/website/js/jquery.nice-select.min.js"></script>
@@ -215,10 +212,8 @@ a:hover {
 	<script src="/Skeleton/website/js/countdown.js"></script>
 	<script src="/Skeleton/web-app/website/js/jquery.magnific-popup.min.js"></script>
 	<script src="/Skeleton/website/js/owl.carousel.min.js"></script>
-	<!--gmaps Js-->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-	<script src="/Skeleton/website/js/gmaps.min.js"></script>
-	<script src="/Skeleton/website/js/main.js"></script>
+	           
+
 </body>
 
 </html>
