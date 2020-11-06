@@ -92,7 +92,7 @@
 						<ul class="nav navbar-nav menu_nav ml-auto">
 							<li class="nav-item "><a class="nav-link" href="/Skeleton/user/userlogin1">Home</a></li>
 								<li class="nav-item"><a class="nav-link" href="/Skeleton/user/userlogin1">Signin</a></li>							
-							<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 																				
 						</ul>						
 					</div>

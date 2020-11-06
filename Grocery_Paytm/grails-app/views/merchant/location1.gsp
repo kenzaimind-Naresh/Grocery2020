@@ -168,16 +168,18 @@ form.example button {
   float: left;
   width: 20%;
   padding: 4px;
-  background: #0b7dda;
+  border-radius: 22px;
+  background: #ffa600;
   color: white;
+  border: 1px solid orange;
   font-size: 17px;
-  border: 1px solid grey;
-  border-left: none;
   cursor: pointer;
 }
 
 form.example button:hover {
-  background: #0b7dda;
+  background: white;
+  color: #ffa600;
+  border: 1px solid orange;
 }
 
 form.example::after {
@@ -354,7 +356,7 @@ position: relative;
        </div> 
   <br>
   
-  <div align="center" style="padding-left:60px" onclick="return validateForm()">
+  <div align="center" style="padding-left:60px">
   <button type="submit" value="submit" class="form-control" class="btn btn-primary" onclick="getCitydata()" style="width: 50%;">Proceed</button>
     <br>
     </div>

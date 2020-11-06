@@ -78,7 +78,7 @@ return false;
 <a href="/Skeleton/user/forgotpass"><h5>Forgot Password?</h5></a>
 
 <input type="submit" id="myform" name="myform"  class="btn btn-lg btn-success btn-block" value="Login" onclick="return validateForm()">
-<a class="btn btn-lg btn-warning btn-block" href="/Skeleton/user/createuser">Register</a>
+<a class="btn btn-lg btn-warning btn-block" href="/Skeleton/user/createuser"><h5>Create a New Account</h5></a>
 
 </fieldset>
 </g:form>

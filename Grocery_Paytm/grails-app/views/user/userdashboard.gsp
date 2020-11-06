@@ -50,16 +50,18 @@ form.example button {
   float: left;
   width: 20%;
   padding: 4px;
-  background: #0b7dda;
+  border-radius: 22px;
+  background: #ffa600;
   color: white;
   font-size: 17px;
-  border: 1px solid grey;
-  border-left: none;
+  border: 1px solid orange;
   cursor: pointer;
 }
 
 form.example button:hover {
-  background: #0b7dda;
+  background: white;
+  color: #ffa600;
+  border: 1px solid orange;
 }
 
 form.example::after {
@@ -172,7 +174,7 @@ padding: 2px 16px;
   </div>
  
   <div align="center" style="padding-left:140px">
-  <button type="submit" class="form-control" class="btn btn-primary" >Proceed</button>
+  <button type="submit" class="form-control" class="btn btn-primary" style="width: 40%;">Proceed</button>
     
     </div>
 </g:form>

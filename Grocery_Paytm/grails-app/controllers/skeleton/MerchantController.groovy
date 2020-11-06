@@ -35,12 +35,12 @@ class MerchantController {
 		log.info("MerchantController enter updateprofile Action")
 		def responseData = new HashMap<>()
 		def user= Merchant.findByEmail(session.user)
-		log.info(user)
+		log.info("Merchant data: "+user)
 		Cookie cookie=null
 		Cookie[] cookies = null;
 		def username
 		cookies=request.getCookies();
-		log.info(cookies)
+		log.info("cookies: "+cookies)
 		if(!cookies.toString().equals("null")){
 		for (int i = 0; i < cookies.length; i++) {
 			cookie = cookies[i];
@@ -53,7 +53,7 @@ class MerchantController {
 			}
 		 }
 		}
-		log.info("**************** "+username)
+		log.info("username: "+username)
 		
 	
 		if(username.equals(null) ||username.equals("") ){
@@ -61,13 +61,13 @@ class MerchantController {
 		 return
 		}
 		def data=Merchant.findByEmail(username)
-		log.info("merchant data"+data)
+		log.info("merchant data: "+data)
 		responseData.put("listId", "dashboard")
 		responseData.put("uname",user)
 		responseData.put("data",data)
 		responseData.put("flag","M")
 		log.info("***********flag*"+session.flag)
-		log.info(responseData)
+		log.info("responseData: "+responseData)
 		[result:responseData]
 	}
 	
@@ -78,7 +78,7 @@ class MerchantController {
 		Cookie[] cookies = null;
 		def username
 		cookies=request.getCookies();
-		log.info(cookies)
+		log.info("cookies: "+cookies)
 		if(!cookies.toString().equals("null")){
 		for (int i = 0; i < cookies.length; i++) {
 			cookie = cookies[i];
@@ -90,7 +90,7 @@ class MerchantController {
 			}
 		 }
 		}
-		log.info("**************** "+username)
+		log.info("username: "+username)
 		
 		if(username ==null || username=="" ){
 		 redirect(uri: "/merchant/login")
@@ -100,14 +100,14 @@ class MerchantController {
 		def responseData = new HashMap<>()
 		
 		def user= Merchant.findByEmail(session.user)
-		log.info(user)
+		log.info("Merchant data: "+user)
 		
 		def mode="web"
 		def of=0;
 		def contact1=Admin.list(sort:"id",order:"desc",max: 5, offset: of)
-		log.info(contact1)
+		log.info("Admin contact: "+contact1)
 		def totalcount=Admin.findAll().size()
-		log.info(totalcount)
+		log.info("Admin count: "+totalcount)
 		responseData.put("listId", "contact1")
 		responseData.put("totalcount",totalcount )
 		responseData.put("uname",user)
@@ -123,22 +123,22 @@ class MerchantController {
 		 log.info("MerchantController proceedtoPaytm Action")
 		 
 		 def user= User.findByUserName(session.user)
-		 log.info(user)
+		 log.info("User data: "+user)
 		 
 		 def userNameId = user.id
 
 		 def c=Cart.findAllByUsercartId(userNameId,[max: 1,sort:"cartId",order: "desc"])
-		 log.info("cart instace"+c[0])
+		 log.info("cart instance"+c[0])
 		 
 		 def custid=user.id
-		 log.info(custid)
+		 log.info("customerid: "+custid)
 		 def mobile=user.mobileNumber
-		 log.info(mobile)
+		 log.info("mobile: "+mobile)
 		 def cEmail=user.email
-		 log.info(cEmail)
+		 log.info("customeremail: "+cEmail)
 		 def tranAmount=c[0].tamount
 		 def cartId=c[0].cartId
-		 log.info("txn amount to pay "+tranAmount)
+		 log.info("txn amount to pay: "+tranAmount)
 		 
 		 TestController testController=new TestController();
 		 
@@ -157,7 +157,7 @@ class MerchantController {
 			}
 		
 		}
-	       log.info(merchant)
+	       log.info("merchant criteria: "+merchant)
 		return merchant
 	}
 
@@ -166,31 +166,31 @@ class MerchantController {
 		def responseData = new HashMap<>()
 	def result,url
 	def mode=params.mode
-	log.info(mode)
+	log.info("mode: "+mode)
 
 	def firstName=params.firstName
-	log.info(firstName)
+	log.info("firstName: "+firstName)
 	def lastName=params.lastName
-	log.info(lastName)
+	log.info("lastName: "+lastName)
 	def email=params.email
-	log.info(email)
+	log.info("email: "+email)
 	def password=params.password
-	log.info(password)
+	log.info("password: "+password)
 	def mobileNumber=params.mobileNumber
-	log.info(mobileNumber)
+	log.info("mobileNumber: "+mobileNumber)
 	def address=params.address
-	log.info(address)
+	log.info("address: "+address)
 	def city=params.city
-	log.info(city)
+	log.info("city: "+city)
 	def street=params.street
-	log.info(street)
+	log.info("street: "+street)
 	def state=params.state
-	log.info(state)
+	log.info("state: "+state)
 	def zipCode=params.zipCode
-	log.info(zipCode)
+	log.info("zipCode: "+zipCode)
 	
 	def modifiedBy=params.modifiedBy
-	log.info(modifiedBy)
+	log.info("modifiedBy: "+modifiedBy)
 	
 	if(mode == "mobile"){
 		
@@ -259,7 +259,7 @@ if(mode=="web")	{
 		Cookie[] cookies = null;
 		def username
 		cookies=request.getCookies();
-		log.info(cookies)
+		log.info("cookies: "+cookies)
 		if(!cookies.toString().equals("null")){
 		for (int i = 0; i < cookies.length; i++) {
 			cookie = cookies[i];
@@ -271,7 +271,7 @@ if(mode=="web")	{
 			}
 		 }
 		}
-		log.info("**************** "+username)
+		log.info("username: "+username)
 				
 		if(username ==null || username=="" ){
 		 redirect(uri: "/merchant/login")
@@ -281,12 +281,12 @@ if(mode=="web")	{
 		def responseData = new HashMap<>()
 		
 		def user= Merchant.findByEmail(session.user)
-		log.info(user)
+		log.info("Merchant data: "+user)
 		
 		responseData.put(getMessages('default.message.label'),"Password Changed Successfully")
 		responseData.put("uname",user)
 		responseData.put("flag", session.flag)
-		log.info(responseData)
+		log.info("responseData: "+responseData)
 		[result:responseData]
 	}	
 		
@@ -297,7 +297,7 @@ if(mode=="web")	{
 		Cookie[] cookies = null;
 		def username
 		cookies=request.getCookies();
-		log.info(cookies)
+		log.info("cookies: "+cookies)
 		if(!cookies.toString().equals("null")){
 		for (int i = 0; i < cookies.length; i++) {
 			cookie = cookies[i];
@@ -309,7 +309,7 @@ if(mode=="web")	{
 			}
 		}
 		 }
-		log.info("**************** "+username)
+		log.info("username: "+username)
 
 		log.info(username)
 		if(username ==null || username=="" ){
@@ -323,9 +323,9 @@ if(mode=="web")	{
 		def newPwd=params.newPwd
 		def confirmPwd=params.confirmPwd
 		def result,res
-		log.info(password)
-		log.info(newPwd)
-		log.info(confirmPwd)
+		log.info("password: "+password)
+		log.info("newPwd: "+newPwd)
+		log.info("confirmPwd: "+confirmPwd)
 		
 		
 		
@@ -338,7 +338,7 @@ if(mode=="web")	{
 		
 		def url="/merchant/passwordSave2.gsp"
 		def user= Merchant.findByEmail(username)
-		log.info(user)
+		log.info("Merchant data: "+user)
 		if(newPwd != confirmPwd){
 		 return false
 		}
@@ -399,15 +399,15 @@ if(mode=="web")	{
 		log.info("MerchantController getStreetData Action")
 		def city=params.city
 		List<String> stData=new ArrayList<String>();
-		log.info(city);
+		log.info("city: "+city);
 		def merObjects=Merchant.findAllByCity(city);
-		log.info(merObjects);
+		log.info("merObjects: "+merObjects);
 		log.info(merObjects.size());
 		for(int i=0;i<merObjects.size();i++){
-			log.info(merObjects[i].street)
+			log.info("street from merObjects: "+merObjects[i].street)
 			stData.add(merObjects[i].street);
 		}
-		log.info(stData);
+		log.info("Street data in list: "+stData);
 		render stData
 		
 		
@@ -417,14 +417,14 @@ if(mode=="web")	{
 		log.info("MerchantController getCityData Action")
 		def city=params.city
 		List<String> cityData=new ArrayList<String>();
-		log.info(city);
+		log.info("city: "+city);
 		def merObjects=Merchant.findAllByCity(city);
 		log.info("merObjects  "+merObjects);
 		for(int i=0;i<merObjects.size();i++){
-			log.info(merObjects[i].city)
+			log.info("city from merObjects: "+merObjects[i].city)
 			cityData.add(merObjects[i].city);
 		}
-		log.info("cityData  "+cityData)
+		log.info("cityData in list: "+cityData)
 		render cityData
 	}
 	
@@ -462,11 +462,9 @@ if(mode=="web")	{
 		}
 		 }
 		}
-		log.info("**************** "+username)
-		log.info("**************user* "+session.user)
+		log.info("username: "+username)
+		log.info("user from session: "+session.user)
 		if(username ==null || username.toString().equals("null") ||username=="" ){
-			//redirect uri: ("/user/userdashboard")
-			//forward controller: "user", action: "userdashboard"
 			log.info("loading user from sesion")
 			UserController uController=new UserController();
 			uController.loadCookie();
@@ -475,7 +473,7 @@ if(mode=="web")	{
 				username= session.user
 		}
 		def user= User.findByUserName(username)
-		log.info(user)
+		log.info("User data: "+user)
 		
 			def emp=Merchant.findAllByCity(city)
 			def msg;
@@ -514,7 +512,7 @@ if(mode=="web")	{
 				data.put("city",Merchant.list().unique{ it.city})
 				data.put("street",Merchant.list().unique{ it.street})
 				data.put("flag", session.flag)
-				log.info("UUUUUUUUUU "+data)
+				log.info("data: "+data)
 				[result:data]
 				
 		
@@ -525,7 +523,7 @@ if(mode=="web")	{
 		log.info("MerchantController searchlocation Action")
 		def data = new HashMap<>()
 		def merchant=Merchant.getAll()
-		log.info("merchantData********"+merchant)
+		log.info("merchantData: "+merchant)
 		
 		def getCity = session.getAttribute("cityName")
 		log.info("getCity****"+getCity)
@@ -587,7 +585,7 @@ if(mode=="web")	{
 				data.put("merchant",merchant)
 				data.put("location", "location")
 				data.put("shopName",Merchant.findAllByCity(city))
-					data.put("flag", session.flag)
+				data.put("flag", session.flag)
 				[result:data]
 		
 	}
@@ -604,7 +602,7 @@ if(mode=="web")	{
 		log.info("city name"+city)
 		
 		def user= User.findByUserName(session.user)
-		log.info(user)
+		log.info("User data: "+user)
 		
 		
 		def emp=Merchant.findAllByCityAndShopName(city,shopName)
@@ -625,12 +623,10 @@ if(mode=="web")	{
 				data.put("listId", "searchlocation")
 				data.put("message", msg)
 				data.put("emp",emp)
-				//data.put("message1", msg1)
-				//data.put("emp1",emp1)
 				data.put("uname",user)
 				data.put("merchant",merchant)
 				data.put("shopName",Merchant.list().unique{ it.shopName})
-					data.put("flag", session.flag)
+				data.put("flag", session.flag)
 				[result:data]
 		
 	}
@@ -642,7 +638,7 @@ if(mode=="web")	{
 		Cookie[] cookies = null;
 		def username
 		cookies=request.getCookies();
-		log.info(cookies)
+		log.info("cookies: "+cookies)
 		if(!cookies.toString().equals("null")){
 		for (int i = 0; i < cookies.length; i++) {
 			 Cookie cookie = cookies[i];
@@ -653,12 +649,8 @@ if(mode=="web")	{
 			response.addCookie(cookie)
 			}
 		}
-		 
-
-		
 		
 		session.invalidate();
-		//sessionStorage.clear()
 		redirect(action:"login")
 		}
 	
@@ -667,7 +659,7 @@ if(mode=="web")	{
 		Cookie[] cookies = null;
 		def username
 		cookies=request.getCookies();
-		log.info(cookies)
+		log.info("cookies: "+cookies)
 		if(!cookies.toString().equals("null")){
 		for (int i = 0; i < cookies.length; i++) {
 			 Cookie cookie = cookies[i];
@@ -680,7 +672,7 @@ if(mode=="web")	{
 		 }
 		 }
 		
-		log.info("**************** "+username)
+		log.info("username: "+username)
 		if(!(username.equals(null) ||username.equals(""))){
 			log.info("set cookie value into session   username"+username)
 			session.user=username
@@ -695,9 +687,8 @@ if(mode=="web")	{
 	
 	def authenticate  = {
 		log.info("MerchantController authenticate Action")
-			log.info("#########")
-			log.info("params:"+params.email)
-			log.info("params:"+params.mobileNumber)
+			log.info("email params:"+params.email)
+			log.info("mobile params:"+params.mobileNumber)
 			String pattern = ".*[^0-9].*";
 			Pattern p = Pattern.compile(pattern);
 			Matcher m = p.matcher(params.email);
@@ -714,14 +705,12 @@ if(mode=="web")	{
 			
 			if(user){
 		   def username= user.email
-				log.info("merchant in   session"+username)
+				log.info("merchant in session: "+username)
 				Cookie cookie1 = new Cookie("merchantKey", ""+username);
 				 cookie1.setMaxAge(60*60*24*365)
-				 log.info("***************** ")
-				 log.info(cookie1);
-	        	 log.info(cookie1.getName());
-				 log.info(cookie1.getValue());
-				 log.info("***************** ")
+				 log.info("cookie1: "+cookie1);
+	        	 log.info("Name: "+cookie1.getName());
+				 log.info("Value: "+cookie1.getValue());
 				 
 				 response.addCookie(cookie1);
 				
@@ -732,9 +721,7 @@ if(mode=="web")	{
 			render text: """<script type="text/javascript">
                     alert("Enter valid Email or Mobile/Password");
                     window.location.href = "/Skeleton/merchant/login";
-
-
- </script>""",
+					</script>""",
 			contentType: 'js'
 
 			}
@@ -750,7 +737,7 @@ if(mode=="web")	{
 		Cookie[] cookies = null;
 		def username
 		cookies=request.getCookies();
-		log.info(cookies)
+		log.info("cookies: "+cookies)
 		if(!cookies.toString().equals("null")){
 		for (int i = 0; i < cookies.length; i++) {
 			cookie = cookies[i];
@@ -762,9 +749,8 @@ if(mode=="web")	{
 			}
 		 }
 		}
-		log.info("**************** "+username)
+		log.info("username: "+username)
 		
-		//def username= session.user
 		if(username ==null || username=="" ){
 		 redirect(uri: "/merchant/login")
 		 return
@@ -772,24 +758,23 @@ if(mode=="web")	{
 		
 		def responseData = new HashMap<>()
 		def mode=params.mode
-		log.info(mode)
+		log.info("mode: "+mode)
 		
 		def user= Merchant.findByEmail(session.user)
-		log.info(user)
+		log.info("Merchant data: "+user)
 		
 		
 		def merchantId = user.id
 		def of=0;
 		def data=Grocery.findAllByMerchantId(merchantId,[sort:"id",order:"desc",max: 5, offset: of])
-		log.info(data)
+		log.info("Grocery data: "+data)
 		
 		responseData.put("listId", "ldashboard")
 		responseData.put("uname",user)
 		responseData.put("data", data)
 		responseData.put("flag", session.flag)
 		
-		log.info("************")
-		log.info(responseData)
+		log.info("responseData: "+responseData)
 
 		[result:responseData]
 	
@@ -814,7 +799,7 @@ if(mode=="web")	{
 		}
 
 		def randomValue= generator( (('A'..'Z')+('0'..'9')+('a'..'z')).join(), 6 )
-		log.info("Random String Generator...... "+randomValue)
+		log.info("Random String Generator: "+randomValue)
 		
 		def email = params.email
 		log.info("Merchant email "+email)
@@ -874,7 +859,7 @@ if(mode=="web")	{
 		responseData.put(getMessages('default.message.label')," New Password Created Successfully")
 		responseData.put("uname",user)
 		responseData.put("flag", session.flag)
-		log.info(responseData)
+		log.info("responseData: "+responseData)
 		[result:responseData]
 	}
 	
@@ -893,18 +878,16 @@ if(mode=="web")	{
             return
         }
 
-		log.info(merchantInstance.mobileNumber)
-		log.info(merchantInstance.shopId)
-		log.info(merchantInstance.email)
+		log.info("mobileNumber: "+merchantInstance.mobileNumber)
+		log.info("shopId: "+merchantInstance.shopId)
+		log.info("email: "+merchantInstance.email)
 		
 		def instance=Merchant.findByShopId(merchantInstance.shopId);
 		def instance2=Merchant.findByMobileNumber(merchantInstance.mobileNumber);
 		def instance3=Merchant.findByEmail(merchantInstance.email);
 		log.info("shopid check "+instance)
 		log.info("mobile check "+instance2)
-		//log.info("mobile check "+instance2.equals("null"))	
 		log.info("mobile check "+instance2.equals(null))
-		//log.info("mobile check "+instance2==null)+
 		log.info("email check "+instance3)
 		
 		
@@ -921,7 +904,7 @@ if(mode=="web")	{
 		//merchantInstance.type1 = uploaded.contentType//getting and storing the file type
 		
 		if(instance.equals(null) && instance2.equals(null) && instance3.equals(null) ){
-		log.info("enter into saving part	")
+		log.info("enter into saving part: ")
         merchantInstance.save flush:true
 		redirect(uri: "/merchant/create")
 		flash.message = "Merchant Registration done successfully"
@@ -930,21 +913,21 @@ if(mode=="web")	{
 		
 		TestController testController=new TestController();
 		String smsresp=testController.sendSMSToUser(merchantInstance.mobileNumber,"Dear Sir/Madam, Your Registration was done successfully.....");
-		log.info("SMS response"+smsresp);
+		log.info("SMS response: "+smsresp);
 		
 		}
 		else if(!instance.equals(null)){
-			log.info("existed shopId		")
+			log.info("existed shopId: ")
 			redirect(uri: "/merchant/create")
 			flash.message = "ShopId Already Exists, Please try with different ShopId"
 		}
 		else if(!instance2.equals(null)){
-			log.info("existed mobile number		")
+			log.info("existed mobile number: ")
 			redirect(uri: "/merchant/create")
 			flash.message = "Mobile Number Already Exists, Please try with different Mobile Number"
 		}
 		else if(!instance3.equals(null)){
-			log.info("existed email		")
+			log.info("existed email: ")
 			redirect(uri: "/merchant/create")
 			flash.message = "Email Already Exists, Please try with different Email"
 		}
@@ -1021,10 +1004,10 @@ if(mode=="web")	{
 	
 	def renderPage(mode,url,map){
 		log.info("Merchant Controller renderPage Action")
-		log.info(map.get("status"))
-		log.info(url)
-		log.info(mode)
-		log.info(map)
+		log.info("map: "+map.get("status"))
+		log.info("url: "+url)
+		log.info("mode: "+mode)
+		log.info("map: "+map)
 		 if(mode == "web" && map.get("status")=="success"){
 			 
 			render view:url,model:[result:map]

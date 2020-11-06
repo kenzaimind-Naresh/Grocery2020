@@ -77,11 +77,8 @@ ${it.state}, ${it.pincode}.<br><br>
 </tr>
 </g:each>
 
-
-
 </div>
-					
-					</div>
+</div>
 					
 <div class="form-group">
 <div style="padding-left:550px">

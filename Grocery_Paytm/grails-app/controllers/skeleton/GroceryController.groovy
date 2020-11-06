@@ -41,7 +41,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 			 def categoryName=Category.getAll()
 			
 		 def user= Merchant.findByEmail(session.user)
-		 log.info(user)
+		 log.info("Merchant data: "+user)
 		 def username= session.user
 		 if(username ==null || username=="" ){
 		  redirect(uri: "/merchant/login")
@@ -51,8 +51,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		 responseData.put("uname",user)
 		 responseData.put("categoryName",categoryName)
 		 
-		 log.info("************")
-		 log.info(responseData)
+		 log.info("responseData: "+responseData)
  
 		 [result:responseData]		
     }
@@ -65,7 +64,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		 def categoryName=Category.getAll()
 		
 	 def user= Merchant.findByEmail(session.user)
-	 log.info(user)
+	 log.info("Merchant data: "+user)
 	 def username= session.user
 	 if(username ==null || username=="" ){
 	  redirect(uri: "/merchant/login")
@@ -77,8 +76,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	 responseData.put("uname",user)
 	 responseData.put("categoryName",categoryName)
 	 
-	 log.info("************")
-	 log.info(responseData)
+	 log.info("responseData: "+responseData)
 
 	 [result:responseData]	
 	}
@@ -94,22 +92,22 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		}
 		def responseData = new HashMap<>();
 		def mode=params.mode
-		log.info(mode)
+		log.info("mode: "+mode)
 		def result,url
 			
 		def groceryName = params.groceryName
-		log.info(groceryName)
+		log.info("groceryName: "+groceryName)
 		
 		def user= Merchant.findByEmail(session.user)
-		log.info(user)
+		log.info("Merchant data: "+user)
 		
 		
 		def merchantId = user.id
 		def of=0;
 		def data=Grocery.findAllByMerchantIdAndQuantity(merchantId,0,[sort:"id",order:"desc",max: 5, offset: of])
-		log.info("data    ********* "+data)
+		log.info("Grocery data: "+data)
 		def totalcount=Grocery.findAllByMerchantIdAndQuantity(merchantId,0).size()
-		log.info("totalcount size "+totalcount)
+		log.info("totalcount size: "+totalcount)
 		def groceryInstance=Grocery.findByGroceryName(params.groceryName)
 		
 		responseData.put("data1", groceryInstance)
@@ -118,7 +116,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		responseData.put("data", data)
 		responseData.put("uname", user)
 		responseData.put("offset", of)
-		log.info(responseData)
+		log.info("responseData: "+responseData)
 		[result:responseData]
 	}
 	
@@ -132,21 +130,21 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		}
 		def responseData = new HashMap<>();
 		def mode=params.mode
-		log.info(mode)
+		log.info("mode: "+mode)
 		def result,url
 		
 		if(mode == "web"){
 		def user= Merchant.findByEmail(session.user)
-		log.info(user)
+		log.info("Merchant data: "+user)
 		def merchantId = user.id
-		log.info(merchantId)
+		log.info("merchantId: "+merchantId)
 		
 		
 		def of=params.offset;
 		def data=Grocery.findAllByMerchantIdAndQuantity(merchantId,0,[sort:"id",order:"desc",max: 5, offset: of])
-		log.info("data    ********* "+data)
+		log.info("Grocery data: "+data)
 		def totalcount=Grocery.findAllByMerchantIdAndQuantity(merchantId,0).size()
-		log.info("totalcount size "+totalcount)
+		log.info("totalcount size: "+totalcount)
 		
 		responseData.put("listId", "list")
 		responseData.put("totalcount",totalcount )
@@ -160,8 +158,8 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
     @Transactional
     def save(Grocery groceryInstance) {
 		log.info("Grocery Controller save action")
-		log.info(groceryInstance.categoryName)
-		log.info(groceryInstance.cost)
+		log.info("categoryName: "+groceryInstance.categoryName)
+		log.info("cost: "+groceryInstance.cost)
 		groceryInstance.createdDate=new Date()
 		
 		def username= session.user
@@ -182,16 +180,13 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
         }
 		def mInstatnce=Merchant.findByEmail(username);
 
-		log.info("gname ************** "+mInstatnce)
+		log.info("gname: "+mInstatnce)
 		
 
 		def uploadedFile = request.getFile('image')
 		groceryInstance.image = uploadedFile.getBytes() //converting the file to bytes
 		groceryInstance.name = uploadedFile.originalFilename //getting the file name from the uploaded file
 		groceryInstance.type = uploadedFile.contentType//getting and storing the file type
-		
-		log.info("*************")
-		//log.info(groceryInstance.save(failOnError: true))
 		
         groceryInstance.save flush:true
 		redirect(uri: "/grocery/create")
@@ -204,9 +199,9 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	log.info("Grocery Controller getavail actiotn")
 	log.info("params "+params.name);
 	def merchantshopName= session.getAttribute("merchantName")
-		log.info("merchantshopName "+merchantshopName);
+	log.info("merchantshopName "+merchantshopName);
 	def groceryInst=Grocery.findByMerchantshopNameAndGroceryName(merchantshopName,params.name);
-	log.info("available quanity"+groceryInst.quantity);
+	log.info("available quanity "+groceryInst.quantity);
 	if(groceryInst!=null){
 	result= groceryInst.quantity;
 	}
@@ -224,16 +219,16 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		 return
 		}
 		def user= Merchant.findByEmail(session.user)
-		log.info(user)
+		log.info("Merchant data: "+user)
 		
 		def result,res
 		def id = params.id
-		log.info(id)
+		log.info("id: "+id)
 	
 		result=GroceryService.delete(id)
-			def url="/grocery/deleteGrocery"
-			responseData.put(getMessages('default.message.label'),"You Grocery deleted sucessfully ")
-			responseData.put("uname", user)
+		def url="/grocery/deleteGrocery"
+		responseData.put(getMessages('default.message.label'),"You Grocery deleted sucessfully ")
+		responseData.put("uname", user)
 		[result:responseData]
 	}
 	
@@ -247,14 +242,14 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		}
 		def responseData = new HashMap<>();
 		def mode=params.mode
-		log.info(mode)
+		log.info("mode: "+mode)
 		def result,url
 			
 		def groceryName = params.groceryName
-		log.info(groceryName)
+		log.info("groceryName: "+groceryName)
 		
 		def user= Merchant.findByEmail(session.user)
-		log.info(user)
+		log.info("Merchant data: "+user)
 		
 		
 		def merchantId = user.id
@@ -263,11 +258,10 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info("Image "+Grocery.findAllByMerchantId(merchantId))
 		
 		def data=Grocery.findAllByMerchantId(merchantId,[sort:"id",order:"desc",max: 5, offset: of])
-		//log.info("data    ********* "+data.get(1).groceryName)
+		log.info("Grocery data: "+data)
 		def totalcount=Grocery.findAllByMerchantId(merchantId).size()
-		log.info(totalcount)
+		log.info("Grocery count: "+totalcount)
 		def groceryInstance=Grocery.findByGroceryName(params.groceryName)
-		//log.info("^^^^^^^^^^^^^^^^^^^"+groceryInstance.groceryName)
 		
 		responseData.put("data1", groceryInstance)
 		responseData.put("listId", "list")
@@ -275,7 +269,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		responseData.put("data", data)
 		responseData.put("uname", user)
 		responseData.put("offset", of)
-		log.info(responseData)
+		log.info("responseData: "+responseData)
 		[result:responseData]
 
 		
@@ -291,21 +285,20 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		}
 		def responseData = new HashMap<>();
 		def mode=params.mode
-		log.info(mode)
+		log.info("mode: "+mode)
 		def result,url
 		
 		if(mode == "web"){
 		def user= Merchant.findByEmail(session.user)
-		log.info(user)
+		log.info("Merchant data: "+user)
 		def merchantId = user.id
-		log.info(merchantId)
-		
+		log.info("merchantId: "+merchantId)
 		
 		def of=params.offset;
 		def data=Grocery.findAllByMerchantId(merchantId,[sort:"id",order:"desc",max: 5, offset: of])
-		log.info(data)
+		log.info("Grocery data: "+data)
 		def totalcount=Grocery.findAllByMerchantId(merchantId).size()
-		log.info(totalcount)
+		log.info("Grocery count: "+totalcount)
 		responseData.put("listId", "list")
 		responseData.put("totalcount",totalcount )
 		responseData.put("data", data)
@@ -320,15 +313,12 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		def responseData = new HashMap<>()
 		def result,url
 		def groceryName=params.groceryName
-		//def split=groceryName.split("")
 		def groceryNameInstance=Grocery.findByGroceryName(params.groceryName)
-		log.info(groceryNameInstance)
-		//def res=groceryNameInstance.categoryName+"#"+groceryNameInstance.cost
-		//render res
-		
+		log.info("groceryNameInstance: "+groceryNameInstance)
+				
 		responseData.put("gro", getdata)
 		responseData.put("groceryNameInstance", groceryNameInstance)
-		log.info(responseData)
+		log.info("responseData: "+responseData)
 		[result:responseData]
 
 	}
@@ -347,27 +337,27 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		def result,url
 		url="/grocery/list.gsp"
 		def categoryName=params.categoryName
-		log.info(categoryName);
+		log.info("categoryName: "+categoryName);
 		def groceryName=params.groceryName
-		log.info(groceryName);
+		log.info("groceryName: "+groceryName);
 		def cost=params.cost
-		log.info(cost);
+		log.info("cost: "+cost);
 		def weight=params.weight+","+params.weightunits
-		log.info(weight);
+		log.info("weight: "+weight);
 		def quantity=params.quantity
-		log.info(quantity);
+		log.info("quantity: "+quantity);
 		def offer=params.offer
-		log.info(offer);
+		log.info("offer: "+offer);
 		def total=params.total
-		log.info(total);
+		log.info("total: "+total);
 		
 		def createdDate=params.createdDate
-		log.info(createdDate)
+		log.info("createdDate: "+createdDate)
 		
 		def modifiedBy=params.modifiedBy
-		log.info(modifiedBy);
+		log.info("modifiedBy: "+modifiedBy);
 		def user= Merchant.findByEmail(session.user)
-		log.info(user)
+		log.info("Merchant data: "+user)
 		
 		def res=GroceryService.update(categoryName,groceryName,cost,weight,quantity,offer,total,createdDate,user.id,user.firstName)
 		log.info("result from service "+res)
@@ -381,16 +371,16 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	@Transactional
 	def updateGrocery() {
 		log.info("Grocery Controller updateGrocery action")
-		log.info(params.id);
+		log.info("params: "+params.id);
 		def responseData = new HashMap<>()
 		Grocery groceryInstance=new Grocery();
 		groceryInstance=Grocery.get(params.id);
 		def weight = groceryInstance.weight
 		log.info("weight from grocery "+weight)
 		def user= Merchant.findByEmail(session.user)
-		log.info(user)
+		log.info("Merchant data: "+user)
 	
-		log.info(groceryInstance.groceryName)
+		log.info("groceryName: "+groceryInstance.groceryName)
 		def categoryName=Category.getAll()
 		
 		if (groceryInstance == null) {
@@ -400,7 +390,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		responseData.put("categoryName",categoryName)
 		responseData.put("weight",weight)
 		responseData.put("gInstance", groceryInstance)
-		log.info(responseData)
+		log.info("responseData: "+responseData)
 		responseData.put("uname", user)
 		[result:responseData]
 
@@ -460,9 +450,9 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		def renderPage(mode,url,map){
 			log.info("grocery Controller renderPage Action")
 			//log.info(map.get("status"))
-			log.info(url)
-			log.info(mode)
-			log.info(map)
+			log.info("url: "+url)
+			log.info("mode: "+mode)
+			log.info("map: "+map)
 
 		}
 		

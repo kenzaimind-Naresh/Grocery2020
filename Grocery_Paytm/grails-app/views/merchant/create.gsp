@@ -293,7 +293,7 @@ i:hover {
 			 <div class="col-sm-12 text-left" style="padding-left:180px">
 				
 	<fieldset class="buttons">
-		<g:submitButton name="create" class="genric-btn primary circle" style="font-size: 15px;" onclick="return validateForm()" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+		<g:submitButton name="create" class="genric-btn primary circle" style="font-size: 15px;" onclick="return validateForm()" value="${message(code: 'default.button.register.label', default: 'Register')}" />
 	</fieldset>
 				</div>
 			</g:form>

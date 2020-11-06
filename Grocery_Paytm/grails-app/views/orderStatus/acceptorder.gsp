@@ -174,7 +174,7 @@ function getval(sel)
 					</table>
 					<div class="col-sm-12 text-right">
 					<fieldset class="buttons">
-					<g:submitButton name="update" class="save" class="genric-btn primary circle" style="font-size: 15px;" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+					<g:submitButton name="update" class="save" class="genric-btn primary circle" style="font-size: 15px;" value="${message(code: 'default.button.accept.label', default: 'Accept')}" />
 					</fieldset>
 					</div>
 				</div>

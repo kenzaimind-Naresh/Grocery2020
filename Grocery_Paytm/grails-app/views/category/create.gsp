@@ -57,11 +57,6 @@
              </div>
             </div>
             <br>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><g:link class="list" action="index"><h4 style="padding-left:50px;font-family: Calibri">Category List</h4></g:link></li>
-			</ul>
-		</div>
 		<div id="create-category" class="content scaffold-create" role="main">
 		<br><br>
 		
@@ -84,7 +79,7 @@
 				<div class="col-sm-12 text-left">
 				<br>
 				<fieldset class="buttons">
-					<g:submitButton name="create" class="save" class="genric-btn primary circle" style="font-size: 15px;" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+					<g:submitButton name="create" class="save" class="genric-btn primary circle" style="font-size: 15px;" value="${message(code: 'default.button.save.label', default: 'Save')}" />
 				</fieldset>
 								</div>
 				

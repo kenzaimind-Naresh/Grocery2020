@@ -22,9 +22,9 @@ class AdminController {
 		def mode="web"
 		def of=0;
 		def merchantdata=Merchant.list(sort:"id",order:"desc",max: 5, offset: of)
-		log.info(merchantdata)
+		log.info("merchantdata: "+merchantdata)
 		def totalcount=Merchant.findAll().size()
-		log.info(totalcount)
+		log.info("Merchant Count: "+totalcount)
 		responseData.put("listId", "merchantlist")
 		responseData.put("totalcount",totalcount )
 		responseData.put("merchantdata", merchantdata)
@@ -46,9 +46,9 @@ class AdminController {
 		def mode="web"
 		def of=0;
 		def merchantdata=Merchant.list(sort:"id",order:"desc",max: 5, offset: of)
-		log.info(merchantdata)
+		log.info("merchantdata: "+merchantdata)
 		def totalcount=Merchant.findAll().size()
-		log.info(totalcount)
+		log.info("Merchant Count: "+totalcount)
 		responseData.put("listId", "merchantlist")
 		responseData.put("totalcount",totalcount )
 		responseData.put("merchantdata", merchantdata)
@@ -69,16 +69,16 @@ class AdminController {
 		 }
 		
 		def mode=params.mode
-		log.info(mode)
+		log.info("mode: "+mode)
 		def result,url
 		
 		if(mode == "web"){
 		
 		def of=params.offset;
 		def merchantdata=User.list(sort:"id",order:"desc",max: 5, offset: of)
-		log.info(merchantdata)
+		log.info("User Data: "+merchantdata)
 		def totalcount=User.findAll().size()
-		log.info(totalcount)
+		log.info("User Count: "+totalcount)
 		responseData.put("listId", "list")
 		responseData.put("totalcount",totalcount )
 		responseData.put("merchantdata", merchantdata)
@@ -105,12 +105,11 @@ class AdminController {
 		def mode=params.mode
 		def of=0;
 		def shopName = params.shopName
-		log.info(shopName)
+		log.info("shopName: "+shopName)
 		def objcount =Grocery.countByMerchantshopName(shopName)
-		log.info(objcount)
+		log.info("Groceries count: "+objcount)
 		def data =Grocery.findAllByMerchantshopName(shopName,[sort:"id",order:"desc",max: 5, offset: of])
-		log.info("*********************************************")
-		log.info(data)
+		log.info("Grocery Data: "+data)
 		responseData.put("data", data)
 		responseData.put("totalcount", objcount)
 
@@ -135,7 +134,7 @@ class AdminController {
 		 }
 		
 		def mode=params.mode
-		log.info(mode)
+		log.info("mode: "+mode)
 		def result,url
 		
 		if(mode == "web"){
@@ -143,18 +142,18 @@ class AdminController {
 		def of=params.offset;
 		
 		def shopName = params.shopName
-		log.info(shopName)
+		log.info("shopName: "+shopName)
 			def objcount =Grocery.countByMerchantshopName(shopName)
-		log.info(objcount)
+		log.info("Groceries count: "+objcount)
 		def data =Grocery.findAllByMerchantshopName(shopName,[sort:"id",order:"desc",max: 5, offset: of])
-		log.info(data)
-		log.info(data.size())
+		log.info("Grocery Data: "+data)
+		log.info("Grocery Data count: "+data.size())
 		responseData.put("data", data)
 		responseData.put("totalcount", objcount)
 		responseData.put("admin", admin)
 		responseData.put("shopName", shopName)
 		responseData.put("offset", Integer.parseInt(of))
-		log.info(responseData)
+		log.info("responseData: "+responseData)
 		[result:responseData]
 		
 		}
@@ -175,9 +174,9 @@ class AdminController {
 		def mode="web"
 		def of=0;
 		def merchantdata=User.list(sort:"id",order:"desc",max: 5, offset: of)
-		log.info(merchantdata)
+		log.info("User data: "+merchantdata)
 		def totalcount=User.findAll().size()
-		log.info(totalcount)
+		log.info("User Count: "+totalcount)
 		responseData.put("listId", "userlist")
 		responseData.put("totalcount",totalcount )
 		responseData.put("merchantdata", merchantdata)
@@ -199,16 +198,16 @@ class AdminController {
 		 }
 		
 		def mode=params.mode
-		log.info(mode)
+		log.info("mode: "+mode)
 		def result,url
 		
 		if(mode == "web"){
 		
 		def of=params.offset;
 		def merchantdata=Merchant.list(sort:"id",order:"desc",max: 5, offset: of)
-		log.info(merchantdata)
+		log.info("Merchant data: "+merchantdata)
 		def totalcount=Merchant.findAll().size()
-		log.info(totalcount)
+		log.info("Merchant count: "+totalcount)
 		responseData.put("listId", "list")
 		responseData.put("totalcount",totalcount )
 		responseData.put("merchantdata", merchantdata)
@@ -221,9 +220,7 @@ class AdminController {
 	def logout = {
 		
     log.info("adminController logout Action")
-	//flash.message = "Goodbye ${session.admin.adminname}"
 	session.invalidate();
-	//session.admin= null
 	redirect(action:"login1")
 	}
 	

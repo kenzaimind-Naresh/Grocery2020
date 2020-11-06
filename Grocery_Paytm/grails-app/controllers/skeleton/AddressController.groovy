@@ -53,7 +53,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	Cookie[] cookies = null;
 	def username
 	cookies=request.getCookies();
-	log.info(cookies)
+	log.info("cookies: "+cookies)
 	if(!cookies.toString().equals("null")){
 	for (int i = 0; i < cookies.length; i++) {
 		cookie = cookies[i];
@@ -70,10 +70,10 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	 }
 	
 	def user= User.findByUserName(session.user)
-	log.info(user)
+	log.info("User Data: "+user)
 	
 	username= session.user
-	log.info(" **********((((( "+username)
+	log.info("UserName from session: "+username)
 	if(user ==null || user=="" ){
 		session.setAttribute("gname",gname)
 		session.setAttribute("gprice",gprice)
@@ -87,23 +87,23 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	qCount=qCount?qCount:session.getAttribute("qCount")
 	tamount=tamount?tamount:session.getAttribute("tamount")
 	def smid=session.getAttribute("mid");
-	log.info("mid from session "+smid)
+	log.info("merchantid from session "+smid)
 	def shopName;
 	if(smid)
 	shopName=Merchant.get(smid).shopName
 	
-	log.info(gname)
-	log.info(gprice)
-	log.info(qCount)
-	log.info(tamount)
-	log.info("shopName "+shopName);
+	log.info("gname: "+gname)
+	log.info("gprice: "+gprice)
+	log.info("qCount: "+qCount)
+	log.info("tamount: "+tamount)
+	log.info("shopName: "+shopName);
 	List<Cart> cartList=new ArrayList<Cart>();
 	   String[] gnames = gname.split("#");
 	   String[] gprices = gprice.split("#");
-	   log.info(gnames)
-	   log.info(gnames[0])
+	   log.info("GroceryNames: "+gnames)
+	   log.info("GroceryPrices: "+gnames[0])
 	   for(int i=0;i<qCount;i++){
-		   log.info("incece "+i);
+		   log.info("Count: "+i);
 	   Cart tcart=new Cart();
 	   Cart emptycheck=new Cart();
 	   
@@ -112,7 +112,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	   tcart.tcount=Double.parseDouble(gnames[i].split("00")[1])*Double.parseDouble(gprices[i]);
 	    tcart.availStock=0;
 	   if(shopName!=null && shopName!=""){
-		   log.info("shopname and gname"+shopName+","+tcart.gname.split("00")[0])
+		   log.info("shopname and gname: "+shopName+","+tcart.gname.split("00")[0])
 		   
 		   def grocInstance=Grocery.findByMerchantshopNameAndGroceryName(shopName,tcart.gname.split("00")[0]);
 		   log.info("available stock "+grocInstance.quantity);
@@ -121,28 +121,25 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	   }
 	   
 	   cartList.add(tcart);
-	   log.info("hhhhhhh "+ tcart.tcount)
-	   log.info("@@@@@@@@@@@"+tcart.availgName+tcart.availStock);
+	   log.info("TotalCount: "+ tcart.tcount)
+	   log.info("Availablegname and AvailableStock: "+tcart.availgName+tcart.availStock);
 		   }
 	   
 	   renderData.put("cartList",cartList);
 	   renderData.put("count",qCount);
 	   renderData.put("totAmt",tamount);
 	   
-	log.info("REdnder data "+renderData )
+	   log.info("Render data "+renderData )
 		
 		def user1=User.findByUserName(username)
-		log.info(user1)
-		
-	//  responseData.put("totalcount",totalcount)
-	//	responseData.put("data", data)
+		log.info("User Data: "+user1)
 			  
 		responseData.put("listId", "dashboard")
 		responseData.put("uname",user)
 		responseData.put("user1",user1)
 		responseData.put("result",renderData);
 		
-		log.info("************"+responseData)
+		log.info("responseData: "+responseData)
 		[result:responseData]
 	
 	
@@ -155,7 +152,6 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	if(user){
 	
 	session.user=user
-	// flash.message = "Hello ${admin.fullName}:
 	redirect(action:"checkout")
 	}
 	else{
@@ -167,7 +163,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	
 	
 	def mailAction() {
-		log.info("@@@@@@@@@@@@@" )
+		log.info("MailAction: " )
 		
 		AddressService.sendmail();
 		
@@ -178,7 +174,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info("AddressController deleteOrder Action")
 		def result,res
 		def id = params.id
-		log.info(id)
+		log.info("id "+id)
 		def responseData = new HashMap<>();
 		result=AddressService.delete(id)
 			def url="/address/deleteOrder"
@@ -187,7 +183,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	}
 	
 	def logout = {
-	log.info("logout  ****")
+	log.info("logout******")
 	
 	session.invalidate();
 	
@@ -231,21 +227,21 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		
 		def responseData = new HashMap<>()
 		def mode=params.mode
-		log.info(mode)
+		log.info("mode: "+mode)
 		def groceryName = Grocery.getAll()
 		
 		def user= User.findByUserName(session.user)
-		log.info(user)
+		log.info("User Data: "+user)
 		
 		def userNameId = user.id
 		def of=0;
 		def data=Address.findAllByUserNameId(userNameId,[sort:"id",max: 10])
-		log.info(data)
+		log.info("User Address: "+data)
 		def totalcount=Address.findAllByUserNameId(userNameId).size()
-		log.info(totalcount)
+		log.info("Address totalcount: "+totalcount)
 		
 		def user1=User.findByUserName(username)	
-		log.info(user1)
+		log.info("User data: "+user1)
 		
 		responseData.put("totalcount",totalcount)
 		responseData.put("data", data) 
@@ -256,8 +252,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		responseData.put("user1",user1)
 		responseData.put("groceryName",groceryName)
 		
-		log.info("************")
-		log.info(responseData)
+		log.info("responseData: "+responseData)
 		[result:responseData]
 	 
 	}
@@ -268,12 +263,11 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info("Address Controller newaddress action ********")
 		def responseData = new HashMap<>()
 		def mode=params.mode
-		log.info(mode)
+		log.info("mode: "+mode)
 		def groceryName = Grocery.getAll()
 		
-		
 		def user= User.findByUserName(session.user)
-		log.info(user)
+		log.info("user data: "+user)
 		
 		def username= session.user
 		if(username ==null || username=="" ){
@@ -284,13 +278,13 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		def userNameId = user.id
 		def of=0;
 		def data=Address.findAllByUserNameId(userNameId,[sort:"id",max: 5])
-		log.info(data)
+		log.info("User data: "+data)
 		def totalcount=Address.findAllByUserNameId(userNameId).size()
-		log.info(totalcount)
+		log.info("Address Totalcount: "+totalcount)
 		
 		
 		def user1=User.findByUserName(username)
-		log.info(user1)
+		log.info("User data: "+user1)
 		
 		responseData.put("totalcount",totalcount)
 		responseData.put("data", data)
@@ -299,9 +293,8 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		responseData.put("uname",user)
 		responseData.put("user1",user1)
 		responseData.put("groceryName",groceryName)
-		
-		log.info("************")
-		log.info(responseData)
+
+		log.info("responseData s"+responseData)
 		[result:responseData]
 	 
 	}
@@ -311,7 +304,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info("Address Controller payment action ********")
 		def responseData = new HashMap<>()
 		def mode=params.mode
-		log.info(mode)
+		log.info("mode: "+mode)
 		def mobileNumber = params.mobileNumber
 		
 		Cookie cookie=null
@@ -319,7 +312,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		def username
 		def merchantshopId
 		cookies=request.getCookies();
-		log.info(cookies)
+		log.info("cookies: "+cookies)
 		if(cookies!=null){
 		for (int i = 0; i < cookies.length; i++) {
 			cookie = cookies[i];
@@ -348,59 +341,58 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		 }
 		
 		def user= User.findByUserName(username)
-		log.info("user logged in "+user)
-
-		log.info(params.id+"TTTTTTTTTTTT")
+		log.info("User Data: "+user)
+		log.info("User id: "+params.id)
 		def address=Address.get(params.id)
-		log.info(address)
+		log.info("address id: "+address)
 		
 		def addrId = address.id
 		def of=0;
 		def data=Address.get(params.id)
 		session.setAttribute("addressId", params.id);
-		log.info(data)
+		log.info("User Address: "+data)
 		def totalcount=Address.findAllByAddressId(addrId).size()
-		log.info(totalcount)
+		log.info("Address TotalCount: "+totalcount)
 		
 		def addressId = user.id
 		def data1=Address.findByAddressId(addressId,[sort:"id",max: 5])
-		log.info(data1)
+		log.info("Address: "+data1)
 		
 		def cartId=session.getAttribute("savedCart");
 		def mercId=session.getAttribute("mid");
-		log.info("mid from session"+mercId);
+		log.info("merchantid from session"+mercId);
 		def mercName
 		if(mercId)
 		mercName=Merchant.get(mercId).shopName;
-		log.info("SSSSSSSSSSSSSSS"+mercName)
+		log.info("merchantName: "+mercName)
 		def addId=session.getAttribute("addressId");
-		log.info("SSSSSSSSSSSSSSS"+addrId)
+		log.info("AddressId from session: "+addrId)
 		log.info("saved cart *********** "+cartId);
 		Cart cartInstance=Cart.findByCartId(cartId)
 		log.info(" cart object *********** "+cartInstance);
-		log.info(cartInstance.gname)
-		log.info(cartInstance.gprice)
-		log.info(cartInstance.tcount)
-		log.info(cartInstance.qCount)
-		log.info(cartInstance.tamount)
-		log.info(cartInstance.usercartId)
-		log.info(cartInstance.status)
-		log.info(mercName)
-		log.info(addId)
-		log.info(cartInstance.modifiedBy)
+		log.info("gname from cartInstance: "+cartInstance.gname)
+		log.info("gprice from cartInstance: "+cartInstance.gprice)
+		log.info("tcount from cartInstance: "+cartInstance.tcount)
+		log.info("qCount from cartInstance: "+cartInstance.qCount)
+		log.info("tamount from cartInstance: "+cartInstance.tamount)
+		log.info("usercartId from cartInstance: "+cartInstance.usercartId)
+		log.info("status from cartInstance: "+cartInstance.status)
+		log.info("merchantName: "+mercName)
+		log.info("AddressId: "+addId)
+		log.info("gname from cartInstance: "+cartInstance.modifiedBy)
 		
 		def orderResult=OrderStatusService.saveOrder(cartInstance.gname,cartInstance.gprice,cartInstance.tcount,cartInstance.qCount,cartInstance.tamount,cartInstance.usercartId,cartInstance.status,mercName,addId,cartInstance.modifiedBy)
 		
 		// grocery quantity update
 		
-		log.info(cartInstance.qCount +"eeeeeeeeee")
+		log.info("qCount from cartInstance: "+cartInstance.qCount)
 		
 		def merchantInstance = Merchant.get(mercId)
-		log.info(merchantInstance.id + "MMMMMMMMMMMMMM")
+		log.info("merchantid: "+merchantInstance.id)
 		
 		String[] gnames= cartInstance.gname.split("#")
 		
-		log.info(gnames.length + "NNNNNNNNNNNNN")
+		log.info("gnames length: "+gnames.length)
 	
 	for(int a=0;a<gnames.length;a++){
 			
@@ -409,18 +401,18 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	
 
 		def value = Integer.parseInt(instance.quantity) - Integer.parseInt(gnames[a].split("00")[1])
-		log.info("??????????????? instance.quantity : "+ gnames[a].split("00")[1]);
-		log.info("??????????????? finalvalue : "+  value);
+		log.info("instance.quantity : "+ gnames[a].split("00")[1]);
+		log.info("finalvalue : "+  value);
 		
 		GroceryService.update1(merchantInstance.id,gnames[a].split("00")[0],value);
 	}
 	
 		def user1=User.findByUserName(username)
-		log.info(user1)
+		log.info("User data: "+user1)
 		
 		TestController testController=new TestController();
 		String smsresp=testController.sendSMSToUser(user1.mobileNumber,"Dear "+user1.userName+",your Grocery Order has been placed successfully. Your Order Amount: Rs."+cartInstance.tamount+" and your Order Items:"+gnames+". Delivery Charges applicable depends on below distance:  0 to 1Km - Free, 1 to 3Kms - Rs.30, 3 to 5Kms - Rs.50, 5 to 7Kms - Rs.70.");
-		log.info("SMS response"+smsresp);
+		log.info("SMS response "+smsresp);
 		
 		responseData.put("totalcount",totalcount)
 		responseData.put("data", data)
@@ -431,7 +423,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		responseData.put("user1",user1)
 		
 		log.info("************")
-		log.info(responseData)
+		log.info("responseData: "+responseData)
 		[result:responseData]
 	}
 	
@@ -443,10 +435,10 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		def renderData = new HashMap<>()
 		def renderdata = new HashMap<>()
 		def mode=params.mode
-		log.info(mode)
+		log.info("mode: "+mode)
 		
 		def user= User.findByUserName(session.user)
-		log.info(user)
+		log.info("User data: "+user)
 		
 		def username= session.user
 		if(username ==null || username=="" ){
@@ -456,35 +448,35 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		def cartId=session.getAttribute("savedCart");
 		def mercId=session.getAttribute("mid");
 		def mercName=Merchant.get(mercId).shopName;
-		log.info("SSSSSSSSSSSSSSS"+mercName)
+		log.info("merchantid: "+mercName)
 		def addrId=session.getAttribute("addressId");
-		log.info("SSSSSSSSSSSSSSS"+addrId)
-		log.info("saved cart *********** "+cartId);
+		log.info("AddressId: "+addrId)
+		log.info("saved cart: "+cartId);
 		Cart cartInstance=Cart.findByCartId(cartId)
 		
 		def quantityCount=cartInstance.qCount?Integer.parseInt(cartInstance.qCount):null;
 		
 		log.info(" cart object *********** "+cartInstance);
-		log.info(cartInstance.gprice)
-		log.info(cartInstance.tcount)
-		log.info(cartInstance.qCount)
-		log.info(cartInstance.tamount)
-		log.info(cartInstance.usercartId)
-		log.info(cartInstance.status)
-		log.info(mercName)
-		log.info(addrId)
-		log.info(cartInstance.modifiedBy)
-				
+		log.info("gprice from cartInstance: "+cartInstance.gprice)
+		log.info("tcount from cartInstance: "+cartInstance.tcount)
+		log.info("qCount from cartInstance: "+cartInstance.qCount)
+		log.info("tamount from cartInstance: "+cartInstance.tamount)
+		log.info("usercartId from cartInstance: "+cartInstance.usercartId)
+		log.info("status from cartInstance: "+cartInstance.status)
+		log.info("merchantName: "+mercName)
+		log.info("AddressId: "+addrId)
+		log.info("gname from cartInstance: "+cartInstance.modifiedBy)
+		
 		log.info("*********Split function in shipping page*******")
 		List<Cart> cartlist=new ArrayList<Cart>();
 		String[] names = cartInstance.gname.split("#");
 		String[] prices = cartInstance.gprice.split("#");
-		log.info(names)
-		log.info(names[0])
+		log.info("gnames: "+names)
+		log.info("gnames[0]: "+names[0])
 		String[] grocnames = names[0].split("00");
-		log.info(grocnames)
-		log.info(grocnames[0])
-		log.info(grocnames[1])
+		log.info("grocnames: "+grocnames)
+		log.info("grocnames[0]: "+grocnames[0])
+		log.info("grocnames[1]: "+grocnames[1])
 		for(int i=0;i<quantityCount;i++){
 			log.info("incece "+i);
 		Cart product=new Cart();
@@ -492,7 +484,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		product.gprice=prices[i];
 		product.tcount=Double.parseDouble(names[i].split("00")[1])*Double.parseDouble(prices[i]);
 		cartlist.add(product);
-		log.info(product);
+		log.info("product added to cart: "+product);
 			}
 
 		renderdata.put("cartlist",cartlist);
@@ -504,17 +496,17 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		responseData.put("result",renderdata);
 		
 		def addId=session.getAttribute("addressId");
-		log.info(addId)
+		log.info("addressId"+addId)
 		def addressId = user.id
 		def of=0;
 		def data=Address.get(addId);
-		log.info(data)
+		log.info("User Address: "+data)
 		def totalcount=Address.findAllByUserNameId(addressId).size()
-		log.info(totalcount)
+		log.info("Address Total Count:"+totalcount)
 		def user1=User.findByUserName(username)
-		log.info(user1)
+		log.info("User data: "+user1)
 		def data1=Address.findByAddressId(params.addressId)
-		log.info(data1)
+		log.info("Address: "+data1)
 		
 	
 		def data2=Cart.findByCartId(cartId,[sort:"id",max: 5])
@@ -536,22 +528,22 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		List<Cart> cartList=new ArrayList<Cart>();
 		String[] gnames = groceryName.split("#");
 		String[] gprices = groceryPrice.split("#");
-		log.info(gnames)
-		log.info(gnames[0])
+		log.info("gnames: "+gnames)
+		log.info("gnames[0]: "+gnames[0])
 		for(int i=0;i<qCount;i++){
 			log.info("incece "+i);
 		Cart tcart=new Cart();
 		tcart.gname=gnames[i];
 		tcart.gprice=gprices[i];
 		cartList.add(tcart);
-		log.info("@@@@@@@@@@@"+tcart);
+		log.info("tcart object: "+tcart);
 			}
 		
 		renderData.put("cartList",cartList);
 		renderData.put("count",qCount);
 		renderData.put("totAmt",amount);
 		
-	 log.info("REdnder data "+renderData )
+		log.info("Render data "+renderData )
 					
 		responseData.put("totalcount",totalcount)
 		responseData.put("data", data)
@@ -563,10 +555,8 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		responseData.put("user1",user1)
 		responseData.put("data1",data1)
 		responseData.put(getMessages('default.message.label'),"Thank you. Your order has been received.")
-		
-		
-		log.info("************")
-		log.info(responseData)
+				
+		log.info("responseData: "+responseData)
 		[result:responseData]
 	}
 
@@ -579,30 +569,30 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		def result,url
 		url="/address/saveaddress.gsp"
 		def mode=params.mode
-		log.info(mode)
+		log.info("mode: "+mode)
 		def myaction = params.myaction
-		log.info(myaction)
+		log.info("myaction: "+myaction)
 		def fullName=params.fullName
-		log.info(fullName)
+		log.info("fullName: "+fullName)
 		def mobileNumber = params.mobileNumber
-		log.info(mobileNumber)
+		log.info("mobileNumber: "+mobileNumber)
 		def pincode=params.pincode
-		log.info(pincode)
+		log.info("pincode: "+pincode)
 		def houseNumber=params.houseNumber
-		log.info(houseNumber)
+		log.info("houseNumber: "+houseNumber)
 		def area=params.area
-		log.info(area)
+		log.info("area: "+area)
 		def landmark=params.landmark
-		log.info(landmark)
+		log.info("landmark: "+landmark)
 		def city=params.city
-		log.info(city)
+		log.info("city: "+city)
 		def state = params.state
-		log.info(state)
+		log.info("state: "+state)
 		def deliverhere = params.deliverhere
-		log.info(deliverhere)
+		log.info("deliverhere: "+deliverhere)
 		
 		def userNameId = params.userNameId
-		log.info(userNameId)
+		log.info("userNameId: "+userNameId)
 	
 		if( ! (isValid(fullName)&&  isValid(mobileNumber) && isValid(pincode)&& isValid(houseNumber)&& isValid(area)&& isValid(landmark)&& isValid(city)&& isValid(state)&& isValid(deliverhere) && isValid(userNameId) && isValid(myaction) && isValid(mode))){
 			responseData.put(getMessages('default.status.label'),getMessages('default.error.message'))
@@ -622,12 +612,12 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 			else {
 				 result=AddressService.save(fullName,mobileNumber,pincode,houseNumber,area,landmark,city,state,deliverhere,userNameId)
 		
-				log.info("***********response from AddressService"+result)
+				log.info("response from AddressService "+result)
 				
-				log.info("&&&&&&&&&&&&&&"+result.get("addressInstance"));
+				log.info("result from addressInstance "+result.get("addressInstance"));
 				
-				log.info(result)
-				log.info(mode)
+				log.info("result: "+result)
+				log.info("mode: "+mode)
 				
 				if(result.get("status") == "success"){
 					redirect(uri: "/Address/create")
@@ -669,10 +659,10 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		
 		def renderPage(mode,url,map){
 			log.info("address Controller renderPage Action")
-			log.info(map.get("status"))
-			log.info(url)
-			log.info(mode)
-			log.info(map)
+			log.info("map: "+map.get("status"))
+			log.info("url: "+url)
+			log.info("mode: "+mode)
+			log.info("map: "+map)
 			 if(mode == "web"){
 				 
 				render view:url,model:[result:map]

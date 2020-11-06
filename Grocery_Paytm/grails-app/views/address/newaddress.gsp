@@ -90,7 +90,7 @@ ${it.state}, ${it.pincode}.<br><br>
 					
 	
 					
-<section class="content-header" style="padding-left:450px" >
+<section class="content-header" style="padding-left:580px" >
 <h3 style="font-family: Calibri">Add a new address
 </h3>
 </section><br>
@@ -212,7 +212,6 @@ ${it.state}, ${it.pincode}.<br><br>
 <option>Punjab</option>
 <option>Rajasthan</option>
 <option>Sikkim</option>
-<option>Tamilnadu</option>
 <option>Telangana</option>
 <option>Tripura</option>
 <option>Uttarakhand</option>
@@ -255,11 +254,12 @@ ${it.state}, ${it.pincode}.<br><br>
 
 <div class="form-group">
 <div class="col-sm-12 text-center">
-<input type="submit" ID="btnsave" value="Submit" onclick="return validateForm()" class="genric-btn primary circle" style="font-size: 15px;" />
+<input type="submit" ID="btnsave" value="Save" onclick="return validateForm()" class="genric-btn primary circle" style="font-size: 15px;" />
 </div>
 </div>
 </div>
 </g:form>
+<br><br><br>
 <style>
 .footer {
    position: fixed;

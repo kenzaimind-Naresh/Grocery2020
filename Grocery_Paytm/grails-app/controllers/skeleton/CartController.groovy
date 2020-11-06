@@ -35,20 +35,20 @@ class CartController {
     def save(Cart cartInstance) {
 		log.info("CartController save Action")
 		
-		log.info(params.gname)
-		log.info(params.gprice)
-		log.info(params.tcount)
+		log.info("gname: "+params.gname)
+		log.info("gprice: "+params.gprice)
+		log.info("tcount: "+params.tcount)
 		log.info("qCount "+params.qCount)
-		log.info(params.tamount)
-		log.info("*********************************************************")
+		log.info("tamount: "+params.tamount)
+		
 		def grocname=params.gname.split("#")[0].split("00")[0];
 		def merchant=Grocery.findByGroceryName(grocname).merchantId;
-		log.info(grocname);
+		log.info("grocname: "+grocname);
 
 		
 		def result=CartService.save(cartInstance.gname,cartInstance.gprice,cartInstance.tcount,cartInstance.qCount,cartInstance.tamount,cartInstance.usercartId)
-		log.info("response from service"+result)
-		log.info("((((((((((((((((("+result.get("cartInstance"));
+		log.info("response from service: "+result)
+		log.info("result from cartInstance: "+result.get("cartInstance"));
 		session.setAttribute("savedCart", result.get("cartInstance"));
 		redirect(uri: "/address/create")
     }

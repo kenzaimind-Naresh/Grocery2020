@@ -14,9 +14,6 @@ class UserController {
 	def UserService
 	def nexmoService
 	def mailService
-//	CctvrepairController cctv=new CctvrepairController();
-//	ComputersrepairController computer=new ComputersrepairController();
-	
 
 static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: "DELETE"]
 
@@ -26,7 +23,7 @@ def testRestapi(){
 def responseData = new HashMap<>()
 def user=params.user;
 log.info("user test rest template")
-log.info("user test rest template"+request.user)
+log.info("user test rest template: "+request.user)
 responseData.put("user",user)
 render responseData as JSON
 }
@@ -39,7 +36,7 @@ def loadCookie(){
 	Cookie[] cookies = null;
 	def useremail
 	cookies=request.getCookies();
-	log.info(cookies)
+	log.info("cookies: "+cookies)
 	if(!cookies.toString().equals("null")){
 	for (int i = 0; i < cookies.length; i++) {
 		cookie = cookies[i];
@@ -51,7 +48,7 @@ def loadCookie(){
 		}
 	 }
 	}
-	log.info("**************** "+useremail)
+	log.info("username: "+useremail)
 return;
 }
 
@@ -70,7 +67,7 @@ def userdashboard() {
 	Cookie[] cookies = null;
 	def useremail
 	cookies=request.getCookies();
-	log.info(cookies)
+	log.info("cookies: "+cookies)
 	if(!cookies.toString().equals("null")){
 	for (int i = 0; i < cookies.length; i++) {
 		cookie = cookies[i];
@@ -93,9 +90,9 @@ def userdashboard() {
 	  cookie1.setMaxAge(60*60*24*365)
 	 cookie1.setPath("/${grailsApplication.metadata['app.name']}/")
 	  log.info("***************** ")
-	  log.info(cookie1);
-	  log.info(cookie1.getName());
-	  log.info(cookie1.getValue());
+	  log.info("cookie1: "+cookie1);
+	  log.info("Name: "+cookie1.getName());
+	  log.info("Value: "+cookie1.getValue());
 	  log.info("***************** ")
 	  
 	  response.addCookie(cookie1);
@@ -103,7 +100,7 @@ def userdashboard() {
 
 
 	def user3= User.findByUserName(useremail)
-	log.info(user3)
+	log.info("user data"+user3)
 	
 	def emp=Merchant.findAllByCity(city)
 	def msg;
@@ -133,16 +130,15 @@ def userdashboard() {
 				user1.add(emp1[i].street)
 			}
 	
-	responseData.put("message", msg)
+				responseData.put("message", msg)
 				responseData.put("emp",emp)
 				responseData.put("message1", msg1)
 				responseData.put("emp1",emp1)
 				responseData.put("uname",user3)
-				//responseData.put("user3",user3)
 				responseData.put("merchant",merchant)
 				responseData.put("city",Merchant.list().unique{ it.city})
 				responseData.put("street",Merchant.list().unique{ it.street})
-				log.info("UUUUUUUUUU "+responseData)
+				log.info("responsedata: "+responseData)
 				[result:responseData]
 					
 }
@@ -157,18 +153,10 @@ def marketdata(){
 	
 	session.setAttribute("mid","");
 	
-	/*if(username ==null || username=="" ){
-	 redirect uri: ("/user/userlogin1")
-	 return
-	}*/
-	/*def user= User.findByUserName(session.user)
-	log.info(user)
-	*/
-	
 	def merchantshopName
 	def merchantshopId
 	def mid=params.merchantshopName
-	log.info("mid "+mid)
+	log.info("merchantid "+mid)
 	def paramMName
 	if(mid){
 	paramMName=Merchant.get(mid).shopName;
@@ -180,7 +168,7 @@ def marketdata(){
 	Cookie[] cookies = null;
 	def useremail
 	cookies=request.getCookies();
-	log.info(cookies)
+	log.info("cookies: "+cookies)
 	if(!cookies.toString().equals("null")){
 	for (int i = 0; i < cookies.length; i++) {
 		cookie = cookies[i];
@@ -211,7 +199,7 @@ def marketdata(){
 	merchantshopId=params.merchantshopName
 
 	
-	log.info("Merc Id"+merchantshopId)
+	log.info("Merc Id: "+merchantshopId)
 	session.setAttribute("mid", merchantshopId)
 	session.setAttribute("mid", mid)
 	Cookie cookie1 = new Cookie("mid", ""+mid);
@@ -250,9 +238,6 @@ def marketdata(){
 	responseData.put("data", data)
 	responseData.put("uname",user)
 	
-	
-	//responseData.put("uname",user)
-	
 	[result:responseData]
 
 }
@@ -277,14 +262,14 @@ def marketdata(){
 		}
 
 		def randomValue= generator( (('A'..'Z')+('0'..'9')+('a'..'z')).join(), 6 )
-		log.info("Random String Generator...... "+randomValue)
+		log.info("Random String Generator: "+randomValue)
 		
 		def email = params.email
 		log.info("User email "+email)
 		def mobileNumber = params.mobileNumber
 		log.info("User mobileNumber "+mobileNumber)
 		def otpActivation = randomValue
-		log.info(otpActivation)
+		log.info("otpActivation: "+otpActivation)
 		def result,res
 		
 		
@@ -299,22 +284,9 @@ def marketdata(){
 			result=UserService.validateCode(params.email,user.mobileNumber,otpActivation)
 			if(result.get("status") == "success"){
 				
-				/*def smsResult
-				log.info("Nexmo SMS Start ....")
-				try {
-					log.info("mobile number "+user.mobileNumber)
-				  smsResult  = nexmoService.sendSms("91"+user.mobileNumber, "Your Verification Code is "+otpActivation+". Do not forward or share this to anyone.","919533000292");
-				  log.info("sms result  "+smsResult)
-			
-			
-				}catch (NexmoException e) {
-				  // Handle error if failure
-				log.info("failed send sms   ....."+e)
-				}*/
-				
 				TestController testController=new TestController();
 				String smsresp=testController.sendSMSToUser(user.mobileNumber,"Dear Customer, Your Registration was done successfully.....");
-				log.info("SMS response"+smsresp);
+				log.info("SMS response: "+smsresp);
 				
 				responseData.put(getMessages('default.message.label'),result.getAt("message"))
 				responseData.put(getMessages('default.status.label'),result.getAt("status"))
@@ -352,7 +324,7 @@ def marketdata(){
 			
 			responseData.put(getMessages('default.message.label')," New Password Created Successfully")
 			responseData.put("uname",user)
-			log.info(responseData)
+			log.info("responseData: "+responseData)
 			[result:responseData]
 		}
 
@@ -364,9 +336,9 @@ def marketdata(){
 		url="/user/contact2.gsp"
 		def mode=params.mode
 		def merchant = Merchant.getAll()
-		log.info(merchant)
+		log.info("merchant data: "+merchant)
 		def city = params.city
-		log.info(city)
+		log.info("city: "+city)
 		def merchantshopName=null;
 		def username=null;
 		
@@ -379,12 +351,11 @@ def marketdata(){
 	 username= session.user
 	 }
 	log.info("merchantshopName from session "+merchantshopName)
-		//session.setAttribute("merchantName", shopName)
 		def data =Merchant.get(merchantshopName)
-		log.info(data)
+		log.info("merchant data: "+data)
 		
 		def user= User.findByUserName(session.user)
-		log.info(user)
+		log.info("User data: "+user)
 		
 		responseData.put("merchant",merchant)
 		responseData.put("data",data)
@@ -401,13 +372,12 @@ def marketdata(){
 		url="/user/marketcontactdetails.gsp"
 		def mode=params.mode
 		def shopName = params.shopName
-		log.info(shopName)
-		//session.setAttribute("merchantName", merchantshopName)
+		log.info("shopName: "+shopName)
 		def data =Merchant.findAllByShopName(shopName)
-		log.info(data)
+		log.info("merchant data: "+data)
 		
 		def user= User.findByUserName(session.user)
-		log.info(user)
+		log.info("User data: "+user)
 		
 		responseData.put("data", data)
 		responseData.put("uname",user)
@@ -419,7 +389,7 @@ def marketdata(){
 
 
 def mailAction() {
-	log.info("@@@@@@@@@@@@@" )
+	log.info("Mail action: " )
 	
 	UserService.sendmail();
 	
@@ -434,30 +404,23 @@ def logout = {
 	Cookie[] cookies = null;
 	def useremail
 	cookies=request.getCookies();
-	log.info(cookies)
+	log.info("cookies: "+cookies)
 	if(!cookies.toString().equals("null")){
 	for (int i = 0; i < cookies.length; i++) {
 		 Cookie cookie = cookies[i];
 		log.info("Name :ccccc " + cookies[i].getName() );
 		log.info("Value: ccccc" + cookies[i].getValue() );
-	//	if(cookie.getName().equals("userKey")){
-			log.info("UIIIIIIIIIII  "+cookies[i].getValue())
+			log.info("Cookie value: "+cookies[i].getValue())
 			cookies[i].setValue("")
 			cookies[i].setMaxAge(0)
 			response.addCookie(cookie)
-			//cookie.setPath("/${grailsApplication.metadata['app.name']}/")
-		//}
 	 }
 	}
 	
-		//Cookie cookie1=new Cookie("userKey", "");
-		//cookie1.setMaxAge(0)
 		
 		 log.info("********after reset********* ")
-		 log.info(cookies);
-		 
+		 log.info("cookies: "+cookies);
 		 log.info("***************** ")
-		// response.addCooki(cookie);
 	redirect(uri: "/merchant/logout")
 	}
 
@@ -469,8 +432,6 @@ def authenticate2={
 	if(user){
 	
 	session.user=user.email
-	// flash.message = "Hello ${admin.fullName}:
-	//redirect(action:"userlogindash")
 	redirect(uri: "/user/userdashboard")
 	
 	}
@@ -501,7 +462,7 @@ def updateuser(){
 	Cookie[] cookies = null;
 	def useremail
 	cookies=request.getCookies();
-	log.info(cookies)
+	log.info("cookies: "+cookies)
 	if(!cookies.toString().equals("null")){
 	for (int i = 0; i < cookies.length; i++) {
 		cookie = cookies[i];
@@ -514,7 +475,7 @@ def updateuser(){
 		}
 	 }
 	}
-	log.info("**************** "+sessionValue)
+	log.info("sessionValue: "+sessionValue)
 
 	if(sessionValue.equals(null) ||sessionValue.equals("") ){
 	 redirect(uri: "/user/userlogin1")
@@ -527,7 +488,7 @@ def updateuser(){
 	responseData.put("uname",user)
 	responseData.put("data",data)
 	log.info("************")
-	log.info(responseData)
+	log.info("responseData: "+responseData)
 	[result:responseData]
 
 	}
@@ -541,7 +502,7 @@ def updateuser(){
 		Cookie[] cookies = null;
 		def useremail
 		cookies=request.getCookies();
-		log.info(cookies)
+		log.info("cookies: "+cookies)
 		if(!cookies.toString().equals("null")){
 		for (int i = 0; i < cookies.length; i++) {
 			cookie = cookies[i];
@@ -554,7 +515,7 @@ def updateuser(){
 			}
 		 }
 		}
-		log.info("**************** "+useremail)
+		log.info("useremail: "+useremail)
 		if(useremail ==null || useremail=="" ){
 		useremail= session.user
 		}
@@ -564,23 +525,23 @@ def updateuser(){
 		}
 		def responseData = new HashMap<>();
 		def mode=params.mode
-		log.info(mode)
+		log.info("mode: "+mode)
 		def result,url
 			
 		def groceryName = params.groceryName
-		log.info(groceryName)
+		log.info("groceryName: "+groceryName)
 		
 		def user= User.findByUserName(useremail)
-		log.info(user)
+		log.info("user data: "+user)
 		
 		def usercartId = user.id
 		def of=0;
 		def data=OrderStatus.findAllByUsercartId(usercartId,[sort:"id",order:"desc",max: 5, offset: of])
-		log.info(data)
+		log.info("OrderStatus data: "+data)
 		def totalcount=OrderStatus.findAllByUsercartId(usercartId).size()
-		log.info(totalcount)
+		log.info("OrderStatus count: "+totalcount)
 		def userInstance=OrderStatus.findByGroceryName(params.groceryName)
-		log.info(userInstance)
+		log.info("userInstance: "+userInstance)
 		
 		responseData.put("data1", userInstance)
 		responseData.put("listId", "list")
@@ -588,7 +549,7 @@ def updateuser(){
 		responseData.put("data", data)
 		responseData.put("uname", user)
 		responseData.put("offset", of)
-		log.info(responseData)
+		log.info("responseData: "+responseData)
 		[result:responseData]
 			
 	}
@@ -600,7 +561,7 @@ def updateuser(){
 		Cookie[] cookies = null;
 		def useremail
 		cookies=request.getCookies();
-		log.info(cookies)
+		log.info("cookies: "+cookies)
 		if(!cookies.toString().equals("null")){
 		for (int i = 0; i < cookies.length; i++) {
 			cookie = cookies[i];
@@ -613,7 +574,7 @@ def updateuser(){
 			}
 		 }
 		}
-		log.info("**************** "+useremail)
+		log.info("useremail: "+useremail)
 		if(useremail ==null || useremail=="" ){
 		useremail= session.user
 		}
@@ -623,24 +584,24 @@ def updateuser(){
 		}
 		def responseData = new HashMap<>();
 		def mode=params.mode
-		log.info(mode)
+		log.info("mode: "+mode)
 		def result,url
 		
 		def groceryName = params.groceryName
-		log.info(groceryName)
+		log.info("groceryName: "+groceryName)
 		
 		def user= User.findByUserName(useremail)
-		log.info(user)
+		log.info("user data: "+user)
 		
 		if(mode == "web"){
 		def usercartId = user.id
 		def of=params.offset;
 		def data=OrderStatus.findAllByUsercartId(usercartId,[sort:"id",order:"desc",max: 5, offset: of])
-		log.info(data)
+		log.info("OrderStatus data: "+data)
 		def totalcount=OrderStatus.findAllByUsercartId(usercartId).size()
-		log.info(totalcount)
+		log.info("OrderStatus count: "+totalcount)
 		def userInstance=OrderStatus.findByGroceryName(params.groceryName)
-		log.info(userInstance)
+		log.info("OrderStatus: "+userInstance)
 		
 		responseData.put("data1", userInstance)
 		responseData.put("listId", "list")
@@ -648,7 +609,7 @@ def updateuser(){
 		responseData.put("data", data)
 		responseData.put("uname", user)
 		responseData.put("offset", Integer.parseInt(of))
-		log.info(responseData)
+		log.info("responseData: "+responseData)
 		  [result:responseData]
 		}
 	}
@@ -660,7 +621,7 @@ def updateuser(){
 		def renderData = new HashMap<>();
 		def orderdata=OrderStatus.get(params.orderId)
 		def user= User.findByUserName(session.user)
-		log.info(user)
+		log.info("User data: "+user)
 		
 		def orderId = orderdata.orderId;
 		def groceryName = orderdata.groceryName;
@@ -669,21 +630,21 @@ def updateuser(){
 		def productCount=orderdata.productCount?Integer.parseInt(orderdata.productCount):null;
 		def amount = orderdata.totalAmount;
 		def status =  orderdata.status;
-		log.info(orderId)
-		log.info(groceryName)
-		log.info(groceryPrice)
-		log.info(quantity)
-		log.info(productCount)
-		log.info(status)
+		log.info("orderId: "+orderId)
+		log.info("groceryName: "+groceryName)
+		log.info("groceryPrice: "+groceryPrice)
+		log.info("quantity: "+quantity)
+		log.info("productCount: "+productCount)
+		log.info("status: "+status)
 		List<OrderStatus> orderList=new ArrayList<OrderStatus>();
 		String[] gnames = groceryName.split("#");
 		String[] gprices = groceryPrice.split("#");
-		log.info(gnames)
-		log.info(gnames[0])
+		log.info("gnames: "+gnames)
+		log.info("gnames[0]: "+gnames[0])
 		String[] grocnames = gnames[0].split("00");
-		log.info(grocnames)
-		log.info(grocnames[0])
-		log.info(grocnames[1])
+		log.info("grocnames: "+grocnames)
+		log.info("grocnames[0]: "+grocnames[0])
+		log.info("grocnames[1]: "+grocnames[1])
 		for(int i=0;i<productCount;i++){
 			log.info("incece "+i);
 		OrderStatus order=new OrderStatus();
@@ -691,8 +652,8 @@ def updateuser(){
 		order.groceryPrice=gprices[i];
 		order.totalQuantity=Double.parseDouble(gnames[i].split("00")[1])*Double.parseDouble(gprices[i]);
 		orderList.add(order);
-		log.info(order);
-		log.info("FFFFFFFFFFFFFFFFF  "+order.totalQuantity);
+		log.info("OrderStatus: "+order);
+		log.info("TotalQuantity from orderstatus: "+order.totalQuantity);
 			}
 
 		renderData.put("orderList",orderList);
@@ -717,7 +678,7 @@ def changepass={
 	Cookie[] cookies = null;
 	def useremail
 	cookies=request.getCookies();
-	log.info(cookies)
+	log.info("cookies: "+cookies)
 	if(!cookies.toString().equals("null")){
 	for (int i = 0; i < cookies.length; i++) {
 		cookie = cookies[i];
@@ -730,7 +691,6 @@ def changepass={
 	 }
 	}
 	
-	//def userName= session.user
 	if(useremail ==null || useremail=="" ){
 	 redirect(uri: "/user/userlogin1")
 	 return
@@ -738,12 +698,12 @@ def changepass={
 	def responseData = new HashMap<>()
 		
 	def user= User.findByUserName(useremail)
-	log.info(user)
+	log.info("user data: "+user)
 	
 	
 	responseData.put(getMessages('default.message.label'),"Password Changed Successfully")
 	responseData.put("uname",user)
-	log.info(responseData)
+	log.info("responseData: "+responseData)
 	[result:responseData]
 }
 
@@ -754,28 +714,26 @@ def saveupdate() {
 	def responseData = new HashMap<>()
 	def result,url
 	def mode=params.mode
-	log.info(mode)
+	log.info("mode: "+mode)
 	def firstName=params.firstName
-	log.info(firstName)
+	log.info("firstName: "+firstName)
 	def lastName=params.lastName
-	log.info(lastName)
+	log.info("lastName: "+lastName)
 	def userName=params.email
-	log.info(userName)
+	log.info("userName: "+userName)
 	def password=params.password
-	log.info(password)
+	log.info("password: "+password)
 	def email=params.email
-	log.info(email)
+	log.info("email: "+email)
 	def mobileNumber=params.mobileNumber
-	
-	log.info(mobileNumber)
+	log.info("mobileNumber: "+mobileNumber)
 	
 	def modifiedBy=params.modifiedBy
-	
-	log.info(modifiedBy)
+	log.info("modifiedBy: "+modifiedBy)
 	
 
 	def userId = params.userId
-	log.info(userId)
+	log.info("userId: "+userId)
 	
 	if(mode == "mobile"){
 		
@@ -825,7 +783,7 @@ if(mode=="web")	{
 		responseData.put("message", "Your Profile Updated Successfully")
 		responseData.put(getMessages("default.status.label"),"200")
 	
-log.info("sdfdsfdsf "+responseData)	
+		log.info("responseData: "+responseData)	
 	}
 
 [result:responseData]
@@ -855,9 +813,9 @@ def passwordSave2(){
 	def newPwd=params.newPwd
 	def confirmPwd=params.confirmPwd
 	def result,res
-	log.info(password)
-	log.info(newPwd)
-	log.info(confirmPwd)
+	log.info("password: "+password)
+	log.info("newPwd: "+newPwd)
+	log.info("confirmPwd: "+confirmPwd)
 	
 	if(mode=="web"){
 	def userName= session.user
@@ -873,7 +831,7 @@ def passwordSave2(){
 	
 	def url="/user/passwordSave2.gsp"
 	def user= User.findByUserName(userName)
-	log.info(user)
+	log.info("User data: "+user)
 	if(newPwd != confirmPwd){
 	 return false
 	}
@@ -906,7 +864,7 @@ def passwordSave3(){
 	if(mode=="web"){
 
 	def user= User.findByUserName(params.username)
-	log.info(user)
+	log.info("User data: "+user)
 	if(newPwd != confirmPwd){
 	 return false
 	}
@@ -934,7 +892,7 @@ def userlogin1 = {
 	Cookie[] cookies = null;
 	def useremail
 	cookies=request.getCookies();
-	log.info(cookies)
+	log.info("cookies: "+cookies)
 	if(!cookies.toString().equals("null")){
 	for (int i = 0; i < cookies.length; i++) { 
 		 Cookie cookie = cookies[i];
@@ -946,24 +904,24 @@ def userlogin1 = {
 		}
 	 }
 	 }
-	log.info("**************** "+useremail)
+	log.info("useremail: "+useremail)
 	if(!(useremail.equals(null) ||useremail.equals(""))){
-		log.info("set cookie value into session   username"+useremail)
+		log.info("set cookie value into session username: "+useremail)
 		session.user=useremail
 	redirect(action:"userdashboard")
 	}
 	def responseData = new HashMap<>()
 	
-def user= User.findByUserName(useremail)
-log.info(user)
-
-
-responseData.put("uname",user)
-log.info(responseData)
-[result:responseData]
+	def user= User.findByUserName(useremail)
+	log.info("user data: "+user)
 	
-}
-def authenticate1 = {
+	
+	responseData.put("uname",user)
+	log.info("responseData: "+responseData)
+	[result:responseData]
+		
+	}
+	def authenticate1 = {
 	
 	log.info("authenticate1")
 	log.info("params:"+params.email)
@@ -983,18 +941,7 @@ def authenticate1 = {
 	if(user){
 	
 	session.user=user
-	// flash.message = "Hello ${admin.fullName}:"
-	
-/*	log.info("user in   session"+user)
-	Cookie cookie1 = new Cookie("userKey", ""+user);
-	 cookie1.setMaxAge(60*60*24*365)
-	 log.info("***************** ")
-	 log.info(cookie1);
-	 log.info(cookie1.getName());
-	 log.info(cookie1.getValue());
-	 log.info("***************** ")
-	 
-	 response.addCookie(cookie1);*/
+
 	 log.info("grocery in session "+session.getAttribute("gname"))
 	 log.info("grocery in session "+session.getAttribute("gname").toString().equals("null"))
 	 if( !session.getAttribute("gname").toString().equals("null")){
@@ -1006,8 +953,6 @@ def authenticate1 = {
 	
 	}
 	else{
-	//flash.message = "sorry, ${params.userName}. Enter Valid UserName/Password"
-	//redirect(action:"userlogin1")
 	
 	render text: """<script type="text/javascript">
                     alert("Enter Valid Email/Password");
@@ -1026,15 +971,14 @@ def passwordSave2={
 	 return
 	}
 	def responseData = new HashMap<>()
-	//def username= User.findByUsername(session.user)
 	
 	def user= User.findByUserName(session.user)
-	log.info(user)
+	log.info("User data: "+user)
 	
 	
 	responseData.put(getMessages('default.message.label'),"Password Changed Successfully")
 	responseData.put("uname",user)
-	log.info(responseData)
+	log.info("responseData: "+responseData)
 	[result:responseData]
 }
 def _form(){
@@ -1045,7 +989,7 @@ def _form(){
 def create() { 
 	
 	if(session.user=="" || session.user==null ){
-		log.info("session check  *"+session.user)
+		log.info("session check: "+session.user)
 		redirect(action:"userlogin1")
 		return
 	}
@@ -1107,7 +1051,7 @@ def saveuser() {
 			
 			TestController testController=new TestController();
 			String smsresp=testController.sendSMSToUser(mobileNumber,"Dear Customer, Your Registration was done successfully.....");
-			log.info("SMS response"+smsresp);
+			log.info("SMS response: "+smsresp);
 		
 		
 		}else if(result.get("status") == "error"){
@@ -1154,10 +1098,10 @@ def saveuser() {
 	
 	def renderPage(mode,url,map){
 		log.info("User Controller renderPage Action")
-		log.info(map.get("status"))
-		log.info(url)
-		log.info(mode)
-		log.info(map)
+		log.info("map: "+map.get("status"))
+		log.info("url: "+url)
+		log.info("mode: "+mode)
+		log.info("map: "+map)
 		 if(mode == "web" && map.get("status")=="success"){
 			 
 			render view:url,model:[result:map]

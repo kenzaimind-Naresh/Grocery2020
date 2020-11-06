@@ -35,7 +35,7 @@
      .search-form-wrapper {
     display: none;
     position: absolute;
-   width: 100%;
+   	width: 100%;
     left: 0;
     right: 0;
     padding-left: 470px;
@@ -132,10 +132,10 @@ padding: 2px 16px;
 form.example input[type=text] {
   padding: 5px;
   font-size: 17px;
-  border: 1px light grey;
+  border: 1px solid orange;
   float: left;
   width: 80%;
-  background: #f1f1f1;
+  background: white;
 }
 
 /* Style the submit button */
@@ -143,16 +143,17 @@ form.example button {
   float: left;
   width: 70%;
   padding: 5px;
-  background: #FFCC33;
-  color: black;
+  background: #ffa600;
+  color: white;
   font-size: 17px;
-  border: 1px light grey;
+  border: 1px solid orange;
   border-left: none; /* Prevent double borders */
   cursor: pointer;
 }
 
 form.example button:hover {
-  background: #f0f3f5;
+  background: white;
+  color: #ffa600;
 }
 
 /* Clear floats */

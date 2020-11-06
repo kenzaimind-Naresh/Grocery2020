@@ -26,25 +26,25 @@ class OrderStatusController {
 
 		def responseData = new HashMap<>();
 		def mode=params.mode
-		log.info(mode)
+		log.info("mode: "+mode)
 		def result,url
 		def renderData = new HashMap<>(); 
 	 
 		def groceryName = params.groceryName
-		log.info(groceryName)
+		log.info("groceryName: "+groceryName)
 		
 		def user= Merchant.findByEmail(session.user)
-		log.info(user)
+		log.info("Merchant data: "+user)
 		
 
 		def merchantId = user.shopName
 		def of=0;
 		def data=OrderStatus.findAllByMerchantId(merchantId,[sort:"id",order:"desc",max: 5, offset: of])
-		log.info(data)
+		log.info("OrderStatus data: "+data)
 		def totalcount=OrderStatus.findAllByMerchantId(merchantId).size()
-		log.info(totalcount)
+		log.info("OrderStatus count: "+totalcount)
 		def orderStatusInstance=OrderStatus.findByGroceryName(params.groceryName)
-		log.info(orderStatusInstance)
+		log.info("orderStatusInstance: "+orderStatusInstance)
 		
 		responseData.put("data1", orderStatusInstance)
 		responseData.put("listId", "list")
@@ -52,7 +52,7 @@ class OrderStatusController {
 		responseData.put("data", data)
 		responseData.put("uname", user)
 		responseData.put("offset", of)
-		log.info(responseData)
+		log.info("responseData: "+responseData)
 		[result:responseData]
 	}
 	
@@ -66,20 +66,20 @@ class OrderStatusController {
 		}
 		def responseData = new HashMap<>();
 		def mode=params.mode
-		log.info(mode)
+		log.info("mode: "+mode)
 		def result,url
 		
 		if(mode == "web"){
 		def user= Merchant.findByEmail(session.user)
-		log.info(user)
+		log.info("Merchant data: "+user)
 		
 		def merchantId = user.shopName
 		log.info(merchantId)
 		def of=params.offset;
 		def data=OrderStatus.findAllByMerchantId(merchantId,[sort:"id",order:"desc",max: 5, offset: of])
-		log.info(data)
+		log.info("OrderStatus data: "+data)
 		def totalcount=OrderStatus.findAllByMerchantId(merchantId).size()
-		log.info(totalcount)
+		log.info("OrderStatus count: "+totalcount)
 		responseData.put("listId", "list")
 		responseData.put("totalcount",totalcount )
 		responseData.put("data", data)
@@ -95,7 +95,7 @@ class OrderStatusController {
 		def renderData = new HashMap<>();
 		def acceptance=OrderStatus.get(params.id)
 		def user = Merchant.findByEmail(session.user)
-		log.info(user)
+		log.info("Merchant data: "+user)
 		
 		def orderId = acceptance.orderId;
 		def groceryName = acceptance.groceryName;
@@ -114,19 +114,19 @@ class OrderStatusController {
 		List<OrderStatus> orderList=new ArrayList<OrderStatus>();
 		String[] gnames = groceryName.split("#");
 		String[] gprices = groceryPrice.split("#");
-		log.info(gnames)
-		log.info(gnames[0]) 
+		log.info("gnames: "+gnames)
+		log.info("gnames[0]: "+gnames[0]) 
 		String[] grocnames = gnames[0].split("00");
-		log.info(grocnames)
-		log.info(grocnames[0])
-		log.info(grocnames[1])
+		log.info("grocnames: "+grocnames)
+		log.info("grocnames[0]: "+grocnames[0])
+		log.info("grocnames[1]: "+grocnames[1])
 		for(int i=0;i<productCount;i++){
 			log.info("incece "+i);
 		OrderStatus order=new OrderStatus();
 		order.groceryName=gnames[i];
 		order.groceryPrice=gprices[i];
 		orderList.add(order);
-		log.info(order);
+		log.info("OrderStatus: "+order);
 			}
 
 		renderData.put("orderList",orderList);
@@ -147,14 +147,14 @@ class OrderStatusController {
 	def updateOrder(){
 				log.info("OrderStatusController updateOrder Action")
 				def responseData = new HashMap<>();
-				log.info(params.orderId)
-				log.info(params.status);
+				log.info("orderId params: "+params.orderId)
+				log.info("status params: "+params.status);
 				def orderInstance=OrderStatus.get(params.orderId)
-				log.info(orderInstance)
-				log.info(session.user)
+				log.info("orderInstance: "+orderInstance)
+				log.info("user from session: "+session.user)
 				
 				def user = Merchant.findByEmail(session.user)
-				log.info(user)
+				log.info("Merchant data: "+user)
 				def user1 = User.findByUserId(orderInstance.usercartId)
 				log.info("User Info******* "+user1)
 				
@@ -163,7 +163,7 @@ class OrderStatusController {
 				 
 				 TestController testController=new TestController();
 				 String smsresp=testController.sendSMSToUser(user1.mobileNumber,"Dear "+user1.userName+",your Grocery Order will be delivered in "+orderInstance.status+". ");
-				 log.info("SMS response"+smsresp);
+				 log.info("SMS response: "+smsresp);
 				
 				[result:responseData]
 	}

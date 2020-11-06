@@ -98,10 +98,10 @@ window.onhashchange = function (event) {
 				<fieldset class="form">
 					<g:render template="form"/>
 				</fieldset>
-			<div class="col-sm-12 text-left" style="padding-left:530px">
+			<div class="col-sm-12 text-left" style="padding-left:550px">
 				<br>
 				<fieldset class="buttons">
-					<g:submitButton name="create" class="save" class="genric-btn primary circle" style="font-size: 15px;"  value="${message(code: 'default.button.create.label', default: 'Save')}" />
+					<g:submitButton name="create" class="save" class="genric-btn primary circle" style="font-size: 15px;"  value="${message(code: 'default.button.save.label', default: 'Save')}" />
 				</fieldset>
 				</div>
 			</g:form>
