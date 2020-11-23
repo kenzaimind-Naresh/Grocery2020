@@ -14,7 +14,9 @@ class Grocery {
 	String total
 	String merchantId
 	String merchantshopName
-	
+	String merchantorginal
+	String merchantQuantity
+	String merchantWeight
 	
 	String modifiedBy
 	Date createdDate
@@ -33,7 +35,9 @@ class Grocery {
 		total(maxSize:50)
 		merchantId(maxSize:50,nullable:false)
 		merchantshopName(maxSize:50,nullable:false)
-		
+		merchantorginal(maxSize:50,nullable:false)
+		merchantQuantity(maxSize:50,nullable:false)
+		merchantWeight(maxSize:50,nullable:false)
 		
 		createdDate(blank:true, nullable:true)
 		modifiedBy(nullable:false,maxSize:50)

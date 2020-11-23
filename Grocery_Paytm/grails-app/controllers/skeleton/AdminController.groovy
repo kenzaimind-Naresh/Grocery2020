@@ -216,6 +216,32 @@ class AdminController {
 		  [result:responseData]
 		}
 	}
+	
+	def packlist(){
+		
+		log.info("adminController packlist Action")
+		def adminname= session.admin
+		if(adminname ==null || adminname=="" ){
+		 redirect(uri: "/admin/login1")
+		 return
+		}
+		def responseData = new HashMap<>();
+		def admin= Admin.findByAdminname(session.admin)
+		log.info("Admin data: "+admin)
+		
+		def mode="web"
+		def of=0;
+		def packdata=Package.list(sort:"id",order:"desc",max: 15, offset: of)
+		log.info("Packages data: "+packdata)
+		def totalcount=Package.findAll().size()
+		log.info("Packages Count: "+totalcount)
+		responseData.put("listId", "packlist")
+		responseData.put("totalcount",totalcount )
+		responseData.put("packdata", packdata)
+		responseData.put("admin", admin)
+		responseData.put("offset", of)
+		[result:responseData]
+	}
 
 	def logout = {
 		

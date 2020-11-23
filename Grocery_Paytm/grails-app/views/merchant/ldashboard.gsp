@@ -93,35 +93,41 @@ window.onhashchange = function (event) {
 
 <body>
 
-   <g:render template="merchantheader1"/>]
+   <g:render template="merchantheader1"/>
    
    
 	<!-- start banner Area -->
 		<div class="container">
 					<br><br><br><br><br><br>
-						<div class="row">
-							<div class="col-lg-3">
+						<div class="row" style="padding-left: 180px;">
+							<div class="col-lg-2">
 								<div class="banner-content">
 									<h4 style="font-family: Calibri" ><a href="/Skeleton/grocery/create" class="active"  style="color: black;" >Create Grocery</a> </h4>
 									</div>
 							</div>
 							
-							<div class="col-lg-3">
+							<div class="col-lg-2">
 								<div class="banner-content">
 									<h4 style="font-family: Calibri"><a href="/Skeleton/grocery/list" class="active"  style="color: black;" >View List</a> </h4>
 									</div>
 							</div>
 						
-							<div class="col-lg-3">
+							<div class="col-lg-2">
 								<div class="banner-content">
 									<h4 style="font-family: Calibri"><a href="/Skeleton/orderStatus/orderstatuslist" class="active"  style="color: black;" >Order</a> </h4>
 									
 								</div>
 							</div>
 							
-							<div class="col-lg-3">
+							<div class="col-lg-2">
 								<div class="banner-content">
 									<h4 style="font-family: Calibri"><a href="/Skeleton/grocery/outofstock" class="active"  style="color: black;" >Stock Details</a> </h4>
+									
+								</div>
+							</div>
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/package/packview" class="active"  style="color: black;" >View Stock</a> </h4>
 									
 								</div>
 							</div>

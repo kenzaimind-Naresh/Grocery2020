@@ -81,6 +81,13 @@ window.onhashchange = function (event) {
 									
 								</div>
 							</div>
+							
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/package/packview" class="active"  style="color: black;" >View Stock</a> </h4>
+									
+								</div>
+							</div>
 					</div>
 				</div>
 	<!-- End banner Area -->
