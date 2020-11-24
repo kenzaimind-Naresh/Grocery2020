@@ -202,7 +202,9 @@ class PackageController {
 		def cEmail=user.email
 		log.info("customeremail: "+cEmail)
 		def tranAmount=packdata.subAmount
-		def cartId="1"
+				Random rand = new Random(); 
+		
+		def cartId=rand.nextInt(9000000) + 1000000; 
 		log.info("txn amount to pay: "+tranAmount)
 		
 		TestController testController=new TestController();
