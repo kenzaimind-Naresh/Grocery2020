@@ -8,6 +8,7 @@ import grails.transaction.Transactional;
 import java.text.SimpleDateFormat
 
 
+
 class PackageController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -87,13 +88,19 @@ class PackageController {
 		log.info("createddate from package data: "+packdata.createdDate)
 		log.info("duration from package data: "+packdata.duration)
 		log.info("merchantId from merchantdata: "+user.id)
-		def expiryDate
+		
+		Date expiryDate
+		String expdate
 		if(packdata.duration == "1month"){
 			Calendar calendar = Calendar.getInstance();
 			log.info("Current date: " + calendar.getTime())
 			calendar.add(Calendar.MONTH, 1)
 			expiryDate = calendar.getTime()
 			log.info("ExpiryDate with 1month: " + expiryDate)
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+			
+			expdate = sdf.format(expiryDate);
+			log.info("Formatted Expiry Date: "+expdate);
 		}
 		else if(packdata.duration == "2month"){
 			Calendar calendar = Calendar.getInstance();
@@ -101,6 +108,10 @@ class PackageController {
 			calendar.add(Calendar.MONTH, 2)
 			expiryDate = calendar.getTime()
 			log.info("ExpiryDate with 2month: " + expiryDate)
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+			
+			expdate = sdf.format(expiryDate);
+			log.info("Formatted Expiry Date: "+expdate);
 		}
 		else if(packdata.duration == "3month"){
 			Calendar calendar = Calendar.getInstance();
@@ -108,6 +119,10 @@ class PackageController {
 			calendar.add(Calendar.MONTH, 3)
 			expiryDate = calendar.getTime()
 			log.info("ExpiryDate with 3month: " + expiryDate)
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+			
+			expdate = sdf.format(expiryDate);
+			log.info("Formatted Expiry Date: "+expdate);
 		}
 		else if(packdata.duration == "4month"){
 			Calendar calendar = Calendar.getInstance();
@@ -115,6 +130,10 @@ class PackageController {
 			calendar.add(Calendar.MONTH, 4)
 			expiryDate = calendar.getTime()
 			log.info("ExpiryDate with 4month: " + expiryDate)
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+			
+			expdate = sdf.format(expiryDate);
+			log.info("Formatted Expiry Date: "+expdate);
 		}
 		else if(packdata.duration == "5month"){
 			Calendar calendar = Calendar.getInstance();
@@ -122,6 +141,10 @@ class PackageController {
 			calendar.add(Calendar.MONTH, 5)
 			expiryDate = calendar.getTime()
 			log.info("ExpiryDate with 5month: " + expiryDate)
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+			
+			expdate = sdf.format(expiryDate);
+			log.info("Formatted Expiry Date: "+expdate);
 		}
 		else if(packdata.duration == "6month"){
 			Calendar calendar = Calendar.getInstance();
@@ -129,6 +152,10 @@ class PackageController {
 			calendar.add(Calendar.MONTH, 6)
 			expiryDate = calendar.getTime()
 			log.info("ExpiryDate with 6month: " + expiryDate)
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+			
+			expdate = sdf.format(expiryDate);
+			log.info("Formatted Expiry Date: "+expdate);
 		}
 		else if(packdata.duration == "7month"){
 			Calendar calendar = Calendar.getInstance();
@@ -136,6 +163,10 @@ class PackageController {
 			calendar.add(Calendar.MONTH, 7)
 			expiryDate = calendar.getTime()
 			log.info("ExpiryDate with 7month: " + expiryDate)
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+			
+			expdate = sdf.format(expiryDate);
+			log.info("Formatted Expiry Date: "+expdate);
 		}
 		else if(packdata.duration == "8month"){
 			Calendar calendar = Calendar.getInstance();
@@ -143,6 +174,10 @@ class PackageController {
 			calendar.add(Calendar.MONTH, 8)
 			expiryDate = calendar.getTime()
 			log.info("ExpiryDate with 8month: " + expiryDate)
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+			
+			expdate = sdf.format(expiryDate);
+			log.info("Formatted Expiry Date: "+expdate);
 		}
 		else if(packdata.duration == "9month"){
 			Calendar calendar = Calendar.getInstance();
@@ -150,6 +185,10 @@ class PackageController {
 			calendar.add(Calendar.MONTH, 9)
 			expiryDate = calendar.getTime()
 			log.info("ExpiryDate with 9month: " + expiryDate)
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+			
+			expdate = sdf.format(expiryDate);
+			log.info("Formatted Expiry Date: "+expdate);
 		}
 		else if(packdata.duration == "10month"){
 			Calendar calendar = Calendar.getInstance();
@@ -157,6 +196,10 @@ class PackageController {
 			calendar.add(Calendar.MONTH, 10)
 			expiryDate = calendar.getTime()
 			log.info("ExpiryDate with 10month: " + expiryDate)
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+			
+			expdate = sdf.format(expiryDate);
+			log.info("Formatted Expiry Date: "+expdate);
 		}
 		else if(packdata.duration == "11month"){
 			Calendar calendar = Calendar.getInstance();
@@ -164,6 +207,10 @@ class PackageController {
 			calendar.add(Calendar.MONTH, 11)
 			expiryDate = calendar.getTime()
 			log.info("ExpiryDate with 11month: " + expiryDate)
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+			
+			expdate = sdf.format(expiryDate);
+			log.info("Formatted Expiry Date: "+expdate);
 		}
 		else if(packdata.duration == "12month"){
 			Calendar calendar = Calendar.getInstance();
@@ -171,11 +218,15 @@ class PackageController {
 			calendar.add(Calendar.MONTH, 12)
 			expiryDate = calendar.getTime()
 			log.info("ExpiryDate with 12month: " + expiryDate)
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+			
+			expdate = sdf.format(expiryDate);
+			log.info("Formatted Expiry Date: "+expdate);
 		}
-		log.info("ExpiryDate: "+expiryDate)
+		log.info("ExpiryDate: "+expdate)
 		def paymentKey = "abc123"
 		
-		def subscription = SubscriptionService.saveSubcription(packdata.packageId,user.id,packdata.createdDate,expiryDate,paymentKey)
+		def subscription = SubscriptionService.saveSubcription(packdata.packageId,user.id,packdata.createdDate,expdate,paymentKey)
 		
 		responseData.put("packdata", packdata)
 		responseData.put("listId", "list")
@@ -211,6 +262,101 @@ class PackageController {
 		
 		testController.paytmpay2(custid,mobile,cEmail,tranAmount,cartId)
 		return
+		
+	}
+	
+	def groceriesView(){
+		
+		log.info("PackageController groceriesView Action")
+		
+		def username= session.user
+		if(username ==null || username=="" ){
+		 redirect(uri: "/package/groceriesView")
+		 return
+		}
+		def responseData = new HashMap<>();
+		def mode=params.mode
+		log.info("mode: "+mode)
+		def result,url
+			
+		def groceryName = params.groceryName
+		log.info("groceryName: "+groceryName)
+		
+		def user= Merchant.findByEmail(session.user)
+		log.info("Merchant data: "+user)
+		
+		
+		def merchantId = user.id
+		def of=0;
+		log.info("merchantId "+merchantId);
+		log.info("Image "+Grocery.findAllByMerchantId(merchantId))
+		
+		def data=Grocery.findAllByMerchantId(merchantId,[sort:"id",order:"desc",max: 5, offset: of])
+		log.info("Grocery data: "+data)
+		def totalcount=Grocery.findAllByMerchantId(merchantId).size()
+		log.info("Grocery count: "+totalcount)
+		def groceryInstance=Grocery.findByGroceryName(params.groceryName)
+		
+		responseData.put("data1", groceryInstance)
+		responseData.put("listId", "list")
+		responseData.put("totalcount",totalcount)
+		responseData.put("data", data)
+		responseData.put("uname", user)
+		responseData.put("offset", of)
+		log.info("responseData: "+responseData)
+		[result:responseData]
+	}
+	
+	def offsetlist(){
+		log.info("PackageController offsetlist Action")
+		
+		def username= session.user
+		if(username ==null || username=="" ){
+		 redirect(uri: "/merchant/login")
+		 return
+		}
+		def responseData = new HashMap<>();
+		def mode=params.mode
+		log.info("mode: "+mode)
+		def result,url
+		
+		if(mode == "web"){
+		def user= Merchant.findByEmail(session.user)
+		log.info("Merchant data: "+user)
+		def merchantId = user.id
+		log.info("merchantId: "+merchantId)
+		
+		def of=params.offset;
+		def data=Grocery.findAllByMerchantId(merchantId,[sort:"id",order:"desc",max: 5, offset: of])
+		log.info("Grocery data: "+data)
+		def totalcount=Grocery.findAllByMerchantId(merchantId).size()
+		log.info("Grocery count: "+totalcount)
+		responseData.put("listId", "list")
+		responseData.put("totalcount",totalcount )
+		responseData.put("data", data)
+		responseData.put("uname", user)
+		responseData.put("offset", Integer.parseInt(of))
+		  [result:responseData]
+		}
+	}
+	
+	def getPackprice(){
+		
+		log.info("PackageController getPackprice action")
+		def id=params.id
+		List<String> packData=new ArrayList<String>();
+		log.info("packageName: "+id);
+		def packObjects=Package.findAllByPackageName(id);
+		def subAmount = packObjects.subAmount
+		log.info("subAmount: "+subAmount)
+		log.info("packObjects: "+packObjects);
+		log.info(packObjects.size());
+		for(int i=0;i<packObjects.size();i++){
+			log.info("PackagePrice from packObjects: "+packObjects[i].subAmount)
+			packData.add(packObjects[i].subAmount);
+		}
+		log.info("PackagePrice data in list: "+packData);
+		render packData
 		
 	}
 	

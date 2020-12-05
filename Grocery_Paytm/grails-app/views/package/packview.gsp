@@ -86,6 +86,7 @@ history.pushState({ page: 1 }, "Title 1", "#no-back");
 window.onhashchange = function (event) {
   window.location.hash = "no-back";
 };
+
 </script>
 
 
@@ -99,44 +100,11 @@ window.onhashchange = function (event) {
 	<!-- start banner Area -->
 		<div class="container">
 					<br><br><br><br><br><br>
-						<div class="row" style="padding-left: 180px;">
-							<div class="col-lg-2">
-								<div class="banner-content">
-									<h4 style="font-family: Calibri" ><a href="/Skeleton/grocery/create" class="active"  style="color: black;" >Create Grocery</a> </h4>
-									</div>
-							</div>
-							
-							<div class="col-lg-2">
-								<div class="banner-content">
-									<h4 style="font-family: Calibri"><a href="/Skeleton/grocery/list" class="active"  style="color: black;" >View List</a> </h4>
-									</div>
-							</div>
-						
-							<div class="col-lg-2">
-								<div class="banner-content">
-									<h4 style="font-family: Calibri"><a href="/Skeleton/orderStatus/orderstatuslist" class="active"  style="color: black;" >Order</a> </h4>
-									
-								</div>
-							</div>
-							
-							<div class="col-lg-2">
-								<div class="banner-content">
-									<h4 style="font-family: Calibri"><a href="/Skeleton/grocery/outofstock" class="active"  style="color: black;" >Stock Details</a> </h4>
-									
-								</div>
-							</div>
-							<div class="col-lg-2">
-								<div class="banner-content">
-									<h4 style="font-family: Calibri"><a href="/Skeleton/package/packview" class="active"  style="color: blue;" >View Stock</a> </h4>
-									
-								</div>
-							</div>
-					</div><br><br><br>
 					<div class="order_box">
 					
 						<p style="color: black;font-size: 16px;padding-left:200px; ">Dear ${result.uname.firstName },</p>
 		
-						<p style="color: black;font-size: 16px;padding-left:200px;">To view your total stock from start date to till,please do make a payment from following.</p>
+						<p style="color: black;font-size: 16px;padding-left:200px;">To view your total stock from start date to till,please do the subscription from below packages.</p>
 			<hr>
 			<g:form class="form-horizontal" role="form" controller="Package" Id="myform" name="myform" action="getSubscription"  nonvalidate="nonvalidate">		
         <div class="row" style="padding-left: 180px;">
@@ -159,7 +127,7 @@ window.onhashchange = function (event) {
                         </div>
                         <div class="panel-footer">
                         <g:if test = "${i.subAmount != "FREE"}">
-                        <g:link type="button" class="genric-btn primary circle" controller="package" action="getSubscription" id="${i.packageName}">BUY</g:link>
+                        <g:link type="button" class="genric-btn primary circle" controller="package" action="getSubscription" style="font-size: 15px;" id="${i.packageName}">BUY</g:link>
                         </g:if>
                         <g:else>
                         <b style="font-size:25px;height:30px">FREE</b>
@@ -167,12 +135,13 @@ window.onhashchange = function (event) {
                         </div>
                     </div>
                 </div>
+                <input type="hidden" id="subAmount" name="subAmount" value="${i.subAmount}">
                </g:each>
                </div>
                </div>
                </div>
                </div>
-     <input type="hidden" id="mode" name="mode" value="web"> 
+     <input type="hidden" id="mode" name="mode" value="web">
      </g:form>
  </div><br><br><br><br><br>
  </div>

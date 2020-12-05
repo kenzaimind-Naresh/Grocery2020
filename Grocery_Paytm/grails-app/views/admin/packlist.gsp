@@ -163,6 +163,7 @@ th, td {
       <th style="color:black;font-family: Calibri">Pakage ID</th>
       <th style="color:black;font-family: Calibri">Package Name</th>
       <th style="color:black;font-family: Calibri">Package Price</th>
+      <th style="color:black;font-family: Calibri">Package Validity</th>
       <th style="color:black;font-family: Calibri">Created By</th>
           
       </tr>
@@ -173,6 +174,7 @@ th, td {
         <td>${it.id}</td>
         <td>${it.packageName}</td>
         <td>${it.subAmount}</td>
+        <td>${it.duration}</td>
         <td>${it.createdby}</td>     
      
       </tr>

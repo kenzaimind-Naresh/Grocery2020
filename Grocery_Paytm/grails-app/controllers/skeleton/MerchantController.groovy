@@ -26,8 +26,8 @@ class MerchantController {
 	
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-	def showQrcode(Merchant merchantInstance) {
-		response.outputStream << merchantInstance.qrcode // write the grocery to the output stream
+	def showImage(Merchant merchantInstance) {
+		response.outputStream << merchantInstance.image // write the grocery to the output stream
 		response.outputStream.flush()
 		}
 	
@@ -716,7 +716,7 @@ if(mode=="web")	{
 				
 				session.user=user.email
 				session.flag="M"
-				redirect(action:"ldashboard")
+				//redirect(action:"ldashboard")
 			}else{
 			render text: """<script type="text/javascript">
                     alert("Enter valid Email or Mobile/Password");
@@ -725,11 +725,62 @@ if(mode=="web")	{
 			contentType: 'js'
 
 			}
-		
+			def merchantId = user.id
+			def check = Subscription.findByMerchantId(merchantId)
+			log.info("package data: "+check)
 			
+			if(check == null || check == ""){
+				redirect(uri: "/merchant/ldashboard")
+				return
+				
+			}
+			else{
+				def expiryDate = check.expiryDate
+				log.info("Expiry Date: "+expiryDate)
+				
+				Calendar calendar = Calendar.getInstance();
+				Date date = calendar.getTime();
+				log.info("Current Date: "+date)
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+				
+				String currentdate = sdf.format(date);
+				log.info("Formatted Current Date: "+currentdate);
+				
+				if(expiryDate != currentdate){
+					log.info("You still have your package validity")
+					render text: """<script type="text/javascript">
+	                    alert("You still have your package validity");
+	                    window.location.href = "/Skeleton/merchant/merchanthome";
+						</script>""",
+						contentType: 'js'
+				}
+				else{
+					log.info("Your Package validity has been expired.Please subscribe now.")
+					render text: """<script type="text/javascript">
+	                    alert("Your Package validity has been expired.Please subscribe now.");
+	                    window.location.href = "/Skeleton/package/packview";
+						</script>""",
+						contentType: 'js'
+				}
+			}
 			
 			}
-		
+	
+		def merchanthome(){
+			
+			log.info("MerchantController merchanthome action")
+			def responseData = new HashMap<>()
+			def result
+			def user= Merchant.findByEmail(session.user)
+			log.info("Merchant data: "+user)
+			
+			responseData.put("uname",user)
+			log.info("responseData: "+responseData)
+	
+			[result:responseData]
+			
+		}	
+	
 	    def ldashboard ={
 		log.info("MerchantController ldashboard Action")
 		

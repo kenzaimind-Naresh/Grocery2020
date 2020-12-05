@@ -1,6 +1,30 @@
 package skeleton
 
 class AdminController {
+	
+	def merchantdoc(){
+		
+		log.info("AdminController merchantdoc action")
+		
+		params.max = Math.min(params.max ? params.int('max') : 1, 1)
+		respond Merchant.list(params), model:[merchantInstance: Merchant]
+		
+		def adminname= session.admin
+		if(adminname ==null || adminname=="" ){
+		 redirect(uri: "/admin/login1")
+		 return
+		}
+		
+		def responseData = new HashMap<>()
+		def admin= Admin.findByAdminname(session.admin)
+		log.info("Admin Data: "+admin)
+		def merchantshopId= session.getAttribute("mid")
+		log.info(merchantshopId)
+		def data = Merchant.findAllById(merchantshopId)
+		log.info("Merchant Image Data: "+data)
+		responseData.put("admin", admin)
+		[result:responseData]
+	}
 
 	def login1() {
 		log.info("adminController login1 Action")
@@ -23,6 +47,8 @@ class AdminController {
 		def of=0;
 		def merchantdata=Merchant.list(sort:"id",order:"desc",max: 5, offset: of)
 		log.info("merchantdata: "+merchantdata)
+		def merchantId = merchantdata.id
+		log.info("merchantId: "+merchantId)
 		def totalcount=Merchant.findAll().size()
 		log.info("Merchant Count: "+totalcount)
 		responseData.put("listId", "merchantlist")
