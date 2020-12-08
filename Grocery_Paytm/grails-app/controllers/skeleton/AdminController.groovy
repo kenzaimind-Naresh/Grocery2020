@@ -5,9 +5,10 @@ class AdminController {
 	def merchantdoc(){
 		
 		log.info("AdminController merchantdoc action")
-		
+		def merchantshopId= params.MerchantId;
+		log.info("merchantshopId "+merchantshopId)
 		params.max = Math.min(params.max ? params.int('max') : 1, 1)
-		respond Merchant.list(params), model:[merchantInstance: Merchant]
+	//	respond Merchant.list(params), model:[merchantInstance: Merchant]
 		
 		def adminname= session.admin
 		if(adminname ==null || adminname=="" ){
@@ -18,11 +19,13 @@ class AdminController {
 		def responseData = new HashMap<>()
 		def admin= Admin.findByAdminname(session.admin)
 		log.info("Admin Data: "+admin)
-		def merchantshopId= session.getAttribute("mid")
-		log.info(merchantshopId)
-		def data = Merchant.findAllById(merchantshopId)
+		
+		
+		
+		def data = Merchant.get(merchantshopId)
 		log.info("Merchant Image Data: "+data)
-		responseData.put("admin", admin)
+		responseData.put("admin", data)
+		log.info(responseData);
 		[result:responseData]
 	}
 

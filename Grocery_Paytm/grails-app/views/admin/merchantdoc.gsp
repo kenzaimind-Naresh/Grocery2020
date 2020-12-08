@@ -87,18 +87,18 @@
 <br><br><br><br><br>
 <div class="container">
    <div class="row">
-   	<g:each in="${merchantInstanceList}" status="i" var="merchantInstance">
+  
       <div class="col-lg-12">
           <div class="panel panel-default" align="center">
-	          <img src="${createLink(controller:'merchant', action:'showImage', id:"${merchantInstance.id}")}" alt=" " style="width:256px;height:216px;"/>
+	          <img src="${createLink(controller:'merchant', action:'showImage', id:"${result.admin.id}")}" alt=" " style="width:256px;height:216px;"/>
 		  </div>
       </div>
       <div class="col-lg-12">
       	 <div class="panel panel-default" align="center"><br>
-      	 	<b style="color: black;font-size: 18px;">${merchantInstance.shopName }</b>
+      	 	<b style="color: black;font-size: 18px;">${result.admin.shopName }</b>
       	 </div>
       </div>
-      </g:each>
+      
    </div>
 </div>
         
