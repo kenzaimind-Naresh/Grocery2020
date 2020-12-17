@@ -24,7 +24,8 @@ class AdminController {
 		
 		def data = Merchant.get(merchantshopId)
 		log.info("Merchant Image Data: "+data)
-		responseData.put("admin", data)
+		responseData.put("data", data)
+		responseData.put("admin", admin)
 		log.info(responseData);
 		[result:responseData]
 	}
@@ -260,7 +261,7 @@ class AdminController {
 		
 		def mode="web"
 		def of=0;
-		def packdata=Package.list(sort:"id",order:"desc",max: 15, offset: of)
+		def packdata=Package.list(sort:"id",order:"asc",max: 15, offset: of)
 		log.info("Packages data: "+packdata)
 		def totalcount=Package.findAll().size()
 		log.info("Packages Count: "+totalcount)

@@ -85,15 +85,16 @@ class PackageController {
 		def id = params.id
 		def packdata=Package.findByPackageName(id)
 		log.info("packageId from package data: "+packdata.packageId)
-		log.info("createddate from package data: "+packdata.createdDate)
 		log.info("duration from package data: "+packdata.duration)
 		log.info("merchantId from merchantdata: "+user.id)
 		
 		Date expiryDate
 		String expdate
+		def createdDate
 		if(packdata.duration == "1month"){
 			Calendar calendar = Calendar.getInstance();
-			log.info("Current date: " + calendar.getTime())
+			createdDate = calendar.getTime()
+			log.info("Current date: " + createdDate)
 			calendar.add(Calendar.MONTH, 1)
 			expiryDate = calendar.getTime()
 			log.info("ExpiryDate with 1month: " + expiryDate)
@@ -104,7 +105,8 @@ class PackageController {
 		}
 		else if(packdata.duration == "2month"){
 			Calendar calendar = Calendar.getInstance();
-			log.info("Current date: " + calendar.getTime())
+			createdDate = calendar.getTime()
+			log.info("Current date: " + createdDate)
 			calendar.add(Calendar.MONTH, 2)
 			expiryDate = calendar.getTime()
 			log.info("ExpiryDate with 2month: " + expiryDate)
@@ -115,7 +117,8 @@ class PackageController {
 		}
 		else if(packdata.duration == "3month"){
 			Calendar calendar = Calendar.getInstance();
-			log.info("Current date: " + calendar.getTime())
+			createdDate = calendar.getTime()
+		log.info("Current date: " + createdDate)
 			calendar.add(Calendar.MONTH, 3)
 			expiryDate = calendar.getTime()
 			log.info("ExpiryDate with 3month: " + expiryDate)
@@ -126,7 +129,8 @@ class PackageController {
 		}
 		else if(packdata.duration == "4month"){
 			Calendar calendar = Calendar.getInstance();
-			log.info("Current date: " + calendar.getTime())
+			createdDate = calendar.getTime()
+			log.info("Current date: " + createdDate)
 			calendar.add(Calendar.MONTH, 4)
 			expiryDate = calendar.getTime()
 			log.info("ExpiryDate with 4month: " + expiryDate)
@@ -137,7 +141,8 @@ class PackageController {
 		}
 		else if(packdata.duration == "5month"){
 			Calendar calendar = Calendar.getInstance();
-			log.info("Current date: " + calendar.getTime())
+			createdDate = calendar.getTime()
+			log.info("Current date: " + createdDate)
 			calendar.add(Calendar.MONTH, 5)
 			expiryDate = calendar.getTime()
 			log.info("ExpiryDate with 5month: " + expiryDate)
@@ -148,7 +153,8 @@ class PackageController {
 		}
 		else if(packdata.duration == "6month"){
 			Calendar calendar = Calendar.getInstance();
-			log.info("Current date: " + calendar.getTime())
+			createdDate = calendar.getTime()
+			log.info("Current date: " + createdDate)
 			calendar.add(Calendar.MONTH, 6)
 			expiryDate = calendar.getTime()
 			log.info("ExpiryDate with 6month: " + expiryDate)
@@ -159,7 +165,8 @@ class PackageController {
 		}
 		else if(packdata.duration == "7month"){
 			Calendar calendar = Calendar.getInstance();
-			log.info("Current date: " + calendar.getTime())
+			createdDate = calendar.getTime()
+			log.info("Current date: " + createdDate)
 			calendar.add(Calendar.MONTH, 7)
 			expiryDate = calendar.getTime()
 			log.info("ExpiryDate with 7month: " + expiryDate)
@@ -170,7 +177,8 @@ class PackageController {
 		}
 		else if(packdata.duration == "8month"){
 			Calendar calendar = Calendar.getInstance();
-			log.info("Current date: " + calendar.getTime())
+			createdDate = calendar.getTime()
+			log.info("Current date: " + createdDate)
 			calendar.add(Calendar.MONTH, 8)
 			expiryDate = calendar.getTime()
 			log.info("ExpiryDate with 8month: " + expiryDate)
@@ -181,7 +189,8 @@ class PackageController {
 		}
 		else if(packdata.duration == "9month"){
 			Calendar calendar = Calendar.getInstance();
-			log.info("Current date: " + calendar.getTime())
+			createdDate = calendar.getTime()
+			log.info("Current date: " + createdDate)
 			calendar.add(Calendar.MONTH, 9)
 			expiryDate = calendar.getTime()
 			log.info("ExpiryDate with 9month: " + expiryDate)
@@ -192,7 +201,8 @@ class PackageController {
 		}
 		else if(packdata.duration == "10month"){
 			Calendar calendar = Calendar.getInstance();
-			log.info("Current date: " + calendar.getTime())
+			createdDate = calendar.getTime()
+			log.info("Current date: " + createdDate)
 			calendar.add(Calendar.MONTH, 10)
 			expiryDate = calendar.getTime()
 			log.info("ExpiryDate with 10month: " + expiryDate)
@@ -203,7 +213,8 @@ class PackageController {
 		}
 		else if(packdata.duration == "11month"){
 			Calendar calendar = Calendar.getInstance();
-			log.info("Current date: " + calendar.getTime())
+			createdDate = calendar.getTime()
+			log.info("Current date: " + createdDate)
 			calendar.add(Calendar.MONTH, 11)
 			expiryDate = calendar.getTime()
 			log.info("ExpiryDate with 11month: " + expiryDate)
@@ -214,7 +225,8 @@ class PackageController {
 		}
 		else if(packdata.duration == "12month"){
 			Calendar calendar = Calendar.getInstance();
-			log.info("Current date: " + calendar.getTime())
+			createdDate = calendar.getTime()
+			log.info("Current date: " + createdDate)
 			calendar.add(Calendar.MONTH, 12)
 			expiryDate = calendar.getTime()
 			log.info("ExpiryDate with 12month: " + expiryDate)
@@ -226,7 +238,7 @@ class PackageController {
 		log.info("ExpiryDate: "+expdate)
 		def paymentKey = "abc123"
 		
-		def subscription = SubscriptionService.saveSubcription(packdata.packageId,user.id,packdata.createdDate,expdate,paymentKey)
+		def subscription = SubscriptionService.saveSubcription(packdata.packageId,user.id,createdDate,expdate,paymentKey)
 		
 		responseData.put("packdata", packdata)
 		responseData.put("listId", "list")

@@ -69,7 +69,7 @@
 			<div class="col-md-5 col-sm-5">
 			<div class="fieldcontain">
 			<label >Package Name: </label>
-			<input type="text" id="packageName" name="packageName" placeholder="Package Name" class="form-control" required/>
+			<input type="text" id="packageName" name="packageName" class="form-control" required/>
 			 <span id="packageNameinfo" style="color:red"></span>
 			</div>
 			</div>
@@ -77,6 +77,7 @@
 			<div class="fieldcontain">
 			<label >Duration: </label>
 			<select id="duration" name="duration" class="form-control">
+				<option value="15Days">15Days</option>
             	<option value="1month">1month</option>
             	<option value="2month">2month</option>
             	<option value="3month">3month</option>
@@ -96,14 +97,14 @@
 			<div class="col-md-5 col-sm-5">
 			<div class="fieldcontain">
 			<label >Price: </label>
-			<input type="text" id="subAmount" name="subAmount" placeholder="Amount" class="form-control" required/>
+			<input type="text" id="subAmount" name="subAmount" class="form-control" required/>
 			 <span id="subAmountinfo" style="color:red"></span>
 			</div>
 			</div>
 			<div class="col-md-5 col-sm-5">
 			<div class="fieldcontain">
 			<label >Created By: </label>
-			<input type="text" id="createdby1" name="createdby1" value="${result.admin.adminname }" placeholder="Created By" class="form-control" disabled/>
+			<input type="text" id="createdby1" name="createdby1" value="${result.admin.adminname }" class="form-control" disabled/>
 			 <span id="createdbyinfo" style="color:red"></span>
 			</div>
 			</div>

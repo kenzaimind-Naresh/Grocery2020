@@ -86,6 +86,52 @@ history.pushState({ page: 1 }, "Title 1", "#no-back");
 window.onhashchange = function (event) {
   window.location.hash = "no-back";
 };
+
+function packValidity(){
+
+	var expDate = document.getElementById("expiryDate").value
+	//alert(expDate);
+	var currentDate = new Date();	
+	var year = currentDate.getFullYear();
+	var month = currentDate.getMonth()+1;
+	var date = currentDate.getDate();
+	var todayDate = year+"-"+month+"-"+date;
+	//alert(todayDate);
+
+	if(todayDate >= expDate){
+		return true;
+		
+		}else{
+			event.preventDefault();
+			alert("You already have a subscription");
+			location.href = "/Skeleton/merchant/ldashboard";
+			return;
+			}
+}
+
+function packValidity2(){
+
+	var expDate = document.getElementById("expiryDate").value
+	//alert(expDate);
+	var currentDate = new Date();	
+	var year = currentDate.getFullYear();
+	var month = currentDate.getMonth()+1;
+	var date = currentDate.getDate();
+	var todayDate = year+"-"+month+"-"+date;
+	//alert(todayDate);
+
+	if(todayDate <= expDate){
+		return true;
+		
+		}else{
+			event.preventDefault();
+			alert("Your package validity has been expired.");
+			location.href = "/Skeleton/merchant/ldashboard";
+			return;
+			}
+}
+
+
 </script>
 
 
@@ -134,13 +180,14 @@ window.onhashchange = function (event) {
 		<div class="col-lg-2"></div>
 		<p style="color: black;font-size: 16px;">If need to view your total stock details, please make a payment on available packages</p>
 		<div class="col-lg-6" style="padding-left: 180px;">
-		<g:link type="button" class="genric-btn primary circle" controller="package" action="packview" style="font-size: 16px;">Proceed to Buy</g:link>
+		<g:link type="button" class="genric-btn primary circle" controller="package" action="packview" style="font-size: 16px;" onclick="packValidity()">Proceed to Buy</g:link>
 		</div><br>
 		<p style="color: black;font-size: 16px;">If already have your subscription package,</p>
 		<div class="col-lg-6" style="padding-left: 160px;">
-		<g:link type="button" class="genric-btn primary circle" controller="package" action="groceriesView" style="font-size: 16px;">Get your Stock Details</g:link>	
+		<g:link type="button" class="genric-btn primary circle" controller="package" action="groceriesView" style="font-size: 16px;" onclick="packValidity2()">Get your Stock Details</g:link>	
 		</div>
 	</div>
+	<input type="hidden" name="expiryDate" id="expiryDate" value="${result.expiryCheck.expiryDate }">
 </div>
 <style>
 .footer {

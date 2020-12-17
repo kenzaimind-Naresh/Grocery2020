@@ -19,6 +19,7 @@ class MerchantController {
 
 	def MerchantService
 	def nexmoService
+	def SubscriptionService
 	
 	def GroceryController
 	TestController testController=new TestController();
@@ -726,7 +727,7 @@ if(mode=="web")	{
 
 			}
 			def merchantId = user.id
-			def check = Subscription.findByMerchantId(merchantId)
+			def check = Subscription.findAllByMerchantId(merchantId,[max: 1,sort:"createdDate",order: "desc"])
 			log.info("package data: "+check)
 			
 			if(check == null || check == ""){
@@ -749,7 +750,6 @@ if(mode=="web")	{
 				if(expiryDate != currentdate){
 					log.info("You still have your package validity")
 					render text: """<script type="text/javascript">
-	                    alert("You still have your package validity");
 	                    window.location.href = "/Skeleton/merchant/merchanthome";
 						</script>""",
 						contentType: 'js'
@@ -819,10 +819,31 @@ if(mode=="web")	{
 		def of=0;
 		def data=Grocery.findAllByMerchantId(merchantId,[sort:"id",order:"desc",max: 5, offset: of])
 		log.info("Grocery data: "+data)
+		def expiryCheck = Subscription.findAllByMerchantId(merchantId,[max: 1,sort:"createdDate",order: "desc"])
+		log.info("Package Validity Check: "+expiryCheck)
+		
+		Calendar calendar = Calendar.getInstance();
+		Date date = calendar.getTime();
+		log.info("Current Date: "+date)
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+		
+		String currentdate = sdf.format(date);
+		log.info("Formatted Current Date: "+currentdate);
+		
+		/*boolean flagValue = "Yes"
+		if(expiryCheck.expiryDate == currentdate){
+			return true;
+		}else{
+			flagValue = "No"
+		}
+		return flagValue;
+		log.info("Value in flagValue: "+flagValue)*/
 		
 		responseData.put("listId", "ldashboard")
 		responseData.put("uname",user)
 		responseData.put("data", data)
+		responseData.put("expiryCheck", expiryCheck)
+		//responseData.put("flagValue",flagValue)
 		responseData.put("flag", session.flag)
 		
 		log.info("responseData: "+responseData)
@@ -949,16 +970,30 @@ if(mode=="web")	{
 		merchantInstance.createdDate = new Date()
 		merchantInstance.modifiedDate = new Date()
 		
-		//def uploaded = request.getFile('qrcode')
-		//merchantInstance.qrcode = uploaded.getBytes() //converting the file to bytes
-		//merchantInstance.name1 = uploaded.originalFilename //getting the file name from the uploaded file
-		//merchantInstance.type1 = uploaded.contentType//getting and storing the file type
-		
 		if(instance.equals(null) && instance2.equals(null) && instance3.equals(null) ){
 		log.info("enter into saving part: ")
         merchantInstance.save flush:true
 		redirect(uri: "/merchant/create")
 		flash.message = "Merchant Registration done successfully"
+		
+		def packDuration = "15Days"
+		def packdata = Package.findByDuration(packDuration)
+		log.info("PackageId: "+packdata.packageId)
+		log.info("Package createdDate: "+packdata.createdDate)
+		
+		Calendar calendar = Calendar.getInstance();
+		def createdDate = calendar.getTime()
+		log.info("Current date: " + createdDate)
+		calendar.add(Calendar.DATE, 15)
+		Date expiryDate = calendar.getTime()
+		//log.info("ExpiryDate with 1month: " + expiryDate)
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+		String expdate = sdf.format(expiryDate);
+		log.info("Formatted Expiry Date: "+expdate);
+		def paymentKey = "abc123"
+		log.info("MerchantId: "+merchantInstance.id)
+		
+		def subscription = SubscriptionService.saveSubcription(packdata.packageId,merchantInstance.id,createdDate,expdate,paymentKey)
 		
 		MerchantService.sendmailUser(merchantInstance.email);
 		

@@ -107,7 +107,6 @@ window.onhashchange = function (event) {
 				
 				<div class="col-lg-4">
 				<g:link type="button" class="genric-btn primary circle" controller="package" action="groceriesView" style="font-size: 16px;">View your Stock Details</g:link>
-					
 				</div>
 			</div>
 		</div>

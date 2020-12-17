@@ -147,7 +147,7 @@ th, td {
       <th style="color:black;font-family: Calibri">Address</th>
       <th style="color:black;font-family: Calibri">City</th>
       <th style="color:black;font-family: Calibri">Zip code</th>
-      
+      <th style="color:black;font-family: Calibri">Document</th>
       </tr>
       </thead>
        <g:findAll in="${result.merchantdata}" expr="true">
@@ -165,7 +165,7 @@ th, td {
       <td>${it.city}</td>
      
       <td>${it.zipCode}</td>
-     
+      <td><a href="/Skeleton/admin/merchantdoc?MerchantId=${it.id}" style="color:black;" id="${it.id}">Uploaded Doc</a></td>
      
       </tr>
       </tbody>
