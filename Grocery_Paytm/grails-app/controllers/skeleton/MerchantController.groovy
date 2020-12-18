@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat
 import java.util.List;
 import java.util.regex.Matcher
 import java.util.regex.Pattern
+import java.util.Date
 
 @Transactional
 class MerchantController {
@@ -686,7 +687,7 @@ if(mode=="web")	{
 	
 	
 	
-	def authenticate  = {
+	def authenticate() throws Exception{
 		log.info("MerchantController authenticate Action")
 			log.info("email params:"+params.email)
 			log.info("mobile params:"+params.mobileNumber)
@@ -728,7 +729,7 @@ if(mode=="web")	{
 			}
 			def merchantId = user.id
 			def check = Subscription.findAllByMerchantId(merchantId,[max: 1,sort:"createdDate",order: "desc"])
-			log.info("package data: "+check)
+			log.info("package data: "+check[0])
 			
 			if(check == null || check == ""){
 				redirect(uri: "/merchant/ldashboard")
@@ -736,18 +737,23 @@ if(mode=="web")	{
 				
 			}
 			else{
-				def expiryDate = check.expiryDate
-				log.info("Expiry Date: "+expiryDate)
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				def expDate = check[0].expiryDate
+				log.info("Expiry Date: "+expDate)
+				Date expiryDate=sdf.parse(expDate);
 				
-				Calendar calendar = Calendar.getInstance();
-				Date date = calendar.getTime();
+				//Calendar calendar = Calendar.getInstance();
+				Date date = new Date();
 				log.info("Current Date: "+date)
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+				log.info("expiry date: "+expiryDate)
+			
 				
 				String currentdate = sdf.format(date);
-				log.info("Formatted Current Date: "+currentdate);
-				
-				if(expiryDate != currentdate){
+				//log.info("Formatted Current Date: "+currentdate);
+				Date todaydate=sdf.parse(currentdate);
+				log.info("Formatted Current Date: "+todaydate);
+				log.info(expiryDate.compareTo(todaydate)>=0);
+				if(expiryDate.compareTo(todaydate)>=0){
 					log.info("You still have your package validity")
 					render text: """<script type="text/javascript">
 	                    window.location.href = "/Skeleton/merchant/merchanthome";
