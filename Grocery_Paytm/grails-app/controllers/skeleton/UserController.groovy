@@ -15,7 +15,7 @@ class UserController {
 	def nexmoService
 	def mailService
 
-static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: "DELETE"]
+static allowedMethods = [save: "GET", update: "PUT", myUpdate: "POST", delete: "DELETE"]
 
 
 def testRestapi(){

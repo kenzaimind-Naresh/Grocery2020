@@ -756,7 +756,7 @@ if(mode=="web")	{
 				if(expiryDate.compareTo(todaydate)>=0){
 					log.info("You still have your package validity")
 					render text: """<script type="text/javascript">
-	                    window.location.href = "/Skeleton/merchant/merchanthome";
+	                    window.location.href = "/Skeleton/merchant/ldashboard";
 						</script>""",
 						contentType: 'js'
 				}
@@ -828,34 +828,85 @@ if(mode=="web")	{
 		def expiryCheck = Subscription.findAllByMerchantId(merchantId,[max: 1,sort:"createdDate",order: "desc"])
 		log.info("Package Validity Check: "+expiryCheck)
 		
-		Calendar calendar = Calendar.getInstance();
-		Date date = calendar.getTime();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		def expDate = expiryCheck[0].expiryDate
+		log.info("Expiry Date: "+expDate)
+		Date expiryDate=sdf.parse(expDate);
+		
+		//Calendar calendar = Calendar.getInstance();
+		Date date = new Date();
 		log.info("Current Date: "+date)
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+		log.info("expiry date: "+expiryDate)
+	
 		
 		String currentdate = sdf.format(date);
-		log.info("Formatted Current Date: "+currentdate);
-		
-		/*boolean flagValue = "Yes"
-		if(expiryCheck.expiryDate == currentdate){
-			return true;
-		}else{
-			flagValue = "No"
-		}
-		return flagValue;
-		log.info("Value in flagValue: "+flagValue)*/
+		//log.info("Formatted Current Date: "+currentdate);
+		Date todaydate=sdf.parse(currentdate);
+		log.info("Formatted Current Date: "+todaydate);
+		log.info(expiryDate.compareTo(todaydate)>=0);
 		
 		responseData.put("listId", "ldashboard")
 		responseData.put("uname",user)
 		responseData.put("data", data)
 		responseData.put("expiryCheck", expiryCheck)
-		//responseData.put("flagValue",flagValue)
 		responseData.put("flag", session.flag)
 		
 		log.info("responseData: "+responseData)
 
 		[result:responseData]
 	
+	}
+		
+	def	merchantdashboard(){
+		log.info("merchantController merchantdashboard Action")
+		def responseData = new HashMap<>()
+		def mode=params.mode
+		log.info("mode: "+mode)
+		
+		def user= Merchant.findByEmail(session.user)
+		log.info("Merchant data: "+user)
+		
+		def merchantId = user.id
+		def expiryCheck = Subscription.findAllByMerchantId(merchantId,[max: 1,sort:"createdDate",order: "desc"])
+		log.info("Package Validity Check: "+expiryCheck)
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		def expDate = expiryCheck[0].expiryDate
+		log.info("Expiry Date: "+expDate)
+		Date expiryDate=sdf.parse(expDate);
+		
+		Date date = new Date();
+		log.info("Current Date: "+date)
+		log.info("expiry date: "+expiryDate)
+	
+		
+		String currentdate = sdf.format(date);
+		Date todaydate=sdf.parse(currentdate);
+		log.info("Formatted Current Date: "+todaydate);
+		log.info(expiryDate.compareTo(todaydate)>=0);
+		if(expiryDate.compareTo(todaydate)>=0){
+			log.info("You still have your package validity")
+			render text: """<script type="text/javascript">
+	                    window.location.href = "/Skeleton/merchant/ldashboard";
+						</script>""",
+				contentType: 'js'
+		}
+		else{
+			log.info("Your Package validity has been expired.Please subscribe now.")
+			render text: """<script type="text/javascript">
+	                    alert("Your Package validity has been expired.Please subscribe now.");
+	                    window.location.href = "/Skeleton/package/packview";
+						</script>""",
+				contentType: 'js'
+		}
+		responseData.put("listId", "mdashboard")
+		responseData.put("uname",user)
+		responseData.put("expiryCheck", expiryCheck)
+		responseData.put("flag", session.flag)
+		
+		log.info("responseData: "+responseData)
+
+		[result:responseData]
 	}
 	
 	def forgotpass(){

@@ -143,8 +143,8 @@ window.onhashchange = function (event) {
       <th>Weight</th>  
       <th>Offer</th>  
       <th>Total</th>
-       <th style="color:black;font-family: Calibri">Edit</th>
-      <th style="color:black;font-family: Calibri">Delete</th>        
+       <th>Edit</th>
+      <th>Delete</th>        
       </tr>
       </thead>
      <tbody>

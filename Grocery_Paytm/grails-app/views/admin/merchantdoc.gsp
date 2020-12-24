@@ -43,7 +43,7 @@
   
       <div class="col-lg-12">
           <div class="panel panel-default" align="center">
-	          <img src="${createLink(controller:'merchant', action:'showImage', id:"${result.data.id}")}" alt=" " style="width:256px;height:216px;"/>
+	          <img src="${createLink(controller:'merchant', action:'showImage', id:"${result.data.id}")}" alt=" " style="width:210px;height:297px;"/>
 		  </div>
       </div>
       <div class="col-lg-12">
