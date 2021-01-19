@@ -52,7 +52,7 @@
              </div>
              <div class="col-lg-3">
 				<div class="banner-content">
-					 <g:link controller="category" action="create"><h4  style=" font-family: Calibri">Create Category</h4></g:link>
+					 <g:link controller="category" action="create"><h4  style=" font-family: Calibri;color: blue;">Create Category</h4></g:link>
                 </div>
              </div>
              <div class="col-lg-3">
@@ -61,11 +61,9 @@
                 </div>
             </div>
             </div>
-            <br>
+
 		<div id="create-category" class="content scaffold-create" role="main">
 		<br><br>
-		
-			<h5 style="padding-left:50px;font-family: Calibri">Create Category</h5>
 			
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>

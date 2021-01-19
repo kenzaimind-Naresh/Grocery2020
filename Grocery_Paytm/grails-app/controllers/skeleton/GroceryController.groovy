@@ -162,7 +162,8 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info("categoryName: "+groceryInstance.categoryName)
 		log.info("cost: "+groceryInstance.cost)
 		groceryInstance.createdDate=new Date()
-		
+		groceryInstance.reducedQuantity = groceryInstance.quantity
+		log.info("Grocery Quantity from reducedquantity: "+groceryInstance.reducedQuantity)
 		def username= session.user
 		if(username ==null || username=="" ){
 		 redirect(uri: "/merchant/login")
@@ -373,14 +374,18 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	def updateGrocery() {
 		log.info("Grocery Controller updateGrocery action")
 		log.info("params: "+params.id);
+		
 		def responseData = new HashMap<>()
 		Grocery groceryInstance=new Grocery();
 		groceryInstance=Grocery.get(params.id);
 		def weight = groceryInstance.weight
 		log.info("weight from grocery "+weight)
+		def groceryId = groceryInstance.id
+		session.setAttribute("groceryId",groceryId)
 		def user= Merchant.findByEmail(session.user)
 		log.info("Merchant data: "+user)
-	
+		def grocId = session.getAttribute("groceryId")
+		log.info("groceryId from session: "+grocId)
 		log.info("groceryName: "+groceryInstance.groceryName)
 		def categoryName=Category.getAll()
 		

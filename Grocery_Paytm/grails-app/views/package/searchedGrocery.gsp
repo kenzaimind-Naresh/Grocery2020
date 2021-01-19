@@ -30,9 +30,24 @@
 	<link rel="stylesheet" href="/Skeleton/website/css/ion.rangeSlider.skinFlat.css" />
 	<link rel="stylesheet" href="/Skeleton/website/css/magnific-popup.css">
 	<link rel="stylesheet" href="/Skeleton/website/css/main.css">
+	
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<style type="text/css">
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">     
+
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script type='text/javascript' src="js/jquery.mycart/jquery.mycart.js"></script>
+  
+  <style type="text/css">
 
  
      .search-form-wrapper {
@@ -41,7 +56,7 @@
    width: 100%;
     left: 0;
     right: 0;
-    padding-left: 470px;
+    padding-left: 470px;	
     padding-right:470px;
 }
 .search-form-wrapper.open {
@@ -49,18 +64,12 @@
 }
      
 
-</style>	
+</style>
 
-
-
-
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-      
-    
+  
     <script type="text/javascript">
     $( document ).ready(function() {
-    	  $('[data-toggle=search-form]').click(function() {
+    	$('[data-toggle=search-form]').click(function() {
     	    $('.search-form-wrapper').toggleClass('open');
     	    $('.search-form-wrapper .search').focus();
     	    $('html').toggleClass('search-form-open');
@@ -82,9 +91,9 @@
 
 
     </script>  
-      
+    
 
-<script>
+<script type="text/javascript">
 history.pushState({ page: 1 }, "Title 1", "#no-back");
 window.onhashchange = function (event) {
   window.location.hash = "no-back";
@@ -93,16 +102,50 @@ window.onhashchange = function (event) {
 
 
 </head>
+
 <body>
 
-<g:render template="/grocery/groceryheader1"/>
-    
-<br><br><br><br><br>    
-<div class="center" style="text-align: center;">
-<h4>You have accepted the Customer's Order</h4><br>
-<g:link controller="orderStatus" action="orderstatuslist" class="active"><input type="button" class="genric-btn primary circle" style="font-size: 15px;" value="Get the Order Status"></g:link>
-</div>
+<g:render template="/grocery/groceryheader1"/>	
+	<br><br><br><br><br>
+	
+<div class="container">
 
+     <div style=" padding-left:150px; padding-right:350px;font-family: Calibri">
+
+     <table class="table table-hover table-condensed table-striped">
+      <thead>
+      <tr>
+      <th>Grocery Name</th>
+      <th>Created Quantity</th>
+      <th>Reduced Quantity</th>  
+      <th>Cost</th>
+      <th>Weight</th>  
+      <th>Offer</th>
+      <th>Created Date</th>  
+      <th>Total</th>        
+      </tr>
+      </thead>
+     <tbody>
+     <g:each in="${result.searchGrocery}" expr="true">
+    
+      <tr>
+        <td><a href="#"  style="color: black;font-family: Calibri">${it.groceryName}</a></td>
+        <td style="color: black;"> ${it.quantity}</td>
+        <td style="color: black;"> ${it.reducedQuantity}</td>
+        <td style="color: black;"> ${it.cost}</td>
+        <td style="color: black;"> ${it.weight}</td>
+        <td style="color: black;"> ${it.offer}</td>
+        <td style="color: black;"> ${it.createdDate}</td>
+        <td style="color: black;"> ${it.total}</td>
+           
+        </tr>
+    </g:each>
+    
+
+      </tbody>
+     </table></div>
+
+</div>
 <style>
 .footer {
    position: fixed;
@@ -140,6 +183,8 @@ a:hover {
 	<script src="/Skeleton/website/js/countdown.js"></script>
 	<script src="/Skeleton/web-app/website/js/jquery.magnific-popup.min.js"></script>
 	<script src="/Skeleton/website/js/owl.carousel.min.js"></script>
-	
+	           
+
 </body>
+
 </html>

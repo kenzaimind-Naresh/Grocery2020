@@ -361,6 +361,8 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		def cartId=session.getAttribute("savedCart");
 		def mercId=session.getAttribute("mid");
 		log.info("merchantid from session"+mercId);
+		def grocId = session.getAttribute("groceryId")
+		log.info("groceryId from session: "+grocId)
 		def mercName
 		if(mercId)
 		mercName=Merchant.get(mercId).shopName;
@@ -393,15 +395,15 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		String[] gnames= cartInstance.gname.split("#")
 		
 		log.info("gnames length: "+gnames.length)
-	
+		
 	for(int a=0;a<gnames.length;a++){
 			
 		
 		def instance = Grocery.findByMerchantIdAndGroceryName(merchantInstance.id,gnames[a].split("00")[0])
-	
-
-		def value = Integer.parseInt(instance.quantity) - Integer.parseInt(gnames[a].split("00")[1])
-		log.info("instance.quantity : "+ gnames[a].split("00")[1]);
+		log.info("reduced Quantity from grocery: "+instance.reducedQuantity)
+		
+		def value = Integer.parseInt(instance.reducedQuantity) - Integer.parseInt(gnames[a].split("00")[1])
+		log.info("instance.reducedQuantity : "+ gnames[a].split("00")[1]);
 		log.info("finalvalue : "+  value);
 		
 		GroceryService.update1(merchantInstance.id,gnames[a].split("00")[0],value);

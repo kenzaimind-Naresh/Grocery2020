@@ -100,29 +100,36 @@ window.onhashchange = function (event) {
 <!-- start banner Area -->
 		<div class="container">
 					<br><br><br><br><br><br>
-						<div class="row">
-							<div class="col-lg-3">
+						<div class="row" style="padding-left: 100px;">
+							<div class="col-lg-2">
 								<div class="banner-content">
 									<h4 style="font-family: Calibri" ><a href="/Skeleton/grocery/create" class="active"  style="color: black;" >Create Grocery</a> </h4>
 									</div>
 							</div>
 							
-							<div class="col-lg-3">
+							<div class="col-lg-2">
 								<div class="banner-content">
 									<h4 style="font-family: Calibri"><a href="/Skeleton/grocery/list" class="active"  style="color: black;" >View List</a> </h4>
 									</div>
 							</div>
 						
-							<div class="col-lg-3">
+							<div class="col-lg-2">
 								<div class="banner-content">
-									<h4 style="font-family: Calibri"><a href="#" class="active"  style="color: blue;" >Order</a> </h4>
+									<h4 style="font-family: Calibri"><a href="#" class="active"  style="color: blue;" >Order Status</a> </h4>
 									
 								</div>
 							</div>
 							
 							<div class="col-lg-3">
 								<div class="banner-content">
-									<h4 style="font-family: Calibri"><a href="/Skeleton/grocery/outofstock" class="active"  style="color: black;" >Stock Details</a> </h4>
+									<h4 style="font-family: Calibri"><a href="/Skeleton/grocery/outofstock" class="active"  style="color: black;" >Out of Stock Details</a> </h4>
+									
+								</div>
+							</div>
+							
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/merchant/totalstock" class="active"  style="color: black;" >Total Stock Details</a> </h4>
 									
 								</div>
 							</div>

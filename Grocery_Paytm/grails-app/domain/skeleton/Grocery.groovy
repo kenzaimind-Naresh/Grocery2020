@@ -15,7 +15,7 @@ class Grocery {
 	String merchantId
 	String merchantshopName
 	//String merchantorginal
-	//String merchantQuantity
+	String reducedQuantity
 	//String merchantWeight
 	
 	String modifiedBy
@@ -36,7 +36,7 @@ class Grocery {
 		merchantId(maxSize:50,nullable:false)
 		merchantshopName(maxSize:50,nullable:false)
 		//merchantorginal(maxSize:50,nullable:false)
-		//merchantQuantity(maxSize:50,nullable:false)
+		reducedQuantity(maxSize:50,nullable:true)
 		//merchantWeight(maxSize:50,nullable:false)
 		
 		createdDate(blank:true, nullable:true)

@@ -30,9 +30,24 @@
 	<link rel="stylesheet" href="/Skeleton/website/css/ion.rangeSlider.skinFlat.css" />
 	<link rel="stylesheet" href="/Skeleton/website/css/magnific-popup.css">
 	<link rel="stylesheet" href="/Skeleton/website/css/main.css">
+	
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<style type="text/css">
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">     
+
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script type='text/javascript' src="js/jquery.mycart/jquery.mycart.js"></script>
+  
+  <style type="text/css">
 
  
      .search-form-wrapper {
@@ -49,12 +64,25 @@
 }
      
 
-</style>	
-
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+</style>
       
-    
+      <script>
+$(function() {
+	
+
+    $("#groceryName").autocomplete({
+    	
+    	  source:[
+    	<g:each in="${result.groceryName}">
+    	
+        '${it.groceryName}',
+           
+        </g:each>]
+    });
+  });
+
+</script>
+  
     <script type="text/javascript">
     $( document ).ready(function() {
     	$('[data-toggle=search-form]').click(function() {
@@ -79,8 +107,29 @@
 
 
     </script>  
+    
       
+<style>
 
+.input-group {
+	  width: auto;
+	}
+
+	.input-group input,
+	.input-group .form-notch,
+	.input-group .form-notch-trailing {
+	  border-top-right-radius: 0 !important;
+	  border-bottom-right-radius: 0 !important;
+	}
+
+	.input-group button {
+	  border-top-left-radius: 0 !important;
+	  border-bottom-left-radius: 0 !important;
+	}
+	
+	
+
+</style>
 
 <script type="text/javascript">
 history.pushState({ page: 1 }, "Title 1", "#no-back");
@@ -98,17 +147,27 @@ window.onhashchange = function (event) {
 	<br><br><br><br><br>
 	
 <div class="container">
+
 <div>
      <div style=" padding-left:150px; padding-right:350px;font-family: Calibri">
-              <table class="table table-hover table-condensed table-striped">
+<g:form class="example" action="searchedGrocery" controller="package" method="GET" style="width:500px;padding-left:50px">
+     <div class="input-group">
+  <div class="form-outline" style=" padding-left:130px;">
+    <input type="text" name="groceryName" id="groceryName" placeholder="Search" class="form-control" />
+  </div> 
+  <button id="search-button" type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+ </div><br>
+</g:form>
+     <table class="table table-hover table-condensed table-striped">
       <thead>
       <tr>
       <th>Grocery Name</th>
-      <th>Created Date</th>
-      <th>Quantity</th>  
+      <th>Created Quantity</th>
+      <th>Reduced Quantity</th>  
       <th>Cost</th>
       <th>Weight</th>  
-      <th>Offer</th>  
+      <th>Offer</th>
+      <th>Created Date</th>  
       <th>Total</th>        
       </tr>
       </thead>
@@ -117,11 +176,12 @@ window.onhashchange = function (event) {
     
       <tr>
         <td><a href="#"  style="color: black;font-family: Calibri">${it.groceryName}</a></td>
-        <td style="color: black;"> ${it.createdDate}</td>
         <td style="color: black;"> ${it.quantity}</td>
+        <td style="color: black;"> ${it.reducedQuantity}</td>
         <td style="color: black;"> ${it.cost}</td>
         <td style="color: black;"> ${it.weight}</td>
         <td style="color: black;"> ${it.offer}</td>
+        <td style="color: black;"> ${it.createdDate}</td>
         <td style="color: black;"> ${it.total}</td>
            
         </tr>
@@ -130,7 +190,7 @@ window.onhashchange = function (event) {
 
       </tbody>
      </table></div>
-     
+     <br><br><br>
      
      
       <div class="pag">

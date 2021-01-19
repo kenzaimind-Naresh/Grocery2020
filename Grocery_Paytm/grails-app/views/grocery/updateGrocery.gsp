@@ -120,9 +120,10 @@ function costcal(){
 								                       
 								   
         <div class="container">
-        <div class="row">
+        <div class="row" style="padding-left:80px;">
             <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1 signin-pdtop">
              <div class="form-group">
+             <h3 style="padding-left:360px;font-family: Calibri">Grocery Update</h3><br>
              <div class="row">
              
 <div class="col-md-4 col-sm-4">
@@ -214,10 +215,8 @@ function costcal(){
 
 
 <div class="form-group">
-             <div class="row">
+<div class="row">
 <div class="col-md-4 col-sm-4">
-
-
 <div class="fieldcontain ${hasErrors(bean: result.gInstance, field: 'total', 'error')} required">
 	<label for="total">
 		<g:message code="grocery.total.label" default="Total Amt" />
@@ -227,13 +226,12 @@ function costcal(){
 
 </div>
 </div>
-
-		
-					<g:actionSubmit class="saveupdate" action="saveupdate" class="genric-btn primary circle" style="font-size: 15px;" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-				</fieldset>
-				</div>
-			</g:form>
-		</div>
+</div>
+</div>
+<div class="row" style="padding-left:390px;">
+<g:actionSubmit class="saveupdate" action="saveupdate" class="genric-btn primary circle" style="font-size: 15px;" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+</div></g:form>
+</div>
 	
 	
 <br><br><br><br><br><br><br><br><br>	

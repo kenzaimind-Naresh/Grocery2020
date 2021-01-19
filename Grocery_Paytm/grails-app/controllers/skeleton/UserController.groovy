@@ -421,7 +421,7 @@ def logout = {
 		 log.info("********after reset********* ")
 		 log.info("cookies: "+cookies);
 		 log.info("***************** ")
-	redirect(uri: "/merchant/logout")
+	redirect(uri: "/user/userlogin1")
 	}
 
 

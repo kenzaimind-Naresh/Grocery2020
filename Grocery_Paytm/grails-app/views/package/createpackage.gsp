@@ -39,33 +39,10 @@
 
  <br><br><br><br><br><br>
 	<div class="container">
-            <div class="row">
-			<div class="col-lg-3">
-				<div class="banner-content">
-                  <g:link controller="admin" action="merchantlist"><h4 style=" font-family: Calibri">Merchants List</h4></g:link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </div>
-            </div>
-            <div class="col-lg-3">
-				<div class="banner-content">
-                  <g:link controller="admin" action="userlist"><h4 style=" font-family: Calibri">Users List</h4></g:link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 </div>
-             </div>
-             <div class="col-lg-3">
-				<div class="banner-content">
-					 <g:link controller="category" action="create"><h4  style=" font-family: Calibri">Create Category</h4></g:link>
-                </div>
-             </div>
-             <div class="col-lg-3">
-				<div class="banner-content">
-                  <g:link controller="admin" action="packlist"><h4 style=" font-family: Calibri">Package</h4></g:link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </div>
-            </div>
-            </div>
-            <br>
             <g:form class="form-horizontal" role="form" controller="Package" Id="myform" name="myform" action="savepackage"  nonvalidate="nonvalidate">
 		<div id="create-category" class="content scaffold-create" role="main" style="padding-left:300px;">
 		
-			<h5 style="padding-left:100px;font-family: Calibri">Create Package</h5><br>
+			<h3 style="padding-left:100px;font-family: Calibri">Create Package</h3><br>
 			<div class="col-md-5 col-sm-5">
 			<div class="fieldcontain">
 			<label >Package Name: </label>

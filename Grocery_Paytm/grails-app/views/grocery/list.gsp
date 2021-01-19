@@ -99,29 +99,36 @@ window.onhashchange = function (event) {
 <!-- start banner Area -->
 		<div class="container">
 					<br><br><br><br><br><br>
-						<div class="row">
-							<div class="col-lg-3">
+						<div class="row" style="padding-left: 100px;">
+							<div class="col-lg-2">
 								<div class="banner-content">
 									<h4 style="font-family: Calibri" ><a href="/Skeleton/grocery/create" class="active"  style="color: black;" >Create Grocery</a> </h4>
 									</div>
 							</div>
 							
-							<div class="col-lg-3">
+							<div class="col-lg-2">
 								<div class="banner-content">
 									<h4 style="font-family: Calibri"><a href="#" class="active"  style="color: blue;" >View List</a> </h4>
 									</div>
 							</div>
 						
-							<div class="col-lg-3">
+							<div class="col-lg-2">
 								<div class="banner-content">
-									<h4 style="font-family: Calibri"><a href="/Skeleton/orderStatus/orderstatuslist" class="active"  style="color: black;" >Order</a> </h4>
+									<h4 style="font-family: Calibri"><a href="/Skeleton/orderStatus/orderstatuslist" class="active"  style="color: black;" >Order Status</a> </h4>
 									
 								</div>
 							</div>
 							
 							<div class="col-lg-3">
 								<div class="banner-content">
-									<h4 style="font-family: Calibri"><a href="/Skeleton/grocery/outofstock" class="active"  style="color: black;" >Stock Details</a> </h4>
+									<h4 style="font-family: Calibri"><a href="/Skeleton/grocery/outofstock" class="active"  style="color: black;" >Out of Stock Details</a> </h4>
+									
+								</div>
+							</div>
+							
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/merchant/totalstock" class="active"  style="color: black;" >Total Stock Details</a> </h4>
 									
 								</div>
 							</div>
@@ -138,11 +145,12 @@ window.onhashchange = function (event) {
       <thead>
       <tr>
       <th>Grocery Name</th>
-      <th>Quantity</th>  
+      <th>Created Quantity</th>  
       <th>Cost</th>
       <th>Weight</th>  
       <th>Offer</th>  
       <th>Total</th>
+      <th>Reduced Qunatity</th>
        <th>Edit</th>
       <th>Delete</th>        
       </tr>
@@ -156,21 +164,17 @@ window.onhashchange = function (event) {
         <td style="color: black;"> ${it.cost}</td>
         <td style="color: black;"> ${it.weight}</td>
         <td style="color: black;"> ${it.offer}</td>
-              <td style="color: black;"> ${it.total}</td>
+        <td style="color: black;"> ${it.total}</td>
+        <td style="color: black;"> ${it.reducedQuantity}</td>
            <td><g:link controller="grocery" action="updateGrocery" class="genric-btn success radius" style="font-size: 15px;" id="${it.id}">Edit</g:link></td>
            <td><g:link controller="grocery" action="deleteGrocery" class="genric-btn danger radius" style="font-size: 15px;" id="${it.id}">Delete</g:link></td>
 	
         </tr>
     </g:each>
-    
-
       </tbody>
-     </table></div>
-     
-     
-     
-      <div class="pag">
-                            <div class="col-sm-8 text-right">
+     </table></div><br><br><br>
+     <div class="pag">
+      <div class="col-sm-8 text-right">
        <g:if test="${result.offset > 0}">
      <g:link type="button" style="color:white" controller="grocery" action="offsetlist" params="${[offset:result.offset-5,mode:'web']}" value="Previous">
      <button class="genric-btn primary circle" style="font-size: 15px;">Previous</button></g:link>

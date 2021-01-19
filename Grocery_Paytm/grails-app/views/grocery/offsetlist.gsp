@@ -98,14 +98,44 @@ window.onhashchange = function (event) {
 
 	<!-- start banner Area -->
 		<div class="container">
-					<br><br><br><br>
-						<div class="row">
-							<h4 style="padding-left:170px;font-family: Calibri" >Groceries List </h4>
-												<g:link controller="grocery" action="create"><h4 style="padding-left:300px;font-family: Calibri;color:#1E90FF">Create Grocery</h4></g:link>
+					<br><br><br><br><br><br>
+						<div class="row" style="padding-left: 100px;">
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri" ><a href="/Skeleton/grocery/create" class="active"  style="color: black;" >Create Grocery</a> </h4>
+									</div>
+							</div>
 							
-							</div>						
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="#" class="active"  style="color: blue;" >View List</a> </h4>
+									</div>
+							</div>
+						
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/orderStatus/orderstatuslist" class="active"  style="color: black;" >Order Status</a> </h4>
+									
+								</div>
+							</div>
+							
+							<div class="col-lg-3">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/grocery/outofstock" class="active"  style="color: black;" >Out of Stock Details</a> </h4>
+									
+								</div>
+							</div>
+							
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/merchant/totalstock" class="active"  style="color: black;" >Total Stock Details</a> </h4>
+									
+								</div>
+							</div>
 					</div>
+				</div>
 	<!-- End banner Area -->
+	
 	
 	<br>
 	
@@ -121,8 +151,9 @@ window.onhashchange = function (event) {
       <th>Weight</th>  
       <th>Offer</th>  
       <th>Total</th>
-       <th style="color:black;font-family: Calibri">Edit</th>
-      <th style="color:black;font-family: Calibri">Delete</th>        
+      <th>Reduced Qunatity</th>
+      <th>Edit</th>
+      <th>Delete</th>        
       </tr>
       </thead>
      <tbody>
@@ -134,7 +165,8 @@ window.onhashchange = function (event) {
         <td style="color: black;"> ${it.cost}</td>
         <td style="color: black;"> ${it.weight}</td>
         <td style="color: black;"> ${it.offer}</td>
-              <td style="color: black;"> ${it.total}</td>
+        <td style="color: black;"> ${it.total}</td>
+        <td style="color: black;"> ${it.reducedQuantity}</td>
            <td><g:link controller="grocery" action="updateGrocery" class="btn btn-info" id="${it.id}">Edit</g:link></td>
            <td><g:link controller="grocery" action="deleteGrocery" class="btn btn-danger" id="${it.id}">Delete</g:link></td>
 	
@@ -144,7 +176,7 @@ window.onhashchange = function (event) {
 
       </tbody>
      </table></div>
-     
+     <br><br><br>
   
       <div class="pag">
       <div class="col-sm-8 text-right">

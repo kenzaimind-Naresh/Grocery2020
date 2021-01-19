@@ -91,7 +91,7 @@ class GroceryService {
 	
 		
 		
-		def update1(merchantId,groceryName,quantity){
+		def update1(merchantId,groceryName,reducedQuantity){
 			log.info("GroceryService ***************** update1")
 			log.info("groceryName  "+groceryName)
 			def resultData=new HashMap<>()
@@ -102,7 +102,7 @@ class GroceryService {
 				if(groceryInstance) {
 					groceryInstance.merchantId=groceryInstance.merchantId
 					groceryInstance.groceryName=groceryInstance.groceryName
-					groceryInstance.quantity=quantity
+					groceryInstance.quantity=groceryInstance.quantity
 					groceryInstance.categoryName=groceryInstance.categoryName
 					groceryInstance.cost=groceryInstance.cost
 					groceryInstance.weight=groceryInstance.weight
@@ -114,6 +114,7 @@ class GroceryService {
 					groceryInstance.type= groceryInstance.type
 					groceryInstance.image= groceryInstance.image
 					groceryInstance.merchantshopName= groceryInstance.merchantshopName
+					groceryInstance.reducedQuantity=reducedQuantity
 					
 					log.info("groceryInstance********   "+ groceryInstance)
 
@@ -131,7 +132,7 @@ class GroceryService {
 					log.info(groceryInstance.type)
 					log.info(groceryInstance.image)
 					log.info(groceryInstance.merchantshopName)
-		
+					log.info(groceryInstance.reducedQuantity)
 					
 				
 						log.info(groceryInstance.save(failOnError: true))

@@ -300,23 +300,92 @@ class PackageController {
 		
 		def merchantId = user.id
 		def of=0;
-		log.info("merchantId "+merchantId);
 		log.info("Image "+Grocery.findAllByMerchantId(merchantId))
 		
 		def data=Grocery.findAllByMerchantId(merchantId,[sort:"id",order:"desc",max: 5, offset: of])
 		log.info("Grocery data: "+data)
+		def grocName = data.groceryName
+		log.info("grocNames: "+grocName)
 		def totalcount=Grocery.findAllByMerchantId(merchantId).size()
 		log.info("Grocery count: "+totalcount)
 		def groceryInstance=Grocery.findByGroceryName(params.groceryName)
 		
+		def searchGrocery = Grocery.findAllByMerchantId(merchantId)
+		log.info("GroceryNames: "+searchGrocery)
+		def msg;
+		if(searchGrocery==null || searchGrocery==[]){
+			msg="Data Not Found"
+		}
+		else{
+			msg=""
+			
+		}
+		def user1=new ArrayList()
+			for(int i=0;i<searchGrocery.size();i++){
+				user1.add(searchGrocery[i].groceryName)
+			}
+			log.info("Grocery Names.......... "+user1)
 		responseData.put("data1", groceryInstance)
 		responseData.put("listId", "list")
 		responseData.put("totalcount",totalcount)
 		responseData.put("data", data)
 		responseData.put("uname", user)
+		responseData.put("user1", user1)
 		responseData.put("offset", of)
+		responseData.put("groceryName",Grocery.findAllByMerchantId(merchantId))
 		log.info("responseData: "+responseData)
 		[result:responseData]
+	}
+	
+	def searchedGrocery(){
+		
+		log.info("PackageController searchedGrocery Action")
+		
+		def username= session.user
+		if(username ==null || username=="" ){
+		 redirect(uri: "/package/groceriesView")
+		 return
+		}
+		def responseData = new HashMap<>();
+		def mode=params.mode
+		log.info("mode: "+mode)
+		def result,url
+		
+		def groceryName = params.groceryName
+		log.info("groceryName: "+groceryName)
+		
+		def user= Merchant.findByEmail(session.user)
+		log.info("Merchant data: "+user)
+		
+		def merchantId = user.id
+		/*def of=0;		
+		def data=Grocery.findAllByMerchantId(merchantId,[sort:"id",order:"desc",max: 5, offset: of])
+		log.info("Grocery data: "+data)
+		def grocName = data.groceryName
+		log.info("grocNames: "+grocName)*/
+		def searchGrocery = Grocery.findAllByMerchantIdAndGroceryName(merchantId,groceryName)
+		log.info("GroceryNames: "+searchGrocery)
+		def msg;
+		if(searchGrocery==null || searchGrocery==[]){
+			msg="Data Not Found"
+		}
+		else{
+			msg=""
+			
+		}
+		def user1=new ArrayList()
+			for(int i=0;i<searchGrocery.size();i++){
+				user1.add(searchGrocery[i].groceryName)
+			}
+			
+			responseData.put("listId", "list")
+			//responseData.put("data", data)
+			responseData.put("searchGrocery", searchGrocery)
+			responseData.put("uname", user)
+			responseData.put("user1", user1)
+			//responseData.put("offset", of)
+			log.info("responseData: "+responseData)
+			[result:responseData]
 	}
 	
 	def offsetlist(){

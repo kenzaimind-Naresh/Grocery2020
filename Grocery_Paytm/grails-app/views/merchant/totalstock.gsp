@@ -51,16 +51,13 @@
 
 </style>	
 
-
-
-
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
       
     
     <script type="text/javascript">
     $( document ).ready(function() {
-    	  $('[data-toggle=search-form]').click(function() {
+    	$('[data-toggle=search-form]').click(function() {
     	    $('.search-form-wrapper').toggleClass('open');
     	    $('.search-form-wrapper .search').focus();
     	    $('html').toggleClass('search-form-open');
@@ -89,20 +86,125 @@ history.pushState({ page: 1 }, "Title 1", "#no-back");
 window.onhashchange = function (event) {
   window.location.hash = "no-back";
 };
+
+function packValidity(){
+
+	var expDate = document.getElementById("expiryDate").value
+
+	var expiryDate;
+	expiryDate = expDate.replace("[","");
+	expiryDate = expiryDate.replace("]","");
+	//alert(expiryDate);
+
+	var currentDate = new Date();	
+	var year = currentDate.getFullYear();
+	var month = currentDate.getMonth()+1;
+	var date = currentDate.getDate();
+	var todayDate = year+"-"+month+"-"+date;
+	//alert(todayDate);
+
+	if(expiryDate.localeCompare(todayDate)>=0){
+	//if(expiryDate<=todayDate){
+		return true;
+		}else{
+			event.preventDefault();
+			alert("Dear Customer, You still have the validity for your subscription.");
+			locatio.href = "/Skeleton/merchant/totalstock";
+			}
+
+}
+
+function packValidity2(){
+
+	var expDate = document.getElementById("expiryDate").value
+
+	var expiryDate;
+	expiryDate = expDate.replace("[","");
+	expiryDate = expiryDate.replace("]","");
+	//alert(expiryDate);
+
+	var currentDate = new Date();	
+	var year = currentDate.getFullYear();
+	var month = currentDate.getMonth()+1;
+	var date = currentDate.getDate();
+	var todayDate = year+"-"+month+"-"+date;
+	//alert(todayDate);
+
+	if(expiryDate.localeCompare(todayDate)<=0){
+	//if(todayDate<=expiryDate){
+		return true;
+		}else{
+			event.preventDefault();
+			alert("Dear Customer, Your recent package validity has been expired.");
+			locatio.href = "/Skeleton/merchant/totalstock";
+			}
+
+}
+
 </script>
 
 
 </head>
+
 <body>
 
-<g:render template="/grocery/groceryheader1"/>
-    
-<br><br><br><br><br>    
-<div class="center" style="text-align: center;">
-<h4>You have accepted the Customer's Order</h4><br>
-<g:link controller="orderStatus" action="orderstatuslist" class="active"><input type="button" class="genric-btn primary circle" style="font-size: 15px;" value="Get the Order Status"></g:link>
+   <g:render template="merchantheader1"/>
+   
+   
+	<!-- start banner Area -->
+		<div class="container">
+					<br><br><br><br><br><br>
+						<div class="row" style="padding-left: 100px;">
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri" ><a href="/Skeleton/grocery/create" class="active"  style="color: black;" >Create Grocery</a> </h4>
+									</div>
+							</div>
+							
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/grocery/list" class="active"  style="color: black;" >View List</a> </h4>
+									</div>
+							</div>
+						
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/orderStatus/orderstatuslist" class="active"  style="color: black;" >Order Status</a> </h4>
+									
+								</div>
+							</div>
+							
+							<div class="col-lg-3">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/grocery/outofstock" class="active"  style="color: black;" >Out of Stock Details</a> </h4>
+									
+								</div>
+							</div>
+							
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="#" class="active"  style="color: blue;" >Total Stock Details</a> </h4>
+									
+								</div>
+							</div>
+					</div>
+				</div>
+	<!-- End banner Area -->
+<div class="container">
+	<br><br><br>
+	<div class="order_box" style="padding-left: 250px;">
+		<div class="col-lg-2"></div>
+		<p style="color: black;font-size: 16px;">If need to view your total stock details, please make a payment on available packages</p>
+		<div class="col-lg-6" style="padding-left: 190px;">
+		<g:link type="button" class="genric-btn primary circle" controller="package" action="packview" style="font-size: 16px;" onclick="packValidity()">Proceed to Buy</g:link>
+		</div><br>
+		<p style="color: black;font-size: 16px;">If already have your subscription package,</p>
+		<div class="col-lg-6" style="padding-left: 170px;">
+		<g:link type="button" class="genric-btn primary circle" controller="package" action="groceriesView" style="font-size: 16px;" onclick="packValidity2()">Get your Stock Details</g:link>	
+		</div>
+	</div>
+	<input type="hidden" name="expiryDate" id="expiryDate" value="${result.expiryCheck.expiryDate }">
 </div>
-
 <style>
 .footer {
    position: fixed;
@@ -140,6 +242,8 @@ a:hover {
 	<script src="/Skeleton/website/js/countdown.js"></script>
 	<script src="/Skeleton/web-app/website/js/jquery.magnific-popup.min.js"></script>
 	<script src="/Skeleton/website/js/owl.carousel.min.js"></script>
-	
+	           
+
 </body>
+
 </html>

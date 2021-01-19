@@ -678,11 +678,9 @@ if(mode=="web")	{
 		if(!(username.equals(null) ||username.equals(""))){
 			log.info("set cookie value into session   username"+username)
 			session.user=username
-			redirect(action:"ldashboard")
+			redirect(action:"merchantdashboard")
 		}
-			
-		
-		
+					
 	}
 	
 	
@@ -721,7 +719,7 @@ if(mode=="web")	{
 				//redirect(action:"ldashboard")
 			}else{
 			render text: """<script type="text/javascript">
-                    alert("Enter valid Email or Mobile/Password");
+                    alert("Enter valid Email/Mobile or Password");
                     window.location.href = "/Skeleton/merchant/login";
 					</script>""",
 			contentType: 'js'
@@ -761,9 +759,9 @@ if(mode=="web")	{
 						contentType: 'js'
 				}
 				else{
-					log.info("Your Package validity has been expired.Please subscribe now.")
+					log.info("Your Package validity has been expired. Please subscribe now.")
 					render text: """<script type="text/javascript">
-	                    alert("Your Package validity has been expired.Please subscribe now.");
+	                    alert("Dear Customer, Your package validity has been expired. Please subscribe now.");
 	                    window.location.href = "/Skeleton/package/packview";
 						</script>""",
 						contentType: 'js'
@@ -843,7 +841,7 @@ if(mode=="web")	{
 		//log.info("Formatted Current Date: "+currentdate);
 		Date todaydate=sdf.parse(currentdate);
 		log.info("Formatted Current Date: "+todaydate);
-		log.info(expiryDate.compareTo(todaydate)>=0);
+		log.info(expiryDate.compareTo(todaydate)>=0)
 		
 		responseData.put("listId", "ldashboard")
 		responseData.put("uname",user)
@@ -892,9 +890,9 @@ if(mode=="web")	{
 				contentType: 'js'
 		}
 		else{
-			log.info("Your Package validity has been expired.Please subscribe now.")
+			log.info("Your Package validity has been expired. Please subscribe now.")
 			render text: """<script type="text/javascript">
-	                    alert("Your Package validity has been expired.Please subscribe now.");
+	                    alert("Dear Customer, Your package validity has been expired. Please subscribe now.");
 	                    window.location.href = "/Skeleton/package/packview";
 						</script>""",
 				contentType: 'js'
@@ -906,6 +904,42 @@ if(mode=="web")	{
 		
 		log.info("responseData: "+responseData)
 
+		[result:responseData]
+	}
+	
+	def totalstock(){
+		
+		log.info("merchantController totalstock Action")
+		def responseData=new HashMap<>()
+		def mode=params.mode
+		log.info("mode: "+mode)
+		
+		def user = Merchant.findByEmail(session.user)
+		log.info("MerchantData: "+user)
+		
+		def merchantId = user.id
+		def expiryCheck = Subscription.findAllByMerchantId(merchantId,[max: 1,sort:"createdDate",order: "desc"])
+		log.info("Package Validity Check: "+expiryCheck)
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		def expDate = expiryCheck[0].expiryDate
+		log.info("Expiry Date: "+expDate)
+		Date expiryDate=sdf.parse(expDate);
+		
+		Date date = new Date();
+		log.info("Current Date: "+date)
+		log.info("expiry date: "+expiryDate)
+		
+		String currentdate = sdf.format(date);
+		Date todaydate=sdf.parse(currentdate);
+		log.info("Formatted Current Date: "+todaydate);
+		
+		responseData.put("listId", "totalstock")
+		responseData.put("uname", user)
+		responseData.put("expiryCheck", expiryCheck)
+		responseData.put("flag", session.flag)
+		
+		log.info("responseData: "+responseData)
 		[result:responseData]
 	}
 	
