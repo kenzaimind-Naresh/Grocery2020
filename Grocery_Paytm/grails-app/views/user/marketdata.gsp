@@ -106,8 +106,8 @@ function getdata() {
 						<h6>Offer:${it.offer}%</h6>
 						<h6>T.Amt:&#x20b9;${it.total}</h6>
 						<div class="row">
-							<g:if test="${it.quantity>"0"}"><br>
-								<a href="#" data-name="${it.groceryName}" data-price="${it.total}" data-quantity="${it.quantity}" data-weight="${it.weight}" class="add-to-cart genric-btn info circle" style="font-size: 15px;">Add to Cart</a>&nbsp;&nbsp;
+							<g:if test="${it.reducedQuantity>"0"}"><br>
+								<a href="#" data-name="${it.groceryName}" data-price="${it.total}" data-quantity="${it.quantity}" data-weight="${it.weight}" data-id="${it.id}" class="add-to-cart genric-btn info circle" style="font-size: 15px;">Add to Cart</a>&nbsp;&nbsp;
     						</g:if> 
     						<g:else>
     							<button class="genric-btn danger circle" style="font-size: 17px;" disabled="disabled">Out of Stock</button>&nbsp;&nbsp;
@@ -152,6 +152,7 @@ function getdata() {
 <input type="hidden" name="gprice" id="gprice"/>
  <input type="hidden" name="tcount" id="tcount"/>
  <input type="hidden" name="tamount" id="tamount"/>
+ <input type="hidden" name="grocid" id="grocid"/>
        <input type="hidden"  name="qCount" id="qCount"/>
 	   <input type="hidden"  name="qtyvalue" id="qtyvalue"/>
 	     <input type="hidden"  name="eetest" id="eetest"/>
@@ -194,12 +195,13 @@ var shoppingCart = (function() {
   cart = [];
  
   // Constructor
-  function Item(name, price, count,weight,quantity) {
+  function Item(name, price, count,weight,quantity, id) {
     this.name = name;
     this.price = price;
     this.count = count;
     this.weight = weight;
 	this.quantity = quantity;
+	this.id = id;
     
   }
  
@@ -234,13 +236,12 @@ var shoppingCart = (function() {
   var obj = {};
  
   // Add to cart
-  obj.addItemToCart = function(name,price,count,weight,quantity) {
+  obj.addItemToCart = function(name,price,count,weight,quantity,id) {
   // getavail(name);
     for(var item in cart) {
       if(cart[item].name === name) {
 	 //alert("count in cart" +cart[item].count);
-	  //alert(quantity);
-	
+	  //alert("quantity "+quantity);
 	  //getavail(name);
 	  setTimeout(function(){ 
 		$("#eetest").val("time pass");
@@ -260,7 +261,7 @@ var shoppingCart = (function() {
 		}
       }
     }
-    var item = new Item(name, price, count,weight,quantity);
+    var item = new Item(name, price, count,weight,quantity,id);
 
     cart.push(item);
     saveCart();
@@ -319,6 +320,7 @@ var shoppingCart = (function() {
   //gname
   obj.gname = function(){
 var gname = [];
+alert("gname "+gname)
  for(var item in cart){
     gname += cart[item].name+"00"+cart[item].count+"#";
 }
@@ -347,6 +349,16 @@ gprice += cart[item].price+"#";
 return gprice
 
  }
+
+  //grocid
+  obj.grocid = function(){
+var grocid = [];
+alert("groceryId "+grocid);
+for(var item in cart){
+	grocid += cart[item].id+"#";
+}
+return grocid
+	  }
  
   // Total cart
   obj.totalCart = function() {
@@ -399,10 +411,11 @@ $('.add-to-cart').click(function(event) {
   var name = $(this).data('name');
   var price = Number($(this).data('price'));
   var quantity=Number($(this).data('quantity'));
+  var id =Number($(this).data('id'));
 
   //alert("first avail qty on db"+quantity);
-  
-  shoppingCart.addItemToCart(name,price,1,1,quantity);
+  alert("first groceryId on db"+id);
+  shoppingCart.addItemToCart(name,price,1,1,quantity,id);
   displayCart();
 });
 
@@ -413,7 +426,7 @@ $('.clear-cart').click(function() {
 });
 
 
-
+// data-id='"+ cartArray[i].id +"'
 function displayCart() {
   var cartArray = shoppingCart.listCart();
   var output = "";
@@ -452,7 +465,8 @@ function displayCart() {
   $("#tcount").val(shoppingCart.totalCount());
  
   $("#gprice").val(shoppingCart.gprice());
- 
+  $("#grocid").val(shoppingCart.grocid());
+  alert(shoppingCart.grocid());
 }
 
 // Delete item button
@@ -476,9 +490,10 @@ $('.show-cart').on("click", ".plus-item", function(event) {
   var name = $(this).data('name');
   var quantity = Number($(this).data('quantity'));
   var price = Number($(this).data('price'));
+  var id =Number($(this).data('id'));
 // alert("name at pop"+name);
  
-  shoppingCart.addItemToCart(name,price,1,1,quantity);
+  shoppingCart.addItemToCart(name,price,1,1,quantity,id);
   displayCart();
 })
 

@@ -6,109 +6,110 @@ import grails.transaction.Transactional
 
 @Transactional
 class CartController {
-	
+
 	def CartService
 	def OrderStatusService
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
+	def index(Integer max) {
 		log.info("CartController index Action")
-		
-        params.max = Math.min(max ?: 10, 100)
-        respond Cart.list(params), model:[cartInstanceCount: Cart.count()]
-    }
 
-    def show(Cart cartInstance) {
-        respond cartInstance
+		params.max = Math.min(max ?: 10, 100)
+		respond Cart.list(params), model:[cartInstanceCount: Cart.count()]
+	}
+
+	def show(Cart cartInstance) {
+		respond cartInstance
 		log.info("CartController show Action")
-    }
+	}
 
-    def create() {
+	def create() {
 		log.info("CartController create Action")
-        respond new Cart(params)
-		
-    }
-	
+		respond new Cart(params)
 
-    @Transactional
-    def save(Cart cartInstance) {
+	}
+
+
+	@Transactional
+	def save(Cart cartInstance) {
 		log.info("CartController save Action")
-		
+
 		log.info("gname: "+params.gname)
 		log.info("gprice: "+params.gprice)
 		log.info("tcount: "+params.tcount)
 		log.info("qCount "+params.qCount)
 		log.info("tamount: "+params.tamount)
-		
+		log.info("grocId: "+params.id)
+
 		def grocname=params.gname.split("#")[0].split("00")[0];
 		def merchant=Grocery.findByGroceryName(grocname).merchantId;
 		log.info("grocname: "+grocname);
 
-		
+
 		def result=CartService.save(cartInstance.gname,cartInstance.gprice,cartInstance.tcount,cartInstance.qCount,cartInstance.tamount,cartInstance.usercartId)
 		log.info("response from service: "+result)
 		log.info("result from cartInstance: "+result.get("cartInstance"));
 		session.setAttribute("savedCart", result.get("cartInstance"));
 		redirect(uri: "/address/create")
-    }
+	}
 
-    def edit(Cart cartInstance) {
-        respond cartInstance
+	def edit(Cart cartInstance) {
+		respond cartInstance
 		log.info("CartController edit Action")
-    }
+	}
 
-    @Transactional
-    def update(Cart cartInstance) {
-	log.info("CartController update action")
-        if (cartInstance == null) {
-            notFound()
-            return
-        }
+	@Transactional
+	def update(Cart cartInstance) {
+		log.info("CartController update action")
+		if (cartInstance == null) {
+			notFound()
+			return
+		}
 
-        if (cartInstance.hasErrors()) {
-            respond cartInstance.errors, view:'edit'
-            return
-        }
+		if (cartInstance.hasErrors()) {
+			respond cartInstance.errors, view:'edit'
+			return
+		}
 
-        cartInstance.save flush:true
+		cartInstance.save flush:true
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Cart.label', default: 'Cart'), cartInstance.id])
-                redirect cartInstance
-            }
-            '*'{ respond cartInstance, [status: OK] }
-        }
-    }
-	
+		request.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.updated.message', args: [message(code: 'Cart.label', default: 'Cart'), cartInstance.id])
+				redirect cartInstance
+			}
+			'*'{ respond cartInstance, [status: OK] }
+		}
+	}
 
-    @Transactional
-    def delete(Cart cartInstance) {
+
+	@Transactional
+	def delete(Cart cartInstance) {
 		log.info("CartController delete Action")
-        if (cartInstance == null) {
-            notFound()
-            return
-        }
+		if (cartInstance == null) {
+			notFound()
+			return
+		}
 
-        cartInstance.delete flush:true
+		cartInstance.delete flush:true
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Cart.label', default: 'Cart'), cartInstance.id])
-                redirect action:"index", method:"GET"
-            }
-            '*'{ render status: NO_CONTENT }
-        }
-    }
+		request.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.deleted.message', args: [message(code: 'Cart.label', default: 'Cart'), cartInstance.id])
+				redirect action:"index", method:"GET"
+			}
+			'*'{ render status: NO_CONTENT }
+		}
+	}
 
-    protected void notFound() {
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'cart.label', default: 'Cart'), params.id])
-                redirect action: "index", method: "GET"
-            }
-            '*'{ render status: NOT_FOUND }
-        }
-    }
+	protected void notFound() {
+		request.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'default.not.found.message', args: [message(code: 'cart.label', default: 'Cart'), params.id])
+				redirect action: "index", method: "GET"
+			}
+			'*'{ render status: NOT_FOUND }
+		}
+	}
 }

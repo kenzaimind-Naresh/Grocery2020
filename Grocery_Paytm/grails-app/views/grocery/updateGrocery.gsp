@@ -167,17 +167,17 @@ function costcal(){
 		<g:message code="grocery.weight.label" default="Weight" />
 		<span class="required-indicator"></span>
 	</label>
-	<g:textField name="weight" required="" id="weight" class="form-control" value="${result.weight.split(",")[0] }"/>
+	<g:textField name="weight" required="" id="weight" class="form-control" value="${result.weight.split(",")[0] }" readonly="readonly"/>
 </div><br>
 <div class="fieldcontai ${hasErrors(bean: result.gInstance, field: 'weight', 'error')} required" >
 
-<select name="weightunits" required="" id="weightunits" class="form-control"> 
-  <option value="${result.weight.split(",")[1] }">${result.weight.split(",")[1] }</option>
-  <option value="grms">Grams</option>
-  <option value="kgs">Kg[s]</option>
-   <option value="ml">Ml</option>
-  <option value="liter">Litre</option>
-    <option value="item">Item[s]</option>
+<select name="weightunits" required="" id="weightunits" class="form-control" readonly> 
+  <option value="${result.weight.split(",")[1] }" readonly>${result.weight.split(",")[1] }</option>
+  <option value="grms" readonly>Grams</option>
+  <option value="kgs" readonly>Kg[s]</option>
+   <option value="ml" readonly>Ml</option>
+  <option value="liter" readonly>Litre</option>
+    <option value="item" readonly>Item[s]</option>
       
 </select>
 

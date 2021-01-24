@@ -51,7 +51,7 @@ class GroceryService {
 			def resultData=new HashMap<>()
 			String []args=["Grocery"]
 			try{
-				def groceryInstance=Grocery.findByGroceryNameAndMerchantId(groceryName,mid)
+				def groceryInstance=Grocery.findByGroceryNameAndMerchantIdAndWeight(groceryName,mid,weight)
 				log.info(groceryInstance)
 				if(groceryInstance) {
 					groceryInstance.categoryName=categoryName

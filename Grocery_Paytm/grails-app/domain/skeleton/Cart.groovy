@@ -10,6 +10,7 @@ class Cart {
 		String tamount
 		String usercartId
 		String status
+		String groceryId
 		//String merchantId
 		String availgName
 		String availStock
@@ -29,7 +30,7 @@ class Cart {
 		availStock(maxSize:50,nullable:true)
 		availgName(maxSize:50,nullable:true)
 		//merchantId(maxSize:50,nullable:true)
-		
+		groceryId(maxSize:50,nullable:true)
 		}
 	
 	

@@ -46,9 +46,12 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		def renderData = new HashMap<>()
 		
 	def gname=params.gname;
+	log.info("Gnames "+gname)
 	def gprice=params.gprice;
 	def qCount=params.qCount?Integer.parseInt(params.qCount):null;
 	def tamount=params.tamount;
+	def grocid = params.id;
+	log.info("groceryId "+grocid)
 		Cookie cookie=null
 	Cookie[] cookies = null;
 	def username
@@ -79,6 +82,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		session.setAttribute("gprice",gprice)
 		session.setAttribute("qCount",qCount)
 		session.setAttribute("tamount",tamount)
+		session.setAttribute("grocid",grocid)
 	  redirect(uri: "/user/userlogin1")
 	 return
 	}
@@ -86,6 +90,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	gprice=gprice?gprice:session.getAttribute("gprice")
 	qCount=qCount?qCount:session.getAttribute("qCount")
 	tamount=tamount?tamount:session.getAttribute("tamount")
+	grocid=grocid?grocid:session.getAttribute("grocid")
 	def smid=session.getAttribute("mid");
 	log.info("merchantid from session "+smid)
 	def shopName;
@@ -96,6 +101,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	log.info("gprice: "+gprice)
 	log.info("qCount: "+qCount)
 	log.info("tamount: "+tamount)
+	log.info("grocid: "+grocid)
 	log.info("shopName: "+shopName);
 	List<Cart> cartList=new ArrayList<Cart>();
 	   String[] gnames = gname.split("#");
@@ -118,6 +124,9 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		   log.info("available stock "+grocInstance.quantity);
 		   tcart.availStock=grocInstance.quantity;
 		   tcart.availgName=tcart.gname.split("00")[0];
+		   def groceryData = Grocery.findByMerchantIdAndGroceryName(grocInstance.merchantId,tcart.gname.split("00")[0])
+		   log.info("Weight from grocerydata: "+groceryData.weight)
+		   session.setAttribute("grocWeight", groceryData.weight)
 	   }
 	   
 	   cartList.add(tcart);
@@ -361,8 +370,6 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		def cartId=session.getAttribute("savedCart");
 		def mercId=session.getAttribute("mid");
 		log.info("merchantid from session"+mercId);
-		def grocId = session.getAttribute("groceryId")
-		log.info("groceryId from session: "+grocId)
 		def mercName
 		if(mercId)
 		mercName=Merchant.get(mercId).shopName;
@@ -395,16 +402,17 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		String[] gnames= cartInstance.gname.split("#")
 		
 		log.info("gnames length: "+gnames.length)
+		def gweight = session.getAttribute("grocWeight")
+		log.info("Weight from session: "+gweight)
 		
 	for(int a=0;a<gnames.length;a++){
 			
-		
 		def instance = Grocery.findByMerchantIdAndGroceryName(merchantInstance.id,gnames[a].split("00")[0])
-		log.info("reduced Quantity from grocery: "+instance.reducedQuantity)
-		
-		def value = Integer.parseInt(instance.reducedQuantity) - Integer.parseInt(gnames[a].split("00")[1])
-		log.info("instance.reducedQuantity : "+ gnames[a].split("00")[1]);
-		log.info("finalvalue : "+  value);
+		log.info("weight from grocery: "+instance.weight)
+		def groceryInstance = Grocery.findByMerchantIdAndGroceryNameAndWeight(merchantInstance.id,gnames[a].split("00")[0],gweight)
+		def value = Integer.parseInt(groceryInstance.reducedQuantity) - Integer.parseInt(gnames[a].split("00")[1])
+		log.info("Quantity to be reduced : "+ gnames[a].split("00")[1]);
+		log.info("final Reduced Quantity : "+  value);
 		
 		GroceryService.update1(merchantInstance.id,gnames[a].split("00")[0],value);
 	}
