@@ -298,6 +298,7 @@ form.example::after {
 <input type="hidden" name="tcount" id="tcount"/>
 <input type="hidden" name="tamount" id="tamount"/>
 <input type="hidden"  name="qCount" id="qCount"/>
+ <input type="hidden" name="groceryId" id="groceryId"/>
 
 <input type="hidden" id="usercartId" name="usercartId" value="${result.uname.id}"/>
 <input type="hidden" id="grandTotal" name="grandTotal" value="${result.result.totAmt}" />
@@ -430,7 +431,15 @@ var shoppingCart = (function() {
       }
     return qCount;
   }
-  
+    //grocid
+  obj.grocid = function(){
+var grocid = [];
+//alert("groceryId "+grocid);
+for(var item in cart){
+	grocid += cart[item].id+"#";
+}
+return grocid
+	  }
   // price 
   obj.gprice = function(){
 		var gprice = [];
@@ -543,6 +552,7 @@ function displayCart() {
   $("#gname").val(shoppingCart.gname());
   $("#tamount").val(shoppingCart.totalCart());
   $("#tcount").val(shoppingCart.totalCount());
+  $("#groceryId").val(shoppingCart.grocid());
   
   $("#gprice").val(shoppingCart.gprice());
   

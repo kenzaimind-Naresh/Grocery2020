@@ -37,7 +37,7 @@ class CartService {
 			}
 		}
 		
-		def save(gname,gprice,tcount,qCount,tamount,usercartId){
+		def save(gname,gprice,tcount,qCount,tamount,usercartId,groceryId){
 			log.info("CartService save-params ")
 			def resultData=new HashMap<>()
 			String []args=["Cart"]
@@ -59,7 +59,7 @@ class CartService {
 						cartInstance.usercartId=usercartId
 						cartInstance.status="Placed"
 						cartInstance.modifiedBy="Self"
-						
+						cartInstance.groceryId=groceryId
 						log.info(cartInstance.save(failOnError: true))
 						
 						def sts= save(cartInstance)

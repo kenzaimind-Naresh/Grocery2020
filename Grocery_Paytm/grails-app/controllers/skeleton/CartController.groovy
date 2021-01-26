@@ -40,14 +40,14 @@ class CartController {
 		log.info("tcount: "+params.tcount)
 		log.info("qCount "+params.qCount)
 		log.info("tamount: "+params.tamount)
-		log.info("grocId: "+params.id)
+		log.info("grocId: "+params.groceryId)
 
 		def grocname=params.gname.split("#")[0].split("00")[0];
 		def merchant=Grocery.findByGroceryName(grocname).merchantId;
 		log.info("grocname: "+grocname);
 
 
-		def result=CartService.save(cartInstance.gname,cartInstance.gprice,cartInstance.tcount,cartInstance.qCount,cartInstance.tamount,cartInstance.usercartId)
+		def result=CartService.save(cartInstance.gname,cartInstance.gprice,cartInstance.tcount,cartInstance.qCount,cartInstance.tamount,cartInstance.usercartId,cartInstance.groceryId)
 		log.info("response from service: "+result)
 		log.info("result from cartInstance: "+result.get("cartInstance"));
 		session.setAttribute("savedCart", result.get("cartInstance"));

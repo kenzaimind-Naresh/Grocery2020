@@ -50,7 +50,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	def gprice=params.gprice;
 	def qCount=params.qCount?Integer.parseInt(params.qCount):null;
 	def tamount=params.tamount;
-	def grocid = params.id;
+	def grocid = params.grocid;
 	log.info("groceryId "+grocid)
 		Cookie cookie=null
 	Cookie[] cookies = null;
@@ -106,13 +106,14 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	List<Cart> cartList=new ArrayList<Cart>();
 	   String[] gnames = gname.split("#");
 	   String[] gprices = gprice.split("#");
+	   String[] groceryId = grocid.split("#");
 	   log.info("GroceryNames: "+gnames)
 	   log.info("GroceryPrices: "+gnames[0])
 	   for(int i=0;i<qCount;i++){
 		   log.info("Count: "+i);
 	   Cart tcart=new Cart();
 	   Cart emptycheck=new Cart();
-	   
+	   tcart.groceryId=groceryId[i];
 	   tcart.gname=gnames[i];
 	   tcart.gprice=gprices[i];
 	   tcart.tcount=Double.parseDouble(gnames[i].split("00")[1])*Double.parseDouble(gprices[i]);
@@ -132,6 +133,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	   cartList.add(tcart);
 	   log.info("TotalCount: "+ tcart.tcount)
 	   log.info("Availablegname and AvailableStock: "+tcart.availgName+tcart.availStock);
+	   log.info("groceryId : "+tcart.groceryId);
 		   }
 	   
 	   renderData.put("cartList",cartList);

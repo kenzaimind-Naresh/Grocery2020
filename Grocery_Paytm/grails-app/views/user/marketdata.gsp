@@ -239,9 +239,9 @@ var shoppingCart = (function() {
   obj.addItemToCart = function(name,price,count,weight,quantity,id) {
   // getavail(name);
     for(var item in cart) {
-      if(cart[item].name === name) {
+      if(cart[item].id === id) {
 	 //alert("count in cart" +cart[item].count);
-	  //alert("quantity "+quantity);
+	 // alert("item id "+cart[item].id);
 	  //getavail(name);
 	  setTimeout(function(){ 
 		$("#eetest").val("time pass");
@@ -278,9 +278,9 @@ var shoppingCart = (function() {
     }
   };
   // Remove item from cart
-  obj.removeItemFromCart = function(name) {
+  obj.removeItemFromCart = function(id) {
       for(var item in cart) {
-        if(cart[item].name === name) {
+        if(cart[item].id === id) {
           cart[item].count --;
           if(cart[item].count === 0) {
             cart.splice(item, 1);
@@ -292,9 +292,9 @@ var shoppingCart = (function() {
   }
 
   // Remove all items from cart
-  obj.removeItemFromCartAll = function(name) {
+  obj.removeItemFromCartAll = function(id) {
     for(var item in cart) {
-      if(cart[item].name === name) {
+      if(cart[item].id === id) {
         cart.splice(item, 1);
         break;
       }
@@ -320,7 +320,7 @@ var shoppingCart = (function() {
   //gname
   obj.gname = function(){
 var gname = [];
-alert("gname "+gname)
+//alert("gname "+gname)
  for(var item in cart){
     gname += cart[item].name+"00"+cart[item].count+"#";
 }
@@ -353,7 +353,7 @@ return gprice
   //grocid
   obj.grocid = function(){
 var grocid = [];
-alert("groceryId "+grocid);
+//alert("groceryId "+grocid);
 for(var item in cart){
 	grocid += cart[item].id+"#";
 }
@@ -434,10 +434,10 @@ function displayCart() {
     output += "<tr>"
       + "<td>" + cartArray[i].name + "</td>"
       + "<td>(" + cartArray[i].price + ")</td>"
-      + "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name='" + cartArray[i].name + "'>-</button>"
+      + "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name='" + cartArray[i].name + "' data-id='"+cartArray[i].id+    "'>-</button>"
       + "<input type='text' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'x` readonly>"
-      + "<button class='plus-item btn btn-primary input-group-addon' data-name='" + cartArray[i].name + "' data-quantity='" + cartArray[i].quantity +"' data-price='"+cartArray[i].price+    "'>+</button></div></td>"
-      + "<td><button class='delete-item btn btn-danger' data-name='" + cartArray[i].name + "'>X</button></td>"
+      + "<button class='plus-item btn btn-primary input-group-addon' data-name='" + cartArray[i].name + "' data-quantity='" + cartArray[i].quantity +"' data-price='"+cartArray[i].price+    "' data-id='"+cartArray[i].id+    "'>+</button></div></td>"
+      + "<td><button class='delete-item btn btn-danger' data-name='" + cartArray[i].name + "' data-id='"+cartArray[i].id+    "'>X</button></td>"
       + " = "
       + "<td>" + cartArray[i].total + "</td>"
       +  "</tr>";
@@ -466,23 +466,25 @@ function displayCart() {
  
   $("#gprice").val(shoppingCart.gprice());
   $("#grocid").val(shoppingCart.grocid());
-  alert(shoppingCart.grocid());
+ 
 }
 
 // Delete item button
 
 $('.show-cart').on("click", ".delete-item", function(event) {
   var name = $(this).data('name');
-  
-  shoppingCart.removeItemFromCartAll(name);
+  var id =Number($(this).data('id'));
+  alert(id);
+  shoppingCart.removeItemFromCartAll(id);
   displayCart();
 })
 
  
 // -1
 $('.show-cart').on("click", ".minus-item", function(event) {
-  var name = $(this).data('name')
-  shoppingCart.removeItemFromCart(name);
+  var name = $(this).data('name');
+   var id =Number($(this).data('id'));
+  shoppingCart.removeItemFromCart(id);
   displayCart();
 })
 // +1
@@ -491,7 +493,7 @@ $('.show-cart').on("click", ".plus-item", function(event) {
   var quantity = Number($(this).data('quantity'));
   var price = Number($(this).data('price'));
   var id =Number($(this).data('id'));
-// alert("name at pop"+name);
+alert("id at pop"+id);
  
   shoppingCart.addItemToCart(name,price,1,1,quantity,id);
   displayCart();
