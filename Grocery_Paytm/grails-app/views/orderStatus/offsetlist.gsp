@@ -94,48 +94,50 @@ window.onhashchange = function (event) {
 
 <body>
 
-	<!-- Start Header Area -->
-	<header class="header_area sticky-header">
-		<div class="main_menu">
-			<nav class="navbar navbar-expand-lg navbar-light main_box">
-				<div class="container">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="/Skeleton/merchant/ldashboard"><img src="/Skeleton/website/img/arvanlogo.jpg" style="height: 60px;width: 150px;" alt=""></a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item"><a class="nav-link" href="/Skeleton/merchant/ldashboard">Home</a></li>
-							<li class="nav-item"><a class="nav-link" href="/Skeleton/merchant/contact1">Contact</a></li>
+<g:render template="/grocery/groceryheader1"/>
+   
+<!-- start banner Area -->
+		<div class="container">
+					<br><br><br><br><br><br>
+						<div class="row" style="padding-left: 100px;">
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri" ><a href="/Skeleton/grocery/create" class="active"  style="color: black;" >Create Grocery</a> </h4>
+									</div>
+							</div>
 							
-							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="username-sm"></span>${result.uname.firstName}<i class="fa fa-user" style="font-size:20px;"></i></a>
-								<ul class="dropdown-menu">
-								
-								<li><g:link controller="merchant" action="updateprofile" class="active"  style="color:	#DAA520;font-size:14px;"><i class="fa fa-user"></i> Profile</g:link></li>
-								<li><g:link controller="user" action="changepass" class="active" style="color:	#DAA520;font-size:14px;"><i class="fa fa-key"></i> ChangePassword</g:link></li>
-								<li><a href="/Skeleton/merchant/dashboard" style="color:	#DAA520;font-size:14px;"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-
-								</ul>
-							</li>
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/grocery/list" class="active"  style="color: black;" >View List</a> </h4>
+									</div>
+							</div>
+						
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="#" class="active"  style="color: blue;" >Order Status</a> </h4>
+									
+								</div>
+							</div>
 							
-						</ul>						
+							<div class="col-lg-3">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/grocery/outofstock" class="active"  style="color: black;" >Out of Stock Details</a> </h4>
+									
+								</div>
+							</div>
+							
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/merchant/checkpack" class="active"  style="color: black;" >Total Stock Details</a> </h4>
+									
+								</div>
+							</div>
 					</div>
 				</div>
-				
-			</nav>
-		</div>		 
-	</header>
-	<!-- End Header Area -->
-<br><br><br><br><br>
+	<!-- End banner Area --><br>
 
 <div class="container">
-	<div style=" padding-left:150px; padding-right:350px;font-family: Calibri">
+	<div style=" padding-left:80px; padding-right:30px;font-family: Calibri">
 		<table class="table table-hover table-condensed table-striped">
       		<thead>
       			<tr>
@@ -161,7 +163,7 @@ window.onhashchange = function (event) {
     		</tbody>
      	</table>
      </div>
-     <div class="pag">
+     <div class="pag" style=" padding-left:850px;">
      	<div class="col-sm-8 text-right">
        		<g:if test="${result.offset > 0}">
      			<g:link type="button" style="color:white" controller="orderStatus" action="offsetlist" params="${[offset:result.offset-5,mode:'web']}" value="Previous">

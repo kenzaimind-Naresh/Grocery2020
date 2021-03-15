@@ -144,13 +144,50 @@ window.onhashchange = function (event) {
 <body>
 
 <g:render template="/grocery/groceryheader1"/>	
-	<br><br><br><br><br>
-	
+	<!-- start banner Area -->
+		<div class="container">
+					<br><br><br><br><br><br>
+						<div class="row" style="padding-left: 100px;">
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri" ><a href="/Skeleton/grocery/create" class="active"  style="color: black;" >Create Grocery</a> </h4>
+									</div>
+							</div>
+							
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/grocery/list" class="active"  style="color: black;" >View List</a> </h4>
+									</div>
+							</div>
+						
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/orderStatus/orderstatuslist" class="active"  style="color: black;" >Order Status</a> </h4>
+									
+								</div>
+							</div>
+							
+							<div class="col-lg-3">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/grocery/outofstock" class="active"  style="color: black;" >Out of Stock Details</a> </h4>
+									
+								</div>
+							</div>
+							
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="#" class="active"  style="color: black;" >Total Stock Details</a> </h4>
+									
+								</div>
+							</div>
+					</div>
+				</div>
+	<!-- End banner Area -->
+<br>	
 <div class="container">
-
 <div>
-     <div style=" padding-left:150px; padding-right:350px;font-family: Calibri">
-<g:form class="example" action="searchedGrocery" controller="package" method="GET" style="width:500px;padding-left:50px">
+     
+<g:form class="example" action="searchedGrocery" controller="package" method="GET" style="width:800px;padding-left:290px">
      <div class="input-group">
   <div class="form-outline" style=" padding-left:130px;">
     <input type="text" name="groceryName" id="groceryName" placeholder="Search" class="form-control" />
@@ -158,17 +195,18 @@ window.onhashchange = function (event) {
   <button id="search-button" type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
  </div><br>
 </g:form>
+<div style=" padding-left:80px; padding-right:30px;font-family: Calibri">
      <table class="table table-hover table-condensed table-striped">
       <thead>
       <tr>
       <th>Grocery Name</th>
+      <th>Weight</th>
       <th>Created Quantity</th>
       <th>Reduced Quantity</th>  
-      <th>Cost</th>
-      <th>Weight</th>  
-      <th>Offer</th>
-      <th>Created Date</th>  
-      <th>Total</th>        
+      <th>Cost(Rs.)</th>
+      <th>Offer(%)</th>
+      <th>Total(Rs.)</th>
+      <th>Created Date</th>        
       </tr>
       </thead>
      <tbody>
@@ -176,24 +214,20 @@ window.onhashchange = function (event) {
     
       <tr>
         <td><a href="#"  style="color: black;font-family: Calibri">${it.groceryName}</a></td>
+        <td style="color: black;"> ${it.weight}</td>
         <td style="color: black;"> ${it.quantity}</td>
         <td style="color: black;"> ${it.reducedQuantity}</td>
         <td style="color: black;"> ${it.cost}</td>
-        <td style="color: black;"> ${it.weight}</td>
         <td style="color: black;"> ${it.offer}</td>
-        <td style="color: black;"> ${it.createdDate}</td>
         <td style="color: black;"> ${it.total}</td>
+        <td style="color: black;"> ${it.createdDate}</td>
            
         </tr>
     </g:each>
-    
-
       </tbody>
      </table></div>
-     <br><br><br>
-     
-     
-      <div class="pag">
+     <br>    
+      <div class="pag" style=" padding-left:850px;">
        <div class="col-sm-8 text-right">
        <g:if test="${result.offset > 0}">
      <g:link type="button" style="color:white" controller="package" action="offsetlist" params="${[offset:result.offset-5,mode:'web']}" value="Previous">
@@ -207,9 +241,7 @@ window.onhashchange = function (event) {
        </div>
        </div>
 </div>
-
-
-</div>
+</div><br><br>
 <style>
 .footer {
    position: fixed;

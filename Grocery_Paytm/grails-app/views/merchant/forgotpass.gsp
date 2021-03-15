@@ -100,7 +100,7 @@ history.go(1);
             </div>
         </div>
    <br>
-   <h6>Enter your registered Email or Mobile Numnber for verification...</h6><br>
+   <h6>Enter your registered Email or Mobile Number for verification...</h6><br>
     <div class="row">
             <div class="col-lg-8">
          <g:form class="form-horizontal" controller="merchant" ID="myform" action="validateCode"  nonvalidate="nonvalidate"> 

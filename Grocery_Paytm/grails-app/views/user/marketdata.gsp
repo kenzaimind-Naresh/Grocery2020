@@ -27,8 +27,42 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script type='text/javascript' src="js/jquery.mycart/jquery.mycart.js"></script>
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
+<style type="text/css">
+	
 
+.back-to-top {
+    position: fixed;
+    bottom: 70px;
+    right: 50px;
+    display: none;
+    background-color: #1a75ff;
+    color: white;
+}
+
+</style>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$(window).scroll(function () {
+			if ($(this).scrollTop() > 50) {
+				$('#back-to-top').fadeIn();
+			} else {
+				$('#back-to-top').fadeOut();
+			}
+		});
+		// scroll body to 0px on click
+		$('#back-to-top').click(function () {
+			$('body,html').animate({
+				scrollTop: 0
+			}, 400);
+			return false;
+		});
+});
+
+</script>
 
   <script type="text/javascript">
 
@@ -91,12 +125,13 @@ function getdata() {
 <body>
 <g:render template="/user/userheader"/>
 <br><br><br><br><br><br>
+<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i class="fa fa-chevron-up"></i></a>
 <div class="container" >
 	<b style="color: brown;font-size: 24px;padding-left: 100px;">${result.merchShop}</b>
     <div class="row">
     	<g:each in="${result.data}" expr="true">
    		<tr>
-     		<div class="single-product"  style="padding-left:100px"><br>
+     		<div class="single-product"  style="padding-left:50px"><br>
 				<img src="${createLink(controller:'grocery', action:'showPayload', id:"${it.id}")}" alt=" " style="width:145px;height:128px;" />
 				<div class="product-details">
 					<h6 class="card-title"><b style="color:black;">${it.groceryName}</b></h6>
@@ -107,10 +142,10 @@ function getdata() {
 						<h6>T.Amt:&#x20b9;${it.total}</h6>
 						<div class="row">
 							<g:if test="${it.reducedQuantity>"0"}"><br>
-								<a href="#" data-name="${it.groceryName}" data-price="${it.total}" data-quantity="${it.quantity}" data-weight="${it.weight}" data-id="${it.id}" class="add-to-cart genric-btn info circle" style="font-size: 15px;">Add to Cart</a>&nbsp;&nbsp;
+								<a href="#" data-name="${it.groceryName}" data-price="${it.total}" data-quantity="${it.reducedQuantity}" data-weight="${it.weight}" data-id="${it.id}" class="add-to-cart genric-btn info circle" style="font-size: 15px;">Add to Cart</a>&nbsp;&nbsp;
     						</g:if> 
     						<g:else>
-    							<button class="genric-btn danger circle" style="font-size: 17px;" disabled="disabled">Out of Stock</button>&nbsp;&nbsp;
+    							<button class="genric-btn danger circle" style="font-size: 15px;" disabled="disabled">Out of Stock</button>&nbsp;&nbsp;
     						</g:else>
     					</div>
 					</div>
@@ -119,8 +154,22 @@ function getdata() {
         </tr>
     	</g:each>
    </div>
+   
+   <div class="pag" style="padding-left: 900px;"> 
+      <div class="col-sm-8 text-right">
+       <g:if test="${result.offset > 0}">
+     <g:link type="button" style="color:white" controller="user" action="offsetlist1" params="${[offset:result.offset-10,mode:'web']}" value="Previous">
+     <button class="genric-btn primary radius" style="font-size: 15px;">Previous</button></g:link>
+    </g:if>
+  
+    <g:if test="${result.offset/10 < (result.totalcount)/10-1}">
+     <g:link type="button" style="color:white" controller="user" action="offsetlist1"   params="${[offset: result.offset+10,mode:'web']}" value="Next">
+     <button class="genric-btn primary radius" style="font-size: 15px;">Next</button></g:link>
+       </g:if>
+       </div>
+       </div>
 </div>
-
+<br><br>
  <!-- Modal -->
 <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
@@ -414,7 +463,7 @@ $('.add-to-cart').click(function(event) {
   var id =Number($(this).data('id'));
 
   //alert("first avail qty on db"+quantity);
-  alert("first groceryId on db"+id);
+  //alert("first groceryId on db"+id);
   shoppingCart.addItemToCart(name,price,1,1,quantity,id);
   displayCart();
 });
@@ -474,7 +523,7 @@ function displayCart() {
 $('.show-cart').on("click", ".delete-item", function(event) {
   var name = $(this).data('name');
   var id =Number($(this).data('id'));
-  alert(id);
+  //alert(id);
   shoppingCart.removeItemFromCartAll(id);
   displayCart();
 })
@@ -493,7 +542,7 @@ $('.show-cart').on("click", ".plus-item", function(event) {
   var quantity = Number($(this).data('quantity'));
   var price = Number($(this).data('price'));
   var id =Number($(this).data('id'));
-alert("id at pop"+id);
+//alert("id at pop"+id);
  
   shoppingCart.addItemToCart(name,price,1,1,quantity,id);
   displayCart();

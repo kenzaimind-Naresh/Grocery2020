@@ -43,10 +43,7 @@ class OrderStatusController {
 		log.info("OrderStatus data: "+data)
 		def totalcount=OrderStatus.findAllByMerchantId(merchantId).size()
 		log.info("OrderStatus count: "+totalcount)
-		def orderStatusInstance=OrderStatus.findByGroceryName(params.groceryName)
-		log.info("orderStatusInstance: "+orderStatusInstance)
 		
-		responseData.put("data1", orderStatusInstance)
 		responseData.put("listId", "list")
 		responseData.put("totalcount",totalcount)
 		responseData.put("data", data)

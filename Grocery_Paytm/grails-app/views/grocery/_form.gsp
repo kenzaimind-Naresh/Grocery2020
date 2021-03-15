@@ -67,9 +67,10 @@ $('#potentials').append("<option value='" + '${it.categoryName}'+ "'>");
 <div class="fieldcontain ${hasErrors(bean: groceryInstance, field: 'categoryName', 'error')} required">
 	<label for="categoryName">
 		<g:message code="category.categoryName.label" default="Category Name" />
-		<span class="required-indicator"></span>
-	</label>
-        <input tabindex='1' list="potentials" type="text" placeholder="Select Category" class="search form-control" id="categoryName" name="categoryName"></input>
+		<%--<span class="required-indicator"></span>
+	--%></label>
+        <input tabindex='1' list="potentials" type="text" placeholder="Select Category" class="search form-control" id="categoryName" name="categoryName" required/>
+		<span id="categoryNameinfo" style="color:red"></span>
 		<datalist id="potentials">
 		</datalist>
         
@@ -85,7 +86,7 @@ $('#potentials').append("<option value='" + '${it.categoryName}'+ "'>");
 		<span class="required-indicator"></span>
 	</label>
 	<g:textField name="groceryName" maxlength="50" id="groceryName" class="form-control" required="" value="${groceryInstance?.groceryName}"/>
-
+	<span id="groceryNameinfo" style="color:red"></span>
 </div>
 </div>
 <div class="col-md-4 col-sm-4">
@@ -96,7 +97,7 @@ $('#potentials').append("<option value='" + '${it.categoryName}'+ "'>");
 		<span class="required-indicator"></span>
 	</label>
 	<g:textField name="cost" maxlength="50" required=""  id="cost" onchange="off()" class="form-control" value="${groceryInstance?.cost}"/>
-
+	<span id="costinfo" style="color:red"></span>
 </div></div></div></div>
 
 
@@ -113,6 +114,7 @@ $('#potentials').append("<option value='" + '${it.categoryName}'+ "'>");
 		<span class="required-indicator"></span>
 	</label>
 	<g:textField name="weight" required="" id="weight" class="form-control" value="${groceryInstance?.weight}"/>
+	<span id="weightinfo" style="color:red"></span>
 </div><br>
 <div class="fieldcontai ${hasErrors(bean: groceryInstance, field: 'weight', 'error')} required">
 
@@ -140,7 +142,7 @@ $('#potentials').append("<option value='" + '${it.categoryName}'+ "'>");
 		<span class="required-indicator"></span>
 	</label>
 	<g:textField name="quantity" id="quantity" class="form-control" required="" value="${groceryInstance?.quantity}"/>
-
+	<span id="quantityinfo" style="color:red"></span>
 </div>
 
 
@@ -153,7 +155,7 @@ $('#potentials').append("<option value='" + '${it.categoryName}'+ "'>");
 		<span class="required-indicator"></span>
 	</label>
 	<g:textField name="offer" required="" id="offer" onchange="off()" class="form-control"  value="${groceryInstance?.offer}"/>
-
+	<span id="offerinfo" style="color:red"></span>
 </div>
 
 </div>

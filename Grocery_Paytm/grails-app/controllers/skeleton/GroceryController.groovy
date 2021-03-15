@@ -94,23 +94,17 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		def mode=params.mode
 		log.info("mode: "+mode)
 		def result,url
-			
-		def groceryName = params.groceryName
-		log.info("groceryName: "+groceryName)
 		
 		def user= Merchant.findByEmail(session.user)
 		log.info("Merchant data: "+user)
 		
-		
 		def merchantId = user.id
 		def of=0;
-		def data=Grocery.findAllByMerchantIdAndQuantity(merchantId,0,[sort:"id",order:"desc",max: 5, offset: of])
+		def data=Grocery.findAllByMerchantIdAndReducedQuantity(merchantId,0,[sort:"id",order:"desc",max: 5, offset: of])
 		log.info("Grocery data: "+data)
-		def totalcount=Grocery.findAllByMerchantIdAndQuantity(merchantId,0).size()
+		def totalcount=Grocery.findAllByMerchantIdAndReducedQuantity(merchantId,0).size()
 		log.info("totalcount size: "+totalcount)
-		def groceryInstance=Grocery.findByGroceryName(params.groceryName)
 		
-		responseData.put("data1", groceryInstance)
 		responseData.put("listId", "list")
 		responseData.put("totalcount",totalcount)
 		responseData.put("data", data)
@@ -141,9 +135,9 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		
 		
 		def of=params.offset;
-		def data=Grocery.findAllByMerchantIdAndQuantity(merchantId,0,[sort:"id",order:"desc",max: 5, offset: of])
+		def data=Grocery.findAllByMerchantIdAndReducedQuantity(merchantId,0,[sort:"id",order:"desc",max: 5, offset: of])
 		log.info("Grocery data: "+data)
-		def totalcount=Grocery.findAllByMerchantIdAndQuantity(merchantId,0).size()
+		def totalcount=Grocery.findAllByMerchantIdAndReducedQuantity(merchantId,0).size()
 		log.info("totalcount size: "+totalcount)
 		
 		responseData.put("listId", "list")
@@ -263,9 +257,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info("Grocery data: "+data)
 		def totalcount=Grocery.findAllByMerchantId(merchantId).size()
 		log.info("Grocery count: "+totalcount)
-		def groceryInstance=Grocery.findByGroceryName(params.groceryName)
 		
-		responseData.put("data1", groceryInstance)
 		responseData.put("listId", "list")
 		responseData.put("totalcount",totalcount)
 		responseData.put("data", data)
@@ -352,7 +344,8 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info("offer: "+offer);
 		def total=params.total
 		log.info("total: "+total);
-		
+		def reducedQuantity = params.quantity
+		log.info("updated reducedQuantity: "+reducedQuantity)
 		def createdDate=params.createdDate
 		log.info("createdDate: "+createdDate)
 		
@@ -361,7 +354,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		def user= Merchant.findByEmail(session.user)
 		log.info("Merchant data: "+user)
 		
-		def res=GroceryService.update(categoryName,groceryName,cost,weight,quantity,offer,total,createdDate,user.id,user.firstName)
+		def res=GroceryService.update(categoryName,groceryName,cost,weight,quantity,offer,total,reducedQuantity,createdDate,user.id,user.firstName)
 		log.info("result from service "+res)
 
 		responseData.put("uname", user)
@@ -380,12 +373,8 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		groceryInstance=Grocery.get(params.id);
 		def weight = groceryInstance.weight
 		log.info("weight from grocery "+weight)
-		def groceryId = groceryInstance.id
-		session.setAttribute("groceryId",groceryId)
 		def user= Merchant.findByEmail(session.user)
 		log.info("Merchant data: "+user)
-		def grocId = session.getAttribute("groceryId")
-		log.info("groceryId from session: "+grocId)
 		log.info("groceryName: "+groceryInstance.groceryName)
 		def categoryName=Category.getAll()
 		

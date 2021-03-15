@@ -128,7 +128,7 @@ window.onhashchange = function (event) {
 							
 							<div class="col-lg-2">
 								<div class="banner-content">
-									<h4 style="font-family: Calibri"><a href="/Skeleton/merchant/totalstock" class="active"  style="color: black;" >Total Stock Details</a> </h4>
+									<h4 style="font-family: Calibri"><a href="/Skeleton/merchant/checkpack" class="active"  style="color: black;" >Total Stock Details</a> </h4>
 									
 								</div>
 							</div>
@@ -172,7 +172,7 @@ window.onhashchange = function (event) {
         </tr>
     </g:each>
       </tbody>
-     </table></div><br><br><br>
+     </table></div><br>
      <div class="pag">
       <div class="col-sm-8 text-right">
        <g:if test="${result.offset > 0}">
@@ -187,7 +187,7 @@ window.onhashchange = function (event) {
        </div>
        </div>
 </div>
-
+<br><br>
 
 </div>
 <style>

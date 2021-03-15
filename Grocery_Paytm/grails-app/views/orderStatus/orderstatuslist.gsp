@@ -129,7 +129,7 @@ window.onhashchange = function (event) {
 							
 							<div class="col-lg-2">
 								<div class="banner-content">
-									<h4 style="font-family: Calibri"><a href="/Skeleton/merchant/totalstock" class="active"  style="color: black;" >Total Stock Details</a> </h4>
+									<h4 style="font-family: Calibri"><a href="/Skeleton/merchant/checkpack" class="active"  style="color: black;" >Total Stock Details</a> </h4>
 									
 								</div>
 							</div>
@@ -137,7 +137,7 @@ window.onhashchange = function (event) {
 				</div>
 	<!-- End banner Area --><br>
 <div class="container">
-	<div style=" padding-left:150px; padding-right:350px;font-family: Calibri">
+	<div style=" padding-left:80px; padding-right:30px;font-family: Calibri">
 		<table class="table table-hover table-condensed table-striped">
       		<thead>
       			<tr>
@@ -163,7 +163,7 @@ window.onhashchange = function (event) {
     		</tbody>
      	</table>
      </div>
-     <div class="pag">
+     <div class="pag" style=" padding-left:850px;">
      	<div class="col-sm-8 text-right">
        		<g:if test="${result.offset > 0}">
      			<g:link type="button" style="color:white" controller="orderStatus" action="offsetlist" params="${[offset:result.offset-5,mode:'web']}" value="Previous">

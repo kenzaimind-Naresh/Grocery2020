@@ -147,7 +147,7 @@ function checkCode(){
             <input type="hidden" id="myaction" name="myaction" value="save">
             <input type="hidden" id="mode" name="mode" value="web"> 
              <div class="form-group ic-no-mgbottom">
-                            <div class="col-sm-6 text-center">
+            <div class="col-sm-6 text-center">
            <input type="submit" ID="btnsave" value="Next" onclick="checkCode()" class="genric-btn primary circle" style="font-size: 15px;" />
             </div>
             </div></g:form>

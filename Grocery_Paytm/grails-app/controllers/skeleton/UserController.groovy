@@ -207,8 +207,11 @@ def marketdata(){
 	response.addCookie(cookie1);
 	}
 	
-	def data = Grocery.findAllByMerchantId(merchantshopId)
+	def of=0;
+	def data = Grocery.findAllByMerchantId(merchantshopId,[sort:"id",order:"desc",max: 10, offset: of])
 	log.info("Grocery data "+data)
+	def totalcount = Grocery.findAllByMerchantId(merchantshopId).size()
+	log.info("Total count of Grocery: "+totalcount)
 	log.info("setting mid to session")
 	session.setAttribute("mid", merchantshopId)
 	log.info("after setting mid to session"+session.getAttribute("mid"))
@@ -235,12 +238,118 @@ def marketdata(){
 	def user= User.findByUserName(useremail)
 	log.info("**********username****" +useremail)
 	
+	responseData.put("totalcount",totalcount)
 	responseData.put("data", data)
 	responseData.put("uname",user)
-	
+	responseData.put("offset", of)
+	log.info("responsedata: "+responseData)
 	[result:responseData]
 
 }
+
+		def offsetlist1(){
+			
+			log.info("UserController offsetlist1 Action")
+			def responseData = new HashMap<>()
+			def result,url
+			url="/user/marketdata.gsp"
+			def mode=params.mode
+			
+			session.setAttribute("mid","");
+			
+			def merchantshopName
+			def merchantshopId
+			def mid=params.merchantshopName
+			log.info("merchantid "+mid)
+			def paramMName
+			if(mid){
+			paramMName=Merchant.get(mid).shopName;
+			}
+			log.info("merchant name from param "+paramMName);
+			
+			
+			Cookie cookie=null
+			Cookie[] cookies = null;
+			def useremail
+			cookies=request.getCookies();
+			log.info("cookies: "+cookies)
+			if(!cookies.toString().equals("null")){
+			for (int i = 0; i < cookies.length; i++) {
+				cookie = cookies[i];
+				if(cookie.getName().equals("mid")){
+					if(!(cookie.getValue().equals("null") ||cookie.getValue().equals("")))
+					if(paramMName==null){
+					merchantshopId=cookie.getValue()
+					log.info("in cookie   " +merchantshopId)
+					}
+				}
+				if(cookie.getName().equals("userKey")){
+					if(!(cookie.getValue().equals("null") ||cookie.getValue().equals("")))
+					useremail=cookie.getValue()
+				}
+				
+			 }
+			}
+				 if(useremail ==null || useremail=="" ){
+			 useremail= session.user
+			 }
+			
+			if((merchantshopId.equals(null) || merchantshopId=="" || merchantshopId.equals("null"))&& paramMName==null){
+			merchantshopId= session.getAttribute("mid")
+			log.info("in session MID   " +merchantshopId)
+			}
+			if(merchantshopId.equals(null) || merchantshopId=="" || merchantshopId.equals("null")){
+			
+			merchantshopId=params.merchantshopName
+		
+			
+			log.info("Merc Id: "+merchantshopId)
+			session.setAttribute("mid", merchantshopId)
+			session.setAttribute("mid", mid)
+			Cookie cookie1 = new Cookie("mid", ""+mid);
+			cookie1.setMaxAge(60*60*24*365)
+			response.addCookie(cookie1);
+			}
+			
+			def of=params.offset;
+			def data = Grocery.findAllByMerchantId(merchantshopId,[sort:"id",order:"desc",max: 10, offset: of])
+			log.info("Grocery data "+data)
+			def totalcount = Grocery.findAllByMerchantId(merchantshopId).size()
+			log.info("Total count of Grocery: "+totalcount)
+			log.info("setting mid to session")
+			session.setAttribute("mid", merchantshopId)
+			log.info("after setting mid to session"+session.getAttribute("mid"))
+			def data2 = Grocery.findByMerchantId(merchantshopId)
+			def city = session.getAttribute("cityName")
+			log.info("city*********"+city)
+			if(data2){
+			def merchShop = data2.merchantshopName
+			log.info("merchantshopName "+merchShop)
+			log.info("merchantshopNameID*********** "+data2.id)
+			
+			responseData.put("merchShop",merchShop)
+			}
+			else{
+				render text: """<script type="text/javascript">
+                    alert("No Stock Available");
+                    window.location.href = "/Skeleton/merchant/searchlocation";
+
+
+		 </script>""",
+				contentType: 'js'
+			}
+			
+			def user= User.findByUserName(useremail)
+			log.info("**********username****" +useremail)
+			
+			responseData.put("totalcount",totalcount)
+			responseData.put("data", data)
+			responseData.put("uname",user)
+			responseData.put("offset", Integer.parseInt(of))
+			log.info("responsedata: "+responseData)
+			[result:responseData]
+		
+		}
 
 		def forgotpass(){
 			
@@ -540,10 +649,7 @@ def updateuser(){
 		log.info("OrderStatus data: "+data)
 		def totalcount=OrderStatus.findAllByUsercartId(usercartId).size()
 		log.info("OrderStatus count: "+totalcount)
-		def userInstance=OrderStatus.findByGroceryName(params.groceryName)
-		log.info("userInstance: "+userInstance)
 		
-		responseData.put("data1", userInstance)
 		responseData.put("listId", "list")
 		responseData.put("totalcount",totalcount)
 		responseData.put("data", data)
@@ -600,10 +706,7 @@ def updateuser(){
 		log.info("OrderStatus data: "+data)
 		def totalcount=OrderStatus.findAllByUsercartId(usercartId).size()
 		log.info("OrderStatus count: "+totalcount)
-		def userInstance=OrderStatus.findByGroceryName(params.groceryName)
-		log.info("OrderStatus: "+userInstance)
 		
-		responseData.put("data1", userInstance)
 		responseData.put("listId", "list")
 		responseData.put("totalcount",totalcount )
 		responseData.put("data", data)

@@ -96,15 +96,44 @@ window.onhashchange = function (event) {
 
 <g:render template="groceryheader1"/>
 
-	<!-- start banner Area -->
+<!-- start banner Area -->
 		<div class="container">
-					<br><br><br><br>
-						<div class="row">
-							<h4 style="padding-left:170px;font-family: Calibri" >Groceries List </h4>
-												<g:link controller="grocery" action="create"><h4 style="padding-left:300px;font-family: Calibri;color:#1E90FF">Create Grocery</h4></g:link>
+					<br><br><br><br><br><br>
+						<div class="row" style="padding-left: 100px;">
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri" ><a href="/Skeleton/grocery/create" class="active"  style="color: black;" >Create Grocery</a> </h4>
+									</div>
+							</div>
 							
-							</div>						
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/grocery/list" class="active"  style="color: black;" >View List</a> </h4>
+									</div>
+							</div>
+						
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/orderStatus/orderstatuslist" class="active"  style="color: black;" >Order Status</a> </h4>
+									
+								</div>
+							</div>
+							
+							<div class="col-lg-3">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="#" class="active"  style="color: blue;" >Out of Stock Details</a> </h4>
+									
+								</div>
+							</div>
+							
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/merchant/checkpack" class="active"  style="color: black;" >Total Stock Details</a> </h4>
+									
+								</div>
+							</div>
 					</div>
+				</div>
 	<!-- End banner Area -->
 	
 	<br>
@@ -121,17 +150,15 @@ window.onhashchange = function (event) {
       <th>Weight</th>  
       <th>Offer</th>  
       <th>Total</th>
-       <th style="color:black;font-family: Calibri">Edit</th>
+       <th>Add Stock</th>
       </tr>
       </thead>
      <tbody>
      <g:each in="${result.data}" expr="true">
     
       <tr>
-        <td style="font-size: 20px;"><a href="#"  style="color: black;font-family: Calibri">${it.groceryName}</a></td>
-              <!-- -  <td style="font-size: 20px;"><a href="/Skeleton/grocery/edit"  style="color: black;">${it.groceryName}</a></td>
-         -->
-        <td style="color: black;"> ${it.quantity}</td>
+        <td style="color: black;">${it.groceryName}</td>
+        <td style="color: black;"> ${it.reducedQuantity}</td>
         <td style="color: black;"> ${it.cost}</td>
         <td style="color: black;"> ${it.weight}</td>
         <td style="color: black;"> ${it.offer}</td>

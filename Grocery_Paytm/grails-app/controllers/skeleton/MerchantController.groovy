@@ -907,6 +907,59 @@ if(mode=="web")	{
 		[result:responseData]
 	}
 	
+	def checkpack(){
+		
+		log.info("merchantController checkpack Action")
+		log.info("merchantController totalstock Action")
+		def responseData=new HashMap<>()
+		def mode=params.mode
+		log.info("mode: "+mode)
+		
+		def user = Merchant.findByEmail(session.user)
+		log.info("MerchantData: "+user)
+		
+		def merchantId = user.id
+		def expiryCheck = Subscription.findAllByMerchantId(merchantId,[max: 1,sort:"createdDate",order: "desc"])
+		log.info("Package Validity Check: "+expiryCheck)
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		def expDate = expiryCheck[0].expiryDate
+		log.info("Expiry Date: "+expDate)
+		Date expiryDate=sdf.parse(expDate);
+		
+		Date date = new Date();
+		log.info("Current Date: "+date)
+		log.info("expiry date: "+expiryDate)
+		
+		String currentdate = sdf.format(date);
+		Date todaydate=sdf.parse(currentdate);
+		log.info("Formatted Current Date: "+todaydate);
+
+		log.info(expiryDate.compareTo(todaydate)>=0);
+		if(expiryDate.compareTo(todaydate)>=0){
+			log.info("You still have your package validity")
+			render text: """<script type="text/javascript">
+	                    window.location.href = "/Skeleton/merchant/totalstock";
+						</script>""",
+				contentType: 'js'
+		}
+		else{
+			log.info("Your Package validity has been expired. Please subscribe now.")
+			render text: """<script type="text/javascript">
+	                    alert("Dear Customer, Your package validity has been expired. Please subscribe now.");
+	                    window.location.href = "/Skeleton/package/packview";
+						</script>""",
+				contentType: 'js'
+		}
+		responseData.put("listId", "totalstock")
+		responseData.put("uname", user)
+		responseData.put("expiryCheck", expiryCheck)
+		responseData.put("flag", session.flag)
+		
+		log.info("responseData: "+responseData)
+		[result:responseData]
+	}
+	
 	def totalstock(){
 		
 		log.info("merchantController totalstock Action")
@@ -933,7 +986,7 @@ if(mode=="web")	{
 		String currentdate = sdf.format(date);
 		Date todaydate=sdf.parse(currentdate);
 		log.info("Formatted Current Date: "+todaydate);
-		
+
 		responseData.put("listId", "totalstock")
 		responseData.put("uname", user)
 		responseData.put("expiryCheck", expiryCheck)

@@ -100,7 +100,7 @@ window.onhashchange = function (event) {
 			<nav class="navbar navbar-expand-lg navbar-light main_box">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="/Skeleton/merchant/merchantdashboard"><img src="/Skeleton/website/img/arvanlogo.jpg" style="height: 60px;width: 150px;" alt=""></a>
+					<a class="navbar-brand logo_h" href="/Skeleton/merchant/ldashboard"><img src="/Skeleton/website/img/arvanlogo.jpg" style="height: 60px;width: 150px;" alt=""></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
@@ -110,7 +110,7 @@ window.onhashchange = function (event) {
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item"><a class="nav-link" href="/Skeleton/merchant/merchantdashboard">Home</a></li>
+							<li class="nav-item"><a class="nav-link" href="/Skeleton/merchant/ldashboard">Home</a></li>
 							
 							<li class="nav-item"><a class="nav-link" href="/Skeleton/merchant/contact1">Contact</a></li>
 							
@@ -138,10 +138,49 @@ window.onhashchange = function (event) {
 		 </header>
 		 <!-- End Header Area -->
    
+   <!-- start banner Area -->
+		<div class="container">
+					<br><br><br><br><br><br>
+						<div class="row" style="padding-left: 100px;">
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri" ><a href="/Skeleton/grocery/create" class="active"  style="color: black;" >Create Grocery</a> </h4>
+									</div>
+							</div>
+							
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/grocery/list" class="active"  style="color: black;" >View List</a> </h4>
+									</div>
+							</div>
+						
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/orderStatus/orderstatuslist" class="active"  style="color: black;" >Order Status</a> </h4>
+									
+								</div>
+							</div>
+							
+							<div class="col-lg-3">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="/Skeleton/grocery/outofstock" class="active"  style="color: black;" >Out of Stock Details</a> </h4>
+									
+								</div>
+							</div>
+							
+							<div class="col-lg-2">
+								<div class="banner-content">
+									<h4 style="font-family: Calibri"><a href="#" class="active"  style="color: black;" >Total Stock Details</a> </h4>
+									
+								</div>
+							</div>
+					</div>
+				</div>
+	<!-- End banner Area -->
    
 	<!-- start banner Area -->
 		<div class="container">
-					<br><br><br><br><br><br>
+					<br><br>
 					<div class="order_box">
 					
 						<p style="color: black;font-size: 16px;padding-left:200px; ">Dear ${result.uname.firstName },</p>
@@ -153,7 +192,7 @@ window.onhashchange = function (event) {
             <div class="col-lg-12">
                 <div class="panel panel-default">
                 <div class="row">
- 	<g:each in="${result.pack}" var="i" expr="true">
+ 	<g:each in="${result.packdata}" var="i" expr="true">
         <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="panel panel-success">
                         <div class="panel-heading">

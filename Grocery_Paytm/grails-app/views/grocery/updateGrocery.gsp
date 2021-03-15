@@ -191,12 +191,14 @@ function costcal(){
 		<g:message code="grocery.quantity.label" default="Quantity" />
 		<span class="required-indicator"></span>
 	</label>
-	<g:textField name="quantity" id="quantity" class="form-control" required="" value="${result.gInstance?.quantity}"/>
+	<g:textField name="quantity" id="quantity" class="form-control" required="" value="${result.gInstance?.reducedQuantity}"/>
 
 </div>
 
 
 </div>
+
+
 <div class="col-md-4 col-sm-4">
 
 <div class="fieldcontain ${hasErrors(bean: result.gInstance, field: 'offer', 'error')} required">

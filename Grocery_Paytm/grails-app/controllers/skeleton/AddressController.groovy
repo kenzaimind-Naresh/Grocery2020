@@ -120,14 +120,11 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 	    tcart.availStock=0;
 	   if(shopName!=null && shopName!=""){
 		   log.info("shopname and gname: "+shopName+","+tcart.gname.split("00")[0])
-		   
-		   def grocInstance=Grocery.findByMerchantshopNameAndGroceryName(shopName,tcart.gname.split("00")[0]);
-		   log.info("available stock "+grocInstance.quantity);
-		   tcart.availStock=grocInstance.quantity;
+		   log.info("groceryId from tcart: "+tcart.groceryId)
+		   def grocInstance=Grocery.findByMerchantshopNameAndId(shopName,tcart.groceryId);
+		   log.info("available stock "+grocInstance.reducedQuantity);
+		   tcart.availStock=grocInstance.reducedQuantity;
 		   tcart.availgName=tcart.gname.split("00")[0];
-		   def groceryData = Grocery.findByMerchantIdAndGroceryName(grocInstance.merchantId,tcart.gname.split("00")[0])
-		   log.info("Weight from grocerydata: "+groceryData.weight)
-		   session.setAttribute("grocWeight", groceryData.weight)
 	   }
 	   
 	   cartList.add(tcart);
@@ -388,11 +385,15 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info("tamount from cartInstance: "+cartInstance.tamount)
 		log.info("usercartId from cartInstance: "+cartInstance.usercartId)
 		log.info("status from cartInstance: "+cartInstance.status)
+		log.info("groceryId from cartInstance: "+cartInstance.groceryId)
 		log.info("merchantName: "+mercName)
 		log.info("AddressId: "+addId)
 		log.info("gname from cartInstance: "+cartInstance.modifiedBy)
 		
-		def orderResult=OrderStatusService.saveOrder(cartInstance.gname,cartInstance.gprice,cartInstance.tcount,cartInstance.qCount,cartInstance.tamount,cartInstance.usercartId,cartInstance.status,mercName,addId,cartInstance.modifiedBy)
+		def user1=User.findByUserName(username)
+		log.info("User data: "+user1)
+		
+		/*def orderResult=OrderStatusService.saveOrder(cartInstance.gname,cartInstance.gprice,cartInstance.tcount,cartInstance.qCount,cartInstance.tamount,cartInstance.usercartId,cartInstance.status,mercName,addId,cartInstance.modifiedBy)
 		
 		// grocery quantity update
 		
@@ -402,29 +403,24 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info("merchantid: "+merchantInstance.id)
 		
 		String[] gnames= cartInstance.gname.split("#")
-		
+		String[] groceryId = cartInstance.groceryId.split("#")
 		log.info("gnames length: "+gnames.length)
-		def gweight = session.getAttribute("grocWeight")
-		log.info("Weight from session: "+gweight)
 		
 	for(int a=0;a<gnames.length;a++){
-			
-		def instance = Grocery.findByMerchantIdAndGroceryName(merchantInstance.id,gnames[a].split("00")[0])
+		
+		log.info("groceryId and gname from cartInstance: "+groceryId[a]+"-"+gnames[a].split("00")[0])
+		def instance = Grocery.findByMerchantIdAndId(merchantInstance.id,groceryId[a])
 		log.info("weight from grocery: "+instance.weight)
-		def groceryInstance = Grocery.findByMerchantIdAndGroceryNameAndWeight(merchantInstance.id,gnames[a].split("00")[0],gweight)
-		def value = Integer.parseInt(groceryInstance.reducedQuantity) - Integer.parseInt(gnames[a].split("00")[1])
+		def value = Integer.parseInt(instance.reducedQuantity) - Integer.parseInt(gnames[a].split("00")[1])
 		log.info("Quantity to be reduced : "+ gnames[a].split("00")[1]);
 		log.info("final Reduced Quantity : "+  value);
-		
-		GroceryService.update1(merchantInstance.id,gnames[a].split("00")[0],value);
+		log.info("groceryId of the updating item: "+groceryId[a])
+		GroceryService.update1(merchantInstance.id,gnames[a].split("00")[0],value,groceryId[a]);
 	}
-	
-		def user1=User.findByUserName(username)
-		log.info("User data: "+user1)
 		
 		TestController testController=new TestController();
 		String smsresp=testController.sendSMSToUser(user1.mobileNumber,"Dear "+user1.userName+",your Grocery Order has been placed successfully. Your Order Amount: Rs."+cartInstance.tamount+" and your Order Items:"+gnames+". Delivery Charges applicable depends on below distance:  0 to 1Km - Free, 1 to 3Kms - Rs.30, 3 to 5Kms - Rs.50, 5 to 7Kms - Rs.70.");
-		log.info("SMS response "+smsresp);
+		log.info("SMS response "+smsresp);*/
 		
 		responseData.put("totalcount",totalcount)
 		responseData.put("data", data)
@@ -475,9 +471,42 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info("tamount from cartInstance: "+cartInstance.tamount)
 		log.info("usercartId from cartInstance: "+cartInstance.usercartId)
 		log.info("status from cartInstance: "+cartInstance.status)
+		log.info("groceryId from cartInstance: "+cartInstance.groceryId)
 		log.info("merchantName: "+mercName)
 		log.info("AddressId: "+addrId)
 		log.info("gname from cartInstance: "+cartInstance.modifiedBy)
+		
+		def orderResult=OrderStatusService.saveOrder(cartInstance.gname,cartInstance.gprice,cartInstance.tcount,cartInstance.qCount,cartInstance.tamount,cartInstance.usercartId,cartInstance.status,mercName,addrId,cartInstance.modifiedBy)
+		
+		// grocery quantity update
+		
+		log.info("qCount from cartInstance: "+cartInstance.qCount)
+		
+		def merchantInstance = Merchant.get(mercId)
+		log.info("merchantid: "+merchantInstance.id)
+		
+		String[] gnames= cartInstance.gname.split("#")
+		String[] groceryId = cartInstance.groceryId.split("#")
+		log.info("gnames length: "+gnames.length)
+		
+	for(int a=0;a<gnames.length;a++){
+		
+		log.info("groceryId and gname from cartInstance: "+groceryId[a]+"-"+gnames[a].split("00")[0])
+		def instance = Grocery.findByMerchantIdAndId(merchantInstance.id,groceryId[a])
+		log.info("weight from grocery: "+instance.weight)
+		def value = Integer.parseInt(instance.reducedQuantity) - Integer.parseInt(gnames[a].split("00")[1])
+		log.info("Quantity to be reduced : "+ gnames[a].split("00")[1]);
+		log.info("final Reduced Quantity : "+  value);
+		log.info("groceryId of the updating item: "+groceryId[a])
+		GroceryService.update1(merchantInstance.id,gnames[a].split("00")[0],value,groceryId[a]);
+	}
+	
+		def user1=User.findByUserName(username)
+		log.info("User data: "+user1)
+		
+		TestController testController=new TestController();
+		String smsresp=testController.sendSMSToUser(user1.mobileNumber,"Dear "+user1.userName+",your Grocery Order has been placed successfully. Your Order Amount: Rs."+cartInstance.tamount+" and your Order Items:"+gnames+". Delivery Charges applicable depends on below distance:  0 to 1Km - Free, 1 to 3Kms - Rs.30, 3 to 5Kms - Rs.50, 5 to 7Kms - Rs.70.");
+		log.info("SMS response "+smsresp);
 		
 		log.info("*********Split function in shipping page*******")
 		List<Cart> cartlist=new ArrayList<Cart>();
@@ -515,8 +544,7 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info("User Address: "+data)
 		def totalcount=Address.findAllByUserNameId(addressId).size()
 		log.info("Address Total Count:"+totalcount)
-		def user1=User.findByUserName(username)
-		log.info("User data: "+user1)
+		
 		def data1=Address.findByAddressId(params.addressId)
 		log.info("Address: "+data1)
 		
@@ -538,14 +566,14 @@ static allowedMethods = [save: "POST", update: "PUT", myUpdate: "POST", delete: 
 		log.info("amount "+amount)
 		
 		List<Cart> cartList=new ArrayList<Cart>();
-		String[] gnames = groceryName.split("#");
+		String[] grocNames = groceryName.split("#");
 		String[] gprices = groceryPrice.split("#");
-		log.info("gnames: "+gnames)
-		log.info("gnames[0]: "+gnames[0])
+		log.info("grocNames: "+grocNames)
+		log.info("grocNames[0]: "+grocNames[0])
 		for(int i=0;i<qCount;i++){
 			log.info("incece "+i);
 		Cart tcart=new Cart();
-		tcart.gname=gnames[i];
+		tcart.gname=grocNames[i];
 		tcart.gprice=gprices[i];
 		cartList.add(tcart);
 		log.info("tcart object: "+tcart);

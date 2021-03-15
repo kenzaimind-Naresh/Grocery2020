@@ -118,7 +118,7 @@
 							
 							<div class="col-lg-2">
 								<div class="banner-content">
-									<h4 style="font-family: Calibri"><a href="/Skeleton/merchant/totalstock" class="active"  style="color: black;" >Total Stock Details</a> </h4>
+									<h4 style="font-family: Calibri"><a href="/Skeleton/merchant/checkpack" class="active"  style="color: black;" >Total Stock Details</a> </h4>
 									
 								</div>
 							</div>
@@ -148,7 +148,7 @@
     
       <tr>
         <td style="color: black;">${it.groceryName}</td>
-        <td style="color: black;"> ${it.quantity}</td>
+        <td style="color: black;"> ${it.reducedQuantity}</td>
         <td style="color: black;"> ${it.cost}</td>
         <td style="color: black;"> ${it.weight}</td>
         <td style="color: black;"> ${it.offer}</td>

@@ -53,16 +53,19 @@ class PackageController {
 		log.info("package from platinum: "+ppack)
 		def pack = Package.findAll()
 		log.info("Packages: "+pack)
-		log.info("packageId from package data: "+pack.packageId)
-		log.info("createddate from package data: "+pack.createdDate)
-		log.info("duration from package data: "+pack.duration)
-		log.info("1 duration value from package data: "+pack[0].duration)
+		def packdata = Package.where { duration != "15Days" }.list()
+		log.info("packdata: "+packdata)
+		//log.info("packageId from package data: "+packdata.packageId)
+		//log.info("createddate from package data: "+packdata.createdDate)
+		//log.info("duration from package data: "+packdata.duration)
+		//log.info("1 duration value from package data: "+packdata[0].duration)
 		log.info("merchantId from merchantdata: "+user.id)
 		
 		
 		
 		responseData.put("spack", spack)
 		responseData.put("pack", pack)
+		responseData.put("packdata", packdata)
 		responseData.put("gpack", gpack)
 		responseData.put("ppack", ppack)
 		responseData.put("listId", "list")
@@ -304,11 +307,8 @@ class PackageController {
 		
 		def data=Grocery.findAllByMerchantId(merchantId,[sort:"id",order:"desc",max: 5, offset: of])
 		log.info("Grocery data: "+data)
-		def grocName = data.groceryName
-		log.info("grocNames: "+grocName)
 		def totalcount=Grocery.findAllByMerchantId(merchantId).size()
 		log.info("Grocery count: "+totalcount)
-		def groceryInstance=Grocery.findByGroceryName(params.groceryName)
 		
 		def searchGrocery = Grocery.findAllByMerchantId(merchantId)
 		log.info("GroceryNames: "+searchGrocery)
@@ -325,7 +325,7 @@ class PackageController {
 				user1.add(searchGrocery[i].groceryName)
 			}
 			log.info("Grocery Names.......... "+user1)
-		responseData.put("data1", groceryInstance)
+			
 		responseData.put("listId", "list")
 		responseData.put("totalcount",totalcount)
 		responseData.put("data", data)
@@ -352,7 +352,8 @@ class PackageController {
 		def result,url
 		
 		def groceryName = params.groceryName
-		log.info("groceryName: "+groceryName)
+		def groceryId = params.id
+		log.info("groceryName: "+groceryName+"-"+groceryId)
 		
 		def user= Merchant.findByEmail(session.user)
 		log.info("Merchant data: "+user)
@@ -412,11 +413,28 @@ class PackageController {
 		log.info("Grocery data: "+data)
 		def totalcount=Grocery.findAllByMerchantId(merchantId).size()
 		log.info("Grocery count: "+totalcount)
+		
+		def searchGrocery = Grocery.findAllByMerchantId(merchantId)
+		log.info("GroceryNames: "+searchGrocery)
+		def msg;
+		if(searchGrocery==null || searchGrocery==[]){
+			msg="Data Not Found"
+		}
+		else{
+			msg=""
+			
+		}
+		def user1=new ArrayList()
+			for(int i=0;i<searchGrocery.size();i++){
+				user1.add(searchGrocery[i].groceryName)
+			}
+			log.info("Grocery Names.......... "+user1)
 		responseData.put("listId", "list")
 		responseData.put("totalcount",totalcount )
 		responseData.put("data", data)
 		responseData.put("uname", user)
 		responseData.put("offset", Integer.parseInt(of))
+		responseData.put("groceryName",Grocery.findAllByMerchantId(merchantId))
 		  [result:responseData]
 		}
 	}

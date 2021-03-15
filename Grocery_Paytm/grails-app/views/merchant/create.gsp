@@ -179,7 +179,7 @@ i:hover {
 
 <div class="fieldcontain ${hasErrors(bean: merchantInstance, field: 'password', 'error')} required">
     <div class="form-label-group input-group">
-      <input type="password" id="password" class="form-control" name="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}" title="Password must have atleast 6 characters(Uppercase,Lowercase,Numeric,Special character)" required>
+      <input type="password" id="password" class="form-control" name="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[a-zA-Z!@#$%^&*]).{6,}" title="Password must have atleast 6 characters(Uppercase,Lowercase,Numeric,Special character)" required>
       <div class="input-group-append">
         <span class="input-group-text">
           <i id="eye" class="far fa-eye-slash"></i>

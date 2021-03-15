@@ -202,7 +202,7 @@ return true;
            <div class="form-group">
                  <div class="col-sm-6">
             <label style="color: black;">New Password:</label>
-           <input type="password" id="newPwd" name="newPwd" class="form-control" value="" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}" 
+           <input type="password" id="newPwd" name="newPwd" class="form-control" value="" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[a-zA-Z!@#$%^&*]).{6,}" 
            				title="Password must have atleast 6 characters(Uppercase,Lowercase,Numeric,Special character)">
             <span id=newPwdinfo style="color:red"></span>
             </div>
